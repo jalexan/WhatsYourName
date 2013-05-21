@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Letters</key>
+	<array>
+		<integer>10</integer>
+	</array>
+	<key>Dialog</key>
+	<dict>
+		<key>Name</key>
+		<dict>
+			<key>English</key>
+			<string>Hi my name is Nolia</string>
+			<key>Arabic</key>
+			<string>اهلاً أنا اسمي نولية</string>
+			<key>Duration</key>
+			<integer>1</integer>
+		</dict>
+		<key>Like</key>
+		<dict>
+			<key>English</key>
+			<string>Nolia. Like This</string>
+			<key>Arabic</key>
+			<string>نولية زي كده</string>
+			<key>Duration</key>
+			<integer>2</integer>
+		</dict>
+		<key>Shuffle</key>
+		<dict>
+			<key>English</key>
+			<string>Oops, Sorry!</string>
+			<key>Arabic</key>
+			<string>أسفة</string>
+			<key>Duration</key>
+			<integer>1</integer>
+		</dict>
+		<key>Try</key>
+		<dict>
+			<key>English</key>
+			<string>Now you try</string>
+			<key>Arabic</key>
+			<string>جرب أنت</string>
+			<key>Duration</key>
+			<integer>2</integer>
+		</dict>
+		<key>Again</key>
+		<dict>
+			<key>English</key>
+			<string>Try Again</string>
+			<key>Arabic</key>
+			<string>جرب ثاني</string>
+			<key>Duration</key>
+			<integer>2</integer>
+		</dict>
+		<key>Excellent</key>
+		<dict>
+			<key>English</key>
+			<string>Excellent!</string>
+			<key>Arabic</key>
+			<string>ممتاز</string>
+			<key>Duration</key>
+			<integer>2</integer>
+		</dict>
+		<key>Later</key>
+		<dict>
+			<key>English</key>
+			<string>See you later!</string>
+			<key>Arabic</key>
+			<string>إلى الاقاء</string>
+			<key>Duration</key>
+			<integer>2</integer>
+		</dict>
+	</dict>
+</dict>
+</plist>
