@@ -24,13 +24,28 @@
     
     yourNameDialogDictionary = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];
 
+
+    
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    goodByeButton.hidden = YES;
 	nameTextField.hidden = YES;
+    restartButton.hidden = YES;
     
     [self displayDialogTextWithKey:@"Now" completion:^() {
         
         [self displayDialogTextWithKey:@"Whats" completion:^() {
             
-            nameTextField.hidden = NO;
+            
+            [self displayDialogTextWithKey:@"Write" completion:^() {
+                
+                nameTextField.hidden = NO;
+                
+            }];
+            
             
         }];
         
@@ -38,6 +53,22 @@
     
 }
 
+
+- (void)displayGreetingWithName:(NSString*)name {
+ 
+    NSString* hello = [NSString stringWithFormat:@"Nice to meet you %@!",name];
+    [self displayEnglishText:hello arabicText:@"(arabic text)" duration:3 completion:^() {
+        
+        [self displayDialogTextWithKey:@"Another" completion:^() {
+            
+            nameTextField.hidden = NO;
+            goodByeButton.hidden = NO;
+           
+        }];
+        
+    }];
+    
+}
 
 - (void)displayDialogTextWithKey:(NSString*)key completion:(void(^)())completion {
     
@@ -47,20 +78,19 @@
     
     NSTimeInterval duration = [[dialogDictionary objectForKey:@"Duration"] floatValue];
     
-    
     NSString* text = [dialogDictionary objectForKey:@"English"];
-    NSString* arabicText = nil;
-    
-    if ([dialogDictionary count]>1) {
-        arabicText = [dialogDictionary objectForKey:@"Arabic"];
-    }
-    
-    
+    NSString* arabicText = [dialogDictionary objectForKey:@"Arabic"];
+
+    [self displayEnglishText:text arabicText:arabicText duration:duration completion:completion];
+}
+
+
+- (void)displayEnglishText:(NSString*)englishText arabicText:(NSString*)arabicText duration:(NSTimeInterval)duration completion:(void(^)())completion {
     dialogLabel.font = [UIFont fontWithName:@"MarkerFelt-Thin" size:28];
-    dialogLabel.text = text;
+    dialogLabel.text = englishText;
     
     dialogLabel.alpha = .99;
-
+    
     [UIView animateWithDuration: duration
                           delay: 0.0
                         options: UIViewAnimationOptionCurveEaseIn
@@ -72,7 +102,7 @@
                          dialogLabel.font = [UIFont fontWithName:@"GeezaPro-Bold" size:28];
                          dialogLabel.text = arabicText;
                          dialogLabel.alpha = .99;
-                      
+                         
                          [UIView animateWithDuration: duration
                                                delay: 0.0
                                              options: UIViewAnimationOptionCurveEaseIn
@@ -89,6 +119,21 @@
     
 }
 
+- (IBAction)goodByeButtonTouched:(id)sender {
+    nameTextField.hidden = YES;
+    goodByeButton.hidden = YES;
+    [self displayDialogTextWithKey:@"Bye" completion:^() {
+        
+        restartButton.hidden = NO;
+        
+    }];
+    
+}
+
+- (IBAction)restartButtonTouched:(id)sender {
+    [self performSegueWithIdentifier:@"RestartSegue" sender:self];
+}
+
 
 #pragma mark UITextFieldDelegate
 
@@ -98,6 +143,11 @@
 
 -(BOOL) textFieldShouldReturn:(UITextField *)textField {    
     [textField resignFirstResponder];
+    
+    if (textField.text.length>0) {
+        [self displayGreetingWithName:textField.text];
+    }
+    
     return YES;
 }
 

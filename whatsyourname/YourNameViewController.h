@@ -12,6 +12,10 @@
     
     IBOutlet UILabel* dialogLabel;
     IBOutlet UITextField* nameTextField;
+    IBOutlet UIButton* goodByeButton;
+    IBOutlet UIButton* restartButton;
 }
 
+- (IBAction)goodByeButtonTouched:(id)sender;
+- (IBAction)restartButtonTouched:(id)sender;
 @end

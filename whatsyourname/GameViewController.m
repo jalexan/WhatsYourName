@@ -66,9 +66,10 @@
     
     
     
-    //CGRect r = speakerImageView.frame;
-    //r.size = actorContainerView.frame.size;
-    //speakerImageView.frame = r;
+    [self loadActors];
+    
+    
+    [self startGame];
     
 
 }
@@ -117,10 +118,7 @@
     [self.view addSubview:starsImageView];
     starsImageView.hidden = YES;
     
-    [self loadActors];
 
-    
-    [self startGame];
 
 
 }
