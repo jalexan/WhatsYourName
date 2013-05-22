@@ -16,6 +16,7 @@
 #import "SlotImageView.h"
 #import "SurpriseViewController.h"
 
+
 #define DEBUG1 1
 
 #if DEBUG1
@@ -53,8 +54,6 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
 
-
-    
     CGRect tempBounds = [[UIScreen mainScreen] bounds];
     if (tempBounds.size.height==568) {
         CGRect r = self.view.frame;
@@ -62,16 +61,11 @@
         r.origin = CGPointMake(0, 44);
         self.view.frame = r;
     }
-    
-    
-    
-    
+
     [self loadActors];
-    
     
     [self startGame];
     
-
 }
 
 - (void)loadActors {
@@ -103,7 +97,6 @@
     //alwaysPlayAudioEffects = YES;
     //otherAudioIsPlaying = 0;
 	
-    
     screenBounds = CGSizeMake(480,320);
 
     UIImageView* screenBackground = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Resource/bg.jpg"]];
@@ -112,14 +105,9 @@
     [self.view addSubview:screenBackground];
     [self.view sendSubviewToBack:screenBackground];
     
-
-    
     starsImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Resource/fairy_dust.png"]];
     [self.view addSubview:starsImageView];
     starsImageView.hidden = YES;
-    
-
-
 
 }
 
@@ -547,8 +535,6 @@
     }
     return YES;
 }
-
-
 
 
 #pragma mark Touches

@@ -37,6 +37,7 @@
 		68E73C2F1744B22C0064F7BC /* SpeakerImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 68E73C2E1744B22B0064F7BC /* SpeakerImageView.m */; };
 		68E8E7C41749FAFC005BDA40 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68E8E7C31749FAFC005BDA40 /* QuartzCore.framework */; };
 		68FA6DB4174C7309000B08E1 /* SurpriseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68FA6DB3174C7309000B08E1 /* SurpriseViewController.m */; };
+		68FA6DDF174D2D7A000B08E1 /* Speakers.m in Sources */ = {isa = PBXBuildFile; fileRef = 68FA6DDE174D2D7A000B08E1 /* Speakers.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -85,6 +86,9 @@
 		68E8E7C31749FAFC005BDA40 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		68FA6DB2174C7309000B08E1 /* SurpriseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SurpriseViewController.h; sourceTree = "<group>"; };
 		68FA6DB3174C7309000B08E1 /* SurpriseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SurpriseViewController.m; sourceTree = "<group>"; };
+		68FA6DDC174D2936000B08E1 /* Singleton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Singleton.h; sourceTree = "<group>"; };
+		68FA6DDD174D2D7A000B08E1 /* Speakers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Speakers.h; sourceTree = "<group>"; };
+		68FA6DDE174D2D7A000B08E1 /* Speakers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Speakers.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +146,7 @@
 				68240B48173F3C6800BDBDF8 /* Views */,
 				686551571748687300463C6C /* Common.h */,
 				686551581748688000463C6C /* Common.m */,
+				68FA6DDC174D2936000B08E1 /* Singleton.h */,
 				68240B20173F07D200BDBDF8 /* AppDelegate.h */,
 				68240B21173F07D200BDBDF8 /* AppDelegate.m */,
 				68240B29173F07D200BDBDF8 /* MainStoryboard.storyboard */,
@@ -198,6 +203,8 @@
 				68240B831740752F00BDBDF8 /* Speaker.m */,
 				685D89031749576F00847C7D /* Slot.h */,
 				685D89041749576F00847C7D /* Slot.m */,
+				68FA6DDD174D2D7A000B08E1 /* Speakers.h */,
+				68FA6DDE174D2D7A000B08E1 /* Speakers.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -296,6 +303,7 @@
 				685D8908174958C900847C7D /* SlotImageView.m in Sources */,
 				6812F6D8174BCFE100CBF5C2 /* YourNameViewController.m in Sources */,
 				68FA6DB4174C7309000B08E1 /* SurpriseViewController.m in Sources */,
+				68FA6DDF174D2D7A000B08E1 /* Speakers.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
