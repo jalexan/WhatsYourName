@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Now</key>
+	<dict>
+		<key>English</key>
+		<string>Now we want to know who YOU are!</string>
+		<key>Arabic</key>
+		<string>اهلاً أنا اسمي نولية</string>
+		<key>Duration</key>
+		<integer>2</integer>
+	</dict>
+	<key>Whats</key>
+	<dict>
+		<key>English</key>
+		<string>What&apos;s your name?</string>
+		<key>Arabic</key>
+		<string>نولية زي كده</string>
+		<key>Duration</key>
+		<integer>2</integer>
+	</dict>
+	<key>Write</key>
+	<dict>
+		<key>English</key>
+		<string>Write your name here.</string>
+		<key>Arabic</key>
+		<string>نولية زي كده</string>
+		<key>Duration</key>
+		<integer>2</integer>
+	</dict>
+	<key>Another</key>
+	<dict>
+		<key>English</key>
+		<string>Write another name</string>
+		<key>Arabic</key>
+		<string>نولية زي كده</string>
+		<key>Duration</key>
+		<integer>2</integer>
+	</dict>
+	<key>Nice</key>
+	<dict>
+		<key>English</key>
+		<string>Nice to meet you.</string>
+		<key>Arabic</key>
+		<string>نولية زي كده</string>
+		<key>Duration</key>
+		<integer>2</integer>
+	</dict>
+	<key>Bye</key>
+	<dict>
+		<key>English</key>
+		<string>Good Bye!</string>
+		<key>Arabic</key>
+		<string>نولية زي كده</string>
+		<key>Duration</key>
+		<integer>2</integer>
+	</dict>
+</dict>
+</plist>

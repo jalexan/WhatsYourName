@@ -9,9 +9,9 @@
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
 
-@interface ViewController : UIViewController <AVAudioSessionDelegate> {
+@interface GameViewController : UIViewController <AVAudioSessionDelegate> {
     //IBOutlet UIView* actorContainerView;
-    IBOutlet UILabel* greetingLabel;
+    IBOutlet UILabel* dialogLabel;
     IBOutlet UIView* arabicNameView;
     IBOutlet UIView* slotContainerView;
     IBOutlet UIView* mixedUpLettersAreaView;

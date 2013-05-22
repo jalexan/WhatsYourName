@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6812F6D8174BCFE100CBF5C2 /* YourNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6812F6D7174BCFE100CBF5C2 /* YourNameViewController.m */; };
 		681B4FE61748248600B5AF95 /* Speakers.plist in Resources */ = {isa = PBXBuildFile; fileRef = 681B4FE51748248600B5AF95 /* Speakers.plist */; };
 		68240B12173F07D200BDBDF8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68240B11173F07D200BDBDF8 /* UIKit.framework */; };
 		68240B14173F07D200BDBDF8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68240B13173F07D200BDBDF8 /* Foundation.framework */; };
@@ -15,7 +16,7 @@
 		68240B1E173F07D200BDBDF8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 68240B1D173F07D200BDBDF8 /* main.m */; };
 		68240B22173F07D200BDBDF8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 68240B21173F07D200BDBDF8 /* AppDelegate.m */; };
 		68240B2B173F07D200BDBDF8 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 68240B29173F07D200BDBDF8 /* MainStoryboard.storyboard */; };
-		68240B2E173F07D200BDBDF8 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68240B2D173F07D200BDBDF8 /* ViewController.m */; };
+		68240B2E173F07D200BDBDF8 /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68240B2D173F07D200BDBDF8 /* GameViewController.m */; };
 		68240B811740744F00BDBDF8 /* ArabicLetter.m in Sources */ = {isa = PBXBuildFile; fileRef = 68240B801740744F00BDBDF8 /* ArabicLetter.m */; };
 		68240B841740752F00BDBDF8 /* Speaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 68240B831740752F00BDBDF8 /* Speaker.m */; };
 		68353D691740B7810003D1EB /* ArabicLetterImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 68353D681740B7810003D1EB /* ArabicLetterImageView.m */; };
@@ -35,9 +36,12 @@
 		68E73C051744A64C0064F7BC /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68E73C041744A64C0064F7BC /* icon@2x.png */; };
 		68E73C2F1744B22C0064F7BC /* SpeakerImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 68E73C2E1744B22B0064F7BC /* SpeakerImageView.m */; };
 		68E8E7C41749FAFC005BDA40 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68E8E7C31749FAFC005BDA40 /* QuartzCore.framework */; };
+		68FA6DB4174C7309000B08E1 /* SurpriseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68FA6DB3174C7309000B08E1 /* SurpriseViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6812F6D6174BCFE100CBF5C2 /* YourNameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YourNameViewController.h; sourceTree = "<group>"; };
+		6812F6D7174BCFE100CBF5C2 /* YourNameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YourNameViewController.m; sourceTree = "<group>"; };
 		681B4FE51748248600B5AF95 /* Speakers.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Speakers.plist; sourceTree = "<group>"; };
 		68240B0D173F07D200BDBDF8 /* whatsyourname.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = whatsyourname.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		68240B11173F07D200BDBDF8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -50,8 +54,8 @@
 		68240B20173F07D200BDBDF8 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		68240B21173F07D200BDBDF8 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		68240B2A173F07D200BDBDF8 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
-		68240B2C173F07D200BDBDF8 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		68240B2D173F07D200BDBDF8 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		68240B2C173F07D200BDBDF8 /* GameViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameViewController.h; sourceTree = "<group>"; };
+		68240B2D173F07D200BDBDF8 /* GameViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameViewController.m; sourceTree = "<group>"; };
 		68240B801740744F00BDBDF8 /* ArabicLetter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArabicLetter.m; sourceTree = "<group>"; };
 		68240B821740752F00BDBDF8 /* Speaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Speaker.h; sourceTree = "<group>"; };
 		68240B831740752F00BDBDF8 /* Speaker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Speaker.m; sourceTree = "<group>"; };
@@ -79,6 +83,8 @@
 		68E73C2D1744B22B0064F7BC /* SpeakerImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeakerImageView.h; sourceTree = "<group>"; };
 		68E73C2E1744B22B0064F7BC /* SpeakerImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpeakerImageView.m; sourceTree = "<group>"; };
 		68E8E7C31749FAFC005BDA40 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		68FA6DB2174C7309000B08E1 /* SurpriseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SurpriseViewController.h; sourceTree = "<group>"; };
+		68FA6DB3174C7309000B08E1 /* SurpriseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SurpriseViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,8 +145,12 @@
 				68240B20173F07D200BDBDF8 /* AppDelegate.h */,
 				68240B21173F07D200BDBDF8 /* AppDelegate.m */,
 				68240B29173F07D200BDBDF8 /* MainStoryboard.storyboard */,
-				68240B2C173F07D200BDBDF8 /* ViewController.h */,
-				68240B2D173F07D200BDBDF8 /* ViewController.m */,
+				68240B2C173F07D200BDBDF8 /* GameViewController.h */,
+				68240B2D173F07D200BDBDF8 /* GameViewController.m */,
+				6812F6D6174BCFE100CBF5C2 /* YourNameViewController.h */,
+				6812F6D7174BCFE100CBF5C2 /* YourNameViewController.m */,
+				68FA6DB2174C7309000B08E1 /* SurpriseViewController.h */,
+				68FA6DB3174C7309000B08E1 /* SurpriseViewController.m */,
 				681B4FE51748248600B5AF95 /* Speakers.plist */,
 				685D89011749273300847C7D /* Speakers */,
 				686551531748427700463C6C /* Letters */,
@@ -275,7 +285,7 @@
 			files = (
 				68240B1E173F07D200BDBDF8 /* main.m in Sources */,
 				68240B22173F07D200BDBDF8 /* AppDelegate.m in Sources */,
-				68240B2E173F07D200BDBDF8 /* ViewController.m in Sources */,
+				68240B2E173F07D200BDBDF8 /* GameViewController.m in Sources */,
 				68240B811740744F00BDBDF8 /* ArabicLetter.m in Sources */,
 				68240B841740752F00BDBDF8 /* Speaker.m in Sources */,
 				68353D691740B7810003D1EB /* ArabicLetterImageView.m in Sources */,
@@ -284,6 +294,8 @@
 				686551591748688000463C6C /* Common.m in Sources */,
 				685D89051749576F00847C7D /* Slot.m in Sources */,
 				685D8908174958C900847C7D /* SlotImageView.m in Sources */,
+				6812F6D8174BCFE100CBF5C2 /* YourNameViewController.m in Sources */,
+				68FA6DB4174C7309000B08E1 /* SurpriseViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

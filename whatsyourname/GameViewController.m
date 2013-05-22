@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Richard Nguyen. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "GameViewController.h"
 #import "UIView+Additions.h"
 #import "Speaker.h"
 #import "SpeakerImageView.h"
@@ -14,6 +14,7 @@
 #import "ArabicLetterImageView.h"
 #import "Slot.h"
 #import "SlotImageView.h"
+#import "SurpriseViewController.h"
 
 #define DEBUG1 1
 
@@ -29,7 +30,7 @@
 
 
 
-@interface ViewController () {
+@interface GameViewController () {
     CGSize screenBounds;
     
     NSMutableArray* speakerArray;
@@ -46,7 +47,7 @@
 
 @end
 
-@implementation ViewController
+@implementation GameViewController
 
 #pragma mark Setup
 - (void)viewDidAppear:(BOOL)animated {
@@ -229,6 +230,8 @@
                     
                     [self animateSpeakerSuccessWithCompletion:^() {
                         
+                        [self performSegueWithIdentifier:@"SurpriseSegue" sender:self];
+                        
                     }];
                     
                     
@@ -261,29 +264,29 @@
     }
 
     
-    greetingLabel.font = [UIFont fontWithName:@"MarkerFelt-Thin" size:28];
-    greetingLabel.text = text;
+    dialogLabel.font = [UIFont fontWithName:@"MarkerFelt-Thin" size:28];
+    dialogLabel.text = text;
 
-    greetingLabel.alpha = 1;
+    dialogLabel.alpha = 1;
     [speakerImageView animateWithType:TALK duration:duration];
     
     [UIView animateWithDuration: duration
                           delay: 0.0
                         options: UIViewAnimationOptionCurveEaseIn
                      animations:^{                         
-                         greetingLabel.alpha = .99;
+                         dialogLabel.alpha = .99;
                      }
                      completion:^(BOOL finished){
                          
-                         greetingLabel.font = [UIFont fontWithName:@"GeezaPro-Bold" size:28];
-                         greetingLabel.text = arabicText;
-                         greetingLabel.alpha = 1;
+                         dialogLabel.font = [UIFont fontWithName:@"GeezaPro-Bold" size:28];
+                         dialogLabel.text = arabicText;
+                         dialogLabel.alpha = 1;
                          [speakerImageView animateWithType:TALK duration:duration];
                          [UIView animateWithDuration: duration
                                                delay: 0.0
                                              options: UIViewAnimationOptionCurveEaseIn
                                           animations:^{
-                                              greetingLabel.alpha = .99;
+                                              dialogLabel.alpha = .99;
                                           }
                                           completion:^(BOOL finished){
                                               
@@ -484,8 +487,8 @@
     [speakerImageView stopDefaultAnimation];
     [speakerImageView setToLastExitImage];
     
-    [self animateType:EXIT duration:1 completion:^() {
-        
+    [self animateType:EXIT duration:3 completion:^() {
+        completion();
     }];
     
    

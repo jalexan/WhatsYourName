@@ -35,81 +35,38 @@
         self.image = [UIImage imageNamed:filename];
         [self animateWithType:DEFAULT duration:3.5];
         
+        defaultImagesArray = [[NSMutableArray alloc] init];
+        speakImagesArray = [[NSMutableArray alloc] init];
+        shuffleImagesArray = [[NSMutableArray alloc] init];
+        bravoImagesArray = [[NSMutableArray alloc] init];
+        exitImagesArray = [[NSMutableArray alloc] init];
         
-        
-        defaultImagesArray = [NSMutableArray array];
-        for (int i=0;i<FILE_CHECK_LITMIT;i++) {
-            NSString* filename = [NSString stringWithFormat:@"Speakers/%@/Images/default%02d.png",speaker.name,i];
-            UIImage* image = [UIImage imageNamed:filename];
-            if (image) {
-                [defaultImagesArray addObject:image];
-            }
-        }
-    
-        if ([defaultImagesArray count]==0) {
-            NSLog(@"ERROR: Cannot find DEFAULT image files");
-        }
-        
-        speakImagesArray = [NSMutableArray array];
-        for (int i=0;i<FILE_CHECK_LITMIT;i++) {
-            NSString* filename = [NSString stringWithFormat:@"Speakers/%@/Images/talking%02d.png",speaker.name,i];
-            UIImage* image = [UIImage imageNamed:filename];
-            if (image) {
-                [speakImagesArray addObject:image];
-            }
-        }
-    
-        if ([speakImagesArray count]==0) {
-            NSLog(@"ERROR: Cannot find TALK image files");
-        }
-        
-    
-        shuffleImagesArray = [NSMutableArray array];
-        for (int i=0;i<FILE_CHECK_LITMIT;i++) {
-            NSString* filename = [NSString stringWithFormat:@"Speakers/%@/Images/shuffle%02d.png",speaker.name,i];
-            UIImage* image = [UIImage imageNamed:filename];
-            if (image) {
-                [shuffleImagesArray addObject:image];
-            }
-
-        }
-        
-        if ([shuffleImagesArray count]==0) {
-            NSLog(@"ERROR: Cannot find SHUFFLe image files");
-        }
-    
-        bravoImagesArray = [NSMutableArray array];
-        for (int i=0;i<FILE_CHECK_LITMIT;i++) {
-            NSString* filename = [NSString stringWithFormat:@"Speakers/%@/Images/bravo%02d.png",speaker.name,i];
-            UIImage* image = [UIImage imageNamed:filename];
-            if (image) {
-                [bravoImagesArray addObject:image];
-            }
-            
-        }
-        
-        if ([bravoImagesArray count]==0) {
-            NSLog(@"ERROR: Cannot find BRAVO image files");
-        }
-        
-        exitImagesArray = [NSMutableArray array];
-        for (int i=0;i<FILE_CHECK_LITMIT;i++) {
-            NSString* filename = [NSString stringWithFormat:@"Speakers/%@/Images/exit%02d.png",speaker.name,i];
-            UIImage* image = [UIImage imageNamed:filename];
-            if (image) {
-                [exitImagesArray addObject:image];
-            }
-        }
-        
-        if ([exitImagesArray count]==0) {
-            NSLog(@"ERROR: Cannot find EXIT image files");
-        }
-        
+        [self addAnimationFilesToArray:defaultImagesArray filePrefix:@"default"];
+        [self addAnimationFilesToArray:speakImagesArray filePrefix:@"talking"];
+        [self addAnimationFilesToArray:shuffleImagesArray filePrefix:@"shuffle"];
+        [self addAnimationFilesToArray:bravoImagesArray filePrefix:@"bravo"];
+        [self addAnimationFilesToArray:exitImagesArray filePrefix:@"exit"];        
     }
     
     return self;
     
 }
+
+- (void)addAnimationFilesToArray:(NSMutableArray*)array filePrefix:(NSString*)filePrefix {
+    
+    for (int i=0;i<FILE_CHECK_LITMIT;i++) {
+        NSString* filename = [NSString stringWithFormat:@"Speakers/%@/Images/%@%02d.png",speaker.name,filePrefix,i];
+        UIImage* image = [UIImage imageNamed:filename];
+        if (image) {
+            [array addObject:image];
+        }
+    }
+    
+    if ([array count]==0) {
+        NSLog(@"ERROR: Cannot find %@ animation image files",filePrefix);
+    }
+}
+
 
 
 - (void)animateWithType:(animationType)animationType duration:(NSTimeInterval)duration {
