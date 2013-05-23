@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
+#import "GameProgressView.h"
 
 @interface GameViewController : UIViewController <AVAudioSessionDelegate> {
     //IBOutlet UIView* actorContainerView;
@@ -15,6 +16,7 @@
     IBOutlet UIView* arabicNameView;
     IBOutlet UIView* slotContainerView;
     IBOutlet UIView* mixedUpLettersAreaView;
+    IBOutlet GameProgressView* gameProgressView;
     //IBOutlet UIButton* resetButton;
 }
 

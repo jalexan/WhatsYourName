@@ -8,6 +8,7 @@
 
 #import "GameViewController.h"
 #import "UIView+Additions.h"
+#import "SpeakerList.h"
 #import "Speaker.h"
 #import "SpeakerImageView.h"
 #import "ArabicLetter.h"
@@ -34,8 +35,9 @@
 @interface GameViewController () {
     CGSize screenBounds;
     
-    NSMutableArray* speakerArray;
+    NSArray* speakerArray;
     Speaker* currentSpeaker;
+    NSUInteger* currentSpeakerIndex;
     SpeakerImageView* speakerImageView;
     NSMutableArray* letterImageViewArray;
     NSMutableArray* slotsImageViewArray;
@@ -62,28 +64,11 @@
         self.view.frame = r;
     }
 
-    [self loadActors];
-    
-    [self startGame];
-    
-}
-
-- (void)loadActors {
-    
-    NSBundle* bundle = [NSBundle mainBundle];
-    NSString* plistPath = [bundle pathForResource:@"Speakers" ofType:@"plist"];
-    NSArray* speakerPlistArray = [[NSArray alloc] initWithContentsOfFile:plistPath];
-    
-    speakerArray = [NSMutableArray arrayWithCapacity:[speakerPlistArray count]];
-    for (NSString* speakerName in speakerPlistArray) {
-        Speaker* aSpeaker = [[Speaker alloc] initWithName:speakerName];
-        
-        [speakerArray addObject:aSpeaker];
-    }
-
 
     
 }
+
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -109,6 +94,13 @@
     [self.view addSubview:starsImageView];
     starsImageView.hidden = YES;
 
+    
+    speakerArray = [SpeakerList sharedInstance].speakerArray;
+    
+    currentSpeakerIndex = 0;
+    currentSpeaker = [[SpeakerList sharedInstance].speakerArray objectAtIndex:currentSpeaker];
+    
+    [self startRound];
 }
 
 - (void)reloadGameArea {
@@ -147,25 +139,19 @@
         //slots.alpha = 0;
     }
     
+    gameProgressView.hidden = YES;
     
-}
+}   
 
 #pragma mark GAME PHASES
-- (void)startGame {
-    
+- (void)startRound {
 
-    
-    for (Speaker* s in speakerArray) {
-        currentSpeaker = s;
-    
-        [self reloadGameArea];
 
-       
-        [self startShufflePhase];
+    [self reloadGameArea];
 
-    
+   
+    [self startShufflePhase];
 
-    }
 
 }
 
@@ -187,9 +173,9 @@
                         
                         [self displayDialogTextWithKey:@"Shuffle" completion:^() {
                             
-                                [self displayDialogTextWithKey:@"Try" completion:^() {
-                                    
-                                }];
+                            [self displayDialogTextWithKey:@"Try" completion:^() {
+                                
+                            }];
                             
                         }];
                         
@@ -216,7 +202,14 @@
                     
                     [self animateSpeakerSuccessWithCompletion:^() {
                         
-                        [self performSegueWithIdentifier:@"SurpriseSegue" sender:self];
+                        if ([[SpeakerList sharedInstance] isLastSpeaker:currentSpeaker]) {
+                            [self performSegueWithIdentifier:@"SurpriseSegue" sender:self];
+                        }
+                        else {
+                            currentSpeakerIndex++;
+                            currentSpeaker = [[SpeakerList sharedInstance].speakerArray objectAtIndex:currentSpeakerIndex];
+                            [self startRound];
+                        }
                         
                     }];
                     
@@ -477,7 +470,9 @@
         completion();
     }];
     
-   
+    gameProgressView.hidden = NO;
+    UIImageView* circleImageView = [gameProgressView circleImageViewWithIndex:currentSpeakerIndex];
+    
     
     CAKeyframeAnimation *pathAnimation = [CAKeyframeAnimation animationWithKeyPath:@"position"];
     pathAnimation.calculationMode = kCAAnimationPaced;
@@ -485,8 +480,10 @@
     pathAnimation.removedOnCompletion = NO;
     pathAnimation.duration = 1;
     
+    
+
     CGPoint viewOrigin = speakerImageView.center;
-    CGPoint endPoint = self.view.center;
+    CGPoint endPoint = [self.view convertPoint:circleImageView.center fromView:gameProgressView];
     endPoint.x += 10;
     CGMutablePathRef curvedPath = CGPathCreateMutable();
     CGPathMoveToPoint(curvedPath, NULL, viewOrigin.x, viewOrigin.y);
@@ -499,6 +496,8 @@
     
     
     [speakerImageView.layer addAnimation:pathAnimation forKey:@"curveAnimation"];
+    
+    
 }
 
 #pragma mark Game Slot Mechanics

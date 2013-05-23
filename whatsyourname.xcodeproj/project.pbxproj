@@ -37,7 +37,8 @@
 		68E73C2F1744B22C0064F7BC /* SpeakerImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 68E73C2E1744B22B0064F7BC /* SpeakerImageView.m */; };
 		68E8E7C41749FAFC005BDA40 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68E8E7C31749FAFC005BDA40 /* QuartzCore.framework */; };
 		68FA6DB4174C7309000B08E1 /* SurpriseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68FA6DB3174C7309000B08E1 /* SurpriseViewController.m */; };
-		68FA6DDF174D2D7A000B08E1 /* Speakers.m in Sources */ = {isa = PBXBuildFile; fileRef = 68FA6DDE174D2D7A000B08E1 /* Speakers.m */; };
+		68FA6DDF174D2D7A000B08E1 /* SpeakerList.m in Sources */ = {isa = PBXBuildFile; fileRef = 68FA6DDE174D2D7A000B08E1 /* SpeakerList.m */; };
+		68FA6E09174E6490000B08E1 /* GameProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 68FA6E08174E6490000B08E1 /* GameProgressView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -87,8 +88,10 @@
 		68FA6DB2174C7309000B08E1 /* SurpriseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SurpriseViewController.h; sourceTree = "<group>"; };
 		68FA6DB3174C7309000B08E1 /* SurpriseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SurpriseViewController.m; sourceTree = "<group>"; };
 		68FA6DDC174D2936000B08E1 /* Singleton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Singleton.h; sourceTree = "<group>"; };
-		68FA6DDD174D2D7A000B08E1 /* Speakers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Speakers.h; sourceTree = "<group>"; };
-		68FA6DDE174D2D7A000B08E1 /* Speakers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Speakers.m; sourceTree = "<group>"; };
+		68FA6DDD174D2D7A000B08E1 /* SpeakerList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeakerList.h; sourceTree = "<group>"; };
+		68FA6DDE174D2D7A000B08E1 /* SpeakerList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpeakerList.m; sourceTree = "<group>"; };
+		68FA6E07174E6490000B08E1 /* GameProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameProgressView.h; sourceTree = "<group>"; };
+		68FA6E08174E6490000B08E1 /* GameProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameProgressView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -190,6 +193,8 @@
 				68E73C2E1744B22B0064F7BC /* SpeakerImageView.m */,
 				685D8906174958C900847C7D /* SlotImageView.h */,
 				685D8907174958C900847C7D /* SlotImageView.m */,
+				68FA6E07174E6490000B08E1 /* GameProgressView.h */,
+				68FA6E08174E6490000B08E1 /* GameProgressView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -203,8 +208,8 @@
 				68240B831740752F00BDBDF8 /* Speaker.m */,
 				685D89031749576F00847C7D /* Slot.h */,
 				685D89041749576F00847C7D /* Slot.m */,
-				68FA6DDD174D2D7A000B08E1 /* Speakers.h */,
-				68FA6DDE174D2D7A000B08E1 /* Speakers.m */,
+				68FA6DDD174D2D7A000B08E1 /* SpeakerList.h */,
+				68FA6DDE174D2D7A000B08E1 /* SpeakerList.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -303,7 +308,8 @@
 				685D8908174958C900847C7D /* SlotImageView.m in Sources */,
 				6812F6D8174BCFE100CBF5C2 /* YourNameViewController.m in Sources */,
 				68FA6DB4174C7309000B08E1 /* SurpriseViewController.m in Sources */,
-				68FA6DDF174D2D7A000B08E1 /* Speakers.m in Sources */,
+				68FA6DDF174D2D7A000B08E1 /* SpeakerList.m in Sources */,
+				68FA6E09174E6490000B08E1 /* GameProgressView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

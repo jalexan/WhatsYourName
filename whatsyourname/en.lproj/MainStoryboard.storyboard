@@ -23,12 +23,17 @@
                                 <rect key="frame" x="175" y="93" width="289" height="89"/>
                             </view>
                             <view contentMode="scaleToFill" id="oUu-Jv-0Vm">
-                                <rect key="frame" x="175" y="256" width="289" height="63"/>
+                                <rect key="frame" x="175" y="257" width="289" height="63"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" id="vAG-pL-KWb">
                                 <rect key="frame" x="219" y="190" width="200" height="63"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </view>
+                            <view contentMode="scaleToFill" id="Pim-J2-tjb" customClass="GameProgressView">
+                                <rect key="frame" x="128" y="203" width="224" height="64"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
@@ -41,6 +46,7 @@
                     <connections>
                         <outlet property="arabicNameView" destination="F03-GT-4x9" id="3QN-Zd-mUn"/>
                         <outlet property="dialogLabel" destination="4g7-YX-LaA" id="exY-ay-hAx"/>
+                        <outlet property="gameProgressView" destination="Pim-J2-tjb" id="8Cs-bX-SRi"/>
                         <outlet property="mixedUpLettersAreaView" destination="oUu-Jv-0Vm" id="u0t-46-3R8"/>
                         <outlet property="slotContainerView" destination="vAG-pL-KWb" id="ipH-o0-YNm"/>
                         <segue destination="L4G-Pe-ZjN" kind="push" identifier="SurpriseSegue" id="WzV-xY-BYz"/>
@@ -182,11 +188,15 @@
         </scene>
     </scenes>
     <classes>
+        <class className="GameProgressView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/GameProgressView.h"/>
+        </class>
         <class className="GameViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/GameViewController.h"/>
             <relationships>
                 <relationship kind="outlet" name="arabicNameView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="dialogLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="gameProgressView" candidateClass="GameProgressView"/>
                 <relationship kind="outlet" name="mixedUpLettersAreaView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="slotContainerView" candidateClass="UIView"/>
             </relationships>
