@@ -57,7 +57,7 @@
     [super viewDidAppear:animated];
 
     CGRect tempBounds = [[UIScreen mainScreen] bounds];
-    if (tempBounds.size.height==568) {
+    if (tempBounds.size.height==568 || tempBounds.size.width==568) {
         CGRect r = self.view.frame;
         r.size = CGSizeMake(320, 480);
         r.origin = CGPointMake(0, 44);

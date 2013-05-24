@@ -20,7 +20,7 @@
 - (void)viewDidLoad
 {
     NSBundle* bundle = [NSBundle mainBundle];
-    NSString* plistPath = [bundle pathForResource:[NSString stringWithFormat:@"Resource/YourNameDialog"] ofType:@"plist"];
+    NSString* plistPath = [bundle pathForResource:[NSString stringWithFormat:@"YourNameDialog"] ofType:@"plist"];
     
     yourNameDialogDictionary = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];
 
