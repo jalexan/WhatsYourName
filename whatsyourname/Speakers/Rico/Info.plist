@@ -14,43 +14,43 @@
 		<key>Name</key>
 		<dict>
 			<key>English</key>
-			<string>Hi my name is Rania</string>
+			<string>Hi!  My name is Rico.</string>
 			<key>Arabic</key>
-			<string>اهلاً أنا اسمي رانية</string>
+			<string>اهلاً أنا اسمي ريكو</string>
 			<key>Duration</key>
 			<integer>1</integer>
 		</dict>
 		<key>Like</key>
 		<dict>
 			<key>English</key>
-			<string>Rania. Like This</string>
+			<string>Rico. Like this:</string>
 			<key>Arabic</key>
-			<string>رانية زي كده</string>
+			<string>ريكو زي كده</string>
 			<key>Duration</key>
 			<integer>2</integer>
 		</dict>
 		<key>Shuffle</key>
 		<dict>
 			<key>English</key>
-			<string>Nolia, no!</string>
+			<string>Nolia, no! Not again!</string>
 			<key>Arabic</key>
-			<string>لأ يانولية!</string>
+			<string>لأ يانولية! ثاني؟</string>
 			<key>Duration</key>
 			<integer>1</integer>
 		</dict>
 		<key>Try</key>
 		<dict>
 			<key>English</key>
-			<string>Can you help me write it again?</string>
+			<string>Can you write it again?</string>
 			<key>Arabic</key>
-			<string>ممكن تسعدني أكتبه ثاني؟</string>
+			<string>ممكن تكتبه ثاني؟</string>
 			<key>Duration</key>
 			<integer>2</integer>
 		</dict>
 		<key>Again</key>
 		<dict>
 			<key>English</key>
-			<string>Try Again</string>
+			<string>Try again</string>
 			<key>Arabic</key>
 			<string>جرب ثاني</string>
 			<key>Duration</key>
@@ -59,9 +59,9 @@
 		<key>Excellent</key>
 		<dict>
 			<key>English</key>
-			<string>Terrific!</string>
+			<string>Fantastic!</string>
 			<key>Arabic</key>
-			<string>هائل</string>
+			<string>عظيم!</string>
 			<key>Duration</key>
 			<integer>2</integer>
 		</dict>

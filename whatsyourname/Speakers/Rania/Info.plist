@@ -14,7 +14,7 @@
 		<key>Name</key>
 		<dict>
 			<key>English</key>
-			<string>Hi my name is Rania</string>
+			<string>Hi!  My name is Rania.</string>
 			<key>Arabic</key>
 			<string>اهلاً أنا اسمي رانية</string>
 			<key>Duration</key>
@@ -23,7 +23,7 @@
 		<key>Like</key>
 		<dict>
 			<key>English</key>
-			<string>Rania. Like This</string>
+			<string>Rania. Like this:</string>
 			<key>Arabic</key>
 			<string>رانية زي كده</string>
 			<key>Duration</key>
@@ -50,7 +50,7 @@
 		<key>Again</key>
 		<dict>
 			<key>English</key>
-			<string>Try Again</string>
+			<string>Try again</string>
 			<key>Arabic</key>
 			<string>جرب ثاني</string>
 			<key>Duration</key>
@@ -61,7 +61,7 @@
 			<key>English</key>
 			<string>Terrific!</string>
 			<key>Arabic</key>
-			<string>هائل</string>
+			<string>هائل!</string>
 			<key>Duration</key>
 			<integer>2</integer>
 		</dict>

@@ -12,7 +12,7 @@
 		<key>Name</key>
 		<dict>
 			<key>English</key>
-			<string>Hi my name is Nolia</string>
+			<string>Hi!  My name is Nolia.</string>
 			<key>Arabic</key>
 			<string>اهلاً أنا اسمي نولية</string>
 			<key>Duration</key>
@@ -21,7 +21,7 @@
 		<key>Like</key>
 		<dict>
 			<key>English</key>
-			<string>Nolia. Like This</string>
+			<string>Nolia. Like this:</string>
 			<key>Arabic</key>
 			<string>نولية زي كده</string>
 			<key>Duration</key>
@@ -30,7 +30,7 @@
 		<key>Shuffle</key>
 		<dict>
 			<key>English</key>
-			<string>Oops, Sorry!</string>
+			<string>Oops, sorry!</string>
 			<key>Arabic</key>
 			<string>أسفة</string>
 			<key>Duration</key>
@@ -48,7 +48,7 @@
 		<key>Again</key>
 		<dict>
 			<key>English</key>
-			<string>Try Again</string>
+			<string>Try again</string>
 			<key>Arabic</key>
 			<string>جرب ثاني</string>
 			<key>Duration</key>
