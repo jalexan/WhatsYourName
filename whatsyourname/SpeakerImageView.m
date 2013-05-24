@@ -87,19 +87,19 @@
         [self setAnimationRepeatCount:1];
         [self startAnimating];
         
-        RunBlockAfterDelay(duration, ^() {
-            [self stopAnimating];
-        });
+        //RunBlockAfterDelay(duration, ^() {
+        //    [self stopAnimating];
+        //});
     }
     else if (animationType==BRAVO) {
         [self setAnimationImages: bravoImagesArray];
         [self setAnimationDuration:1];
-        [self setAnimationRepeatCount:0];
+        [self setAnimationRepeatCount:1];
         [self startAnimating];
         
-        RunBlockAfterDelay(duration, ^() {
-            [self stopAnimating];
-        });
+        //RunBlockAfterDelay(duration, ^() {
+        //    [self stopAnimating];
+        //});
     }
     else if (animationType==EXIT) {
         [self setAnimationImages: exitImagesArray];
@@ -107,9 +107,9 @@
         [self setAnimationRepeatCount:1];
         [self startAnimating];
         
-        RunBlockAfterDelay(duration, ^() {
-            [self stopAnimating];
-        });
+        //RunBlockAfterDelay(duration, ^() {
+        //    [self stopAnimating];
+        //});
     }
     else {
         
@@ -118,9 +118,9 @@
         [self setAnimationRepeatCount: 1];
         [self startAnimating];
         
-        RunBlockAfterDelay(duration, ^() {
-            [self stopAnimating];
-        });
+        //RunBlockAfterDelay(duration, ^() {
+        //    [self stopAnimating];
+        //});
     }
 }
 
