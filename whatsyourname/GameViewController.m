@@ -88,7 +88,7 @@
     
 }
 
--(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
+ -(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
     return toInterfaceOrientation == UIInterfaceOrientationLandscapeLeft ||
     toInterfaceOrientation == UIInterfaceOrientationLandscapeRight;
 }
@@ -108,7 +108,7 @@
                                                  name: AVAudioSessionInterruptionNotification
                                                object: [AVAudioSession sharedInstance]];
     */
-    
+    [self initializeAudio];
     [self prepareAudio:@"pencil"];
     //alwaysPlayAudioEffects = YES;
     //otherAudioIsPlaying = 0;

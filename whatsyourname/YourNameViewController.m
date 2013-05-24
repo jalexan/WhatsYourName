@@ -17,16 +17,45 @@
 @implementation YourNameViewController
 
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     NSBundle* bundle = [NSBundle mainBundle];
     NSString* plistPath = [bundle pathForResource:[NSString stringWithFormat:@"YourNameDialog"] ofType:@"plist"];
     
     yourNameDialogDictionary = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];
 
+}
 
+- (void)deviceOrientationDidChangeNotification:(NSNotification*)note {
+    
+    
+    CGRect tempBounds = [[UIScreen mainScreen] bounds];
+    //UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
+    
+    /*
+    if (orientation==UIInterfaceOrientationLandscapeLeft || orientation==UIInterfaceOrientationLandscapeRight)
+    {
+     
+    }
+    else {
+     
+    }
+    */
+    
+    //Check for 4inch screen
+    if (tempBounds.size.height==568 || tempBounds.size.width==568) {
+        CGRect r = self.view.frame;
+        //r.size = CGSizeMake(320, 480);
+        r.origin = CGPointMake(44, 0);
+        self.view.frame = r;
+    }
     
 }
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
+    return toInterfaceOrientation == UIInterfaceOrientationLandscapeLeft ||
+    toInterfaceOrientation == UIInterfaceOrientationLandscapeRight;
+}
+
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
