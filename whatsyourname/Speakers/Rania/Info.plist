@@ -14,36 +14,36 @@
 		<key>Name</key>
 		<dict>
 			<key>English</key>
-			<string>Hi my name is Nolia</string>
+			<string>Hi my name is Rania</string>
 			<key>Arabic</key>
-			<string>اهلاً أنا اسمي نولية</string>
+			<string>اهلاً أنا اسمي رانية</string>
 			<key>Duration</key>
 			<integer>1</integer>
 		</dict>
 		<key>Like</key>
 		<dict>
 			<key>English</key>
-			<string>Nolia. Like This</string>
+			<string>Rania. Like This</string>
 			<key>Arabic</key>
-			<string>نولية زي كده</string>
+			<string>رانية زي كده</string>
 			<key>Duration</key>
 			<integer>2</integer>
 		</dict>
 		<key>Shuffle</key>
 		<dict>
 			<key>English</key>
-			<string>Oops, Sorry!</string>
+			<string>Nolia, no!</string>
 			<key>Arabic</key>
-			<string>أسفة</string>
+			<string>لأ يانولية!</string>
 			<key>Duration</key>
 			<integer>1</integer>
 		</dict>
 		<key>Try</key>
 		<dict>
 			<key>English</key>
-			<string>Now you try</string>
+			<string>Can you help me write it again?</string>
 			<key>Arabic</key>
-			<string>جرب أنت</string>
+			<string>ممكن تسعدني أكتبه ثاني؟</string>
 			<key>Duration</key>
 			<integer>2</integer>
 		</dict>
@@ -59,9 +59,9 @@
 		<key>Excellent</key>
 		<dict>
 			<key>English</key>
-			<string>Excellent!</string>
+			<string>Terrific!</string>
 			<key>Arabic</key>
-			<string>ممتاز</string>
+			<string>هائل</string>
 			<key>Duration</key>
 			<integer>2</integer>
 		</dict>
