@@ -37,7 +37,7 @@
     
     NSArray* speakerArray;
     Speaker* currentSpeaker;
-    NSUInteger* currentSpeakerIndex;
+    NSUInteger currentSpeakerIndex;
     SpeakerImageView* speakerImageView;
     NSMutableArray* letterImageViewArray;
     NSMutableArray* slotsImageViewArray;
@@ -201,6 +201,10 @@
                 [self displayDialogTextWithKey:@"Later" completion:^() {
                     
                     [self animateSpeakerSuccessWithCompletion:^() {
+                        
+                        UIImageView* circleImageView = [gameProgressView circleImageViewWithIndex:currentSpeakerIndex];
+                        circleImageView.image = speakerImageView.image;
+                        [speakerImageView removeFromSuperview];
                         
                         if ([[SpeakerList sharedInstance] isLastSpeaker:currentSpeaker]) {
                             [self performSegueWithIdentifier:@"SurpriseSegue" sender:self];
@@ -496,7 +500,7 @@
     
     
     [speakerImageView.layer addAnimation:pathAnimation forKey:@"curveAnimation"];
-    
+
     
 }
 

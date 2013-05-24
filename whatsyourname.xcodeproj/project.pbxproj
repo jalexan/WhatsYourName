@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		680E8386174F043A00AD8008 /* YourNameDialog.plist in Resources */ = {isa = PBXBuildFile; fileRef = 680E8385174F043A00AD8008 /* YourNameDialog.plist */; };
 		6812F6D8174BCFE100CBF5C2 /* YourNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6812F6D7174BCFE100CBF5C2 /* YourNameViewController.m */; };
 		681B4FE61748248600B5AF95 /* Speakers.plist in Resources */ = {isa = PBXBuildFile; fileRef = 681B4FE51748248600B5AF95 /* Speakers.plist */; };
 		68240B12173F07D200BDBDF8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68240B11173F07D200BDBDF8 /* UIKit.framework */; };
@@ -42,6 +43,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		680E8385174F043A00AD8008 /* YourNameDialog.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = YourNameDialog.plist; sourceTree = "<group>"; };
 		6812F6D6174BCFE100CBF5C2 /* YourNameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YourNameViewController.h; sourceTree = "<group>"; };
 		6812F6D7174BCFE100CBF5C2 /* YourNameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YourNameViewController.m; sourceTree = "<group>"; };
 		681B4FE51748248600B5AF95 /* Speakers.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Speakers.plist; sourceTree = "<group>"; };
@@ -152,13 +154,14 @@
 				68FA6DDC174D2936000B08E1 /* Singleton.h */,
 				68240B20173F07D200BDBDF8 /* AppDelegate.h */,
 				68240B21173F07D200BDBDF8 /* AppDelegate.m */,
-				68240B29173F07D200BDBDF8 /* MainStoryboard.storyboard */,
 				68240B2C173F07D200BDBDF8 /* GameViewController.h */,
 				68240B2D173F07D200BDBDF8 /* GameViewController.m */,
 				6812F6D6174BCFE100CBF5C2 /* YourNameViewController.h */,
 				6812F6D7174BCFE100CBF5C2 /* YourNameViewController.m */,
 				68FA6DB2174C7309000B08E1 /* SurpriseViewController.h */,
 				68FA6DB3174C7309000B08E1 /* SurpriseViewController.m */,
+				68240B29173F07D200BDBDF8 /* MainStoryboard.storyboard */,
+				680E8385174F043A00AD8008 /* YourNameDialog.plist */,
 				681B4FE51748248600B5AF95 /* Speakers.plist */,
 				685D89011749273300847C7D /* Speakers */,
 				686551531748427700463C6C /* Letters */,
@@ -285,6 +288,7 @@
 				686551541748427700463C6C /* Letters in Resources */,
 				685D89021749273300847C7D /* Speakers in Resources */,
 				685D890A17495DEA00847C7D /* Resource in Resources */,
+				680E8386174F043A00AD8008 /* YourNameDialog.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
