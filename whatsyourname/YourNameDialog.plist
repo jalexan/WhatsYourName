@@ -7,16 +7,16 @@
 		<key>English</key>
 		<string>Now we want to know who YOU are!</string>
 		<key>Arabic</key>
-		<string>dffdgf</string>
+		<string>دلوقتي عازين نعرف أنت مين؟</string>
 		<key>Duration</key>
-		<integer>2</integer>
+		<integer>4</integer>
 	</dict>
 	<key>Whats</key>
 	<dict>
 		<key>English</key>
 		<string>What&apos;s your name?</string>
 		<key>Arabic</key>
-		<string>نولية زي كده</string>
+		<string>اسمك إيه؟</string>
 		<key>Duration</key>
 		<integer>2</integer>
 	</dict>
@@ -25,18 +25,20 @@
 		<key>English</key>
 		<string>Write your name here.</string>
 		<key>Arabic</key>
-		<string>نولية زي كده</string>
+		<string>اكتب اسمك هنا</string>
 		<key>Duration</key>
 		<integer>2</integer>
 	</dict>
 	<key>Nice</key>
 	<dict>
 		<key>English</key>
-		<string>Nice to meet you.</string>
+		<string>Hello</string>
 		<key>Arabic</key>
-		<string>نولية زي كده</string>
+		<string>أهلاً يا</string>
 		<key>Duration</key>
 		<integer>2</integer>
+		<key>New item</key>
+		<string></string>
 	</dict>
 	<key>Another</key>
 	<dict>
