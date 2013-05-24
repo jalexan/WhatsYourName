@@ -56,22 +56,37 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
 
-    CGRect tempBounds = [[UIScreen mainScreen] bounds];
-    if (tempBounds.size.height==568 || tempBounds.size.width==568) {
-        CGRect r = self.view.frame;
-        r.size = CGSizeMake(320, 480);
-        r.origin = CGPointMake(0, 44);
-        self.view.frame = r;
-    }
+
 
 
     
 }
 
-
+- (void)deviceOrientationDidChangeNotification:(NSNotification*)note
+{
+    //UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
+    //switch (orientation)
+    //{
+            
+    //}
+    
+    //Check for 4inch screen
+    CGRect tempBounds = [[UIScreen mainScreen] bounds];
+    if (tempBounds.size.height==568 || tempBounds.size.width==568) {
+        CGRect r = self.view.frame;
+        //r.size = CGSizeMake(320, 480);
+        r.origin = CGPointMake(44, 0);
+        self.view.frame = r;
+    }
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(deviceOrientationDidChangeNotification:)
+                                                 name:UIDeviceOrientationDidChangeNotification
+                                               object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver: self
                                              selector: @selector(handleAudioInterruption:)
