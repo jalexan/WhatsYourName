@@ -62,31 +62,6 @@
     
 }
 
-- (void)deviceOrientationDidChangeNotification:(NSNotification*)note {
-
-    
-    CGRect tempBounds = [[UIScreen mainScreen] bounds];
-    //UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
-    
-    /*
-    if (orientation==UIInterfaceOrientationLandscapeLeft || orientation==UIInterfaceOrientationLandscapeRight)
-    {
-            
-    }
-    else {
-        
-    }
-    */
-    
-    //Check for 4inch screen
-    if (tempBounds.size.height==568 || tempBounds.size.width==568) {
-        CGRect r = self.view.frame;
-        //r.size = CGSizeMake(320, 480);
-        r.origin = CGPointMake(44, 0);
-        self.view.frame = r;
-    }
-    
-}
 
  -(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
     return toInterfaceOrientation == UIInterfaceOrientationLandscapeLeft ||
@@ -95,19 +70,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(deviceOrientationDidChangeNotification:)
-                                                 name:UIDeviceOrientationDidChangeNotification
-                                               object:nil];
-    
-    /*
+
     [[NSNotificationCenter defaultCenter] addObserver: self
                                              selector: @selector(handleAudioInterruption:)
                                                  name: AVAudioSessionInterruptionNotification
                                                object: [AVAudioSession sharedInstance]];
-    */
+    
     [self initializeAudio];
     [self prepareAudio:@"pencil"];
     //alwaysPlayAudioEffects = YES;
@@ -187,10 +155,27 @@
 }
 
 - (void)startShufflePhase {
-    //[self animateSpeakerSuccessWithCompletion:^() {
+    
+    /*
+    [self animateSpeakerSuccessWithCompletion:^() {
         
-    //}];
-    //return;
+        UIImageView* circleImageView = [gameProgressView circleImageViewWithIndex:currentSpeakerIndex];
+        circleImageView.image = speakerImageView.image;
+        [speakerImageView removeFromSuperview];
+        
+        if ([[SpeakerList sharedInstance] isLastSpeaker:currentSpeaker]) {
+            [self performSegueWithIdentifier:@"SurpriseSegue" sender:self];
+        }
+        else {
+            currentSpeakerIndex++;
+            currentSpeaker = [[SpeakerList sharedInstance].speakerArray objectAtIndex:currentSpeakerIndex];
+            [self startRound];
+        }
+        
+    }];
+    */
+    
+    
     
     [self displayDialogTextWithKey:@"Name" completion:^() {
         
@@ -282,7 +267,7 @@
     dialogLabel.text = text;
 
     dialogLabel.alpha = 1;
-    [speakerImageView animateWithType:TALK duration:duration];
+    [speakerImageView animateWithType:TALK duration:duration*2];
     
     [UIView animateWithDuration: duration
                           delay: 0.0
@@ -295,7 +280,7 @@
                          dialogLabel.font = [UIFont fontWithName:@"GeezaPro-Bold" size:28];
                          dialogLabel.text = arabicText;
                          dialogLabel.alpha = 1;
-                         [speakerImageView animateWithType:TALK duration:duration];
+                         
                          [UIView animateWithDuration: duration
                                                delay: 0.0
                                              options: UIViewAnimationOptionCurveEaseIn

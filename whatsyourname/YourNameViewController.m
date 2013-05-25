@@ -7,9 +7,14 @@
 //
 
 #import "YourNameViewController.h"
+#import "UIView+Additions.h"
+#import "Speaker.h"
+#import "SpeakerImageView.h"
+#import "SpeakerList.h"
 
 @interface YourNameViewController () {
     NSDictionary* yourNameDialogDictionary;
+    SpeakerImageView* mainSpeakerImageView;
 }
 
 @end
@@ -18,38 +23,25 @@
 
 
 - (void)viewDidLoad {
+    [super viewDidLoad];
+    
+
+    
     NSBundle* bundle = [NSBundle mainBundle];
     NSString* plistPath = [bundle pathForResource:[NSString stringWithFormat:@"YourNameDialog"] ofType:@"plist"];
     
     yourNameDialogDictionary = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];
 
+    CGSize screenBounds = CGSizeMake(480,320);
+    UIImageView* screenBackground = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Resource/bg.jpg"]];
+    screenBackground.frame = CGRectMake(0,0,screenBounds.width,screenBounds.height);
+    screenBackground.alpha = 0.8;
+    [self.view addSubview:screenBackground];
+    [self.view sendSubviewToBack:screenBackground];
+
+    [self addSpeakerImageViewsToView];
 }
 
-- (void)deviceOrientationDidChangeNotification:(NSNotification*)note {
-    
-    
-    CGRect tempBounds = [[UIScreen mainScreen] bounds];
-    //UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
-    
-    /*
-    if (orientation==UIInterfaceOrientationLandscapeLeft || orientation==UIInterfaceOrientationLandscapeRight)
-    {
-     
-    }
-    else {
-     
-    }
-    */
-    
-    //Check for 4inch screen
-    if (tempBounds.size.height==568 || tempBounds.size.width==568) {
-        CGRect r = self.view.frame;
-        //r.size = CGSizeMake(320, 480);
-        r.origin = CGPointMake(44, 0);
-        self.view.frame = r;
-    }
-    
-}
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
     return toInterfaceOrientation == UIInterfaceOrientationLandscapeLeft ||
@@ -59,7 +51,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
+
     goodByeButton.hidden = YES;
 	nameTextField.hidden = YES;
     restartButton.hidden = YES;
@@ -82,11 +74,59 @@
     
 }
 
+- (void)addSpeakerImageViewsToView {
+    
+    CGSize imageSize = CGSizeMake(140,216);
+    NSInteger viewWidth = 480;
+    NSUInteger index = 0;
+    NSInteger leftFrameX = 0;
+    NSInteger rightFrameX = 0;
+    CGRect frame;
+    for (Speaker* speaker in [SpeakerList sharedInstance].speakerArray) {
+        
+        SpeakerImageView* speakerImageView = [[SpeakerImageView alloc] initWithFrame:CGRectZero
+                                                                             speaker:speaker];
+        //speakerImageView.backgroundColor = [UIColor redColor];
+        if (!mainSpeakerImageView) {
+            mainSpeakerImageView = speakerImageView;
+        }
+        
+        
+        if (index == 0) {
+            frame = CGRectMake((viewWidth/2)-70, 94, imageSize.width, imageSize.height);
+            leftFrameX = frame.origin.x;
+            rightFrameX = frame.origin.x;
+        }
+        else if ((index % 2) == 1) {
+            leftFrameX -= (imageSize.width - 20);
+            frame = CGRectMake(leftFrameX, 94, imageSize.width, imageSize.height);
+        }
+        else if ((index % 2) == 0) {
+            rightFrameX += (imageSize.width - 20);
+            frame = CGRectMake(rightFrameX, 94, imageSize.width, imageSize.height);
+        }
+        
+        speakerImageView.frame = frame;
+        
+//        /speakerImageView.centerX = self.view.centerX;
+        //speakerImageView.bottom = self.view.bottom;
+        [self.view addSubview:speakerImageView];
+        [speakerImageView animateWithDefaultAnimation];
+        
+        index++;
+    }
+    
+}
 
 - (void)displayGreetingWithName:(NSString*)name {
+    
+    NSDictionary* dialogDictionary = [yourNameDialogDictionary objectForKey:@"Nice"];
  
-    NSString* hello = [NSString stringWithFormat:@"Nice to meet you %@!",name];
-    [self displayEnglishText:hello arabicText:@"(arabic text)" duration:3 completion:^() {
+    NSString* helloEnglish = [NSString stringWithFormat:[dialogDictionary objectForKey:@"English"],name];
+    NSString* helloArabic =  [dialogDictionary objectForKey:@"Arabic"];
+    NSTimeInterval duration = [[dialogDictionary objectForKey:@"Duration"] floatValue];
+    
+    [self displayEnglishText:helloEnglish arabicText:helloArabic duration:duration completion:^() {
         
         [self displayDialogTextWithKey:@"Another" completion:^() {
             
@@ -113,13 +153,13 @@
     [self displayEnglishText:text arabicText:arabicText duration:duration completion:completion];
 }
 
-
 - (void)displayEnglishText:(NSString*)englishText arabicText:(NSString*)arabicText duration:(NSTimeInterval)duration completion:(void(^)())completion {
     dialogLabel.font = [UIFont fontWithName:@"MarkerFelt-Thin" size:28];
     dialogLabel.text = englishText;
     
-    dialogLabel.alpha = .99;
     
+    [mainSpeakerImageView animateWithType:TALK duration:duration*2];
+    dialogLabel.alpha = .99;
     [UIView animateWithDuration: duration
                           delay: 0.0
                         options: UIViewAnimationOptionCurveEaseIn
@@ -147,6 +187,7 @@
                      }];
     
 }
+
 
 - (IBAction)goodByeButtonTouched:(id)sender {
     nameTextField.hidden = YES;

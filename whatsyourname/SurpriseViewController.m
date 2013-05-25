@@ -24,37 +24,20 @@
     return self;
 }
 
+- (void)segueAfterDelay {
+    [self performSegueWithIdentifier:@"YourNameSegue" sender:self];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    [self performSelector:@selector(segueAfterDelay) withObject:nil afterDelay:2];
+
+    [self performSelector:@selector(segueAfterDelay) withObject:nil afterDelay:4];
 
 }
 
-- (void)deviceOrientationDidChangeNotification:(NSNotification*)note {
-    
-    
-    CGRect tempBounds = [[UIScreen mainScreen] bounds];
-    //UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
-    
-    /*
-     if (orientation==UIInterfaceOrientationLandscapeLeft || orientation==UIInterfaceOrientationLandscapeRight)
-     {
-     
-     }
-     else {
-     
-     }
-     */
-    
-    //Check for 4inch screen
-    if (tempBounds.size.height==568 || tempBounds.size.width==568) {
-        CGRect r = self.view.frame;
-        //r.size = CGSizeMake(320, 480);
-        r.origin = CGPointMake(44, 0);
-        self.view.frame = r;
-    }
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
     
 }
 
@@ -63,9 +46,6 @@
     toInterfaceOrientation == UIInterfaceOrientationLandscapeRight;
 }
 
-- (void)segueAfterDelay {
-    [self performSegueWithIdentifier:@"YourNameSegue" sender:self];
-}
 
 - (void)didReceiveMemoryWarning
 {

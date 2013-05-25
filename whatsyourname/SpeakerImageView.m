@@ -22,8 +22,7 @@
 @implementation SpeakerImageView
 @synthesize speaker;
 
-- (id)initWithFrame:(CGRect)frame speaker:(Speaker*)theSpeaker
-{
+- (id)initWithFrame:(CGRect)frame speaker:(Speaker*)theSpeaker {
     self = [super initWithFrame:frame];
     if (self) {
         //self.contentMode = UIViewContentModeBottomLeft;
@@ -67,49 +66,41 @@
     }
 }
 
-
+- (void)stopAnimatingSelector {
+    [self stopAnimating];
+}
 
 - (void)animateWithType:(animationType)animationType duration:(NSTimeInterval)duration {
     if (animationType==TALK) {
         
+
         [self setAnimationImages: speakImagesArray];
         [self setAnimationDuration: 1.5];
         [self setAnimationRepeatCount:0];
         [self startAnimating];
         
-        RunBlockAfterDelay(duration, ^() {                    
-            [self stopAnimating];
-        });
+        [self performSelector:@selector(stopAnimatingSelector) withObject:nil afterDelay:duration];
     }
     else if (animationType==SHUFFLE) {
         [self setAnimationImages: shuffleImagesArray];
         [self setAnimationDuration: 3];
         [self setAnimationRepeatCount:1];
         [self startAnimating];
-        
-        //RunBlockAfterDelay(duration, ^() {
-        //    [self stopAnimating];
-        //});
+
     }
     else if (animationType==BRAVO) {
         [self setAnimationImages: bravoImagesArray];
         [self setAnimationDuration:1];
         [self setAnimationRepeatCount:1];
         [self startAnimating];
-        
-        //RunBlockAfterDelay(duration, ^() {
-        //    [self stopAnimating];
-        //});
+
     }
     else if (animationType==EXIT) {
         [self setAnimationImages: exitImagesArray];
         [self setAnimationDuration: 1];
         [self setAnimationRepeatCount:1];
         [self startAnimating];
-        
-        //RunBlockAfterDelay(duration, ^() {
-        //    [self stopAnimating];
-        //});
+
     }
     else {
         
@@ -117,10 +108,7 @@
         [self setAnimationDuration: 1];
         [self setAnimationRepeatCount: 1];
         [self startAnimating];
-        
-        //RunBlockAfterDelay(duration, ^() {
-        //    [self stopAnimating];
-        //});
+
     }
 }
 

@@ -23,7 +23,7 @@
 	<key>Write</key>
 	<dict>
 		<key>English</key>
-		<string>Write your name here.</string>
+		<string>Write your name here</string>
 		<key>Arabic</key>
 		<string>اكتب اسمك هنا</string>
 		<key>Duration</key>
@@ -32,13 +32,11 @@
 	<key>Nice</key>
 	<dict>
 		<key>English</key>
-		<string>Hello</string>
+		<string>Nice to meet you %@</string>
 		<key>Arabic</key>
 		<string>أهلاً يا</string>
 		<key>Duration</key>
-		<integer>2</integer>
-		<key>New item</key>
-		<string></string>
+		<integer>3</integer>
 	</dict>
 	<key>Another</key>
 	<dict>

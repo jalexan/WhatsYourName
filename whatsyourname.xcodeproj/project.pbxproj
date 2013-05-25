@@ -21,12 +21,12 @@
 		68240B811740744F00BDBDF8 /* ArabicLetter.m in Sources */ = {isa = PBXBuildFile; fileRef = 68240B801740744F00BDBDF8 /* ArabicLetter.m */; };
 		68240B841740752F00BDBDF8 /* Speaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 68240B831740752F00BDBDF8 /* Speaker.m */; };
 		68353D691740B7810003D1EB /* ArabicLetterImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 68353D681740B7810003D1EB /* ArabicLetterImageView.m */; };
+		684FA0EB175068760074965D /* GameUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 684FA0EA175068760074965D /* GameUIView.m */; };
 		685D89021749273300847C7D /* Speakers in Resources */ = {isa = PBXBuildFile; fileRef = 685D89011749273300847C7D /* Speakers */; };
 		685D89051749576F00847C7D /* Slot.m in Sources */ = {isa = PBXBuildFile; fileRef = 685D89041749576F00847C7D /* Slot.m */; };
 		685D8908174958C900847C7D /* SlotImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 685D8907174958C900847C7D /* SlotImageView.m */; };
 		685D890A17495DEA00847C7D /* Resource in Resources */ = {isa = PBXBuildFile; fileRef = 685D890917495DEA00847C7D /* Resource */; };
 		686551541748427700463C6C /* Letters in Resources */ = {isa = PBXBuildFile; fileRef = 686551531748427700463C6C /* Letters */; };
-		686551591748688000463C6C /* Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 686551581748688000463C6C /* Common.m */; };
 		6883F4F91740D11A00487055 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6883F4F81740D11A00487055 /* AVFoundation.framework */; };
 		6883F4FB1740D47600487055 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6883F4FA1740D47600487055 /* AudioToolbox.framework */; };
 		68E73BF8174496610064F7BC /* UIView+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 68E73BF7174496610064F7BC /* UIView+Additions.m */; };
@@ -66,6 +66,8 @@
 		68240B85174075F700BDBDF8 /* ArabicLetter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ArabicLetter.h; sourceTree = "<group>"; };
 		68353D671740B7810003D1EB /* ArabicLetterImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArabicLetterImageView.h; sourceTree = "<group>"; };
 		68353D681740B7810003D1EB /* ArabicLetterImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArabicLetterImageView.m; sourceTree = "<group>"; };
+		684FA0E9175068760074965D /* GameUIView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameUIView.h; sourceTree = "<group>"; };
+		684FA0EA175068760074965D /* GameUIView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameUIView.m; sourceTree = "<group>"; };
 		685D89011749273300847C7D /* Speakers */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Speakers; sourceTree = "<group>"; };
 		685D89031749576F00847C7D /* Slot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Slot.h; sourceTree = "<group>"; };
 		685D89041749576F00847C7D /* Slot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Slot.m; sourceTree = "<group>"; };
@@ -73,8 +75,6 @@
 		685D8907174958C900847C7D /* SlotImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SlotImageView.m; sourceTree = "<group>"; };
 		685D890917495DEA00847C7D /* Resource */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Resource; sourceTree = "<group>"; };
 		686551531748427700463C6C /* Letters */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Letters; sourceTree = "<group>"; };
-		686551571748687300463C6C /* Common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
-		686551581748688000463C6C /* Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Common.m; sourceTree = "<group>"; };
 		6883F4F81740D11A00487055 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		6883F4FA1740D47600487055 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		68E73BF6174496610064F7BC /* UIView+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Additions.h"; sourceTree = "<group>"; };
@@ -149,8 +149,6 @@
 				68E73BCE174495220064F7BC /* Additions */,
 				68240B49173F3C6F00BDBDF8 /* Models */,
 				68240B48173F3C6800BDBDF8 /* Views */,
-				686551571748687300463C6C /* Common.h */,
-				686551581748688000463C6C /* Common.m */,
 				68FA6DDC174D2936000B08E1 /* Singleton.h */,
 				68240B20173F07D200BDBDF8 /* AppDelegate.h */,
 				68240B21173F07D200BDBDF8 /* AppDelegate.m */,
@@ -163,6 +161,8 @@
 				68240B29173F07D200BDBDF8 /* MainStoryboard.storyboard */,
 				680E8385174F043A00AD8008 /* YourNameDialog.plist */,
 				681B4FE51748248600B5AF95 /* Speakers.plist */,
+				684FA0E9175068760074965D /* GameUIView.h */,
+				684FA0EA175068760074965D /* GameUIView.m */,
 				685D89011749273300847C7D /* Speakers */,
 				686551531748427700463C6C /* Letters */,
 				685D890917495DEA00847C7D /* Resource */,
@@ -307,13 +307,13 @@
 				68353D691740B7810003D1EB /* ArabicLetterImageView.m in Sources */,
 				68E73BF8174496610064F7BC /* UIView+Additions.m in Sources */,
 				68E73C2F1744B22C0064F7BC /* SpeakerImageView.m in Sources */,
-				686551591748688000463C6C /* Common.m in Sources */,
 				685D89051749576F00847C7D /* Slot.m in Sources */,
 				685D8908174958C900847C7D /* SlotImageView.m in Sources */,
 				6812F6D8174BCFE100CBF5C2 /* YourNameViewController.m in Sources */,
 				68FA6DB4174C7309000B08E1 /* SurpriseViewController.m in Sources */,
 				68FA6DDF174D2D7A000B08E1 /* SpeakerList.m in Sources */,
 				68FA6E09174E6490000B08E1 /* GameProgressView.m in Sources */,
+				684FA0EB175068760074965D /* GameUIView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
