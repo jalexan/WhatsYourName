@@ -24,10 +24,14 @@
     #define ANIMATION_DURATION_ARABIC_SPELL 0
     #define ANIMATION_DURATION_MIX_UP_LETTERS .5
     #define ANIMATION_DURATION_SLIDE_TO_SLOT 0.2
+
+    #define SLOT_FRAME_INSET_FOR_FAILURE .5
 #else
     #define ANIMATION_DURATION_ARABIC_SPELL 1.5
     #define ANIMATION_DURATION_MIX_UP_LETTERS 1
     #define ANIMATION_DURATION_SLIDE_TO_SLOT 0.2
+
+    #define SLOT_FRAME_INSET_FOR_FAILURE .2
 #endif
 
 
@@ -99,7 +103,7 @@
     currentSpeakerIndex = 0;
     currentSpeaker = [[SpeakerList sharedInstance].speakerArray objectAtIndex:currentSpeaker];
     
-    [self startRound];
+    [self startLevel];
 }
 
 - (void)reloadGameArea {
@@ -143,7 +147,7 @@
 }   
 
 #pragma mark GAME PHASES
-- (void)startRound {
+- (void)startLevel {
 
 
     [self reloadGameArea];
@@ -228,7 +232,7 @@
                         else {
                             currentSpeakerIndex++;
                             currentSpeaker = [[SpeakerList sharedInstance].speakerArray objectAtIndex:currentSpeakerIndex];
-                            [self startRound];
+                            [self startLevel];
                         }
                         
                     }];
@@ -545,6 +549,20 @@
     return nil;
 }
 
+//When detecting if a letter is in the wrong spot, give more frame buffer on failures so that there are less false positives. Essentially making it harder
+//to fail and animate the letter back to the starting position
+- (BOOL)isFailureIntersectCheckForSlotImageView:(SlotImageView*)slotImageView arabicLetterImageView:(ArabicLetterImageView*)arabicLetterImageView {
+    CGRect slotFrame = slotImageView.frame;
+    CGRect letterFrame = arabicLetterImageView.frame;
+    
+    slotFrame = CGRectInset(slotFrame, slotFrame.size.width*SLOT_FRAME_INSET_FOR_FAILURE, slotFrame.size.height*SLOT_FRAME_INSET_FOR_FAILURE);
+    
+    if (CGRectIntersectsRect(slotFrame, letterFrame)) {
+        return YES;
+    }
+    return NO;
+}
+
 - (BOOL)allArabicLettersAreInCorrectSlot {
     
     for (ArabicLetterImageView* imageView in letterImageViewArray) {
@@ -586,12 +604,15 @@
         else if (slotImageView && !slotImageView.slot.isFilled) {
             if (objectToDrag.dragStartPoint.x != 0 && objectToDrag.dragStartPoint.y !=0) {
                 
-                [self displayDialogTextWithKey:@"Again" completion:^() {
+                if ([self isFailureIntersectCheckForSlotImageView:slotImageView arabicLetterImageView:objectToDrag]) {
+                    [self displayDialogTextWithKey:@"Again" completion:^() {
+                        
+                    }];
                     
-                }];
-                
-                [self animateImageView:objectToDrag toPoint:objectToDrag.dragStartPoint];
-                objectToDrag.dragStartPoint = CGPointZero;
+                    [self animateImageView:objectToDrag toPoint:objectToDrag.dragStartPoint];
+                    objectToDrag.dragStartPoint = CGPointZero;
+                }
+                                
             }
         }
     }
@@ -607,7 +628,11 @@
     
     if ([objectToDrag isKindOfClass:[ArabicLetterImageView class]])
     {
-        objectToDrag.dragStartPoint = location;
+        //Don't save the dragstartpoint when the letter is already on top of a slot to prevent false positives
+        SlotImageView* slotImageView = [self slotThatIntersectsArabicLetterImageView:objectToDrag];
+        if (!slotImageView) {
+            objectToDrag.dragStartPoint = location;
+        }
         [self.view bringSubviewToFront:objectToDrag];
     }
     
