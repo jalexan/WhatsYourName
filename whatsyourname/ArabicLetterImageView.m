@@ -8,6 +8,11 @@
 
 #import "ArabicLetterImageView.h"
 
+@interface ArabicLetterImageView() {
+    UILabel* letterNameLabel;
+}
+
+@end
 
 @implementation ArabicLetterImageView
 @synthesize arabicLetter;
@@ -17,7 +22,7 @@
 {
     self = [super init];
     if (self) {
-       
+        
         self.arabicLetter = letter;
         self.userInteractionEnabled = YES;
         
@@ -37,7 +42,30 @@
     else {
         NSLog(@"Error: letter file not found: %@",filename);
     }
+    
+    letterNameLabel = [[UILabel alloc] init];
+    letterNameLabel.font = [UIFont fontWithName:@"MarkerFelt-Thin" size:15];
+    letterNameLabel.backgroundColor = [UIColor clearColor];
+    letterNameLabel.textAlignment = NSTextAlignmentCenter;
+    letterNameLabel.shadowColor = [UIColor whiteColor];
+    letterNameLabel.shadowOffset = CGSizeMake(0,1);
+    letterNameLabel.lineBreakMode = NSLineBreakByTruncatingMiddle;
+    
+    letterNameLabel.text = arabicLetter.letterName;
+    [self addSubview:letterNameLabel];
+    
 }
+
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    
+    CGRect labelFrame = CGRectMake(0, self.frame.size.height+1, self.frame.size.width, 10);
+    
+    letterNameLabel.frame = labelFrame;
+    
+}
+
 
 
 

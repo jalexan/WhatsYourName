@@ -21,7 +21,6 @@
     self = [super initWithFrame:frame];
     if (self) {
         slot = theSlot;
-        
         self.image = [UIImage imageNamed:[NSString stringWithFormat:@"Resource/slot.png"]];
     }
     return self;

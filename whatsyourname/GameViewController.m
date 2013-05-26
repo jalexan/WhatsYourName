@@ -355,7 +355,7 @@
                          
                          imageView.alpha = 1;
                          letterImageView.alpha = 1;
-                         slot.alpha = 1;
+                         slot.alpha = .9;
                          
                      }
                      completion:^(BOOL finished){
@@ -539,7 +539,7 @@
     
     for (SlotImageView* slotImageView in slotsImageViewArray) {
 
-        if (CGRectIntersectsRect(slotImageView.frame, letterImageView.frame) && !slotImageView.slot.isFilled) {
+        if (!slotImageView.slot.isFilled && CGRectIntersectsRect(slotImageView.frame, letterImageView.frame)) {
             return slotImageView;
         }
         

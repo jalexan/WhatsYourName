@@ -17,6 +17,7 @@
 @implementation ArabicLetter
 @synthesize letterDictionary;
 @synthesize letterIndex;
+@synthesize letterName;
 @synthesize slotPosition;
 @synthesize isInCorrectSlot;
 
@@ -35,6 +36,8 @@
             NSLog(@"ERROR: [lettersArray count] < index: %d", index);
         }
         letterDictionary = [lettersArray objectAtIndex:index];
+        
+        letterName = [letterDictionary objectForKey:@"Name"];
         
         isInCorrectSlot = NO;
         slotPosition = -1;
