@@ -125,12 +125,46 @@
     NSUInteger numberOfLetters = [currentSpeaker.letterIndexArray count];
     letterImageViewArray = [NSMutableArray arrayWithCapacity:numberOfLetters];
     slotsImageViewArray = [NSMutableArray arrayWithCapacity:numberOfLetters];
+
     
+    CGSize slotImageSize = CGSizeMake(40, 40);
+    NSInteger originY = 0;
+    NSInteger heightToDivideEvenly = slotContainerView.height - slotImageSize.height; //Distance of origin of lowest slot to top of container
+    
+    NSInteger originYStep = 0;
+    NSInteger numberOfSteps = 0;
+    
+    if (numberOfLetters>2) {
+        if (numberOfLetters%2==0) { //Even # of letters
+            numberOfSteps = (numberOfLetters/2)-1;
+        }
+        else { //Odd # of letters
+            numberOfSteps = (numberOfLetters/2);        
+        }
+        originYStep = heightToDivideEvenly/numberOfSteps;
+    }
+    else {
+        numberOfSteps = 0;
+        originYStep = heightToDivideEvenly;
+    }
+    
+    
+
     for (int i=0;i<numberOfLetters;i++) {
+        
+        if (i>0) {
+            if (i<=numberOfSteps) { //On the way down
+                originY += originYStep;
+            }
+            else if (numberOfLetters%2==1 || i!=(numberOfSteps+1)) {
+                originY -= originYStep;
+            }
+        }
+        
+        
+        
+        CGRect r = CGRectMake((slotContainerView.width-slotImageSize.width)-(slotImageSize.width*i), originY, slotImageSize.width, slotImageSize.height);
         Slot* s = [[Slot alloc] initWithPosition:i];
-        
-        CGRect r = CGRectMake((slotContainerView.width-40)-(40*i), 0, 40, 40);
-        
         SlotImageView* slotImageView = [[SlotImageView alloc] initWithFrame:r slot:s];
         slotImageView.alpha = 0;
         
