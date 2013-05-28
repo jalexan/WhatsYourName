@@ -7,7 +7,7 @@
 //
 
 #import "SurpriseViewController.h"
-#import "YourNameViewController.h"
+#import "NameGameViewController.h"
 
 @interface SurpriseViewController ()
 

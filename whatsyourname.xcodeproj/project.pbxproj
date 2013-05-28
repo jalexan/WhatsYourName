@@ -8,8 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		680E8386174F043A00AD8008 /* YourNameDialog.plist in Resources */ = {isa = PBXBuildFile; fileRef = 680E8385174F043A00AD8008 /* YourNameDialog.plist */; };
-		6812F6D8174BCFE100CBF5C2 /* YourNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6812F6D7174BCFE100CBF5C2 /* YourNameViewController.m */; };
+		6812F6D8174BCFE100CBF5C2 /* NameGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6812F6D7174BCFE100CBF5C2 /* NameGameViewController.m */; };
 		681B4FE61748248600B5AF95 /* Speakers.plist in Resources */ = {isa = PBXBuildFile; fileRef = 681B4FE51748248600B5AF95 /* Speakers.plist */; };
+		681DDD3117545A35007FFD64 /* GameController.m in Sources */ = {isa = PBXBuildFile; fileRef = 681DDD3017545A35007FFD64 /* GameController.m */; };
+		681DDD3417546E0A007FFD64 /* AudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 681DDD3317546E0A007FFD64 /* AudioManager.m */; };
 		68240B12173F07D200BDBDF8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68240B11173F07D200BDBDF8 /* UIKit.framework */; };
 		68240B14173F07D200BDBDF8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68240B13173F07D200BDBDF8 /* Foundation.framework */; };
 		68240B16173F07D200BDBDF8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68240B15173F07D200BDBDF8 /* CoreGraphics.framework */; };
@@ -17,7 +19,7 @@
 		68240B1E173F07D200BDBDF8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 68240B1D173F07D200BDBDF8 /* main.m */; };
 		68240B22173F07D200BDBDF8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 68240B21173F07D200BDBDF8 /* AppDelegate.m */; };
 		68240B2B173F07D200BDBDF8 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 68240B29173F07D200BDBDF8 /* MainStoryboard.storyboard */; };
-		68240B2E173F07D200BDBDF8 /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68240B2D173F07D200BDBDF8 /* GameViewController.m */; };
+		68240B2E173F07D200BDBDF8 /* LetterGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68240B2D173F07D200BDBDF8 /* LetterGameViewController.m */; };
 		68240B811740744F00BDBDF8 /* ArabicLetter.m in Sources */ = {isa = PBXBuildFile; fileRef = 68240B801740744F00BDBDF8 /* ArabicLetter.m */; };
 		68240B841740752F00BDBDF8 /* Speaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 68240B831740752F00BDBDF8 /* Speaker.m */; };
 		68353D691740B7810003D1EB /* ArabicLetterImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 68353D681740B7810003D1EB /* ArabicLetterImageView.m */; };
@@ -44,9 +46,13 @@
 
 /* Begin PBXFileReference section */
 		680E8385174F043A00AD8008 /* YourNameDialog.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = YourNameDialog.plist; sourceTree = "<group>"; };
-		6812F6D6174BCFE100CBF5C2 /* YourNameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YourNameViewController.h; sourceTree = "<group>"; };
-		6812F6D7174BCFE100CBF5C2 /* YourNameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YourNameViewController.m; sourceTree = "<group>"; };
+		6812F6D6174BCFE100CBF5C2 /* NameGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NameGameViewController.h; sourceTree = "<group>"; };
+		6812F6D7174BCFE100CBF5C2 /* NameGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NameGameViewController.m; sourceTree = "<group>"; };
 		681B4FE51748248600B5AF95 /* Speakers.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Speakers.plist; sourceTree = "<group>"; };
+		681DDD2F17545A35007FFD64 /* GameController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameController.h; sourceTree = "<group>"; };
+		681DDD3017545A35007FFD64 /* GameController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameController.m; sourceTree = "<group>"; };
+		681DDD3217546E0A007FFD64 /* AudioManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioManager.h; sourceTree = "<group>"; };
+		681DDD3317546E0A007FFD64 /* AudioManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioManager.m; sourceTree = "<group>"; };
 		68240B0D173F07D200BDBDF8 /* whatsyourname.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = whatsyourname.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		68240B11173F07D200BDBDF8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		68240B13173F07D200BDBDF8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -58,8 +64,8 @@
 		68240B20173F07D200BDBDF8 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		68240B21173F07D200BDBDF8 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		68240B2A173F07D200BDBDF8 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
-		68240B2C173F07D200BDBDF8 /* GameViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameViewController.h; sourceTree = "<group>"; };
-		68240B2D173F07D200BDBDF8 /* GameViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameViewController.m; sourceTree = "<group>"; };
+		68240B2C173F07D200BDBDF8 /* LetterGameViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LetterGameViewController.h; sourceTree = "<group>"; };
+		68240B2D173F07D200BDBDF8 /* LetterGameViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LetterGameViewController.m; sourceTree = "<group>"; };
 		68240B801740744F00BDBDF8 /* ArabicLetter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArabicLetter.m; sourceTree = "<group>"; };
 		68240B821740752F00BDBDF8 /* Speaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Speaker.h; sourceTree = "<group>"; };
 		68240B831740752F00BDBDF8 /* Speaker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Speaker.m; sourceTree = "<group>"; };
@@ -152,12 +158,16 @@
 				68FA6DDC174D2936000B08E1 /* Singleton.h */,
 				68240B20173F07D200BDBDF8 /* AppDelegate.h */,
 				68240B21173F07D200BDBDF8 /* AppDelegate.m */,
-				68240B2C173F07D200BDBDF8 /* GameViewController.h */,
-				68240B2D173F07D200BDBDF8 /* GameViewController.m */,
-				6812F6D6174BCFE100CBF5C2 /* YourNameViewController.h */,
-				6812F6D7174BCFE100CBF5C2 /* YourNameViewController.m */,
+				681DDD2F17545A35007FFD64 /* GameController.h */,
+				681DDD3017545A35007FFD64 /* GameController.m */,
+				68240B2C173F07D200BDBDF8 /* LetterGameViewController.h */,
+				68240B2D173F07D200BDBDF8 /* LetterGameViewController.m */,
+				6812F6D6174BCFE100CBF5C2 /* NameGameViewController.h */,
+				6812F6D7174BCFE100CBF5C2 /* NameGameViewController.m */,
 				68FA6DB2174C7309000B08E1 /* SurpriseViewController.h */,
 				68FA6DB3174C7309000B08E1 /* SurpriseViewController.m */,
+				681DDD3217546E0A007FFD64 /* AudioManager.h */,
+				681DDD3317546E0A007FFD64 /* AudioManager.m */,
 				68240B29173F07D200BDBDF8 /* MainStoryboard.storyboard */,
 				680E8385174F043A00AD8008 /* YourNameDialog.plist */,
 				681B4FE51748248600B5AF95 /* Speakers.plist */,
@@ -301,7 +311,7 @@
 			files = (
 				68240B1E173F07D200BDBDF8 /* main.m in Sources */,
 				68240B22173F07D200BDBDF8 /* AppDelegate.m in Sources */,
-				68240B2E173F07D200BDBDF8 /* GameViewController.m in Sources */,
+				68240B2E173F07D200BDBDF8 /* LetterGameViewController.m in Sources */,
 				68240B811740744F00BDBDF8 /* ArabicLetter.m in Sources */,
 				68240B841740752F00BDBDF8 /* Speaker.m in Sources */,
 				68353D691740B7810003D1EB /* ArabicLetterImageView.m in Sources */,
@@ -309,11 +319,13 @@
 				68E73C2F1744B22C0064F7BC /* SpeakerImageView.m in Sources */,
 				685D89051749576F00847C7D /* Slot.m in Sources */,
 				685D8908174958C900847C7D /* SlotImageView.m in Sources */,
-				6812F6D8174BCFE100CBF5C2 /* YourNameViewController.m in Sources */,
+				6812F6D8174BCFE100CBF5C2 /* NameGameViewController.m in Sources */,
 				68FA6DB4174C7309000B08E1 /* SurpriseViewController.m in Sources */,
 				68FA6DDF174D2D7A000B08E1 /* SpeakerList.m in Sources */,
 				68FA6E09174E6490000B08E1 /* GameProgressView.m in Sources */,
 				684FA0EB175068760074965D /* GameUIView.m in Sources */,
+				681DDD3117545A35007FFD64 /* GameController.m in Sources */,
+				681DDD3417546E0A007FFD64 /* AudioManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
