@@ -17,6 +17,7 @@
 }
 
 @property (nonatomic,strong) AudioManager* audioManager;
+@property (nonatomic,strong) IBOutlet UIButton* soundButton;
 
 - (IBAction)soundButtonTouched:(id)sender;
 

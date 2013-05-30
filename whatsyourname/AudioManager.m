@@ -27,7 +27,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(AudioManager)
 	if ((self = [super init])) {
         
         [self initializeAudio];
-        [self playBackgroundAudio:@"bg" volume:BG_MUSIC_VOLUME];
+        [self playBackgroundAudioWithPath:@"Resource/bg.mp3" volume:BG_MUSIC_VOLUME];
         
 	}
 	return self;
@@ -56,25 +56,28 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(AudioManager)
     }
 }
 
-- (AVAudioPlayer*)prepareAudio:(NSString*)audioName{
+- (AVAudioPlayer*)prepareAudioWithPath:(NSString*)audioPath {
     
     
     if (audioNameToPlayer == nil){
         audioNameToPlayer = [NSMutableDictionary new];
     }
-    NSURL *url = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"Resource/%@",audioName] ofType:@"mp3"]];
     
     NSError* error;
-    AVAudioPlayer* player = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&error];
     
+    AVAudioPlayer* player = nil;
     @try {
+        NSURL *url = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%@",audioPath] ofType:nil]];
+        player = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&error];
+    
+    
         [player prepareToPlay];
     }
     @catch(NSException* e) {
-        NSLog(@"error in prepareAudio:");
+        NSLog(@"error in prepareAudioWithPath: audioPath: %@ Error: %@",audioPath,e.description);
     }
     
-    [audioNameToPlayer setValue:player forKey: audioName];
+    [audioNameToPlayer setValue:player forKey:audioPath];
     return player;
     
     
@@ -88,35 +91,45 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(AudioManager)
     AVAudioPlayer* player = [audioNameToPlayer valueForKey:audioName];
     [player stop];
 }
+
 - (void)pauseAudio:(NSString*)audioName {
     AVAudioPlayer* player = [audioNameToPlayer valueForKey:audioName];
     [player pause];
 }
+
 - (void)playAudio:(NSString*)audioName volume:(float)volume pan:(float)pan{
     //if (alwaysPlayAudioEffects || !otherAudioIsPlaying){
     AVAudioPlayer* player = [audioNameToPlayer valueForKey:audioName];
     
     NSArray* params = [NSArray arrayWithObjects:player, [NSNumber numberWithFloat:volume], [NSNumber numberWithFloat:pan], nil];
-    [self performSelectorInBackground:@selector(playAudioInBackground:) withObject:params];
+    
+    if ([params count]>0) {
+        [self performSelectorInBackground:@selector(playAudioInBackground:) withObject:params];
+    }
     //}
 }
+
 - (void)playAudioInBackground:(NSArray*)params{
-    AVAudioPlayer* player = [params objectAtIndex:0];
     
-    NSNumber* volume = [params objectAtIndex:1];
-    NSNumber* pan = [params objectAtIndex:2];
+    if ([params count]>0) {
+        AVAudioPlayer* player = [params objectAtIndex:0];
+        
+        NSNumber* volume = [params objectAtIndex:1];
+        NSNumber* pan = [params objectAtIndex:2];
+        
+        [player setCurrentTime:0];
+        [player setVolume: [volume floatValue]];
+        [player setPan: [pan floatValue]];
+        
+        [player play];
+    }
     
-    [player setCurrentTime:0];
-    [player setVolume: [volume floatValue]];
-    [player setPan: [pan floatValue]];
-    
-    [player play];
 }
-- (void)playBackgroundAudio:(NSString*)audioName volume:(float)volume {
+- (void)playBackgroundAudioWithPath:(NSString*)audioPath volume:(float)volume {
     if (backgroundPlayer != nil){
         [backgroundPlayer stop];
     }
-    backgroundPlayer = [self prepareAudio:audioName];
+    backgroundPlayer = [self prepareAudioWithPath:audioPath];
     [backgroundPlayer setNumberOfLoops:-1];
     
     if (!otherAudioIsPlaying){

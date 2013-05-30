@@ -19,7 +19,7 @@
 
 
 
-#define DEBUG1 0
+#define DEBUG1 1
 
 #if DEBUG1
     #define ANIMATION_DURATION_ARABIC_SPELL 0
@@ -73,16 +73,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    [super.audioManager prepareAudio:@"talking"];
-    [super.audioManager prepareAudio:@"pencil"];
-    [super.audioManager prepareAudio:@"slot_correct"];
-    [super.audioManager prepareAudio:@"slot_wrong"];
+    [super.audioManager prepareAudioWithPath:@"Resource/talking.mp3" ];
+    [super.audioManager prepareAudioWithPath:@"Resource/pencil.mp3"];
+    [super.audioManager prepareAudioWithPath:@"Resource/slot_correct.mp3"];
+    [super.audioManager prepareAudioWithPath:@"Resource/slot_wrong.mp3"];
 
     screenBounds = CGSizeMake(480,320);
 
-    UIImageView* screenBackground = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Resource/bg.jpg"]];
+    UIImageView* screenBackground = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Resource/bg.png"]];
     screenBackground.frame = CGRectMake(0,0,screenBounds.width,screenBounds.height);
-    screenBackground.alpha = 0.8;
+
     [self.view addSubview:screenBackground];
     [self.view sendSubviewToBack:screenBackground];
     
@@ -121,7 +121,7 @@
     slotsImageViewArray = [NSMutableArray arrayWithCapacity:numberOfLetters];
 
     
-    CGSize slotImageSize = CGSizeMake(40, 40);
+    CGSize slotImageSize = CGSizeMake(50, 50);
     NSInteger originY = 0;
     NSInteger heightToDivideEvenly = slotContainerView.height - slotImageSize.height; //Distance of origin of lowest slot to top of container
     
@@ -279,6 +279,13 @@
 
 
 #pragma mark Game Mechanics
+- (void)playSpeakerDialogAudioWithKey:(NSString*)key {
+    
+    NSString* path = [NSString stringWithFormat:@"%@/%@.mp3",currentSpeaker.name,key];
+    [super.audioManager prepareAudioWithPath:path];
+    [super.audioManager playAudio:path volume:.02];
+}
+
 - (void)displayDialogTextWithKey:(NSString*)key completion:(void(^)())completion {
 
     NSDictionary* dialogDictionary = [currentSpeaker dialogForKey:key];
@@ -287,20 +294,18 @@
     
     NSTimeInterval duration = [[dialogDictionary objectForKey:@"Duration"] floatValue];
 
-
     NSString* text = [dialogDictionary objectForKey:@"English"];
     NSString* arabicText = nil;
     
     if ([dialogDictionary count]>1) {
         arabicText = [[currentSpeaker dialogForKey:key] objectForKey:@"Arabic"];
     }
-
- 
     
     dialogLabel.font = [UIFont fontWithName:@"MarkerFelt-Thin" size:28];
     dialogLabel.text = text;
     [speakerImageView animateWithType:TALK duration:duration*2];
-    [super.audioManager playAudio:@"talking" volume:.02];
+    //[self playSpeakerDialogAudioWithKey:key];
+    [super.audioManager playAudio:@"Resource/talking.mp3" volume:.02];
 
     
     dialogLabel.alpha = 1;
@@ -314,7 +319,7 @@
                          
                          dialogLabel.font = [UIFont fontWithName:@"GeezaPro-Bold" size:28];
                          dialogLabel.text = arabicText;
-                         [super.audioManager playAudio:@"talking" volume:.02];
+                         [super.audioManager playAudio:@"Resource/talking.mp3" volume:.02];
                          dialogLabel.alpha = 1;
                          
                          [UIView animateWithDuration: duration
@@ -336,7 +341,7 @@
 
 - (void)spellArabicNameWithCompletion:(void(^)())completion {
     
-    [super.audioManager playAudio:@"pencil" volume:.5];
+    [super.audioManager playAudio:@"Resource/pencil.mp3" volume:.5];
     
     [self animateArabicNameImageViewWithIndex:0 limit:[currentSpeaker.letterIndexArray count]-1 completion:completion];
 }
@@ -344,7 +349,7 @@
 - (void)animateArabicNameImageViewWithIndex:(NSUInteger)index limit:(NSUInteger)limit completion:(void(^)())completion {
     
     if (index>limit) {
-        [super.audioManager stopAudio:@"pencil"];
+        [super.audioManager stopAudio:@"Resource/pencil.mp3"];
         completion();
         return;
     }
@@ -622,7 +627,7 @@
         SlotImageView* slotImageView = [self slotThatIntersectsArabicLetterImageView:objectToDrag];        
         
         if (slotImageView && [self isCorrectSlot:slotImageView forLetterImageView:objectToDrag]) {            
-            [super.audioManager playAudio:@"slot_correct" volume:1];
+            [super.audioManager playAudio:@"Resource/slot_correct.mp3" volume:1];
             [self animateImageView:objectToDrag toPoint:slotImageView.center];
 
             objectToDrag.arabicLetter.isInCorrectSlot = YES;
@@ -641,7 +646,7 @@
                     [self displayDialogTextWithKey:@"Again" completion:^() {
                         
                     }];
-                    [super.audioManager playAudio:@"slot_wrong" volume:1];
+                    [super.audioManager playAudio:@"Resource/slot_wrong.mp3" volume:1];
                     [self animateImageView:objectToDrag toPoint:objectToDrag.dragStartPoint];
                     objectToDrag.dragStartPoint = CGPointZero;
                 }
@@ -662,10 +667,10 @@
     if ([objectToDrag isKindOfClass:[ArabicLetterImageView class]])
     {
         //Don't save the dragstartpoint when the letter is already on top of a slot to prevent false positives
-        SlotImageView* slotImageView = [self slotThatIntersectsArabicLetterImageView:objectToDrag];
-        if (!slotImageView) {
+        //SlotImageView* slotImageView = [self slotThatIntersectsArabicLetterImageView:objectToDrag];
+        //if (!slotImageView) {
             objectToDrag.dragStartPoint = location;
-        }
+        //}
         [self.view bringSubviewToFront:objectToDrag];
     }
     

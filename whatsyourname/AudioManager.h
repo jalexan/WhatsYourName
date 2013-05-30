@@ -19,11 +19,11 @@
 @property (nonatomic,readonly) AVAudioPlayer* backgroundPlayer;
 
 - (void)initializeAudio;
-- (AVAudioPlayer*)prepareAudio:(NSString*)audioName;
+- (AVAudioPlayer*)prepareAudioWithPath:(NSString*)audioPath;
 - (void)playAudio:(NSString*)audioName volume:(float)volume;
 - (void)stopAudio:(NSString*)audioName;
 - (void)pauseAudio:(NSString*)audioName;
-- (void)playBackgroundAudio:(NSString*)audioName volume:(float)volume;
+- (void)playBackgroundAudioWithPath:(NSString*)audioPath volume:(float)volume;
 
 
 @end
