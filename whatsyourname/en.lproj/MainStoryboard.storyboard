@@ -260,7 +260,7 @@
                 <relationship kind="outlet" name="restartButton" candidateClass="UIButton"/>
             </relationships>
         </class>
-        <class className="SurpriseViewController" superclassName="UIViewController">
+        <class className="SurpriseViewController" superclassName="GameController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SurpriseViewController.h"/>
             <relationships>
                 <relationship kind="outlet" name="surpriseLabel" candidateClass="UILabel"/>
