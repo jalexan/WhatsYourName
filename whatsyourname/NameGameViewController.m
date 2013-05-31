@@ -12,6 +12,7 @@
 #import "SpeakerImageView.h"
 #import "SpeakerList.h"
 
+#define NON_PRIMARY_SPEAKER_IMAGE_SCALE .90
 
 @interface NameGameViewController () {
 
@@ -87,6 +88,7 @@
         
         SpeakerImageView* speakerImageView = [[SpeakerImageView alloc] initWithFrame:CGRectZero
                                                                              speaker:speaker];
+        speakerImageView.contentMode = UIViewContentModeScaleAspectFit;
         //speakerImageView.backgroundColor = [UIColor redColor];
         if (!mainSpeakerImageView) {
             mainSpeakerImageView = speakerImageView;
@@ -94,17 +96,17 @@
         
         
         if (index == 0) {
-            frame = CGRectMake((viewWidth/2)-70, 94, imageSize.width, imageSize.height);
+            frame = CGRectMake((viewWidth/2)-70, 99, imageSize.width, imageSize.height);
             leftFrameX = frame.origin.x;
             rightFrameX = frame.origin.x;
         }
         else if ((index % 2) == 1) {
-            leftFrameX -= (imageSize.width - 20);
-            frame = CGRectMake(leftFrameX, 94, imageSize.width, imageSize.height);
+            leftFrameX -= ((imageSize.width*NON_PRIMARY_SPEAKER_IMAGE_SCALE) - 20);
+            frame = CGRectMake(leftFrameX, 94, imageSize.width*NON_PRIMARY_SPEAKER_IMAGE_SCALE, imageSize.height*NON_PRIMARY_SPEAKER_IMAGE_SCALE);
         }
         else if ((index % 2) == 0) {
-            rightFrameX += (imageSize.width - 20);
-            frame = CGRectMake(rightFrameX, 94, imageSize.width, imageSize.height);
+            rightFrameX += ((imageSize.width*NON_PRIMARY_SPEAKER_IMAGE_SCALE) - 20);
+            frame = CGRectMake(rightFrameX, 94, imageSize.width*NON_PRIMARY_SPEAKER_IMAGE_SCALE, imageSize.height*NON_PRIMARY_SPEAKER_IMAGE_SCALE);
         }
         
         speakerImageView.frame = frame;
