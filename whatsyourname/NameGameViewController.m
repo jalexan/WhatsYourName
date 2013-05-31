@@ -34,7 +34,7 @@
     yourNameDialogDictionary = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];
 
     CGSize screenBounds = CGSizeMake(480,320);
-    UIImageView* screenBackground = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Resource/bg.jpg"]];
+    UIImageView* screenBackground = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Resource/bg.png"]];
     screenBackground.frame = CGRectMake(0,0,screenBounds.width,screenBounds.height);
     screenBackground.alpha = 0.8;
     [self.view addSubview:screenBackground];

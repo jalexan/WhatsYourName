@@ -7,6 +7,7 @@
 //
 
 #import "ArabicLetterImageView.h"
+#import "UIView+Additions.h"
 
 @interface ArabicLetterImageView() {
     UILabel* letterNameLabel;
@@ -49,7 +50,8 @@
     letterNameLabel.textAlignment = NSTextAlignmentCenter;
     letterNameLabel.shadowColor = [UIColor whiteColor];
     letterNameLabel.shadowOffset = CGSizeMake(0,1);
-    letterNameLabel.lineBreakMode = NSLineBreakByTruncatingMiddle;
+    letterNameLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    letterNameLabel.numberOfLines = 2;
     
     letterNameLabel.text = arabicLetter.letterName;
     [self addSubview:letterNameLabel];
@@ -60,9 +62,13 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
     
-    CGRect labelFrame = CGRectMake(0, self.frame.size.height+1, self.frame.size.width, 10);
-    
+    CGRect labelFrame = CGRectMake(0, self.frame.size.height-2, self.frame.size.width+10, 50);
     letterNameLabel.frame = labelFrame;
+    [letterNameLabel sizeToFit];
+    
+    CGRect r = letterNameLabel.frame;
+    r.origin.x = (self.width/2)-(r.size.width/2);
+    letterNameLabel.frame = r;
     
 }
 
