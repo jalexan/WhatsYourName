@@ -360,11 +360,7 @@
 
     imageView.alpha = 0;
     
-    CGRect imageFrame;
-    imageFrame.size.width = image.size.width*.4;
-    imageFrame.size.height = image.size.height*.4;
-    imageFrame.origin.x = arabicNameView.frame.size.width - imageFrame.size.width;
-    imageFrame.origin.y = 0;
+    CGRect imageFrame = CGRectMake(0,0,194,84);
     imageView.frame = imageFrame;
     
     [arabicNameView addSubview:imageView];
