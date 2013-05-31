@@ -22,6 +22,7 @@
 @property (nonatomic) CGSize size;
 
 - (void)removeAllSubviews;
-
+- (void)drawBorderOnSubviews;
+- (void)drawSizeLabelOnSubviews;
 
 @end

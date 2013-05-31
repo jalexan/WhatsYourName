@@ -8,9 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
+#import "UIView+Additions.h"
 #import "AudioManager.h"
-
-
 
 @interface GameController : UIViewController {
     IBOutlet UIButton* soundButton;

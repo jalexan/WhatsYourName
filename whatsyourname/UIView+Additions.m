@@ -6,6 +6,7 @@
 //  Copyright (c) 2013 Richard Nguyen. All rights reserved.
 //
 #import "UIView+Additions.h"
+#import <QuartzCore/QuartzCore.h>
 
 @implementation UIView (Additions)
 
@@ -113,6 +114,36 @@
     [child removeFromSuperview];
   }
 }
+
+
+- (void)drawBorderOnSubviews {
+    
+    NSArray* subviews = self.subviews;
+    
+    for (UIView* view in subviews) {
+        view.layer.borderColor = [UIColor magentaColor].CGColor;
+        view.layer.borderWidth = 1.0f;
+    }
+    
+}
+
+- (void)drawSizeLabelOnSubviews {
+    
+    NSArray* subviews = self.subviews;
+    
+    for (UIView* view in subviews) {
+        UILabel* sizeLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 20, 10)];
+        sizeLabel.font = [UIFont systemFontOfSize:9];
+        sizeLabel.textColor = [UIColor magentaColor];
+        sizeLabel.backgroundColor = [UIColor clearColor];
+        sizeLabel.text = [NSString stringWithFormat:@"%0.fx%0.f",view.width,view.height];
+        
+        [sizeLabel sizeToFit];
+        [view addSubview:sizeLabel];
+    }
+    
+}
+
 
 
 @end

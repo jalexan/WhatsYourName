@@ -7,7 +7,6 @@
 //
 
 #import "NameGameViewController.h"
-#import "UIView+Additions.h"
 #import "Speaker.h"
 #import "SpeakerImageView.h"
 #import "SpeakerList.h"

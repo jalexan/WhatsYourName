@@ -7,7 +7,6 @@
 //
 
 #import "LetterGameViewController.h"
-#import "UIView+Additions.h"
 #import "SpeakerList.h"
 #import "Speaker.h"
 #import "SpeakerImageView.h"
@@ -16,25 +15,6 @@
 #import "Slot.h"
 #import "SlotImageView.h"
 #import "SurpriseViewController.h"
-
-
-
-#define DEBUG1 1
-
-#if DEBUG1
-    #define ANIMATION_DURATION_ARABIC_SPELL 0
-    #define ANIMATION_DURATION_MIX_UP_LETTERS .5
-    #define ANIMATION_DURATION_SLIDE_TO_SLOT 0.2
-
-    #define SLOT_FRAME_INSET_FOR_FAILURE .7
-#else
-    #define ANIMATION_DURATION_ARABIC_SPELL 1.5
-    #define ANIMATION_DURATION_MIX_UP_LETTERS 1
-    #define ANIMATION_DURATION_SLIDE_TO_SLOT 0.2
-
-    #define SLOT_FRAME_INSET_FOR_FAILURE .5
-#endif
-
 
 
 @interface LetterGameViewController () {
@@ -97,7 +77,16 @@
     currentSpeaker = [[SpeakerList sharedInstance].speakerArray objectAtIndex:currentSpeaker];
     
     [self startLevel];
+    
+    if (DEBUG_DRAW_BORDERS) {
+        [self.view drawBorderOnSubviews];
+    }
+    
+    if (DEBUG_DRAW_SIZES) {
+        [self.view drawSizeLabelOnSubviews];
+    }
 }
+
 
 - (void)reloadGameArea {
     //actorContainerView.hidden = NO;

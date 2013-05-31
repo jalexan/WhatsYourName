@@ -8,7 +8,6 @@
 
 #import "GameController.h"
 
-
 @interface GameController () {
     
 }
@@ -43,9 +42,18 @@
 	else {
         soundButton.selected = NO;
     }
+
     
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    if (DEBUG_DRAW_BORDERS) {
+        [self.view drawBorderOnSubviews];
+    }
     
-    
+    if (DEBUG_DRAW_SIZES) {
+        [self.view drawSizeLabelOnSubviews];
+    }
 }
 
 

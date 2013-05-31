@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GameController.h"
 
-@interface SurpriseViewController : UIViewController {
+@interface SurpriseViewController : GameController {
     IBOutlet UILabel* surpriseLabel;
 }
 

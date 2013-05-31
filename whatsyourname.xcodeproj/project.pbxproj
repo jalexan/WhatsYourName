@@ -122,7 +122,6 @@
 		68240B02173F07D200BDBDF8 = {
 			isa = PBXGroup;
 			children = (
-				68E8E7C31749FAFC005BDA40 /* QuartzCore.framework */,
 				68240B17173F07D200BDBDF8 /* whatsyourname */,
 				68240B10173F07D200BDBDF8 /* Frameworks */,
 				68240B0E173F07D200BDBDF8 /* Products */,
@@ -140,6 +139,7 @@
 		68240B10173F07D200BDBDF8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				68E8E7C31749FAFC005BDA40 /* QuartzCore.framework */,
 				6883F4FA1740D47600487055 /* AudioToolbox.framework */,
 				6883F4F81740D11A00487055 /* AVFoundation.framework */,
 				68240B11173F07D200BDBDF8 /* UIKit.framework */,
