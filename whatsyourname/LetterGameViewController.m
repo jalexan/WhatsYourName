@@ -349,7 +349,7 @@
 
     imageView.alpha = 0;
     
-    CGRect imageFrame = CGRectMake(0,0,194,84);
+    CGRect imageFrame = CGRectMake((arabicNameView.width/2)-(194/2),0,194,84);
     imageView.frame = imageFrame;
     
     [arabicNameView addSubview:imageView];
