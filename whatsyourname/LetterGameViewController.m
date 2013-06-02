@@ -60,7 +60,8 @@
 
     screenBounds = CGSizeMake(480,320);
 
-    UIImageView* screenBackground = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Resource/bg.png"]];
+    UIImageView* screenBackground = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Resource/background.png"]];
+    screenBackground.contentMode = UIViewContentModeBottomLeft;
     screenBackground.frame = CGRectMake(0,0,screenBounds.width,screenBounds.height);
 
     [self.view addSubview:screenBackground];
