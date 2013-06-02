@@ -18,5 +18,6 @@
 
 - (void)setImage:(UIImage*)image forCircleIndex:(NSUInteger)circleIndex;
 - (UIImageView*)circleImageViewWithIndex:(NSUInteger)circleIndex;
-
+- (void)startRotations;
+- (void)stopRotations;
 @end

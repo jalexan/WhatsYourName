@@ -20,7 +20,7 @@
 @interface LetterGameViewController () {
     CGSize screenBounds;
     
-    
+    UIScrollView* scrollView;
     
     NSArray* speakerArray;
     Speaker* currentSpeaker;
@@ -42,6 +42,15 @@
     [super viewDidAppear:animated];
 
     
+    //CGRect r = gameProgressView.frame;
+    //r.origin.y +=screenBounds.height;
+    //gameProgressView.frame = r;
+    
+
+    
+    [scrollView.superview sendSubviewToBack:scrollView];
+    
+    [self startLevel];
 }
 
 
@@ -60,12 +69,28 @@
 
     screenBounds = CGSizeMake(480,320);
 
-    UIImageView* screenBackground = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Resource/background.png"]];
-    screenBackground.contentMode = UIViewContentModeBottomLeft;
-    screenBackground.frame = CGRectMake(0,0,screenBounds.width,screenBounds.height);
 
-    [self.view addSubview:screenBackground];
-    [self.view sendSubviewToBack:screenBackground];
+
+
+    scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, screenBounds.width,screenBounds.height)];
+    scrollView.bounces = NO;
+    scrollView.showsHorizontalScrollIndicator = NO;
+    scrollView.showsVerticalScrollIndicator = NO;
+    scrollView.userInteractionEnabled = NO;
+
+    scrollView.contentSize = CGSizeMake(screenBounds.width,screenBounds.height*2);
+    scrollView.contentOffset = CGPointMake(0,screenBounds.height);
+    [self.view addSubview:scrollView];
+    
+    UIImageView* screenBackground = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Resource/background.png"]];
+    //screenBackground.contentMode = UIViewContentModeBottomLeft;
+    screenBackground.frame = CGRectMake(0,0,scrollView.contentSize.width,scrollView.contentSize.height);
+    
+    [scrollView addSubview:screenBackground];
+    
+    
+    [scrollView addSubview:gameProgressView];
+    
     
     starsImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Resource/fairy_dust.png"]];
     [self.view addSubview:starsImageView];
@@ -77,20 +102,17 @@
     currentSpeakerIndex = 0;
     currentSpeaker = [[SpeakerList sharedInstance].speakerArray objectAtIndex:currentSpeaker];
     
-    [self startLevel];
-    
-    if (DEBUG_DRAW_BORDERS) {
-        [self.view drawBorderOnSubviews];
-    }
-    
-    if (DEBUG_DRAW_SIZES) {
-        [self.view drawSizeLabelOnSubviews];
-    }
+   
+
 }
 
 
 - (void)reloadGameArea {
     //actorContainerView.hidden = NO;
+    gameProgressView.centerX = gameProgressView.superview.centerX;
+    gameProgressView.bottom = scrollView.superview.bottom + screenBounds.height - 20;
+    gameProgressView.left = scrollView.right;
+    
    
     
     [[arabicNameView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
@@ -101,8 +123,8 @@
         [imageView removeFromSuperview];
     }
     
-    speakerImageView = [[SpeakerImageView alloc] initWithFrame:CGRectMake(16, 94, 140, 216) speaker:currentSpeaker];
-    [self.view addSubview:speakerImageView];
+    speakerImageView = [[SpeakerImageView alloc] initWithFrame:CGRectMake(16, 320+94, 140, 216) speaker:currentSpeaker];
+    [scrollView addSubview:speakerImageView];
     [speakerImageView animateWithDefaultAnimation];
 
     
@@ -160,7 +182,7 @@
         //slots.alpha = 0;
     }
     
-    gameProgressView.hidden = YES;
+    //gameProgressView.hidden = YES;
     
 }   
 
@@ -178,9 +200,13 @@
 
 - (void)startShufflePhase {
     
-    /*
-    [self animateSpeakerSuccessWithCompletion:^() {
-        
+    
+
+       
+        //[self animateSpeakerSuccessWithCompletion:^() {}];
+        //return;
+    
+     /*
         UIImageView* circleImageView = [gameProgressView circleImageViewWithIndex:currentSpeakerIndex];
         circleImageView.image = speakerImageView.image;
         [speakerImageView removeFromSuperview];
@@ -234,29 +260,33 @@
         
         [self displayDialogTextWithKey:@"Excellent" completion:^() {
             
-            [self animateSuccessWithCompletion:^() {
+            [self animateLevelSuccessWithCompletion:^() {
             
                 [self displayDialogTextWithKey:@"Later" completion:^() {
                     
-                    [self animateSpeakerSuccessWithCompletion:^() {
+                    [self animateProgressViewWithCompletion:^() {
+                    
                         
-                        UIImageView* circleImageView = [gameProgressView circleImageViewWithIndex:currentSpeakerIndex];
-                        circleImageView.image = speakerImageView.image;
-                        [speakerImageView removeFromSuperview];
-                        
-                        if ([[SpeakerList sharedInstance] isLastSpeaker:currentSpeaker]) {
+                        [self animateSpeakerSuccessWithCompletion:^() {
                             
-                            [self performSegueWithIdentifier:@"SurpriseSegue" sender:self];
-                        }
-                        else {
-                            currentSpeakerIndex++;
-                            currentSpeaker = [[SpeakerList sharedInstance].speakerArray objectAtIndex:currentSpeakerIndex];
-                            [self startLevel];
-                        }
+                            UIImageView* circleImageView = [gameProgressView circleImageViewWithIndex:currentSpeakerIndex];
+                            circleImageView.image = speakerImageView.image;
+                            [speakerImageView removeFromSuperview];
+                            
+                            if ([[SpeakerList sharedInstance] isLastSpeaker:currentSpeaker]) {
+                                
+                                [self performSegueWithIdentifier:@"SurpriseSegue" sender:self];
+                            }
+                            else {
+                                currentSpeakerIndex++;
+                                currentSpeaker = [[SpeakerList sharedInstance].speakerArray objectAtIndex:currentSpeakerIndex];
+                                [self startLevel];
+                            }
+                            
+                        }];
                         
                     }];
-                    
-                    
+                                        
                 }];
                 
             }];
@@ -458,7 +488,7 @@
                      }];
 }
 
-- (void)animateSuccessWithCompletion:(void(^)())completion {
+- (void)animateLevelSuccessWithCompletion:(void(^)())completion {
     //CGRect startRect = CGRectMake(self.view.bounds.size.width, self.view.bounds.size/height/2, 79, 155);
     
     CGPoint startPoint = self.view.center;
@@ -510,15 +540,37 @@
     
 }
 
+- (void)animateProgressViewWithCompletion:(void(^)())completion {
+    
+    [UIView animateWithDuration: 2
+                          delay: 0.0
+                        options: UIViewAnimationCurveEaseInOut
+                     animations:^{
+                         [gameProgressView startRotations];
+                         gameProgressView.centerX = gameProgressView.superview.centerX;
+                         //gameProgressView.bottom = scrollView.superview.bottom + screenBounds.height;
+          
+                         
+                     }
+                     completion:^(BOOL finished){
+                         [gameProgressView stopRotations];
+                         completion();
+                     }];
+    
+}
+
 - (void)animateSpeakerSuccessWithCompletion:(void(^)())completion {
     [speakerImageView stopDefaultAnimation];
     [speakerImageView setToLastExitImage];
+    
+    //[scrollView drawBorderOnSubviews];
+    speakerImageView.contentMode = UIViewContentModeCenter;
     
     [self animateType:EXIT duration:3 completion:^() {
         completion();
     }];
     
-    gameProgressView.hidden = NO;
+
     UIImageView* circleImageView = [gameProgressView circleImageViewWithIndex:currentSpeakerIndex];
     
     
@@ -526,24 +578,57 @@
     pathAnimation.calculationMode = kCAAnimationPaced;
     pathAnimation.fillMode = kCAFillModeForwards;
     pathAnimation.removedOnCompletion = NO;
-    pathAnimation.duration = 1;
+    pathAnimation.duration = 1.5;
     
     
 
     CGPoint viewOrigin = speakerImageView.center;
-    CGPoint endPoint = [self.view convertPoint:circleImageView.center fromView:gameProgressView];
-    endPoint.x += 10;
+    CGPoint endPoint = [[speakerImageView superview] convertPoint:circleImageView.center fromView:gameProgressView];
+    
     CGMutablePathRef curvedPath = CGPathCreateMutable();
     CGPathMoveToPoint(curvedPath, NULL, viewOrigin.x, viewOrigin.y);
     CGPathAddCurveToPoint(curvedPath, NULL,
-                          viewOrigin.x+10, viewOrigin.y-185,
-                          endPoint.x-10, endPoint.y-185,
+                          viewOrigin.x+10, viewOrigin.y-515,
+                          endPoint.x-10, endPoint.y-515,
                           endPoint.x, endPoint.y);
     pathAnimation.path = curvedPath;
     CGPathRelease(curvedPath);
     
     
     [speakerImageView.layer addAnimation:pathAnimation forKey:@"curveAnimation"];
+    
+    
+    
+    [UIView animateWithDuration: .75
+                          delay: 0.0
+                        options: UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+                         
+                         CGPoint p = scrollView.contentOffset;
+                         p.y = 0;
+                         scrollView.contentOffset = p;
+                         
+                     }
+                     completion:^(BOOL finished){
+                         
+                         [UIView animateWithDuration: .75
+                                               delay: 0.0
+                                             options: UIViewAnimationOptionCurveEaseInOut
+                                          animations:^{
+                                              
+                                              CGPoint p = scrollView.contentOffset;
+                                              p.y = screenBounds.height;
+                                              scrollView.contentOffset = p;
+                                              
+                                          }
+                                          completion:^(BOOL finished){
+                                              
+                                             
+                                              
+                                          }];
+                         
+                     }];
+   
 
     
 }
