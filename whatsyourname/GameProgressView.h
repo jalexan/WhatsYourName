@@ -15,8 +15,12 @@
 }
 
 @property(nonatomic,readonly) NSMutableArray* circleImageViewArray;
+@property(nonatomic,assign) NSUInteger currentLevelCircleIndex;
 
-- (ProgressCircleImageView*)circleImageViewWithIndex:(NSUInteger)circleIndex;
+- (void)setCurrentLevelCircleIndex:(NSUInteger)index;
+- (void)setImage:(UIImage*)image atCircleIndex:(NSUInteger)index;
+- (ProgressCircleImageView*)circleImageViewWithIndex:(NSUInteger)index;
 - (void)startRotations;
 - (void)stopRotations;
+
 @end

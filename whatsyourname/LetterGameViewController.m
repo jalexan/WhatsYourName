@@ -19,6 +19,7 @@
 
 @interface LetterGameViewController () {
     CGSize screenBounds;
+    CGPoint adjustedScrollViewCenter;
     
     UIScrollView* scrollView;
     
@@ -41,12 +42,15 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
 
+    adjustedScrollViewCenter = CGPointMake(scrollView.center.x,scrollView.center.y+screenBounds.height);;
     
-    //CGRect r = gameProgressView.frame;
-    //r.origin.y +=screenBounds.height;
-    //gameProgressView.frame = r;
+    gameProgressView.hidden = YES;
+    CGRect f = gameProgressView.frame;
+    f.origin.y += screenBounds.height;
+    gameProgressView.frame = f;
+    [scrollView addSubview:gameProgressView];
     
-
+    
     
     
     
@@ -88,10 +92,7 @@
     screenBackground.frame = CGRectMake(0,0,scrollView.contentSize.width,scrollView.contentSize.height);
     
     [scrollView addSubview:screenBackground];
-    
-    gameProgressView.hidden = YES;
-    [scrollView addSubview:gameProgressView];
-    
+
     
     starsImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Resource/fairy_dust.png"]];
     [self.view addSubview:starsImageView];
@@ -109,12 +110,9 @@
 
 
 - (void)reloadGameArea {
-    //actorContainerView.hidden = NO;
-    gameProgressView.centerX = gameProgressView.superview.centerX;
-    gameProgressView.bottom = scrollView.superview.bottom + screenBounds.height - 20;
+
     gameProgressView.left = scrollView.right + 30;
     gameProgressView.hidden = NO;
-    
 
     
     [[arabicNameView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
@@ -248,27 +246,24 @@
             [self animateLevelSuccessWithCompletion:^() {
             
                 [self displayDialogTextWithKey:@"Later" completion:^() {
-                    
-                    [self animateProgressViewWithCompletion:^() {
-                    
+                
+                    [self animateSpeakerSuccessWithCompletion:^() {
                         
-                        [self animateSpeakerSuccessWithCompletion:^() {
+                        [self animateProgressViewPhase1WithCompletion:^() {
+                        
+                            [self animateProgressViewPhase2WithCompletion:^() {
                             
-                            [speakerImageView removeFromSuperview];
-                            ProgressCircleImageView* circleImageView = [gameProgressView circleImageViewWithIndex:currentSpeakerIndex];
-                            circleImageView.contentMode = UIViewContentModeCenter;
-                            circleImageView.image = speakerImageView.lastExitImage;
-                            circleImageView.isComplete = YES;
-                                                                                
-                            if ([[SpeakerList sharedInstance] isLastSpeaker:currentSpeaker]) {
+                                if ([[SpeakerList sharedInstance] isLastSpeaker:currentSpeaker]) {
+                                    
+                                    [self performSegueWithIdentifier:@"SurpriseSegue" sender:self];
+                                }
+                                else {
+                                    currentSpeakerIndex++;
+                                    currentSpeaker = [[SpeakerList sharedInstance].speakerArray objectAtIndex:currentSpeakerIndex];
+                                    [self startLevel];
+                                }
                                 
-                                [self performSegueWithIdentifier:@"SurpriseSegue" sender:self];
-                            }
-                            else {
-                                currentSpeakerIndex++;
-                                currentSpeaker = [[SpeakerList sharedInstance].speakerArray objectAtIndex:currentSpeakerIndex];
-                                [self startLevel];
-                            }
+                            }];
                             
                         }];
                         
@@ -406,12 +401,12 @@
 
 - (void)animateType:(animationType)type duration:(NSTimeInterval)duration completion:(void(^)())completion {
     
-    speakerImageView.alpha = .99;
+    dialogLabel.alpha = .99;
     [UIView animateWithDuration: duration
                           delay: 0.0
                         options: UIViewAnimationOptionCurveEaseIn
                      animations:^{
-                         speakerImageView.alpha = 1;
+                         dialogLabel.alpha = 1;
                          [speakerImageView animateWithType:type duration:duration];
                      }
                      completion:^(BOOL finished){
@@ -526,23 +521,63 @@
     
 }
 
-- (void)animateProgressViewWithCompletion:(void(^)())completion {
+- (void)animateProgressViewPhase1WithCompletion:(void(^)())completion {
+    
+    [gameProgressView setCurrentLevelCircleIndex:currentSpeakerIndex];
+    [UIView animateWithDuration: 2
+                          delay: 0.0
+                        options: UIViewAnimationOptionCurveLinear
+                     animations:^{
+                         [gameProgressView startRotations];
+
+                         //Move the current level circle to the same coordinates as the speaker image view
+                         ProgressCircleImageView* circle = [gameProgressView circleImageViewWithIndex:currentSpeakerIndex];
+                         gameProgressView.left = adjustedScrollViewCenter.x - circle.origin.x - (circle.width/2);
+                         
+                     }
+                     completion:^(BOOL finished){
+
+                         completion();
+                     }];
+    
+}
+
+- (void)animateProgressViewPhase2WithCompletion:(void(^)())completion {
+    [speakerImageView removeFromSuperview];
+    ProgressCircleImageView* circleImageView = [gameProgressView circleImageViewWithIndex:currentSpeakerIndex];
+    circleImageView.contentMode = UIViewContentModeCenter;
+    [gameProgressView setImage:speakerImageView.lastExitImage atCircleIndex:currentSpeakerIndex];
+    
     
     [UIView animateWithDuration: 2
                           delay: 0.0
-                        options: UIViewAnimationCurveEaseInOut
+                        options: UIViewAnimationOptionCurveLinear
                      animations:^{
-                         [gameProgressView startRotations];
-                         gameProgressView.centerX = gameProgressView.superview.centerX;
-                         //gameProgressView.bottom = scrollView.superview.bottom + screenBounds.height;
-          
+
+                         gameProgressView.left = 46;
                          
                      }
                      completion:^(BOOL finished){
                          [gameProgressView stopRotations];
-                         completion();
+
+                         //Artificial Delay
+                         dialogLabel.alpha = .99;
+                         [UIView animateWithDuration: 2
+                                               delay: 0.0
+                                             options: UIViewAnimationOptionCurveEaseIn
+                                          animations:^{
+                                              dialogLabel.alpha = 1;
+ 
+                                          }
+                                          completion:^(BOOL finished){
+                                              
+                                              completion();
+                                              
+                                          }];
+                         
                      }];
     
+
 }
 
 - (void)animateSpeakerSuccessWithCompletion:(void(^)())completion {
@@ -553,11 +588,11 @@
     speakerImageView.contentMode = UIViewContentModeCenter;
     
     [self animateType:EXIT duration:3 completion:^() {
-        completion();
+        
     }];
     
 
-    UIImageView* circleImageView = [gameProgressView circleImageViewWithIndex:currentSpeakerIndex];
+    //UIImageView* circleImageView = [gameProgressView circleImageViewWithIndex:currentSpeakerIndex];
     
     
     CAKeyframeAnimation *pathAnimation = [CAKeyframeAnimation animationWithKeyPath:@"position"];
@@ -565,11 +600,13 @@
     pathAnimation.fillMode = kCAFillModeForwards;
     pathAnimation.removedOnCompletion = NO;
     pathAnimation.duration = 1.5;
+    //pathAnimation.delegate = self;
     
     
 
     CGPoint viewOrigin = speakerImageView.center;
-    CGPoint endPoint = [[speakerImageView superview] convertPoint:circleImageView.center fromView:gameProgressView];
+    CGPoint endPoint = adjustedScrollViewCenter;
+    
     
     CGMutablePathRef curvedPath = CGPathCreateMutable();
     CGPathMoveToPoint(curvedPath, NULL, viewOrigin.x, viewOrigin.y);
@@ -609,7 +646,7 @@
                                           }
                                           completion:^(BOOL finished){
                                               
-                                             
+                                             completion();
                                               
                                           }];
                          
