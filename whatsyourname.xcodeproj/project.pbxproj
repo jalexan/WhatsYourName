@@ -28,6 +28,7 @@
 		685D89051749576F00847C7D /* Slot.m in Sources */ = {isa = PBXBuildFile; fileRef = 685D89041749576F00847C7D /* Slot.m */; };
 		685D8908174958C900847C7D /* SlotImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 685D8907174958C900847C7D /* SlotImageView.m */; };
 		685D890A17495DEA00847C7D /* Resource in Resources */ = {isa = PBXBuildFile; fileRef = 685D890917495DEA00847C7D /* Resource */; };
+		686446C5175C4DBE00BA5007 /* ProgressCircleImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 686446C4175C4DBD00BA5007 /* ProgressCircleImageView.m */; };
 		686551541748427700463C6C /* Letters in Resources */ = {isa = PBXBuildFile; fileRef = 686551531748427700463C6C /* Letters */; };
 		6883F4F91740D11A00487055 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6883F4F81740D11A00487055 /* AVFoundation.framework */; };
 		6883F4FB1740D47600487055 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6883F4FA1740D47600487055 /* AudioToolbox.framework */; };
@@ -80,6 +81,8 @@
 		685D8906174958C900847C7D /* SlotImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlotImageView.h; sourceTree = "<group>"; };
 		685D8907174958C900847C7D /* SlotImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SlotImageView.m; sourceTree = "<group>"; };
 		685D890917495DEA00847C7D /* Resource */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Resource; sourceTree = "<group>"; };
+		686446C3175C4DBD00BA5007 /* ProgressCircleImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressCircleImageView.h; sourceTree = "<group>"; };
+		686446C4175C4DBD00BA5007 /* ProgressCircleImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressCircleImageView.m; sourceTree = "<group>"; };
 		686551531748427700463C6C /* Letters */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Letters; sourceTree = "<group>"; };
 		6883F4F81740D11A00487055 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		6883F4FA1740D47600487055 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -208,6 +211,8 @@
 				685D8907174958C900847C7D /* SlotImageView.m */,
 				68FA6E07174E6490000B08E1 /* GameProgressView.h */,
 				68FA6E08174E6490000B08E1 /* GameProgressView.m */,
+				686446C3175C4DBD00BA5007 /* ProgressCircleImageView.h */,
+				686446C4175C4DBD00BA5007 /* ProgressCircleImageView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -326,6 +331,7 @@
 				684FA0EB175068760074965D /* GameUIView.m in Sources */,
 				681DDD3117545A35007FFD64 /* GameController.m in Sources */,
 				681DDD3417546E0A007FFD64 /* AudioManager.m in Sources */,
+				686446C5175C4DBE00BA5007 /* ProgressCircleImageView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

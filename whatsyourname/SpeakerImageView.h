@@ -27,4 +27,5 @@ typedef enum {
 - (void)animateWithDefaultAnimation;
 - (void)stopDefaultAnimation;
 - (void)setToLastExitImage;
+- (UIImage*)lastExitImage;
 @end

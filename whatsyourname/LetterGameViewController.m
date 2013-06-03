@@ -15,7 +15,7 @@
 #import "Slot.h"
 #import "SlotImageView.h"
 #import "SurpriseViewController.h"
-
+#import "ProgressCircleImageView.h"
 
 @interface LetterGameViewController () {
     CGSize screenBounds;
@@ -111,10 +111,10 @@
     //actorContainerView.hidden = NO;
     gameProgressView.centerX = gameProgressView.superview.centerX;
     gameProgressView.bottom = scrollView.superview.bottom + screenBounds.height - 20;
-    gameProgressView.left = scrollView.right;
+    gameProgressView.left = scrollView.right + 30;
     gameProgressView.hidden = NO;
     
-   
+
     
     [[arabicNameView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
     arabicNameView.alpha = 1;
@@ -127,6 +127,13 @@
     speakerImageView = [[SpeakerImageView alloc] initWithFrame:CGRectMake(16, 320+94, 140, 216) speaker:currentSpeaker];
     [scrollView addSubview:speakerImageView];
     [speakerImageView animateWithDefaultAnimation];
+    
+    //ProgressCircleImageView* circleImageView = [gameProgressView circleImageViewWithIndex:currentSpeakerIndex];
+    //circleImageView.image = speakerImageView.image;
+    //circleImageView.isComplete = YES;
+    //circleImageView.contentMode = UIViewContentModeScaleAspectFit;
+    //return;
+    
 
     
     NSUInteger numberOfLetters = [currentSpeaker.letterIndexArray count];
@@ -200,31 +207,7 @@
 }
 
 - (void)startShufflePhase {
-    
-    
 
-       
-        //[self animateSpeakerSuccessWithCompletion:^() {}];
-        //return;
-    
-     /*
-        UIImageView* circleImageView = [gameProgressView circleImageViewWithIndex:currentSpeakerIndex];
-        circleImageView.image = speakerImageView.image;
-        [speakerImageView removeFromSuperview];
-        
-        if ([[SpeakerList sharedInstance] isLastSpeaker:currentSpeaker]) {
-            [self performSegueWithIdentifier:@"SurpriseSegue" sender:self];
-        }
-        else {
-            currentSpeakerIndex++;
-            currentSpeaker = [[SpeakerList sharedInstance].speakerArray objectAtIndex:currentSpeakerIndex];
-            [self startRound];
-        }
-        
-    }];
-    */
-    
-    
     
     [self displayDialogTextWithKey:@"Name" completion:^() {
         
@@ -270,10 +253,12 @@
                         
                         [self animateSpeakerSuccessWithCompletion:^() {
                             
-                            UIImageView* circleImageView = [gameProgressView circleImageViewWithIndex:currentSpeakerIndex];
-                            circleImageView.image = speakerImageView.image;
                             [speakerImageView removeFromSuperview];
-                            
+                            ProgressCircleImageView* circleImageView = [gameProgressView circleImageViewWithIndex:currentSpeakerIndex];
+                            circleImageView.contentMode = UIViewContentModeCenter;
+                            circleImageView.image = speakerImageView.lastExitImage;
+                            circleImageView.isComplete = YES;
+                                                                                
                             if ([[SpeakerList sharedInstance] isLastSpeaker:currentSpeaker]) {
                                 
                                 [self performSegueWithIdentifier:@"SurpriseSegue" sender:self];

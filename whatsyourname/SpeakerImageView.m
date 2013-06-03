@@ -117,6 +117,10 @@
     self.image = image;
 }
 
+- (UIImage*)lastExitImage {
+    return [exitImagesArray lastObject];;
+}
+
 - (void)animateWithDefaultAnimation {
     if ([self superview]) {
         if (!self.isAnimating) {

@@ -6,11 +6,13 @@
 //  Copyright (c) 2013 Richard Nguyen. All rights reserved.
 //
 
-#import "GameProgressView.h"
 #import <QuartzCore/QuartzCore.h>
+#import "GameProgressView.h"
+
+#define DEFAULT_IMAGE @"Resource/progress_circle_upcoming.png"
 
 @interface GameProgressView () {
-    UIImageView* surpriseCircle;
+    ProgressCircleImageView* surpriseCircle;
 }
 
 @end
@@ -49,12 +51,13 @@
     circleImageViewArray = [[NSMutableArray alloc] initWithCapacity:numberOfCircles];
     
     NSUInteger widthOfContent = (numberOfCircles+1)*(circleSize.width+10);
-    NSUInteger originX = (self.bounds.size.width/2)-(widthOfContent/2);
+    NSUInteger originX = (self.bounds.size.width/2)-(widthOfContent/2)+10;
     
     for (int i=0;i<numberOfCircles;i++)
     {
         
-        UIImageView* circle = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Resource/progress_circle_upcoming.png"]];
+        ProgressCircleImageView* circle = [[ProgressCircleImageView alloc] initWithImage:[UIImage imageNamed:DEFAULT_IMAGE]];
+        //circle.contentMode = UIViewContentModeCenter;
         circle.frame = CGRectMake(originX,10,58,58);
         [self addSubview:circle];
         [circleImageViewArray addObject:circle];
@@ -64,9 +67,11 @@
     }
     
     
-    surpriseCircle = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Resource/progress_circle_upcoming.png"]];
+    surpriseCircle = [[ProgressCircleImageView alloc] initWithImage:[UIImage imageNamed:@"Resource/progress_circle_mystery.png"]];
     surpriseCircle.frame = CGRectMake(originX,10,58,58);
     [self addSubview:surpriseCircle];
+    
+    /*
     UILabel* questionLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 58, 58)];
     questionLabel.backgroundColor = [UIColor clearColor];
     questionLabel.textColor = [UIColor greenColor];
@@ -74,6 +79,7 @@
     questionLabel.textAlignment = NSTextAlignmentCenter;
     questionLabel.font = [UIFont fontWithName:@"MarkerFelt-Thin" size:40];
     [surpriseCircle addSubview:questionLabel];
+    */
 
 }
 
@@ -92,8 +98,10 @@
 
 - (void)startRotations {
     
-    for (UIImageView* circle in circleImageViewArray) {
-        [self rotateImage:circle];
+    for (ProgressCircleImageView* circle in circleImageViewArray) {
+        if (!circle.isComplete) {
+            [self rotateImage:circle];
+        }
     }
     [self rotateImage:surpriseCircle];
     
@@ -102,7 +110,7 @@
 
 - (void)stopRotations {
     
-    for (UIImageView* circle in circleImageViewArray) {
+    for (ProgressCircleImageView* circle in circleImageViewArray) {
         [circle.layer removeAllAnimations];
     }
     
@@ -111,31 +119,16 @@
 }
 
 
-- (UIImageView*)circleImageViewWithIndex:(NSUInteger)circleIndex {
+- (ProgressCircleImageView*)circleImageViewWithIndex:(NSUInteger)circleIndex {
     
     if (circleIndex<[circleImageViewArray count]) {
-        
-        
-        UIImageView* circle = [circleImageViewArray objectAtIndex:circleIndex];
-     
+        ProgressCircleImageView* circle = [circleImageViewArray objectAtIndex:circleIndex];
         return circle;
     }
     
     return nil;
 }
 
-- (void)setImage:(UIImage*)image forCircleIndex:(NSUInteger)circleIndex {
-    
-    if (circleIndex<[circleImageViewArray count]) {
-        
-        
-        UIImageView* circle = [circleImageViewArray objectAtIndex:circleIndex];
-        circle.image = image;
-        
-        
-    }
-    
-}
 
 
 /*

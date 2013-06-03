@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "SpeakerList.h"
+#import "ProgressCircleImageView.h"
 
 @interface GameProgressView : UIView {
     
@@ -15,9 +16,7 @@
 
 @property(nonatomic,readonly) NSMutableArray* circleImageViewArray;
 
-
-- (void)setImage:(UIImage*)image forCircleIndex:(NSUInteger)circleIndex;
-- (UIImageView*)circleImageViewWithIndex:(NSUInteger)circleIndex;
+- (ProgressCircleImageView*)circleImageViewWithIndex:(NSUInteger)circleIndex;
 - (void)startRotations;
 - (void)stopRotations;
 @end
