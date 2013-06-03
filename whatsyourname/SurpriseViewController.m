@@ -15,11 +15,12 @@
 
 @implementation SurpriseViewController
 
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        
     }
     return self;
 }
@@ -32,6 +33,8 @@
 {
     [super viewDidLoad];
 
+    question.image = [UIImage imageNamed:@"Resource/question_mark.png"];
+    
     [self performSelector:@selector(segueAfterDelay) withObject:nil afterDelay:4];
 
 }

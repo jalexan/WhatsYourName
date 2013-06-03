@@ -10,7 +10,7 @@
 #import "GameController.h"
 
 @interface SurpriseViewController : GameController {
-    IBOutlet UILabel* surpriseLabel;
+    IBOutlet UIImageView *question;
 }
 
 @end
