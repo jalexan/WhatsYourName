@@ -57,6 +57,10 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(AudioManager)
 }
 
 - (AVAudioPlayer*)prepareAudioWithPath:(NSString*)audioPath {
+    return [self prepareAudioWithPath:audioPath key:audioPath];
+}
+
+- (AVAudioPlayer*)prepareAudioWithPath:(NSString*)audioPath key:(NSString*)key {
     
     
     if (audioNameToPlayer == nil){
@@ -69,15 +73,13 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(AudioManager)
     @try {
         NSURL *url = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%@",audioPath] ofType:nil]];
         player = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&error];
-    
-    
         [player prepareToPlay];
     }
     @catch(NSException* e) {
         NSLog(@"error in prepareAudioWithPath: audioPath: %@ Error: %@",audioPath,e.description);
     }
     
-    [audioNameToPlayer setValue:player forKey:audioPath];
+    [audioNameToPlayer setValue:player forKey:key];
     return player;
     
     

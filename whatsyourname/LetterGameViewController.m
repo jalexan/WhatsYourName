@@ -48,7 +48,7 @@
     
 
     
-    [scrollView.superview sendSubviewToBack:scrollView];
+    //[scrollView.superview sendSubviewToBack:scrollView];
     
     [self startLevel];
 }
@@ -88,7 +88,7 @@
     
     [scrollView addSubview:screenBackground];
     
-    
+    gameProgressView.hidden = YES;
     [scrollView addSubview:gameProgressView];
     
     
@@ -112,6 +112,7 @@
     gameProgressView.centerX = gameProgressView.superview.centerX;
     gameProgressView.bottom = scrollView.superview.bottom + screenBounds.height - 20;
     gameProgressView.left = scrollView.right;
+    gameProgressView.hidden = NO;
     
    
     
@@ -299,11 +300,11 @@
 
 
 #pragma mark Game Mechanics
-- (void)playSpeakerDialogAudioWithKey:(NSString*)key {
+- (void)playSpeakerDialogAudioWithKey:(NSString*)key suffix:(NSString*)suffix {
     
-    NSString* path = [NSString stringWithFormat:@"%@/%@.mp3",currentSpeaker.name,key];
-    [super.audioManager prepareAudioWithPath:path];
-    [super.audioManager playAudio:path volume:.02];
+    NSString* path = [NSString stringWithFormat:@"Speakers/%@/Audio/%@%@.mp3",currentSpeaker.name,key,suffix];
+    [super.audioManager prepareAudioWithPath:path key:@"talking"];
+    [super.audioManager playAudio:@"talking" volume:.1];
 }
 
 - (void)displayDialogTextWithKey:(NSString*)key completion:(void(^)())completion {
@@ -324,9 +325,8 @@
     dialogLabel.font = [UIFont fontWithName:@"MarkerFelt-Thin" size:28];
     dialogLabel.text = text;
     [speakerImageView animateWithType:TALK duration:duration*2];
-    //[self playSpeakerDialogAudioWithKey:key];
-    [super.audioManager playAudio:@"Resource/talking.mp3" volume:.02];
-
+    [self playSpeakerDialogAudioWithKey:key suffix:@"English"];
+    //[super.audioManager playAudio:@"Resource/talking.mp3" volume:.02];
     
     dialogLabel.alpha = 1;
     [UIView animateWithDuration: duration
@@ -339,7 +339,7 @@
                          
                          dialogLabel.font = [UIFont fontWithName:@"GeezaPro-Bold" size:28];
                          dialogLabel.text = arabicText;
-                         [super.audioManager playAudio:@"Resource/talking.mp3" volume:.02];
+                         [self playSpeakerDialogAudioWithKey:key suffix:@"Arabic"];
                          dialogLabel.alpha = 1;
                          
                          [UIView animateWithDuration: duration

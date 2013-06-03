@@ -129,7 +129,7 @@
     NSString* helloArabic =  [dialogDictionary objectForKey:@"Arabic"];
     NSTimeInterval duration = [[dialogDictionary objectForKey:@"Duration"] floatValue];
     
-    [self displayEnglishText:helloEnglish arabicText:helloArabic duration:duration completion:^() {
+    [self displayEnglishText:helloEnglish arabicText:helloArabic key:@"Nice" duration:duration completion:^() {
         
         [self displayDialogTextWithKey:@"Another" completion:^() {
             
@@ -153,15 +153,16 @@
     NSString* text = [dialogDictionary objectForKey:@"English"];
     NSString* arabicText = [dialogDictionary objectForKey:@"Arabic"];
 
-    [self displayEnglishText:text arabicText:arabicText duration:duration completion:completion];
+    [self displayEnglishText:text arabicText:arabicText key:(NSString*)key duration:duration completion:completion];
 }
 
-- (void)displayEnglishText:(NSString*)englishText arabicText:(NSString*)arabicText duration:(NSTimeInterval)duration completion:(void(^)())completion {
+- (void)displayEnglishText:(NSString*)englishText arabicText:(NSString*)arabicText key:(NSString*)key duration:(NSTimeInterval)duration completion:(void(^)())completion {
     dialogLabel.font = [UIFont fontWithName:@"MarkerFelt-Thin" size:28];
     dialogLabel.text = englishText;
     
     [super.audioManager playAudio:@"Resource/talking.mp3" volume:.02];
     [mainSpeakerImageView animateWithType:TALK duration:duration*2];
+    [self playSpeakerDialogAudioWithKey:key suffix:@"English"];
     dialogLabel.alpha = .99;
     [UIView animateWithDuration: duration
                           delay: 0.0
@@ -174,6 +175,7 @@
                          dialogLabel.font = [UIFont fontWithName:@"GeezaPro-Bold" size:28];
                          dialogLabel.text = arabicText;
                          dialogLabel.alpha = .99;
+                         [self playSpeakerDialogAudioWithKey:key suffix:@"Arabic"];
                          
                          [UIView animateWithDuration: duration
                                                delay: 0.0
@@ -191,6 +193,12 @@
     
 }
 
+- (void)playSpeakerDialogAudioWithKey:(NSString*)key suffix:(NSString*)suffix {
+    
+    NSString* path = [NSString stringWithFormat:@"Speakers/%@/Audio/%@%@.mp3",mainSpeakerImageView.speaker.name,key,suffix];
+    [super.audioManager prepareAudioWithPath:path key:@"talking"];
+    [super.audioManager playAudio:@"talking" volume:.1];
+}
 
 - (IBAction)goodByeButtonTouched:(id)sender {
     nameTextField.hidden = YES;
@@ -214,7 +222,7 @@
     
 }
 
--(BOOL) textFieldShouldReturn:(UITextField *)textField {    
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {    
     [textField resignFirstResponder];
     
     if (textField.text.length>0) {

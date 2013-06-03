@@ -20,6 +20,7 @@
 
 - (void)initializeAudio;
 - (AVAudioPlayer*)prepareAudioWithPath:(NSString*)audioPath;
+- (AVAudioPlayer*)prepareAudioWithPath:(NSString*)audioPath key:(NSString*)key;
 - (void)playAudio:(NSString*)audioName volume:(float)volume;
 - (void)stopAudio:(NSString*)audioName;
 - (void)pauseAudio:(NSString*)audioName;
