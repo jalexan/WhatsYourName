@@ -48,7 +48,7 @@
     
 
     
-    //[scrollView.superview sendSubviewToBack:scrollView];
+    
     
     [self startLevel];
 }
@@ -81,6 +81,7 @@
     scrollView.contentSize = CGSizeMake(screenBounds.width,screenBounds.height*2);
     scrollView.contentOffset = CGPointMake(0,screenBounds.height);
     [self.view addSubview:scrollView];
+    [scrollView.superview sendSubviewToBack:scrollView];
     
     UIImageView* screenBackground = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Resource/background.png"]];
     //screenBackground.contentMode = UIViewContentModeBottomLeft;
