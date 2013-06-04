@@ -32,8 +32,6 @@
     
     UIImageView* starsImageView;
 }
-
-
 @end
 
 @implementation LetterGameViewController
@@ -57,7 +55,6 @@
     [self startLevel];
 }
 
-
  -(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
     return toInterfaceOrientation == UIInterfaceOrientationLandscapeLeft ||
     toInterfaceOrientation == UIInterfaceOrientationLandscapeRight;
@@ -72,9 +69,6 @@
     [super.audioManager prepareAudioWithPath:@"Resource/slot_wrong.mp3"];
 
     screenBounds = CGSizeMake(480,320);
-
-
-
 
     scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, screenBounds.width,screenBounds.height)];
     scrollView.bounces = NO;
@@ -108,7 +102,6 @@
 
 }
 
-
 - (void)reloadGameArea {
 
     gameProgressView.left = scrollView.right + 30;
@@ -125,6 +118,7 @@
     
     speakerImageView = [[SpeakerImageView alloc] initWithFrame:CGRectMake(16, 320+94, 140, 216) speaker:currentSpeaker];
     [scrollView addSubview:speakerImageView];
+    speakerImageView.contentMode = UIViewContentModeBottomLeft;
     [speakerImageView animateWithDefaultAnimation];
     
     //ProgressCircleImageView* circleImageView = [gameProgressView circleImageViewWithIndex:currentSpeakerIndex];
@@ -342,7 +336,7 @@
 
 - (void)spellArabicNameWithCompletion:(void(^)())completion {
     
-    [self playSpeakerDialogAudioWithKey:@"Nolia" suffix:@"English"];
+    [self playSpeakerDialogAudioWithKey:@"Nolia" suffix:@"Arabic"];
     [self animateArabicNameImageViewWithIndex:0 limit:[currentSpeaker.letterIndexArray count]-1 completion:completion];
 }
 
