@@ -82,7 +82,6 @@
     [scrollView.superview sendSubviewToBack:scrollView];
     
     UIImageView* screenBackground = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Resource/background.png"]];
-    //screenBackground.contentMode = UIViewContentModeBottomLeft;
     screenBackground.frame = CGRectMake(0,0,scrollView.contentSize.width,scrollView.contentSize.height);
     
     [scrollView addSubview:screenBackground];
@@ -120,14 +119,6 @@
     [scrollView addSubview:speakerImageView];
     speakerImageView.contentMode = UIViewContentModeBottomLeft;
     [speakerImageView animateWithDefaultAnimation];
-    
-    //ProgressCircleImageView* circleImageView = [gameProgressView circleImageViewWithIndex:currentSpeakerIndex];
-    //circleImageView.image = speakerImageView.image;
-    //circleImageView.isComplete = YES;
-    //circleImageView.contentMode = UIViewContentModeScaleAspectFit;
-    //return;
-    
-
     
     NSUInteger numberOfLetters = [currentSpeaker.letterIndexArray count];
     letterImageViewArray = [NSMutableArray arrayWithCapacity:numberOfLetters];

@@ -26,7 +26,6 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.contentMode = UIViewContentModeBottomLeft;
-        //self.contentMode = UIViewContentModeScaleAspectFit;
         
         speaker = theSpeaker;
         
