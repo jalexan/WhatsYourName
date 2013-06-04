@@ -16,6 +16,8 @@
 #define DEBUG_MODE 0
 
 #if DEBUG_MODE
+#define SKIP_DIALOG 1
+
 #define DEBUG_DRAW_BORDERS 1
 #define DEBUG_DRAW_SIZES 1
 
@@ -25,6 +27,8 @@
 #define SLOT_FRAME_INSET_FOR_FAILURE .7
 
 #else
+
+#define SKIP_DIALOG 0
 
 #define DEBUG_DRAW_BORDERS 0
 #define DEBUG_DRAW_SIZES 0

@@ -48,10 +48,6 @@
     gameProgressView.frame = f;
     [scrollView addSubview:gameProgressView];
     
-    
-    
-    
-    
     [self startLevel];
 }
 
@@ -280,6 +276,10 @@
     
     NSTimeInterval duration = [[dialogDictionary objectForKey:@"Duration"] floatValue];
 
+    if (SKIP_DIALOG) {
+        duration = 0;
+    }
+    
     NSString* text = [dialogDictionary objectForKey:@"English"];
     NSString* arabicText = nil;
     
