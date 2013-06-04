@@ -614,7 +614,6 @@
     [speakerImageView.layer addAnimation:pathAnimation forKey:@"curveAnimation"];
     
     
-    
     [UIView animateWithDuration: .75
                           delay: 0.0
                         options: UIViewAnimationOptionCurveEaseInOut
@@ -627,6 +626,10 @@
                      }
                      completion:^(BOOL finished){
                          
+                         UIImageView* circle_empty = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Resource/progress_circle_empty.png"]];
+                         circle_empty.center = endPoint;
+                         [scrollView addSubview:circle_empty];
+                         
                          [UIView animateWithDuration: .75
                                                delay: 0.0
                                              options: UIViewAnimationOptionCurveEaseInOut
@@ -638,9 +641,9 @@
                                               
                                           }
                                           completion:^(BOOL finished){
-                                              
-                                             completion();
-                                              
+                                              [circle_empty removeFromSuperview];
+                                              completion();
+                                            
                                           }];
                          
                      }];

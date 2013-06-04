@@ -97,7 +97,7 @@
     }
     else if (animationType==EXIT) {
         [self setAnimationImages: exitImagesArray];
-        [self setAnimationDuration: 1.5];
+        [self setAnimationDuration: 1.65];
         [self setAnimationRepeatCount:1];
         [self startAnimating];
 
