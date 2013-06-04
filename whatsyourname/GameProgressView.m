@@ -9,7 +9,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "GameProgressView.h"
 
-#define DEFAULT_IMAGE @"Resource/progress_circle_upcoming.png"
+#define DEFAULT_IMAGE @"Resource/progress_circle_mystery.png"
 
 @interface GameProgressView () {
     ProgressCircleImageView* surpriseCircle;
