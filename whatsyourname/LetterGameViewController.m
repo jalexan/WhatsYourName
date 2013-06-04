@@ -64,7 +64,6 @@
     [super viewDidLoad];
 
     [super.audioManager prepareAudioWithPath:@"Resource/talking.mp3" ];
-    [super.audioManager prepareAudioWithPath:@"Resource/pencil.mp3"];
     [super.audioManager prepareAudioWithPath:@"Resource/slot_correct.mp3"];
     [super.audioManager prepareAudioWithPath:@"Resource/slot_wrong.mp3"];
 
@@ -334,7 +333,6 @@
 - (void)animateArabicNameImageViewWithIndex:(NSUInteger)index limit:(NSUInteger)limit completion:(void(^)())completion {
     
     if (index>limit) {
-        [super.audioManager stopAudio:@"Resource/pencil.mp3"];
         completion();
         return;
     }
