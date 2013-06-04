@@ -285,7 +285,7 @@
     
     NSString* path = [NSString stringWithFormat:@"Speakers/%@/Audio/%@%@.mp3",currentSpeaker.name,key,suffix];
     [super.audioManager prepareAudioWithPath:path key:@"talking"];
-    [super.audioManager playAudio:@"talking" volume:.1];
+    [super.audioManager playAudio:@"talking" volume:.5];
 }
 
 - (void)displayDialogTextWithKey:(NSString*)key completion:(void(^)())completion {
@@ -342,8 +342,7 @@
 
 - (void)spellArabicNameWithCompletion:(void(^)())completion {
     
-    [super.audioManager playAudio:@"Resource/pencil.mp3" volume:.5];
-    
+    [self playSpeakerDialogAudioWithKey:@"Nolia" suffix:@"English"];
     [self animateArabicNameImageViewWithIndex:0 limit:[currentSpeaker.letterIndexArray count]-1 completion:completion];
 }
 
