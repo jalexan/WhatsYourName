@@ -9,7 +9,7 @@
 #import "ArabicLetter.h"
 
 @interface ArabicLetter () {
-
+    NSString* unicodeString;
 }
 
 @end
@@ -18,6 +18,7 @@
 @synthesize letterDictionary;
 @synthesize letterIndex;
 @synthesize letterName;
+@synthesize unicode;
 @synthesize slotPosition;
 @synthesize isInCorrectSlot;
 
@@ -39,6 +40,8 @@
         
         letterName = [letterDictionary objectForKey:@"Name"];
         
+        unicodeString = [letterDictionary objectForKey:@"Unicode"];
+        
         isInCorrectSlot = NO;
         slotPosition = -1;
     }
@@ -46,5 +49,12 @@
     return self;
 }
 
-
+- (unichar)unicode {
+    
+    NSUInteger unicodeValue;
+    [[NSScanner scannerWithString:unicodeString] scanHexInt:&unicodeValue];
+    //NSLog(@"%@",[NSString stringWithFormat:@"%C", charValue]);
+    return (unichar)unicodeValue;
+    
+}
 @end

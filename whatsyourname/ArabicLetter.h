@@ -14,5 +14,6 @@
 @property (nonatomic, readonly) NSUInteger letterIndex;
 @property (nonatomic, readonly) NSString* letterName;
 @property (nonatomic, assign) int slotPosition;
-@property(nonatomic, assign) BOOL isInCorrectSlot;
+@property (nonatomic, assign) BOOL isInCorrectSlot;
+@property (nonatomic, readonly) unichar unicode;
 @end

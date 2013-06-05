@@ -13,6 +13,8 @@
 		<string>ـا</string>
 		<key>Final</key>
 		<string>ـا</string>
+		<key>Unicode</key>
+		<string>0623</string>
 	</dict>
 	<dict>
 		<key>Name</key>
@@ -133,6 +135,8 @@
 		<string>ـذ</string>
 		<key>Final</key>
 		<string>ـذ</string>
+		<key>Unicode</key>
+		<string>0646</string>
 	</dict>
 	<dict>
 		<key>Name</key>
@@ -277,6 +281,8 @@
 		<string>ـلـ</string>
 		<key>Final</key>
 		<string>ـل</string>
+		<key>Unicode</key>
+		<string>0644</string>
 	</dict>
 	<dict>
 		<key>Name</key>
@@ -313,6 +319,8 @@
 		<string>ـهـ</string>
 		<key>Final</key>
 		<string>ـه</string>
+		<key>Unicode</key>
+		<string>0629</string>
 	</dict>
 	<dict>
 		<key>Name</key>
@@ -325,6 +333,8 @@
 		<string>ـو</string>
 		<key>Final</key>
 		<string>ـو</string>
+		<key>Unicode</key>
+		<string>0648</string>
 	</dict>
 	<dict>
 		<key>Name</key>
@@ -337,6 +347,8 @@
 		<string>ـيـ</string>
 		<key>Final</key>
 		<string>ـي</string>
+		<key>Unicode</key>
+		<string>064A</string>
 	</dict>
 </array>
 </plist>

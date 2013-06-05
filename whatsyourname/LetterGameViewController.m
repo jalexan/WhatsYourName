@@ -330,6 +330,8 @@
     [self animateArabicNameImageViewWithIndex:0 limit:[currentSpeaker.letterIndexArray count]-1 completion:completion];
 }
 
+
+
 - (void)animateArabicNameImageViewWithIndex:(NSUInteger)index limit:(NSUInteger)limit completion:(void(^)())completion {
     
     if (index>limit) {
@@ -340,7 +342,6 @@
     //Arabic Writing
     UIImage* image = [UIImage imageNamed:[NSString stringWithFormat:@"Speakers/%@/Images/letter%02d.png",currentSpeaker.name,index]];
     UIImageView* imageView = [[UIImageView alloc] initWithImage:image];
-
     imageView.alpha = 0;
     
     CGRect imageFrame = CGRectMake((arabicNameView.width/2)-(194/2),0,194,84);
@@ -352,6 +353,12 @@
     NSUInteger letterIndex = [[currentSpeaker.letterIndexArray objectAtIndex:index] intValue];
     ArabicLetter* letter = [[ArabicLetter alloc] initWithLetterIndex:letterIndex];
     letter.slotPosition = index;
+    
+    
+    //Spell out each letter in dialog label
+    if (index==0) dialogLabel.text = @"";
+    dialogLabel.text = [NSString stringWithFormat:@"%@%C",dialogLabel.text,letter.unicode];
+    
     
     ArabicLetterImageView* letterImageView = [[ArabicLetterImageView alloc] initWithArabicLetter:letter];
     letterImageView.alpha = 0;
