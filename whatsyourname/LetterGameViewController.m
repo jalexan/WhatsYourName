@@ -59,7 +59,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    [super.audioManager prepareAudioWithPath:@"Resource/talking.mp3" ];
     [super.audioManager prepareAudioWithPath:@"Resource/slot_correct.mp3"];
     [super.audioManager prepareAudioWithPath:@"Resource/slot_wrong.mp3"];
 
@@ -291,7 +290,6 @@
     dialogLabel.text = text;
     [speakerImageView animateWithType:TALK duration:duration*2];
     [self playSpeakerDialogAudioWithKey:key suffix:@"English"];
-    //[super.audioManager playAudio:@"Resource/talking.mp3" volume:.02];
     
     dialogLabel.alpha = 1;
     [UIView animateWithDuration: duration

@@ -125,7 +125,10 @@
         if (!self.isAnimating) {
             [self animateWithType:DEFAULT duration:1];
         }
-        [self performSelector:@selector(animateWithDefaultAnimation) withObject:nil afterDelay:4];
+        
+        NSUInteger randomDelay = (arc4random() % 3) + 4;
+        
+        [self performSelector:@selector(animateWithDefaultAnimation) withObject:nil afterDelay:randomDelay];
     }
     else {
         [NSObject cancelPreviousPerformRequestsWithTarget:self];        
