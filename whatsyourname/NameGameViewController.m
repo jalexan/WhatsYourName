@@ -160,7 +160,6 @@
     dialogLabel.font = [UIFont fontWithName:@"MarkerFelt-Thin" size:28];
     dialogLabel.text = englishText;
     
-    [super.audioManager playAudio:@"Resource/talking.mp3" volume:.02];
     [mainSpeakerImageView animateWithType:TALK duration:duration*2];
     [self playSpeakerDialogAudioWithKey:key suffix:@"English"];
     dialogLabel.alpha = .99;
