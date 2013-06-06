@@ -32,6 +32,7 @@
 		686551541748427700463C6C /* Letters in Resources */ = {isa = PBXBuildFile; fileRef = 686551531748427700463C6C /* Letters */; };
 		6883F4F91740D11A00487055 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6883F4F81740D11A00487055 /* AVFoundation.framework */; };
 		6883F4FB1740D47600487055 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6883F4FA1740D47600487055 /* AudioToolbox.framework */; };
+		68BC242C1760485E00A041C6 /* NameSpellViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68BC242B1760485E00A041C6 /* NameSpellViewController.m */; };
 		68E73BF8174496610064F7BC /* UIView+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 68E73BF7174496610064F7BC /* UIView+Additions.m */; };
 		68E73BFD1744A5170064F7BC /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 68E73BFC1744A5170064F7BC /* Default.png */; };
 		68E73BFF1744A51B0064F7BC /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68E73BFE1744A51B0064F7BC /* Default@2x.png */; };
@@ -86,6 +87,8 @@
 		686551531748427700463C6C /* Letters */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Letters; sourceTree = "<group>"; };
 		6883F4F81740D11A00487055 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		6883F4FA1740D47600487055 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		68BC242A1760485E00A041C6 /* NameSpellViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NameSpellViewController.h; sourceTree = "<group>"; };
+		68BC242B1760485E00A041C6 /* NameSpellViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NameSpellViewController.m; sourceTree = "<group>"; };
 		68E73BF6174496610064F7BC /* UIView+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Additions.h"; sourceTree = "<group>"; };
 		68E73BF7174496610064F7BC /* UIView+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Additions.m"; sourceTree = "<group>"; };
 		68E73BFC1744A5170064F7BC /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Default.png; sourceTree = "<group>"; };
@@ -167,6 +170,8 @@
 				68240B2D173F07D200BDBDF8 /* LetterGameViewController.m */,
 				6812F6D6174BCFE100CBF5C2 /* NameGameViewController.h */,
 				6812F6D7174BCFE100CBF5C2 /* NameGameViewController.m */,
+				68BC242A1760485E00A041C6 /* NameSpellViewController.h */,
+				68BC242B1760485E00A041C6 /* NameSpellViewController.m */,
 				68FA6DB2174C7309000B08E1 /* SurpriseViewController.h */,
 				68FA6DB3174C7309000B08E1 /* SurpriseViewController.m */,
 				681DDD3217546E0A007FFD64 /* AudioManager.h */,
@@ -332,6 +337,7 @@
 				681DDD3117545A35007FFD64 /* GameController.m in Sources */,
 				681DDD3417546E0A007FFD64 /* AudioManager.m in Sources */,
 				686446C5175C4DBE00BA5007 /* ProgressCircleImageView.m in Sources */,
+				68BC242C1760485E00A041C6 /* NameSpellViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

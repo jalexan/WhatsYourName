@@ -185,7 +185,7 @@
 }
 
 - (void)startShufflePhase {
-
+    //[self performSegueWithIdentifier:@"SurpriseSegue" sender:self];return;
     
     [self displayDialogTextWithKey:@"Name" completion:^() {
         

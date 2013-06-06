@@ -29,6 +29,24 @@
 		<key>Duration</key>
 		<integer>2</integer>
 	</dict>
+	<key>Hello</key>
+	<dict>
+		<key>English</key>
+		<string>Hello %@</string>
+		<key>Arabic</key>
+		<string> (Arabic) Hello</string>
+		<key>Duration</key>
+		<integer>3</integer>
+	</dict>
+	<key>LikeThis</key>
+	<dict>
+		<key>English</key>
+		<string>Like This</string>
+		<key>Arabic</key>
+		<string> (Arabic) Like This</string>
+		<key>Duration</key>
+		<integer>4</integer>
+	</dict>
 	<key>Nice</key>
 	<dict>
 		<key>English</key>

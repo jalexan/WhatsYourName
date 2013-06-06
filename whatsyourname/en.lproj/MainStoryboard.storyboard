@@ -23,13 +23,13 @@
                                 <rect key="frame" x="175" y="85" width="289" height="89"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
-                            <view contentMode="scaleToFill" id="oUu-Jv-0Vm">
-                                <rect key="frame" x="175" y="248" width="289" height="49"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            </view>
                             <view contentMode="scaleToFill" id="vAG-pL-KWb">
                                 <rect key="frame" x="195" y="176" width="250" height="70"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" id="oUu-Jv-0Vm">
+                                <rect key="frame" x="175" y="248" width="289" height="49"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="96C-zx-Jmw">
@@ -106,7 +106,7 @@
         <!--Name Game View Controller-->
         <scene sceneID="1Ce-3q-JD5">
             <objects>
-                <viewController wantsFullScreenLayout="YES" modalTransitionStyle="crossDissolve" id="MVX-A1-ViX" customClass="NameGameViewController" sceneMemberID="viewController">
+                <viewController wantsFullScreenLayout="YES" id="MVX-A1-ViX" customClass="NameGameViewController" sceneMemberID="viewController">
                     <view key="view" clipsSubviews="YES" contentMode="scaleToFill" id="KW2-2r-PXw" customClass="GameUIView">
                         <rect key="frame" x="0.0" y="0.0" width="480" height="320"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
@@ -189,11 +189,62 @@
                         <outlet property="restartButton" destination="wEg-Ri-z2Y" id="1ok-mR-BJ7"/>
                         <outlet property="soundButton" destination="mFS-bI-rbP" id="bDW-zv-WVK"/>
                         <segue destination="2" kind="push" identifier="RestartSegue" id="Kzk-SN-JXN"/>
+                        <segue destination="j5i-na-qqL" kind="push" identifier="SpellSegue" id="Hhw-8J-YMy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s4U-QE-vPB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-494" y="-110"/>
+            <point key="canvasLocation" x="-314" y="120"/>
+        </scene>
+        <!--Name Spell View Controller-->
+        <scene sceneID="qgt-VG-pJW">
+            <objects>
+                <viewController wantsFullScreenLayout="YES" id="j5i-na-qqL" customClass="NameSpellViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="vdK-V1-cnx" customClass="GameUIView">
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="320"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="bottomLeft" image="background.png" id="0il-dN-9y4">
+                                <rect key="frame" x="0.0" y="0.0" width="480" height="320"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" id="qFA-W8-xeT">
+                                <rect key="frame" x="13" y="14" width="448" height="51"/>
+                                <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="28"/>
+                                <nil key="highlightedColor"/>
+                                <color key="shadowColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <size key="shadowOffset" width="0.0" height="1"/>
+                            </label>
+                            <view contentMode="scaleToFill" id="qfu-qU-fC2">
+                                <rect key="frame" x="115" y="178" width="250" height="70"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="bft-cA-YbK">
+                                <rect key="frame" x="96" y="83" width="289" height="89"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="GeezaPro" family="Geeza Pro" pointSize="100"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="PMe-DD-You"/>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <connections>
+                        <outlet property="arabicSpellLabel" destination="bft-cA-YbK" id="A02-6N-GG9"/>
+                        <outlet property="background" destination="0il-dN-9y4" id="msH-II-8SZ"/>
+                        <outlet property="dialogLabel" destination="qFA-W8-xeT" id="VK0-18-DBM"/>
+                        <outlet property="letterContainerView" destination="qfu-qU-fC2" id="9Ef-qT-F4L"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="X1l-Vh-QEh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="288" y="-408"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="aTZ-UP-2aw">
@@ -219,6 +270,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="background.png" width="480" height="640"/>
         <image name="question_mark.png" width="117" height="177"/>
         <image name="sound_on.png" width="128" height="128"/>
     </resources>
@@ -255,6 +307,15 @@
                 <relationship kind="outlet" name="goodByeButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="nameTextField" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="restartButton" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="NameSpellViewController" superclassName="GameController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NameSpellViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="arabicSpellLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="background" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="dialogLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="letterContainerView" candidateClass="UIView"/>
             </relationships>
         </class>
         <class className="SurpriseViewController" superclassName="GameController">

@@ -10,6 +10,7 @@
 #import "Speaker.h"
 #import "SpeakerImageView.h"
 #import "SpeakerList.h"
+#import "NameSpellViewController.h"
 
 #define NON_PRIMARY_SPEAKER_IMAGE_SCALE .90
 
@@ -37,23 +38,13 @@
     UIImageView* screenBackground = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Resource/background.png"]];
     screenBackground.contentMode = UIViewContentModeBottomLeft;
     screenBackground.frame = CGRectMake(0,0,screenBounds.width,screenBounds.height);
-    screenBackground.alpha = 0.8;
     [self.view addSubview:screenBackground];
     [self.view sendSubviewToBack:screenBackground];
 
     [self addSpeakerImageViewsToView];
-}
-
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
-    return toInterfaceOrientation == UIInterfaceOrientationLandscapeLeft ||
-    toInterfaceOrientation == UIInterfaceOrientationLandscapeRight;
-}
-
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-
+    
+    
+    
     goodByeButton.hidden = YES;
 	nameTextField.hidden = YES;
     restartButton.hidden = YES;
@@ -73,6 +64,14 @@
         }];
         
     }];
+    
+}
+
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+
+
     
 }
 
@@ -123,20 +122,23 @@
 
 - (void)displayGreetingWithName:(NSString*)name {
     
-    NSDictionary* dialogDictionary = [yourNameDialogDictionary objectForKey:@"Nice"];
+    NSDictionary* dialogDictionary = [yourNameDialogDictionary objectForKey:@"Hello"];
  
     NSString* helloEnglish = [NSString stringWithFormat:[dialogDictionary objectForKey:@"English"],name];
     NSString* helloArabic =  [dialogDictionary objectForKey:@"Arabic"];
     NSTimeInterval duration = [[dialogDictionary objectForKey:@"Duration"] floatValue];
     
-    [self displayEnglishText:helloEnglish arabicText:helloArabic key:@"Nice" duration:duration completion:^() {
+    [self displayEnglishText:helloEnglish arabicText:helloArabic key:@"Hello" duration:duration completion:^() {
         
-        [self displayDialogTextWithKey:@"Another" completion:^() {
+        
+        [self performSegueWithIdentifier:@"SpellSegue" sender:self];
+        
+        [self displayDialogTextWithKey:@"Write" completion:^() {
             
-            nameTextField.hidden = NO;
             goodByeButton.hidden = NO;
-           
+            
         }];
+        
         
     }];
     
@@ -203,9 +205,9 @@
     nameTextField.hidden = YES;
     goodByeButton.hidden = YES;
     [self displayDialogTextWithKey:@"Bye" completion:^() {
-        
-        restartButton.hidden = NO;
-        
+            [self displayDialogTextWithKey:@"Bye" completion:^() {
+                restartButton.hidden = NO;
+            }];
     }];
     
 }
@@ -235,6 +237,15 @@
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     [nameTextField resignFirstResponder];
 }
+
+
+
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
+    return toInterfaceOrientation == UIInterfaceOrientationLandscapeLeft ||
+    toInterfaceOrientation == UIInterfaceOrientationLandscapeRight;
+}
+
 
 - (void)didReceiveMemoryWarning
 {
