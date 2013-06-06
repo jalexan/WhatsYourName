@@ -128,7 +128,7 @@
 		<key>Name</key>
 		<string>noon</string>
 		<key>Isolated</key>
-		<string>FEE7</string>
+		<string>0646</string>
 		<key>Initial</key>
 		<string>ذ</string>
 		<key>Medial</key>
@@ -272,15 +272,13 @@
 		<key>Name</key>
 		<string>lam</string>
 		<key>Isolated</key>
-		<string>ل</string>
+		<string>0644</string>
 		<key>Initial</key>
 		<string>لـ</string>
 		<key>Medial</key>
 		<string>ـلـ</string>
 		<key>Final</key>
 		<string>ـل</string>
-		<key>Unicode</key>
-		<string>0644</string>
 	</dict>
 	<dict>
 		<key>Name</key>
@@ -310,43 +308,35 @@
 		<key>Name</key>
 		<string>te marboota</string>
 		<key>Isolated</key>
-		<string>ه</string>
+		<string>0629</string>
 		<key>Initial</key>
 		<string>هـ</string>
 		<key>Medial</key>
 		<string>ـهـ</string>
-		<key>Final</key>
-		<string>ـه</string>
-		<key>Unicode</key>
-		<string>0629</string>
 	</dict>
 	<dict>
 		<key>Name</key>
 		<string>wow</string>
 		<key>Isolated</key>
-		<string>و</string>
+		<string>0648</string>
 		<key>Initial</key>
 		<string>و</string>
 		<key>Medial</key>
 		<string>ـو</string>
 		<key>Final</key>
 		<string>ـو</string>
-		<key>Unicode</key>
-		<string>0648</string>
 	</dict>
 	<dict>
 		<key>Name</key>
 		<string>ye</string>
 		<key>Isolated</key>
-		<string>ي</string>
+		<string>064A</string>
 		<key>Initial</key>
 		<string>يـ</string>
 		<key>Medial</key>
 		<string>ـيـ</string>
 		<key>Final</key>
 		<string>ـي</string>
-		<key>Unicode</key>
-		<string>064A</string>
 	</dict>
 </array>
 </plist>

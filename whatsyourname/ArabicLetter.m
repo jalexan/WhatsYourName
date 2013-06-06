@@ -40,7 +40,7 @@
         
         letterName = [letterDictionary objectForKey:@"Name"];
         
-        unicodeString = [letterDictionary objectForKey:@"Unicode"];
+        unicodeString = [letterDictionary objectForKey:@"Isolated"];
         
         isInCorrectSlot = NO;
         slotPosition = -1;
