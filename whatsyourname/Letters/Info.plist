@@ -128,15 +128,13 @@
 		<key>Name</key>
 		<string>noon</string>
 		<key>Isolated</key>
-		<string>ذ</string>
+		<string>FEE7</string>
 		<key>Initial</key>
 		<string>ذ</string>
 		<key>Medial</key>
 		<string>ـذ</string>
 		<key>Final</key>
 		<string>ـذ</string>
-		<key>Unicode</key>
-		<string>0646</string>
 	</dict>
 	<dict>
 		<key>Name</key>
