@@ -47,9 +47,9 @@
                                     <action selector="soundButtonTouched:" destination="2" eventType="touchUpInside" id="Bob-3A-t1k"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" id="Pim-J2-tjb" customClass="GameProgressView">
+                            <view hidden="YES" contentMode="scaleToFill" id="Pim-J2-tjb" customClass="GameProgressView">
                                 <rect key="frame" x="46" y="131" width="388" height="58"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <autoresizingMask key="autoresizingMask"/>
                             </view>
                         </subviews>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
@@ -101,7 +101,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dOD-wn-Us8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1035" y="-110"/>
+            <point key="canvasLocation" x="-1035" y="-142"/>
         </scene>
         <!--Name Game View Controller-->
         <scene sceneID="1Ce-3q-JD5">
@@ -194,7 +194,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s4U-QE-vPB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-314" y="120"/>
+            <point key="canvasLocation" x="-494" y="-142"/>
         </scene>
         <!--Name Spell View Controller-->
         <scene sceneID="qgt-VG-pJW">
@@ -244,7 +244,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X1l-Vh-QEh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="288" y="-408"/>
+            <point key="canvasLocation" x="-494" y="274"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="aTZ-UP-2aw">

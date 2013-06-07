@@ -21,6 +21,8 @@
     CGSize screenBounds;
     CGPoint adjustedScrollViewCenter;
     
+    NSMutableDictionary* subviewOriginDictionary;
+    
     UIScrollView* scrollView;
     
     NSArray* speakerArray;
@@ -39,14 +41,7 @@
 #pragma mark Setup
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-
-    adjustedScrollViewCenter = CGPointMake(scrollView.center.x,scrollView.center.y+screenBounds.height);;
     
-    gameProgressView.hidden = YES;
-    CGRect f = gameProgressView.frame;
-    f.origin.y += screenBounds.height;
-    gameProgressView.frame = f;
-    [scrollView addSubview:gameProgressView];
     
     [self startLevel];
 }
@@ -73,6 +68,7 @@
     scrollView.contentSize = CGSizeMake(screenBounds.width,screenBounds.height*2);
     scrollView.contentOffset = CGPointMake(0,screenBounds.height);
     [self.view addSubview:scrollView];
+    
     [scrollView.superview sendSubviewToBack:scrollView];
     
     UIImageView* screenBackground = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Resource/background.png"]];
@@ -90,35 +86,96 @@
     
     currentSpeakerIndex = 0;
     currentSpeaker = [[SpeakerList sharedInstance].speakerArray objectAtIndex:currentSpeaker];
+
     
-   
+    //add the progressview to the scrollview
+    CGRect f = gameProgressView.frame;
+    f.origin.y += screenBounds.height;
+    gameProgressView.frame = f;
+    [scrollView addSubview:gameProgressView];
 
 }
 
 - (void)reloadGameArea {
-
+    adjustedScrollViewCenter = CGPointMake(scrollView.center.x,scrollView.center.y+screenBounds.height);
+    
     gameProgressView.left = scrollView.right + 30;
     gameProgressView.hidden = NO;
-
-    
-    [[arabicNameView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
-    arabicNameView.alpha = 1;
-    
-    
-    for (ArabicLetterImageView* imageView in letterImageViewArray) {
-        [imageView removeFromSuperview];
-    }
     
     speakerImageView = [[SpeakerImageView alloc] initWithFrame:CGRectMake(16, 320+94, 140, 216) speaker:currentSpeaker];
     [scrollView addSubview:speakerImageView];
     speakerImageView.contentMode = UIViewContentModeBottomLeft;
     [speakerImageView animateWithDefaultAnimation];
     
+    //Clear arabic name spelling
+    [[arabicNameView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    arabicNameView.alpha = 1;
+    
+    //Save subview origins to reset positions on even index speakers 0,2 etc
+    if (!subviewOriginDictionary) {
+        subviewOriginDictionary = [[NSMutableDictionary alloc] init];
+        
+        subviewOriginDictionary[@"speakerImageView"] = [NSValue valueWithCGPoint:speakerImageView.origin];
+        subviewOriginDictionary[@"arabicNameView"] = [NSValue valueWithCGPoint:arabicNameView.origin];
+        subviewOriginDictionary[@"slotContainerView"] = [NSValue valueWithCGPoint:slotContainerView.origin];
+        subviewOriginDictionary[@"mixedUpLettersAreaView"] = [NSValue valueWithCGPoint:mixedUpLettersAreaView.origin];
+    }
+    else {
+    
+        //Position odd index speakers subviews to the opposite side
+        if (currentSpeakerIndex % 2==1) {
+            CGRect newFrame;
+            
+            newFrame = speakerImageView.frame;
+            newFrame.origin = CGPointMake(self.view.width-newFrame.origin.x-newFrame.size.width,newFrame.origin.y);
+            speakerImageView.frame = newFrame;
+            
+            newFrame = arabicNameView.frame;
+            newFrame.origin = CGPointMake(self.view.width-newFrame.origin.x-newFrame.size.width,newFrame.origin.y);
+            arabicNameView.frame = newFrame;
+            
+            newFrame = slotContainerView.frame;
+            newFrame.origin = CGPointMake(self.view.width-newFrame.origin.x-newFrame.size.width,newFrame.origin.y);
+            slotContainerView.frame = newFrame;
+            
+            newFrame = mixedUpLettersAreaView.frame;
+            newFrame.origin = CGPointMake(self.view.width-newFrame.origin.x-newFrame.size.width,newFrame.origin.y);
+            mixedUpLettersAreaView.frame = newFrame;
+            
+        }
+        else {
+            CGRect newFrame;
+            
+            newFrame = speakerImageView.frame;
+            newFrame.origin = [subviewOriginDictionary[@"speakerImageView"] CGPointValue];
+            speakerImageView.frame = newFrame;
+            
+            newFrame = arabicNameView.frame;
+            newFrame.origin = [subviewOriginDictionary[@"arabicNameView"] CGPointValue];
+            arabicNameView.frame = newFrame;
+
+            newFrame = slotContainerView.frame;
+            newFrame.origin = [subviewOriginDictionary[@"slotContainerView"] CGPointValue];
+            slotContainerView.frame = newFrame;
+
+            newFrame = mixedUpLettersAreaView.frame;
+            newFrame.origin = [subviewOriginDictionary[@"mixedUpLettersAreaView"] CGPointValue];
+            mixedUpLettersAreaView.frame = newFrame;
+        }
+        
+    }
+    
+    
+    //Setting up empty slots
     NSUInteger numberOfLetters = [currentSpeaker.letterIndexArray count];
     letterImageViewArray = [NSMutableArray arrayWithCapacity:numberOfLetters];
     slotsImageViewArray = [NSMutableArray arrayWithCapacity:numberOfLetters];
-
     
+    for (ArabicLetterImageView* imageView in letterImageViewArray) {
+        [imageView removeFromSuperview];
+    }
+    
+
     CGSize slotImageSize = CGSizeMake(50, 50);
     NSInteger originY = 0;
     NSInteger heightToDivideEvenly = slotContainerView.height - slotImageSize.height; //Distance of origin of lowest slot to top of container
@@ -140,8 +197,6 @@
         originYStep = heightToDivideEvenly;
     }
     
-    
-
     for (int i=0;i<numberOfLetters;i++) {
         
         if (i>0) {
@@ -152,9 +207,7 @@
                 originY -= originYStep;
             }
         }
-        
-        
-        
+
         CGRect r = CGRectMake((slotContainerView.width-slotImageSize.width)-(slotImageSize.width*i), originY, slotImageSize.width, slotImageSize.height);
         Slot* s = [[Slot alloc] initWithPosition:i];
         SlotImageView* slotImageView = [[SlotImageView alloc] initWithFrame:r slot:s];
@@ -168,7 +221,7 @@
         //slots.alpha = 0;
     }
     
-    //gameProgressView.hidden = YES;
+
     
 }   
 
@@ -509,6 +562,7 @@
                           delay: 0.0
                         options: UIViewAnimationOptionCurveLinear
                      animations:^{
+                         
                          [gameProgressView startRotations];
 
                          //Move the current level circle to the same coordinates as the speaker image view
@@ -540,7 +594,7 @@
                      }
                      completion:^(BOOL finished){
                          [gameProgressView stopRotations];
-
+                         
                          //Artificial Delay
                          dialogLabel.alpha = .99;
                          [UIView animateWithDuration: 2
