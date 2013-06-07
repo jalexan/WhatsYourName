@@ -260,12 +260,6 @@
 
 
 #pragma mark Game Mechanics
-- (void)playSpeakerDialogAudioWithKey:(NSString*)key suffix:(NSString*)suffix {
-    
-    NSString* path = [NSString stringWithFormat:@"Speakers/%@/Audio/%@%@.mp3",currentSpeaker.name,key,suffix];
-    [super.audioManager prepareAudioWithPath:path key:@"talking"];
-    [super.audioManager playAudio:@"talking" volume:.5];
-}
 
 - (void)displayDialogTextWithKey:(NSString*)key completion:(void(^)())completion {
 
@@ -289,7 +283,7 @@
     dialogLabel.font = [UIFont fontWithName:@"MarkerFelt-Thin" size:28];
     dialogLabel.text = text;
     [speakerImageView animateWithType:TALK duration:duration*2];
-    [self playSpeakerDialogAudioWithKey:key suffix:@"English"];
+    [self playSpeakerDialogAudioWithKey:key prefix:currentSpeaker.name suffix:@"English"];
     
     dialogLabel.alpha = 1;
     [UIView animateWithDuration: duration
@@ -302,7 +296,7 @@
                          
                          dialogLabel.font = [UIFont fontWithName:@"GeezaPro-Bold" size:28];
                          dialogLabel.text = arabicText;
-                         [self playSpeakerDialogAudioWithKey:key suffix:@"Arabic"];
+                         [self playSpeakerDialogAudioWithKey:key prefix:currentSpeaker.name suffix:@"Arabic"];                         
                          dialogLabel.alpha = 1;
                          
                          [UIView animateWithDuration: duration
@@ -324,7 +318,7 @@
 
 - (void)spellArabicNameWithCompletion:(void(^)())completion {
     
-    [self playSpeakerDialogAudioWithKey:@"Nolia" suffix:@"Arabic"];
+    [self playSpeakerDialogAudioWithKey:@"Nolia" prefix:currentSpeaker.name suffix:@"Arabic"];
     [self animateArabicNameImageViewWithIndex:0 limit:[currentSpeaker.letterIndexArray count]-1 completion:completion];
 }
 

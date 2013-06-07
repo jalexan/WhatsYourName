@@ -32,7 +32,7 @@
 	<key>Hello</key>
 	<dict>
 		<key>English</key>
-		<string>Hello %@</string>
+		<string>Hello @name</string>
 		<key>Arabic</key>
 		<string> (Arabic) Hello</string>
 		<key>Duration</key>
@@ -50,7 +50,7 @@
 	<key>Nice</key>
 	<dict>
 		<key>English</key>
-		<string>Nice to meet you %@</string>
+		<string>Nice to meet you @name</string>
 		<key>Arabic</key>
 		<string>أهلاً يا</string>
 		<key>Duration</key>

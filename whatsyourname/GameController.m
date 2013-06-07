@@ -57,6 +57,12 @@
 }
 
 
+- (void)playSpeakerDialogAudioWithKey:(NSString*)key prefix:(NSString*)prefix  suffix:(NSString*)suffix {
+    NSString* path = [NSString stringWithFormat:@"Speakers/%@/Audio/%@%@.mp3",prefix,key,suffix];
+    [self.audioManager prepareAudioWithPath:path key:@"talking"];
+    [self.audioManager playAudio:@"talking" volume:.1];
+}
+
 - (IBAction)soundButtonTouched:(id)sender {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     if (audioManager.backgroundPlayer.isPlaying) {
@@ -72,11 +78,10 @@
     }
 }
 
-
-
 - (void)applicationWillResignActive{
     [audioManager pauseAudio:@"bg"];
 }
+
 - (void)applicationDidBecomeActive{
     
     [audioManager initializeAudio];

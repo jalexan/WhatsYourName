@@ -11,13 +11,12 @@
 #import "GameProgressView.h"
 
 @interface LetterGameViewController : GameController {
-    //IBOutlet UIView* actorContainerView;
+
     IBOutlet UILabel* dialogLabel;
     IBOutlet UIView* arabicNameView;
     IBOutlet UIView* slotContainerView;
     IBOutlet UIView* mixedUpLettersAreaView;
     IBOutlet GameProgressView* gameProgressView;
-    //IBOutlet UIButton* resetButton;
     
 }
 

@@ -18,12 +18,59 @@
 
     NSDictionary* yourNameDialogDictionary;
     SpeakerImageView* mainSpeakerImageView;
+    Speaker* mainSpeaker;
+    NSString* playerName;
 }
 
 @end
 
 @implementation NameGameViewController
 
+- (void)addSpeakerImageViewsToView {
+    
+    CGSize imageSize = CGSizeMake(140,216);
+    NSInteger viewWidth = 480;
+    NSUInteger index = 0;
+    NSInteger leftFrameX = 0;
+    NSInteger rightFrameX = 0;
+    CGRect frame;
+    for (Speaker* speaker in [SpeakerList sharedInstance].speakerArray) {
+        
+        SpeakerImageView* speakerImageView = [[SpeakerImageView alloc] initWithFrame:CGRectZero
+                                                                             speaker:speaker];
+        speakerImageView.contentMode = UIViewContentModeScaleAspectFit;
+        //speakerImageView.backgroundColor = [UIColor redColor];
+        if (!mainSpeakerImageView) {
+            mainSpeaker = speaker;
+            mainSpeakerImageView = speakerImageView;
+        }
+        
+        
+        if (index == 0) {
+            frame = CGRectMake((viewWidth/2)-70, 99, imageSize.width, imageSize.height);
+            leftFrameX = frame.origin.x;
+            rightFrameX = frame.origin.x;
+        }
+        else if ((index % 2) == 1) {
+            leftFrameX -= ((imageSize.width*NON_PRIMARY_SPEAKER_IMAGE_SCALE) - 20);
+            frame = CGRectMake(leftFrameX, 94, imageSize.width*NON_PRIMARY_SPEAKER_IMAGE_SCALE, imageSize.height*NON_PRIMARY_SPEAKER_IMAGE_SCALE);
+        }
+        else if ((index % 2) == 0) {
+            rightFrameX += ((imageSize.width*NON_PRIMARY_SPEAKER_IMAGE_SCALE) - 10);
+            frame = CGRectMake(rightFrameX, 94, imageSize.width*NON_PRIMARY_SPEAKER_IMAGE_SCALE, imageSize.height*NON_PRIMARY_SPEAKER_IMAGE_SCALE);
+        }
+        
+        speakerImageView.frame = frame;
+        
+        //        /speakerImageView.centerX = self.view.centerX;
+        //speakerImageView.bottom = self.view.bottom;
+        [self.view addSubview:speakerImageView];
+        [speakerImageView animateWithDefaultAnimation];
+        
+        index++;
+    }
+    
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -49,21 +96,7 @@
 	nameTextField.hidden = YES;
     restartButton.hidden = YES;
     
-    [self displayDialogTextWithKey:@"Now" completion:^() {
-        
-        [self displayDialogTextWithKey:@"Whats" completion:^() {
-            
-            
-            [self displayDialogTextWithKey:@"Write" completion:^() {
-                
-                nameTextField.hidden = NO;
-                
-            }];
-            
-            
-        }];
-        
-    }];
+
     
 }
 
@@ -72,77 +105,53 @@
     [super viewWillAppear:animated];
 
 
-    
-}
+    if (nameTextField.hidden) {
+        [self displayDialogTextWithKey:@"Now" completion:^() {
+            
+            [self displayDialogTextWithKey:@"Whats" completion:^() {
+                                
+                [self displayDialogTextWithKey:@"Write" completion:^() {
+                    
+                    nameTextField.hidden = NO;
+                    
+                }];
+                                
+            }];
+            
+        }];
+    }
+    else {
+        
+        goodByeButton.hidden = NO;
+        
+        [self displayDialogTextWithKey:@"Another" completion:^() {
 
-- (void)addSpeakerImageViewsToView {
-    
-    CGSize imageSize = CGSizeMake(140,216);
-    NSInteger viewWidth = 480;
-    NSUInteger index = 0;
-    NSInteger leftFrameX = 0;
-    NSInteger rightFrameX = 0;
-    CGRect frame;
-    for (Speaker* speaker in [SpeakerList sharedInstance].speakerArray) {
-        
-        SpeakerImageView* speakerImageView = [[SpeakerImageView alloc] initWithFrame:CGRectZero
-                                                                             speaker:speaker];
-        speakerImageView.contentMode = UIViewContentModeScaleAspectFit;
-        //speakerImageView.backgroundColor = [UIColor redColor];
-        if (!mainSpeakerImageView) {
-            mainSpeakerImageView = speakerImageView;
-        }
-        
-        
-        if (index == 0) {
-            frame = CGRectMake((viewWidth/2)-70, 99, imageSize.width, imageSize.height);
-            leftFrameX = frame.origin.x;
-            rightFrameX = frame.origin.x;
-        }
-        else if ((index % 2) == 1) {
-            leftFrameX -= ((imageSize.width*NON_PRIMARY_SPEAKER_IMAGE_SCALE) - 20);
-            frame = CGRectMake(leftFrameX, 94, imageSize.width*NON_PRIMARY_SPEAKER_IMAGE_SCALE, imageSize.height*NON_PRIMARY_SPEAKER_IMAGE_SCALE);
-        }
-        else if ((index % 2) == 0) {
-            rightFrameX += ((imageSize.width*NON_PRIMARY_SPEAKER_IMAGE_SCALE) - 10);
-            frame = CGRectMake(rightFrameX, 94, imageSize.width*NON_PRIMARY_SPEAKER_IMAGE_SCALE, imageSize.height*NON_PRIMARY_SPEAKER_IMAGE_SCALE);
-        }
-        
-        speakerImageView.frame = frame;
-        
-//        /speakerImageView.centerX = self.view.centerX;
-        //speakerImageView.bottom = self.view.bottom;
-        [self.view addSubview:speakerImageView];
-        [speakerImageView animateWithDefaultAnimation];
-        
-        index++;
+        }];
+                
     }
     
 }
 
-- (void)displayGreetingWithName:(NSString*)name {
-    
-    NSDictionary* dialogDictionary = [yourNameDialogDictionary objectForKey:@"Hello"];
- 
-    NSString* helloEnglish = [NSString stringWithFormat:[dialogDictionary objectForKey:@"English"],name];
-    NSString* helloArabic =  [dialogDictionary objectForKey:@"Arabic"];
-    NSTimeInterval duration = [[dialogDictionary objectForKey:@"Duration"] floatValue];
-    
-    [self displayEnglishText:helloEnglish arabicText:helloArabic key:@"Hello" duration:duration completion:^() {
-        
-        
+
+
+- (void)pushSpellController {
+
+    [self displayDialogTextWithKey:@"Hello" completion:^() {
+
         [self performSegueWithIdentifier:@"SpellSegue" sender:self];
-        
-        [self displayDialogTextWithKey:@"Write" completion:^() {
-            
-            goodByeButton.hidden = NO;
-            
-        }];
-        
         
     }];
     
 }
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.destinationViewController isKindOfClass:[NameSpellViewController class]]) {
+        NameSpellViewController *spellVC = segue.destinationViewController;
+        spellVC.playerName = playerName;
+    }
+}
+
 
 - (void)displayDialogTextWithKey:(NSString*)key completion:(void(^)())completion {
     
@@ -155,15 +164,19 @@
     NSString* text = [dialogDictionary objectForKey:@"English"];
     NSString* arabicText = [dialogDictionary objectForKey:@"Arabic"];
 
-    [self displayEnglishText:text arabicText:arabicText key:(NSString*)key duration:duration completion:completion];
-}
-
-- (void)displayEnglishText:(NSString*)englishText arabicText:(NSString*)arabicText key:(NSString*)key duration:(NSTimeInterval)duration completion:(void(^)())completion {
+    if ([text rangeOfString:@"@name"].location != NSNotFound) {
+        text = [text stringByReplacingOccurrencesOfString:@"@name" withString:playerName];
+    }
+    
     dialogLabel.font = [UIFont fontWithName:@"MarkerFelt-Thin" size:28];
-    dialogLabel.text = englishText;
+    dialogLabel.text = text;
+    
+    if (SKIP_DIALOG) {
+        duration = 0;
+    }
     
     [mainSpeakerImageView animateWithType:TALK duration:duration*2];
-    [self playSpeakerDialogAudioWithKey:key suffix:@"English"];
+    [self playSpeakerDialogAudioWithKey:key prefix:mainSpeaker.name suffix:@"English"];
     dialogLabel.alpha = .99;
     [UIView animateWithDuration: duration
                           delay: 0.0
@@ -176,7 +189,7 @@
                          dialogLabel.font = [UIFont fontWithName:@"GeezaPro-Bold" size:28];
                          dialogLabel.text = arabicText;
                          dialogLabel.alpha = .99;
-                         [self playSpeakerDialogAudioWithKey:key suffix:@"Arabic"];
+                         [self playSpeakerDialogAudioWithKey:key prefix:mainSpeaker.name suffix:@"Arabic"];
                          
                          [UIView animateWithDuration: duration
                                                delay: 0.0
@@ -194,17 +207,12 @@
     
 }
 
-- (void)playSpeakerDialogAudioWithKey:(NSString*)key suffix:(NSString*)suffix {
-    
-    NSString* path = [NSString stringWithFormat:@"Speakers/%@/Audio/%@%@.mp3",mainSpeakerImageView.speaker.name,key,suffix];
-    [super.audioManager prepareAudioWithPath:path key:@"talking"];
-    [super.audioManager playAudio:@"talking" volume:.1];
-}
+
 
 - (IBAction)goodByeButtonTouched:(id)sender {
     nameTextField.hidden = YES;
     goodByeButton.hidden = YES;
-    [self displayDialogTextWithKey:@"Bye" completion:^() {
+    [self displayDialogTextWithKey:@"Nice" completion:^() {
             [self displayDialogTextWithKey:@"Bye" completion:^() {
                 restartButton.hidden = NO;
             }];
@@ -227,7 +235,8 @@
     [textField resignFirstResponder];
     
     if (textField.text.length>0) {
-        [self displayGreetingWithName:textField.text];
+        playerName = textField.text;
+        [self pushSpellController];
     }
     
     return YES;
