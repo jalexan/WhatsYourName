@@ -4,10 +4,10 @@
 <dict>
 	<key>Letters</key>
 	<array>
+		<integer>9</integer>
+		<integer>27</integer>
+		<integer>21</integer>
 		<integer>26</integer>
-		<integer>22</integer>
-		<integer>25</integer>
-		<integer>10</integer>
 	</array>
 	<key>Dialog</key>
 	<dict>

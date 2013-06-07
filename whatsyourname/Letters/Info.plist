@@ -6,267 +6,267 @@
 		<key>Name</key>
 		<string>alef</string>
 		<key>Isolated</key>
-		<string>ا</string>
+		<string>0623</string>
 		<key>Initial</key>
-		<string>ا</string>
+		<string>FE83</string>
 		<key>Medial</key>
-		<string>ـا</string>
+		<string>FE84</string>
 		<key>Final</key>
-		<string>ـا</string>
+		<string>FE84</string>
 		<key>Unicode</key>
 		<string>0623</string>
 	</dict>
 	<dict>
 		<key>Name</key>
-		<string>alef</string>
+		<string>beh</string>
 		<key>Isolated</key>
-		<string>ا</string>
+		<string>0628</string>
 		<key>Initial</key>
-		<string>ا</string>
+		<string>FE91</string>
 		<key>Medial</key>
-		<string>ـا</string>
+		<string>FE92</string>
 		<key>Final</key>
-		<string>ـا</string>
+		<string>FE90</string>
 	</dict>
 	<dict>
 		<key>Name</key>
-		<string>alef</string>
+		<string>teh</string>
 		<key>Isolated</key>
-		<string>ا</string>
+		<string>062A</string>
 		<key>Initial</key>
-		<string>ا</string>
+		<string>FE97</string>
 		<key>Medial</key>
-		<string>ـا</string>
+		<string>FE98</string>
 		<key>Final</key>
-		<string>ـا</string>
+		<string>FE96</string>
 	</dict>
 	<dict>
 		<key>Name</key>
-		<string>alef</string>
+		<string>theh</string>
 		<key>Isolated</key>
-		<string>ا</string>
+		<string>062B</string>
 		<key>Initial</key>
-		<string>ا</string>
+		<string>FE9B</string>
 		<key>Medial</key>
-		<string>ـا</string>
+		<string>FE9C</string>
 		<key>Final</key>
-		<string>ـا</string>
+		<string>FE9A</string>
 	</dict>
 	<dict>
 		<key>Name</key>
-		<string>alef</string>
+		<string>geem</string>
 		<key>Isolated</key>
-		<string>ا</string>
+		<string>062C</string>
 		<key>Initial</key>
-		<string>ا</string>
+		<string>FE9F</string>
 		<key>Medial</key>
-		<string>ـا</string>
+		<string>FEA0</string>
 		<key>Final</key>
-		<string>ـا</string>
+		<string>FE9E</string>
 	</dict>
 	<dict>
 		<key>Name</key>
-		<string>alef</string>
+		<string>Ha</string>
 		<key>Isolated</key>
-		<string>ا</string>
+		<string>062D</string>
 		<key>Initial</key>
-		<string>ا</string>
+		<string>FEA3</string>
 		<key>Medial</key>
-		<string>ـا</string>
+		<string>FEA4</string>
 		<key>Final</key>
-		<string>ـا</string>
+		<string>FEA2</string>
 	</dict>
 	<dict>
 		<key>Name</key>
-		<string>alef</string>
+		<string>KHa</string>
 		<key>Isolated</key>
-		<string>ا</string>
+		<string>062E</string>
 		<key>Initial</key>
-		<string>ا</string>
+		<string>FEA7</string>
 		<key>Medial</key>
-		<string>ـا</string>
+		<string>FEA8</string>
 		<key>Final</key>
-		<string>ـا</string>
+		<string>FEA6</string>
 	</dict>
 	<dict>
 		<key>Name</key>
-		<string>alef</string>
+		<string>daal</string>
 		<key>Isolated</key>
-		<string>ا</string>
+		<string>062F</string>
 		<key>Initial</key>
-		<string>ا</string>
+		<string>062F</string>
 		<key>Medial</key>
-		<string>ـا</string>
+		<string>FEAA</string>
 		<key>Final</key>
-		<string>ـا</string>
+		<string>FEAA</string>
 	</dict>
 	<dict>
 		<key>Name</key>
-		<string>alef</string>
+		<string>thaal</string>
 		<key>Isolated</key>
-		<string>ا</string>
+		<string>0630</string>
 		<key>Initial</key>
-		<string>ا</string>
+		<string>0630</string>
 		<key>Medial</key>
-		<string>ـا</string>
+		<string>FEAC</string>
 		<key>Final</key>
-		<string>ـا</string>
+		<string>FEAC</string>
 	</dict>
 	<dict>
 		<key>Name</key>
-		<string>alef</string>
+		<string>reh</string>
 		<key>Isolated</key>
-		<string>ا</string>
+		<string>0631</string>
 		<key>Initial</key>
-		<string>ا</string>
+		<string>0631</string>
 		<key>Medial</key>
-		<string>ـا</string>
+		<string>FEAE</string>
 		<key>Final</key>
-		<string>ـا</string>
+		<string>FEAE</string>
 	</dict>
 	<dict>
 		<key>Name</key>
-		<string>noon</string>
+		<string>zein</string>
 		<key>Isolated</key>
-		<string>0646</string>
+		<string>0632</string>
 		<key>Initial</key>
-		<string>ذ</string>
+		<string>0632</string>
 		<key>Medial</key>
-		<string>ـذ</string>
+		<string>FEB0</string>
 		<key>Final</key>
-		<string>ـذ</string>
+		<string>FEB0</string>
 	</dict>
 	<dict>
 		<key>Name</key>
-		<string>alef</string>
+		<string>seen</string>
 		<key>Isolated</key>
-		<string>ا</string>
+		<string>0633</string>
 		<key>Initial</key>
-		<string>ا</string>
+		<string>FEB3</string>
 		<key>Medial</key>
-		<string>ـا</string>
+		<string>FEB4</string>
 		<key>Final</key>
-		<string>ـا</string>
+		<string>FEB2</string>
 	</dict>
 	<dict>
 		<key>Name</key>
-		<string>alef</string>
+		<string>sheen</string>
 		<key>Isolated</key>
-		<string>ا</string>
+		<string>0634</string>
 		<key>Initial</key>
-		<string>ا</string>
+		<string>FEB7</string>
 		<key>Medial</key>
-		<string>ـا</string>
+		<string>FEB8</string>
 		<key>Final</key>
-		<string>ـا</string>
+		<string>FEB6</string>
 	</dict>
 	<dict>
 		<key>Name</key>
-		<string>alef</string>
+		<string>saad</string>
 		<key>Isolated</key>
-		<string>ا</string>
+		<string>0635</string>
 		<key>Initial</key>
-		<string>ا</string>
+		<string>FEBB</string>
 		<key>Medial</key>
-		<string>ـا</string>
+		<string>FEBC</string>
 		<key>Final</key>
-		<string>ـا</string>
+		<string>FEBA</string>
 	</dict>
 	<dict>
 		<key>Name</key>
-		<string>alef</string>
+		<string>daad</string>
 		<key>Isolated</key>
-		<string>ا</string>
+		<string>0636</string>
 		<key>Initial</key>
-		<string>ا</string>
+		<string>FEBF</string>
 		<key>Medial</key>
-		<string>ـا</string>
+		<string>FEB0</string>
 		<key>Final</key>
-		<string>ـا</string>
+		<string>FEBE</string>
 	</dict>
 	<dict>
 		<key>Name</key>
-		<string>alef</string>
+		<string>Taa</string>
 		<key>Isolated</key>
-		<string>ا</string>
+		<string>0637</string>
 		<key>Initial</key>
-		<string>ا</string>
+		<string>FEC3</string>
 		<key>Medial</key>
-		<string>ـا</string>
+		<string>FEC4</string>
 		<key>Final</key>
-		<string>ـا</string>
+		<string>FEC2</string>
 	</dict>
 	<dict>
 		<key>Name</key>
-		<string>alef</string>
+		<string>Thaa</string>
 		<key>Isolated</key>
-		<string>ا</string>
+		<string>0638</string>
 		<key>Initial</key>
-		<string>ا</string>
+		<string>FEC7</string>
 		<key>Medial</key>
-		<string>ـا</string>
+		<string>FEC8</string>
 		<key>Final</key>
-		<string>ـا</string>
+		<string>FEC6</string>
 	</dict>
 	<dict>
 		<key>Name</key>
-		<string>alef</string>
+		<string>&apos;ein</string>
 		<key>Isolated</key>
-		<string>ا</string>
+		<string>0639</string>
 		<key>Initial</key>
-		<string>ا</string>
+		<string>FECB</string>
 		<key>Medial</key>
-		<string>ـا</string>
+		<string>FECC</string>
 		<key>Final</key>
-		<string>ـا</string>
+		<string>FECA</string>
 	</dict>
 	<dict>
 		<key>Name</key>
-		<string>alef</string>
+		<string>ghein</string>
 		<key>Isolated</key>
-		<string>ا</string>
+		<string>063A</string>
 		<key>Initial</key>
-		<string>ا</string>
+		<string>FECF</string>
 		<key>Medial</key>
-		<string>ـا</string>
+		<string>FEC0</string>
 		<key>Final</key>
-		<string>ـا</string>
+		<string>FECE</string>
 	</dict>
 	<dict>
 		<key>Name</key>
-		<string>alef</string>
+		<string>feh</string>
 		<key>Isolated</key>
-		<string>ا</string>
+		<string>0641</string>
 		<key>Initial</key>
-		<string>ا</string>
+		<string>FED3</string>
 		<key>Medial</key>
-		<string>ـا</string>
+		<string>FED4</string>
 		<key>Final</key>
-		<string>ـا</string>
+		<string>FED2</string>
 	</dict>
 	<dict>
 		<key>Name</key>
-		<string>alef</string>
+		<string>qaaf</string>
 		<key>Isolated</key>
-		<string>ا</string>
+		<string>0642</string>
 		<key>Initial</key>
-		<string>ا</string>
+		<string>FED7</string>
 		<key>Medial</key>
-		<string>ـا</string>
+		<string>FED8</string>
 		<key>Final</key>
-		<string>ـا</string>
+		<string>FED6</string>
 	</dict>
 	<dict>
 		<key>Name</key>
-		<string>alef</string>
+		<string>kaaf</string>
 		<key>Isolated</key>
-		<string>ا</string>
+		<string>0643</string>
 		<key>Initial</key>
-		<string>ا</string>
+		<string>FEDB</string>
 		<key>Medial</key>
-		<string>ـا</string>
+		<string>FEDC</string>
 		<key>Final</key>
-		<string>ـا</string>
+		<string>FEDA</string>
 	</dict>
 	<dict>
 		<key>Name</key>
@@ -274,45 +274,47 @@
 		<key>Isolated</key>
 		<string>0644</string>
 		<key>Initial</key>
-		<string>لـ</string>
+		<string>FEDF</string>
 		<key>Medial</key>
-		<string>ـلـ</string>
+		<string>FED0</string>
 		<key>Final</key>
-		<string>ـل</string>
+		<string>FEDE</string>
 	</dict>
 	<dict>
 		<key>Name</key>
-		<string>alef</string>
+		<string>meem</string>
 		<key>Isolated</key>
-		<string>ا</string>
+		<string>0645</string>
 		<key>Initial</key>
-		<string>ا</string>
+		<string>FEE3</string>
 		<key>Medial</key>
-		<string>ـا</string>
+		<string>FEE4</string>
 		<key>Final</key>
-		<string>ـا</string>
+		<string>FEE2</string>
 	</dict>
 	<dict>
 		<key>Name</key>
-		<string>alef</string>
+		<string>noon</string>
 		<key>Isolated</key>
-		<string>ا</string>
+		<string>0646</string>
 		<key>Initial</key>
-		<string>ا</string>
+		<string>FEE7</string>
 		<key>Medial</key>
-		<string>ـا</string>
+		<string>FEE8</string>
 		<key>Final</key>
-		<string>ـا</string>
+		<string>FEE6</string>
 	</dict>
 	<dict>
 		<key>Name</key>
-		<string>te marboota</string>
+		<string>heh</string>
 		<key>Isolated</key>
-		<string>0629</string>
+		<string>0647</string>
 		<key>Initial</key>
-		<string>هـ</string>
+		<string>FEEB</string>
 		<key>Medial</key>
-		<string>ـهـ</string>
+		<string>FEEC</string>
+		<key>Final</key>
+		<string>FEEA</string>
 	</dict>
 	<dict>
 		<key>Name</key>
@@ -320,23 +322,71 @@
 		<key>Isolated</key>
 		<string>0648</string>
 		<key>Initial</key>
-		<string>و</string>
+		<string>0648</string>
 		<key>Medial</key>
-		<string>ـو</string>
+		<string>FEEE</string>
 		<key>Final</key>
-		<string>ـو</string>
+		<string>FEEE</string>
 	</dict>
 	<dict>
 		<key>Name</key>
-		<string>ye</string>
+		<string>yeh</string>
 		<key>Isolated</key>
 		<string>064A</string>
 		<key>Initial</key>
-		<string>يـ</string>
+		<string>FEF3</string>
 		<key>Medial</key>
-		<string>ـيـ</string>
+		<string>FEF4</string>
 		<key>Final</key>
-		<string>ـي</string>
+		<string>FEF2</string>
+	</dict>
+	<dict>
+		<key>Name</key>
+		<string>alef maddah</string>
+		<key>Isolated</key>
+		<string>0622</string>
+		<key>Initial</key>
+		<string>0622</string>
+		<key>Medial</key>
+		<string>FE82</string>
+		<key>Final</key>
+		<string>FE82</string>
+	</dict>
+	<dict>
+		<key>Name</key>
+		<string>te marboota</string>
+		<key>Isolated</key>
+		<string>0629</string>
+		<key>Initial</key>
+		<string>0629</string>
+		<key>Medial</key>
+		<string>FE94</string>
+		<key>Final</key>
+		<string>FE94</string>
+	</dict>
+	<dict>
+		<key>Name</key>
+		<string>alef maksoora</string>
+		<key>Isolated</key>
+		<string>0649</string>
+		<key>Initial</key>
+		<string>0649</string>
+		<key>Medial</key>
+		<string>FEF0</string>
+		<key>Final</key>
+		<string>FEF0</string>
+	</dict>
+	<dict>
+		<key>Name</key>
+		<string>hamza</string>
+		<key>Isolated</key>
+		<string>ء</string>
+		<key>Initial</key>
+		<string>ء</string>
+		<key>Medial</key>
+		<string>ء</string>
+		<key>Final</key>
+		<string>ء</string>
 	</dict>
 </array>
 </plist>
