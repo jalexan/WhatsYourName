@@ -57,10 +57,17 @@
 }
 
 
-- (void)playSpeakerDialogAudioWithKey:(NSString*)key prefix:(NSString*)prefix  suffix:(NSString*)suffix {
+- (NSTimeInterval)getDurationAndPlaySpeakerDialogAudioWithKey:(NSString*)key prefix:(NSString*)prefix  suffix:(NSString*)suffix {
     NSString* path = [NSString stringWithFormat:@"Speakers/%@/Audio/%@%@.mp3",prefix,key,suffix];
     [self.audioManager prepareAudioWithPath:path key:@"talking"];
+    NSTimeInterval t = [self.audioManager durationOfAudio:@"talking"];
+
+    if (SKIP_DIALOG) {
+        t = 0;
+    }
+
     [self.audioManager playAudio:@"talking" volume:.1];
+    return t;
 }
 
 - (IBAction)soundButtonTouched:(id)sender {

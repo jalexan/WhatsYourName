@@ -235,7 +235,7 @@
     
 }   
 
-#pragma mark GAME PHASES
+#pragma mark Game Phases
 - (void)startLevel {
    
 
@@ -321,21 +321,13 @@
     
 }
 
-
 #pragma mark Game Mechanics
-
 - (void)displayDialogTextWithKey:(NSString*)key completion:(void(^)())completion {
 
     NSDictionary* dialogDictionary = [currentSpeaker dialogForKey:key];
     if (!dialogDictionary)
         return;
-    
-    NSTimeInterval duration = [[dialogDictionary objectForKey:@"Duration"] floatValue];
 
-    if (SKIP_DIALOG) {
-        duration = 0;
-    }
-    
     NSString* text = [dialogDictionary objectForKey:@"English"];
     NSString* arabicText = nil;
     
@@ -345,11 +337,12 @@
     
     dialogLabel.font = [UIFont fontWithName:@"MarkerFelt-Thin" size:28];
     dialogLabel.text = text;
-    [speakerImageView animateWithType:TALK duration:duration*2];
-    [self playSpeakerDialogAudioWithKey:key prefix:currentSpeaker.name suffix:@"English"];
+    
+    NSTimeInterval dialogDuration = [self getDurationAndPlaySpeakerDialogAudioWithKey:key prefix:currentSpeaker.name suffix:@"English"];
+    [speakerImageView animateWithType:TALK duration:dialogDuration];
     
     dialogLabel.alpha = 1;
-    [UIView animateWithDuration: duration
+    [UIView animateWithDuration: dialogDuration
                           delay: 0.0
                         options: UIViewAnimationOptionCurveEaseIn
                      animations:^{
@@ -359,10 +352,11 @@
                          
                          dialogLabel.font = [UIFont fontWithName:@"GeezaPro-Bold" size:28];
                          dialogLabel.text = arabicText;
-                         [self playSpeakerDialogAudioWithKey:key prefix:currentSpeaker.name suffix:@"Arabic"];                         
+                         NSTimeInterval dialogDuration = [self getDurationAndPlaySpeakerDialogAudioWithKey:key prefix:currentSpeaker.name suffix:@"Arabic"];
+                         [speakerImageView animateWithType:TALK duration:dialogDuration];
                          dialogLabel.alpha = 1;
                          
-                         [UIView animateWithDuration: duration
+                         [UIView animateWithDuration: dialogDuration
                                                delay: 0.0
                                              options: UIViewAnimationOptionCurveEaseIn
                                           animations:^{
@@ -379,9 +373,59 @@
     
 }
 
+- (void)animateType:(animationType)type duration:(NSTimeInterval)duration completion:(void(^)())completion {
+    
+
+    dialogLabel.alpha = .99;
+    [UIView animateWithDuration: 3
+                          delay: 0.0
+                        options: UIViewAnimationOptionCurveLinear
+                     animations:^{
+                         dialogLabel.alpha = 1;
+                         
+
+                         
+                         [speakerImageView animateWithType:type duration:duration];
+                     }
+                     completion:^(BOOL finished){
+
+                        completion();
+                         
+                     }];
+    
+
+}
+
+- (void)animateImageView:(UIImageView*)imageView toPoint:(CGPoint)point {
+    
+    if ([imageView isKindOfClass:[ArabicLetterImageView class]]) {
+        ArabicLetterImageView* letter = (ArabicLetterImageView*)imageView;
+        letter.isAnimating = YES;
+    }
+    
+    [UIView animateWithDuration: ANIMATION_DURATION_SLIDE_TO_SLOT
+                          delay: 0.0
+                        options: UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+                         
+                         imageView.center = point;
+                         
+                     }
+                     completion:^(BOOL finished){
+                         
+                         if ([imageView isKindOfClass:[ArabicLetterImageView class]]) {
+                             ArabicLetterImageView* letter = (ArabicLetterImageView*)imageView;
+                             letter.isAnimating = NO;
+                         }
+                         
+                     }];
+}
+
+#pragma mark Shuffle Methods
 - (void)spellArabicNameWithCompletion:(void(^)())completion {
     
-    [self playSpeakerDialogAudioWithKey:@"Nolia" prefix:currentSpeaker.name suffix:@"Arabic"];
+    NSTimeInterval dialogDuration = [self getDurationAndPlaySpeakerDialogAudioWithKey:@"Spell" prefix:currentSpeaker.name suffix:@"Arabic"];
+    [speakerImageView animateWithType:TALK duration:dialogDuration];
     [self animateArabicNameImageViewWithIndex:0 limit:[currentSpeaker.letterIndexArray count]-1 completion:completion];
 }
 
@@ -441,13 +485,12 @@
     
 }
 
-
 - (void)showSpeakerShuffleAnimationWithCompletion:(void(^)())completion  {
     if (!shuffleImageView.animationFound) {
         [self animateType:SHUFFLE duration:2 completion:^() {
-
+            
             completion();
-        
+            
         }];
     }
     else {
@@ -455,31 +498,8 @@
     }
 }
 
-- (void)animateType:(animationType)type duration:(NSTimeInterval)duration completion:(void(^)())completion {
-    
-
-    dialogLabel.alpha = .99;
-    [UIView animateWithDuration: 3
-                          delay: 0.0
-                        options: UIViewAnimationOptionCurveLinear
-                     animations:^{
-                         dialogLabel.alpha = 1;
-                         
-
-                         
-                         [speakerImageView animateWithType:type duration:duration];
-                     }
-                     completion:^(BOOL finished){
-
-                        completion();
-                         
-                     }];
-    
-
-}
-
 - (void)mixUpLettersWithCompletion:(void(^)())completion {
-
+    
     NSTimeInterval shuffleDuration = 3.0;
     
     if (shuffleImageView.animationFound)
@@ -493,22 +513,22 @@
                             options: UIViewAnimationOptionCurveLinear
                          animations:^{
                              
-                              CGPoint startPoint = shuffleImageView.origin;
-                              CGPoint endPoint;
-                              endPoint.y = startPoint.y;
-                              
-                              if (startPoint.x >= screenBounds.width) {
-                                  endPoint.x = 0-shuffleImageView.width;
-                              }
-                              else {
-                                  endPoint.x = screenBounds.width;
-                              }
+                             CGPoint startPoint = shuffleImageView.origin;
+                             CGPoint endPoint;
+                             endPoint.y = startPoint.y;
                              
-                              shuffleImageView.origin = endPoint;
+                             if (startPoint.x >= screenBounds.width) {
+                                 endPoint.x = 0-shuffleImageView.width;
+                             }
+                             else {
+                                 endPoint.x = screenBounds.width;
+                             }
+                             
+                             shuffleImageView.origin = endPoint;
                              
                          }
                          completion:^(BOOL finished){
-
+                             
                          }];
     }
     
@@ -524,7 +544,7 @@
                               delay: 0.0
                             options: UIViewAnimationOptionCurveLinear
                          animations:^{
-
+                             
                              imageView.center = convertedPoint;
                              
                          }
@@ -537,31 +557,7 @@
     }
 }
 
-- (void)animateImageView:(UIImageView*)imageView toPoint:(CGPoint)point {
-    
-    if ([imageView isKindOfClass:[ArabicLetterImageView class]]) {
-        ArabicLetterImageView* letter = (ArabicLetterImageView*)imageView;
-        letter.isAnimating = YES;
-    }
-    
-    [UIView animateWithDuration: ANIMATION_DURATION_SLIDE_TO_SLOT
-                          delay: 0.0
-                        options: UIViewAnimationOptionCurveEaseInOut
-                     animations:^{
-                         
-                         imageView.center = point;
-                         
-                     }
-                     completion:^(BOOL finished){
-                         
-                         if ([imageView isKindOfClass:[ArabicLetterImageView class]]) {
-                             ArabicLetterImageView* letter = (ArabicLetterImageView*)imageView;
-                             letter.isAnimating = NO;
-                         }
-                         
-                     }];
-}
-
+#pragma mark Success Methods
 - (void)animateLevelSuccessWithCompletion:(void(^)())completion {
     //CGRect startRect = CGRectMake(self.view.bounds.size.width, self.view.bounds.size/height/2, 79, 155);
     
@@ -592,7 +588,7 @@
                      }
                      completion:^(BOOL finished){
                          
-
+                         
                          [UIView animateWithDuration: 1
                                                delay: 0.0
                                              options: UIViewAnimationOptionCurveLinear
@@ -623,14 +619,14 @@
                      animations:^{
                          
                          [gameProgressView startRotations];
-
+                         
                          //Move the current level circle to the same coordinates as the speaker image view
                          ProgressCircleImageView* circle = [gameProgressView circleImageViewWithIndex:currentSpeakerIndex];
                          gameProgressView.left = adjustedScrollViewCenter.x - circle.origin.x - (circle.width/2);
                          
                      }
                      completion:^(BOOL finished){
-
+                         
                          completion();
                      }];
     
@@ -647,7 +643,7 @@
                           delay: 0.0
                         options: UIViewAnimationOptionCurveLinear
                      animations:^{
-
+                         
                          gameProgressView.left = 46;
                          
                      }
@@ -661,7 +657,7 @@
                                              options: UIViewAnimationOptionCurveEaseIn
                                           animations:^{
                                               dialogLabel.alpha = 1;
- 
+                                              
                                           }
                                           completion:^(BOOL finished){
                                               
@@ -671,7 +667,7 @@
                          
                      }];
     
-
+    
 }
 
 - (void)animateSpeakerSuccessWithCompletion:(void(^)())completion {
@@ -685,7 +681,7 @@
         
     }];
     
-
+    
     //UIImageView* circleImageView = [gameProgressView circleImageViewWithIndex:currentSpeakerIndex];
     
     
@@ -697,7 +693,7 @@
     //pathAnimation.delegate = self;
     
     
-
+    
     CGPoint viewOrigin = speakerImageView.center;
     CGPoint endPoint = adjustedScrollViewCenter;
     
@@ -744,12 +740,12 @@
                                           completion:^(BOOL finished){
                                               [circle_empty removeFromSuperview];
                                               completion();
-                                            
+                                              
                                           }];
                          
                      }];
-   
-
+    
+    
     
 }
 

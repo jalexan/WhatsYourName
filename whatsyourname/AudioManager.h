@@ -24,6 +24,7 @@
 - (void)playAudio:(NSString*)audioName volume:(float)volume;
 - (void)stopAudio:(NSString*)audioName;
 - (void)pauseAudio:(NSString*)audioName;
+- (NSTimeInterval)durationOfAudio:(NSString*)audioName;
 - (void)playBackgroundAudioWithPath:(NSString*)audioPath volume:(float)volume;
 
 

@@ -158,9 +158,7 @@
     NSDictionary* dialogDictionary = [yourNameDialogDictionary objectForKey:key];
     if (!dialogDictionary)
         return;
-    
-    NSTimeInterval duration = [[dialogDictionary objectForKey:@"Duration"] floatValue];
-    
+
     NSString* text = [dialogDictionary objectForKey:@"English"];
     NSString* arabicText = [dialogDictionary objectForKey:@"Arabic"];
 
@@ -170,15 +168,12 @@
     
     dialogLabel.font = [UIFont fontWithName:@"MarkerFelt-Thin" size:28];
     dialogLabel.text = text;
+   
+    NSTimeInterval dialogDuration = [self getDurationAndPlaySpeakerDialogAudioWithKey:key prefix:mainSpeaker.name suffix:@"English"];
+    [mainSpeakerImageView animateWithType:TALK duration:dialogDuration];
     
-    if (SKIP_DIALOG) {
-        duration = 0;
-    }
-    
-    [mainSpeakerImageView animateWithType:TALK duration:duration*2];
-    [self playSpeakerDialogAudioWithKey:key prefix:mainSpeaker.name suffix:@"English"];
     dialogLabel.alpha = .99;
-    [UIView animateWithDuration: duration
+    [UIView animateWithDuration: dialogDuration
                           delay: 0.0
                         options: UIViewAnimationOptionCurveEaseIn
                      animations:^{
@@ -189,9 +184,10 @@
                          dialogLabel.font = [UIFont fontWithName:@"GeezaPro-Bold" size:28];
                          dialogLabel.text = arabicText;
                          dialogLabel.alpha = .99;
-                         [self playSpeakerDialogAudioWithKey:key prefix:mainSpeaker.name suffix:@"Arabic"];
+                         NSTimeInterval dialogDuration = [self getDurationAndPlaySpeakerDialogAudioWithKey:key prefix:mainSpeaker.name suffix:@"Arabic"];
+                         [mainSpeakerImageView animateWithType:TALK duration:dialogDuration];
                          
-                         [UIView animateWithDuration: duration
+                         [UIView animateWithDuration: dialogDuration
                                                delay: 0.0
                                              options: UIViewAnimationOptionCurveEaseIn
                                           animations:^{

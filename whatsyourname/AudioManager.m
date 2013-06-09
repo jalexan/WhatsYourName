@@ -62,7 +62,6 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(AudioManager)
 
 - (AVAudioPlayer*)prepareAudioWithPath:(NSString*)audioPath key:(NSString*)key {
     
-    
     if (audioNameToPlayer == nil){
         audioNameToPlayer = [NSMutableDictionary new];
     }
@@ -82,7 +81,6 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(AudioManager)
     [audioNameToPlayer setValue:player forKey:key];
     return player;
     
-    
 }
 
 - (void)playAudio:(NSString*)audioName volume:(float)volume {
@@ -97,6 +95,11 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(AudioManager)
 - (void)pauseAudio:(NSString*)audioName {
     AVAudioPlayer* player = [audioNameToPlayer valueForKey:audioName];
     [player pause];
+}
+
+- (NSTimeInterval)durationOfAudio:(NSString*)audioName {
+    AVAudioPlayer* player = [audioNameToPlayer valueForKey:audioName];
+    return player.duration;
 }
 
 - (void)playAudio:(NSString*)audioName volume:(float)volume pan:(float)pan{
@@ -127,6 +130,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(AudioManager)
     }
     
 }
+
 - (void)playBackgroundAudioWithPath:(NSString*)audioPath volume:(float)volume {
     if (backgroundPlayer != nil){
         [backgroundPlayer stop];
@@ -139,6 +143,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(AudioManager)
         [backgroundPlayer play];
     }
 }
+
 - (void)beginInterruption{
     [backgroundPlayer pause];
 }
