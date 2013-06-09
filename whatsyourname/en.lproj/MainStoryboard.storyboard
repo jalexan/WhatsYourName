@@ -77,11 +77,11 @@
         <scene sceneID="p1J-pp-f1F">
             <objects>
                 <viewController id="Tbj-Y2-qDz" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="sc4-Rd-Vwj">
+                    <view key="view" contentMode="scaleToFill" id="sc4-Rd-Vwj" customClass="GameUIView">
                         <rect key="frame" x="0.0" y="0.0" width="480" height="320"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="bottomLeft" image="Resource/background.png" id="cRM-Ni-Slg">
+                            <imageView userInteractionEnabled="NO" contentMode="bottomLeft" image="Resource/splash.png" id="cRM-Ni-Slg">
                                 <rect key="frame" x="0.0" y="0.0" width="480" height="320"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -101,7 +101,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <navigationItem key="navigationItem" id="BCZ-tx-1Y4"/>
@@ -118,7 +118,7 @@
         <scene sceneID="2U4-lO-KiI">
             <objects>
                 <viewController wantsFullScreenLayout="YES" id="L4G-Pe-ZjN" customClass="SurpriseViewController" sceneMemberID="viewController">
-                    <view key="view" clipsSubviews="YES" contentMode="scaleToFill" id="8pa-4u-6IH">
+                    <view key="view" clipsSubviews="YES" contentMode="scaleToFill" id="8pa-4u-6IH" customClass="GameUIView">
                         <rect key="frame" x="0.0" y="0.0" width="480" height="320"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                         <subviews>
@@ -316,6 +316,7 @@
     </scenes>
     <resources>
         <image name="Resource/background.png" width="16" height="16"/>
+        <image name="Resource/splash.png" width="16" height="16"/>
         <image name="question_mark.png" width="117" height="177"/>
         <image name="sound_on.png" width="128" height="128"/>
     </resources>
