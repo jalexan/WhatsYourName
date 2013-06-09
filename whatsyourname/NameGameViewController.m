@@ -52,11 +52,11 @@
             rightFrameX = frame.origin.x;
         }
         else if ((index % 2) == 1) {
-            leftFrameX -= ((imageSize.width*NON_PRIMARY_SPEAKER_IMAGE_SCALE) - 20);
+            leftFrameX -= (imageSize.width*NON_PRIMARY_SPEAKER_IMAGE_SCALE);
             frame = CGRectMake(leftFrameX, 94, imageSize.width*NON_PRIMARY_SPEAKER_IMAGE_SCALE, imageSize.height*NON_PRIMARY_SPEAKER_IMAGE_SCALE);
         }
         else if ((index % 2) == 0) {
-            rightFrameX += ((imageSize.width*NON_PRIMARY_SPEAKER_IMAGE_SCALE) - 10);
+            rightFrameX += (imageSize.width);
             frame = CGRectMake(rightFrameX, 94, imageSize.width*NON_PRIMARY_SPEAKER_IMAGE_SCALE, imageSize.height*NON_PRIMARY_SPEAKER_IMAGE_SCALE);
         }
         
