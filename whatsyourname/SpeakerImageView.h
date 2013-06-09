@@ -15,7 +15,7 @@ typedef enum {
     SHUFFLE,
     BRAVO,
     EXIT
-} animationType;
+} AnimationType;
 
 @interface SpeakerImageView : UIImageView {
     
@@ -23,7 +23,7 @@ typedef enum {
 @property (nonatomic,strong) Speaker* speaker;
 
 - (id)initWithFrame:(CGRect)frame speaker:(Speaker*)theSpeaker;
-- (void)animateWithType:(animationType)animationType duration:(NSTimeInterval)duration;
+- (void)animateWithType:(AnimationType)animationType duration:(NSTimeInterval)duration;
 - (void)animateWithDefaultAnimation;
 - (void)stopDefaultAnimation;
 - (void)setToLastExitImage;

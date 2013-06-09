@@ -16,7 +16,10 @@
     NSMutableArray* shuffleImagesArray;
     NSMutableArray* bravoImagesArray;
     NSMutableArray* exitImagesArray;
+    
+    AnimationType lastAnimationType;
 }
+
 @end
 
 @implementation SpeakerImageView
@@ -65,11 +68,17 @@
     }
 }
 
-- (void)stopAnimatingSelector {
-    [self stopAnimating];
+- (void)stopAnimatingWithType:(NSNumber*)typeObject {
+    int type = [typeObject intValue];
+    
+    if (lastAnimationType==type) {
+        [self stopAnimating];
+    }
 }
 
-- (void)animateWithType:(animationType)animationType duration:(NSTimeInterval)duration {
+- (void)animateWithType:(AnimationType)animationType duration:(NSTimeInterval)duration {
+    lastAnimationType = animationType;
+    
     if (animationType==TALK) {
         
 
@@ -78,7 +87,7 @@
         [self setAnimationRepeatCount:0];
         [self startAnimating];
         
-        [self performSelector:@selector(stopAnimatingSelector) withObject:nil afterDelay:duration];
+        [self performSelector:@selector(stopAnimatingWithType:) withObject:[NSNumber numberWithInt:lastAnimationType] afterDelay:duration];
     }
     else if (animationType==SHUFFLE) {
         [self setAnimationImages: shuffleImagesArray];
@@ -108,6 +117,7 @@
         [self setAnimationRepeatCount: 1];
         [self startAnimating];
 
+        [self performSelector:@selector(stopAnimatingWithType:) withObject:[NSNumber numberWithInt:lastAnimationType] afterDelay:1];
     }
 }
 

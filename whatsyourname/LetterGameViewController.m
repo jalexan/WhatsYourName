@@ -385,7 +385,7 @@
     
 }
 
-- (void)animateType:(animationType)type duration:(NSTimeInterval)duration completion:(void(^)())completion {
+- (void)animateType:(AnimationType)type duration:(NSTimeInterval)duration completion:(void(^)())completion {
     
 
     dialogLabel.alpha = .99;

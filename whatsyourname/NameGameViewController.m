@@ -81,7 +81,7 @@
     
     yourNameDialogDictionary = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];
 
-    
+    dialogLabel.adjustsFontSizeToFitWidth = YES;
 
 
     [self addSpeakerImageViewsToView];
