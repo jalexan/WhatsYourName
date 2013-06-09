@@ -738,8 +738,8 @@
     CGMutablePathRef curvedPath = CGPathCreateMutable();
     CGPathMoveToPoint(curvedPath, NULL, viewOrigin.x, viewOrigin.y);
     CGPathAddCurveToPoint(curvedPath, NULL,
-                          viewOrigin.x+10, viewOrigin.y-515,
-                          endPoint.x-10, endPoint.y-515,
+                          viewOrigin.x+10, viewOrigin.y-565,
+                          endPoint.x-10, endPoint.y-565,
                           endPoint.x, endPoint.y);
     pathAnimation.path = curvedPath;
     CGPathRelease(curvedPath);

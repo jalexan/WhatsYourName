@@ -82,38 +82,38 @@
     if (animationType==TALK) {
         
 
-        [self setAnimationImages: speakImagesArray];
-        [self setAnimationDuration: 1.5];
+        [self setAnimationImages: speakImagesArray]; //1.5
+        [self setAnimationDuration: speakImagesArray.count/ANIMATION_FRAMES_PER_SECOND];
         [self setAnimationRepeatCount:0];
         [self startAnimating];
         
         [self performSelector:@selector(stopAnimatingWithType:) withObject:[NSNumber numberWithInt:lastAnimationType] afterDelay:duration];
     }
     else if (animationType==SHUFFLE) {
-        [self setAnimationImages: shuffleImagesArray];
-        [self setAnimationDuration: 3];
+        [self setAnimationImages: shuffleImagesArray]; //3
+        [self setAnimationDuration: shuffleImagesArray.count/ANIMATION_FRAMES_PER_SECOND];
         [self setAnimationRepeatCount:1];
         [self startAnimating];
 
     }
     else if (animationType==BRAVO) {
-        [self setAnimationImages: bravoImagesArray];
-        [self setAnimationDuration:1];
+        [self setAnimationImages: bravoImagesArray]; //1
+        [self setAnimationDuration:bravoImagesArray.count/ANIMATION_FRAMES_PER_SECOND];
         [self setAnimationRepeatCount:1];
         [self startAnimating];
 
     }
     else if (animationType==EXIT) {
-        [self setAnimationImages: exitImagesArray];
-        [self setAnimationDuration: 1.65];
+        [self setAnimationImages: exitImagesArray]; //1.65
+        [self setAnimationDuration: exitImagesArray.count/ANIMATION_FRAMES_PER_SECOND];
         [self setAnimationRepeatCount:1];
         [self startAnimating];
 
     }
     else {
         
-        [self setAnimationImages: defaultImagesArray];
-        [self setAnimationDuration: 1];
+        [self setAnimationImages: defaultImagesArray]; //1
+        [self setAnimationDuration: defaultImagesArray.count/ANIMATION_FRAMES_PER_SECOND];
         [self setAnimationRepeatCount: 1];
         [self startAnimating];
 
