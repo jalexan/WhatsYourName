@@ -7,6 +7,8 @@
 //
 
 #import "Speaker.h"
+#import "ArabicLetter.h"
+
 @interface Speaker () {
 
 }
@@ -32,6 +34,16 @@
     }
     
     return self;
+}
+
+- (NSString*)unicodeName {
+    NSMutableString* string = [[NSMutableString alloc] init];
+    for (int i=0;i<letterIndexArray.count;i++) {
+        ArabicLetter* letter = [[ArabicLetter alloc] initWithLetterIndex:[letterIndexArray[i] intValue]];
+        [string appendFormat:@"%C",letter.unicodeGeneral];
+    }
+    
+    return string;
 }
 
 - (NSDictionary*)dialogForKey:(NSString*)key {

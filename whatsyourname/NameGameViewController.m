@@ -162,7 +162,7 @@
         text = [text stringByReplacingOccurrencesOfString:@"@name" withString:playerName];
     }
     
-    dialogLabel.font = [UIFont fontWithName:@"MarkerFelt-Thin" size:28];
+    dialogLabel.font = [UIFont fontWithName:@"MarkerFelt-Thin" size:dialogLabel.font.pointSize];
     dialogLabel.text = text;
    
     NSTimeInterval dialogDuration = [self getDurationAndPlaySpeakerDialogAudioWithKey:key prefix:mainSpeaker.name suffix:@"English"];
@@ -177,7 +177,7 @@
                      }
                      completion:^(BOOL finished){
                          
-                         dialogLabel.font = [UIFont fontWithName:@"GeezaPro-Bold" size:28];
+                         dialogLabel.font = [UIFont fontWithName:@"GeezaPro-Bold" size:dialogLabel.font.pointSize];
                          dialogLabel.text = arabicText;
                          dialogLabel.alpha = .99;
                          NSTimeInterval dialogDuration = [self getDurationAndPlaySpeakerDialogAudioWithKey:key prefix:mainSpeaker.name suffix:@"Arabic"];

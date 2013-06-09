@@ -16,5 +16,5 @@
 @property (nonatomic, readonly) NSArray* letterIndexArray;
 
 - (NSDictionary*)dialogForKey:(NSString*)key;
-
+- (NSString*)unicodeName;
 @end

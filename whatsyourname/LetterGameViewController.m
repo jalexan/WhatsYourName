@@ -123,10 +123,11 @@
     spellingArabicLetterLabel.font = [UIFont fontWithName:@"GeezaPro-Bold" size:80];
     spellingArabicLetterLabel.textColor = [UIColor blackColor];
     spellingArabicLetterLabel.backgroundColor = [UIColor clearColor];
-    spellingArabicLetterLabel.textAlignment = NSTextAlignmentCenter;
+    spellingArabicLetterLabel.textAlignment = NSTextAlignmentRight;
     spellingArabicLetterLabel.shadowColor = [UIColor whiteColor];
     spellingArabicLetterLabel.shadowOffset = CGSizeMake(1,1);
-    spellingArabicLetterLabel.alpha = 0;
+    spellingArabicLetterLabel.adjustsFontSizeToFitWidth = YES;
+    spellingArabicLetterLabel.minimumScaleFactor = 0.5;
     [arabicNameView addSubview:spellingArabicLetterLabel];
     
     //Save subview origins to reset positions on even index speakers 0,2 etc
@@ -346,7 +347,7 @@
         arabicText = [[currentSpeaker dialogForKey:key] objectForKey:@"Arabic"];
     }
     
-    dialogLabel.font = [UIFont fontWithName:@"MarkerFelt-Thin" size:28];
+    dialogLabel.font = [UIFont fontWithName:@"MarkerFelt-Thin" size:dialogLabel.font.pointSize];
     dialogLabel.text = text;
     
     NSTimeInterval dialogDuration = [self getDurationAndPlaySpeakerDialogAudioWithKey:key prefix:currentSpeaker.name suffix:@"English"];
@@ -361,7 +362,7 @@
                      }
                      completion:^(BOOL finished){
                          
-                         dialogLabel.font = [UIFont fontWithName:@"GeezaPro-Bold" size:28];
+                         dialogLabel.font = [UIFont fontWithName:@"GeezaPro-Bold" size:dialogLabel.font.pointSize];
                          dialogLabel.text = arabicText;
                          NSTimeInterval dialogDuration = [self getDurationAndPlaySpeakerDialogAudioWithKey:key prefix:currentSpeaker.name suffix:@"Arabic"];
                          [speakerImageView animateWithType:TALK duration:dialogDuration];
@@ -435,6 +436,14 @@
 #pragma mark Shuffle Methods
 - (void)spellArabicNameWithCompletion:(void(^)())completion {
     
+    //Calculate size of entire unicdoe name to size the label
+    NSString *arabicUnicode = [currentSpeaker unicodeName];
+    spellingArabicLetterLabel.text = arabicUnicode;
+    [spellingArabicLetterLabel sizeToFit];
+    spellingArabicLetterLabel.text = @"";
+    spellingArabicLetterLabel.center = CGPointMake(spellingArabicLetterLabel.superview.width/2,spellingArabicLetterLabel.superview.height/2);
+   
+    
     NSTimeInterval dialogDuration = [self getDurationAndPlaySpeakerDialogAudioWithKey:@"Spell" prefix:currentSpeaker.name suffix:@"Arabic"];
     [speakerImageView animateWithType:TALK duration:dialogDuration];
     [self animateArabicNameImageViewWithIndex:0 limit:[currentSpeaker.letterIndexArray count]-1 completion:completion];
@@ -475,8 +484,6 @@
         unicodeChar = letter.unicodeMedial;
     }
 
-    if (index==0) spellingArabicLetterLabel.text = @"";
-
     spellingArabicLetterLabel.text = [NSString stringWithFormat:@"%@%C",spellingArabicLetterLabel.text,unicodeChar];
     
 
@@ -504,7 +511,7 @@
                      animations:^{
                          
                          //imageView.alpha = 1;
-                         spellingArabicLetterLabel.alpha = 1;
+                         
                          letterImageView.alpha = 1;
                          slot.alpha = .9;
                          
