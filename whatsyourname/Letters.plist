@@ -6,15 +6,13 @@
 		<key>Name</key>
 		<string>alef</string>
 		<key>Isolated</key>
-		<string>0623</string>
+		<string>0627</string>
 		<key>Initial</key>
-		<string>FE83</string>
+		<string>FE8D</string>
 		<key>Medial</key>
-		<string>FE84</string>
+		<string>FE8E</string>
 		<key>Final</key>
-		<string>FE84</string>
-		<key>Unicode</key>
-		<string>0623</string>
+		<string>FE8E</string>
 	</dict>
 	<dict>
 		<key>Name</key>
@@ -380,13 +378,39 @@
 		<key>Name</key>
 		<string>hamza</string>
 		<key>Isolated</key>
-		<string>ء</string>
+		<string>FE80</string>
 		<key>Initial</key>
-		<string>ء</string>
+		<string>FE80</string>
 		<key>Medial</key>
-		<string>ء</string>
+		<string>FE80</string>
 		<key>Final</key>
-		<string>ء</string>
+		<string>FE80</string>
+	</dict>
+	<dict>
+		<key>Name</key>
+		<string>alef hamza</string>
+		<key>Isolated</key>
+		<string>0623</string>
+		<key>Initial</key>
+		<string>FE83</string>
+		<key>Medial</key>
+		<string>FE84</string>
+		<key>Final</key>
+		<string>FE84</string>
+		<key>Unicode</key>
+		<string>0623</string>
+	</dict>
+	<dict>
+		<key>Name</key>
+		<string>alef hamza under</string>
+		<key>Isolated</key>
+		<string>0625</string>
+		<key>Initial</key>
+		<string>FE87</string>
+		<key>Medial</key>
+		<string>FE88</string>
+		<key>Final</key>
+		<string>FE88</string>
 	</dict>
 </array>
 </plist>
