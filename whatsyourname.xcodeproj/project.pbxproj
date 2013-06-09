@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		15DEA758176525E00058852E /* TransliteratedLetters.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15DEA757176525E00058852E /* TransliteratedLetters.plist */; };
+		15DEA75A1765315F0058852E /* WellKnownNames.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15DEA7591765315F0058852E /* WellKnownNames.plist */; };
 		680E8386174F043A00AD8008 /* YourNameDialog.plist in Resources */ = {isa = PBXBuildFile; fileRef = 680E8385174F043A00AD8008 /* YourNameDialog.plist */; };
 		6812F6D8174BCFE100CBF5C2 /* NameGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6812F6D7174BCFE100CBF5C2 /* NameGameViewController.m */; };
 		681B4FE61748248600B5AF95 /* Speakers.plist in Resources */ = {isa = PBXBuildFile; fileRef = 681B4FE51748248600B5AF95 /* Speakers.plist */; };
@@ -48,6 +50,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		15DEA757176525E00058852E /* TransliteratedLetters.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = TransliteratedLetters.plist; sourceTree = "<group>"; };
+		15DEA7591765315F0058852E /* WellKnownNames.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = WellKnownNames.plist; sourceTree = "<group>"; };
 		680E8385174F043A00AD8008 /* YourNameDialog.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = YourNameDialog.plist; sourceTree = "<group>"; };
 		6812F6D6174BCFE100CBF5C2 /* NameGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NameGameViewController.h; sourceTree = "<group>"; };
 		6812F6D7174BCFE100CBF5C2 /* NameGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NameGameViewController.m; sourceTree = "<group>"; };
@@ -185,6 +189,8 @@
 				680E8385174F043A00AD8008 /* YourNameDialog.plist */,
 				681B4FE51748248600B5AF95 /* Speakers.plist */,
 				682900AA176467510067E1A8 /* Letters.plist */,
+				15DEA757176525E00058852E /* TransliteratedLetters.plist */,
+				15DEA7591765315F0058852E /* WellKnownNames.plist */,
 				685D89011749273300847C7D /* Speakers */,
 				685D890917495DEA00847C7D /* Resource */,
 				68240B18173F07D200BDBDF8 /* Supporting Files */,
@@ -314,6 +320,8 @@
 				685D890A17495DEA00847C7D /* Resource in Resources */,
 				680E8386174F043A00AD8008 /* YourNameDialog.plist in Resources */,
 				682900AB176467520067E1A8 /* Letters.plist in Resources */,
+				15DEA758176525E00058852E /* TransliteratedLetters.plist in Resources */,
+				15DEA75A1765315F0058852E /* WellKnownNames.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

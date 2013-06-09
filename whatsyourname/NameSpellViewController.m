@@ -90,6 +90,8 @@
     for (NSUInteger i=0;i<name.length;i++) {
         unichar currentChar = [name characterAtIndex:i];
         NSLog(@"%C",currentChar);
+        // 'a' and 'e' in the middle position will take their nil values if between 2 constanants (i.e. they don't have a vowel as a neighbor)
+        
     }
     
     
