@@ -36,7 +36,7 @@
         letterIndex = index;
         
         NSBundle* bundle = [NSBundle mainBundle];
-        NSString* plistPath = [bundle pathForResource:[NSString stringWithFormat:@"Letters/Info"] ofType:@"plist"];
+        NSString* plistPath = [bundle pathForResource:[NSString stringWithFormat:@"Letters"] ofType:@"plist"];
         
         NSArray* lettersArray = [[NSArray alloc] initWithContentsOfFile:plistPath];
         

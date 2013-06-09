@@ -34,6 +34,7 @@
     
     UIImageView* starsImageView;
     ShuffleImageView* shuffleImageView;
+    UILabel* spellingArabicLetterLabel;
 }
 @end
 
@@ -116,6 +117,17 @@
     //Clear arabic name spelling
     [[arabicNameView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
     arabicNameView.alpha = 1;
+    arabicNameView.backgroundColor = [UIColor clearColor];
+    
+    spellingArabicLetterLabel = [[UILabel alloc] initWithFrame:arabicNameView.bounds];
+    spellingArabicLetterLabel.font = [UIFont fontWithName:@"GeezaPro-Bold" size:80];
+    spellingArabicLetterLabel.textColor = [UIColor blackColor];
+    spellingArabicLetterLabel.backgroundColor = [UIColor clearColor];
+    spellingArabicLetterLabel.textAlignment = NSTextAlignmentCenter;
+    spellingArabicLetterLabel.shadowColor = [UIColor whiteColor];
+    spellingArabicLetterLabel.shadowOffset = CGSizeMake(1,1);
+    spellingArabicLetterLabel.alpha = 0;
+    [arabicNameView addSubview:spellingArabicLetterLabel];
     
     //Save subview origins to reset positions on even index speakers 0,2 etc
     if (!subviewOriginDictionary) {
@@ -435,7 +447,13 @@
         return;
     }
     
+    NSUInteger letterIndex = [[currentSpeaker.letterIndexArray objectAtIndex:index] intValue];
+    ArabicLetter* letter = [[ArabicLetter alloc] initWithLetterIndex:letterIndex];
+    letter.slotPosition = index;
+    
+    
     //Arabic Writing
+    /*
     UIImage* image = [UIImage imageNamed:[NSString stringWithFormat:@"Speakers/%@/Images/letter%02d.png",currentSpeaker.name,index]];
     UIImageView* imageView = [[UIImageView alloc] initWithImage:image];
     imageView.alpha = 0;
@@ -444,12 +462,24 @@
     imageView.frame = imageFrame;
     
     [arabicNameView addSubview:imageView];
+    */
+        
+    unichar unicodeChar;
+    if (index==0) {
+        unicodeChar = letter.unicodeInitial;
+    }
+    else if (index==limit) {
+        unicodeChar = letter.unicodeFinal;
+    }
+    else {
+        unicodeChar = letter.unicodeMedial;
+    }
+
+    if (index==0) spellingArabicLetterLabel.text = @"";
+
+    spellingArabicLetterLabel.text = [NSString stringWithFormat:@"%@%C",spellingArabicLetterLabel.text,unicodeChar];
     
-    //Arabic Tiles
-    NSUInteger letterIndex = [[currentSpeaker.letterIndexArray objectAtIndex:index] intValue];
-    ArabicLetter* letter = [[ArabicLetter alloc] initWithLetterIndex:letterIndex];
-    letter.slotPosition = index;
-    
+
     
     //Spell out each letter in dialog label
     if (index==0) dialogLabel.text = @"";
@@ -473,7 +503,8 @@
                         options: UIViewAnimationOptionCurveEaseInOut
                      animations:^{
                          
-                         imageView.alpha = 1;
+                         //imageView.alpha = 1;
+                         spellingArabicLetterLabel.alpha = 1;
                          letterImageView.alpha = 1;
                          slot.alpha = .9;
                          
