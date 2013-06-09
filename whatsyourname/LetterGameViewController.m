@@ -19,7 +19,6 @@
 #import "ShuffleImageView.h"
 
 @interface LetterGameViewController () {
-    CGSize screenBounds;
     CGPoint adjustedScrollViewCenter;
     
     NSMutableDictionary* subviewOriginDictionary;
@@ -59,16 +58,16 @@
     [super.audioManager prepareAudioWithPath:@"Resource/slot_correct.mp3"];
     [super.audioManager prepareAudioWithPath:@"Resource/slot_wrong.mp3"];
 
-    screenBounds = CGSizeMake(480,320);
+    //screenBounds = CGSizeMake(480,320);
 
-    scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, screenBounds.width,screenBounds.height)];
+    scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.screenBounds.width,self.screenBounds.height)];
     scrollView.bounces = NO;
     scrollView.showsHorizontalScrollIndicator = NO;
     scrollView.showsVerticalScrollIndicator = NO;
     scrollView.userInteractionEnabled = NO;
 
-    scrollView.contentSize = CGSizeMake(screenBounds.width,screenBounds.height*2);
-    scrollView.contentOffset = CGPointMake(0,screenBounds.height);
+    scrollView.contentSize = CGSizeMake(self.screenBounds.width,self.screenBounds.height*2);
+    scrollView.contentOffset = CGPointMake(0,self.screenBounds.height);
     [self.view addSubview:scrollView];
     
     [scrollView.superview sendSubviewToBack:scrollView];
@@ -91,19 +90,19 @@
     
     //add the progressview to the scrollview
     CGRect f = gameProgressView.frame;
-    f.origin.y += screenBounds.height;
+    f.origin.y += self.screenBounds.height;
     gameProgressView.frame = f;
     [scrollView addSubview:gameProgressView];
 
 }
 
 - (void)reloadGameArea {
-    adjustedScrollViewCenter = CGPointMake(scrollView.center.x,scrollView.center.y+screenBounds.height);
+    adjustedScrollViewCenter = CGPointMake(scrollView.center.x,scrollView.center.y+self.screenBounds.height);
     
     gameProgressView.left = scrollView.right + 30;
     gameProgressView.hidden = NO;
     
-    speakerImageView = [[SpeakerImageView alloc] initWithFrame:CGRectMake(16, screenBounds.height+94, 140, 216) speaker:currentSpeaker];
+    speakerImageView = [[SpeakerImageView alloc] initWithFrame:CGRectMake(16, self.screenBounds.height+94, 140, 216) speaker:currentSpeaker];
     [scrollView addSubview:speakerImageView];
     speakerImageView.contentMode = UIViewContentModeBottomLeft;
     [speakerImageView animateWithDefaultAnimation];
@@ -454,7 +453,7 @@
     
     //Spell out each letter in dialog label
     if (index==0) dialogLabel.text = @"";
-    dialogLabel.text = [NSString stringWithFormat:@"%@%C",dialogLabel.text,letter.unicode];
+    dialogLabel.text = [NSString stringWithFormat:@"%@%C",dialogLabel.text,letter.unicodeGeneral];
     
     
     ArabicLetterImageView* letterImageView = [[ArabicLetterImageView alloc] initWithArabicLetter:letter];
@@ -517,11 +516,11 @@
                              CGPoint endPoint;
                              endPoint.y = startPoint.y;
                              
-                             if (startPoint.x >= screenBounds.width) {
+                             if (startPoint.x >= self.screenBounds.width) {
                                  endPoint.x = 0-shuffleImageView.width;
                              }
                              else {
-                                 endPoint.x = screenBounds.width;
+                                 endPoint.x = self.screenBounds.width;
                              }
                              
                              shuffleImageView.origin = endPoint;
@@ -733,7 +732,7 @@
                                           animations:^{
                                               
                                               CGPoint p = scrollView.contentOffset;
-                                              p.y = screenBounds.height;
+                                              p.y = self.screenBounds.height;
                                               scrollView.contentOffset = p;
                                               
                                           }

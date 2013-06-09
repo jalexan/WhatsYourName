@@ -81,7 +81,7 @@
     
     yourNameDialogDictionary = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];
 
-    CGSize screenBounds = CGSizeMake(480,320);
+    
 
 
     [self addSpeakerImageViewsToView];

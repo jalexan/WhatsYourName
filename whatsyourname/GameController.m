@@ -17,6 +17,7 @@
 @implementation GameController
 @synthesize audioManager;
 @synthesize soundButton;
+@synthesize screenBounds;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -30,6 +31,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    screenBounds = CGSizeMake(480,320);
     
     self.audioManager = [AudioManager sharedInstance];
     

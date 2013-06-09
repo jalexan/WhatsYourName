@@ -10,6 +10,7 @@
 #import "UIView+Additions.h"
 
 @interface ArabicLetterImageView() {
+    UILabel* letterLabel;
     UILabel* letterNameLabel;
 }
 
@@ -34,15 +35,31 @@
 - (void)setArabicLetter:(ArabicLetter *)theArabicLetter {
     arabicLetter = theArabicLetter;
     
-    NSString* filename = [NSString stringWithFormat:@"Letters/%02d.png",arabicLetter.letterIndex];
+    //NSString* filename = [NSString stringWithFormat:@"Letters/%02d.png",arabicLetter.letterIndex];
+    NSString* filename = [NSString stringWithFormat:@"Resource/slot.png"];
     UIImage* i = [UIImage imageNamed:filename];
     
     if (i) {
-        self.image = i;
+        //self.image = i;
     }
     else {
         NSLog(@"Error: letter file not found: %@",filename);
     }
+
+    letterLabel = [[UILabel alloc] init];
+    letterLabel.font = [UIFont fontWithName:@"GeezaPro-Bold" size:38];
+    letterLabel.textColor = [UIColor blackColor];
+    letterLabel.backgroundColor = [UIColor clearColor];
+    letterLabel.textAlignment = NSTextAlignmentCenter;
+    letterLabel.shadowColor = [UIColor whiteColor];
+    letterLabel.shadowOffset = CGSizeMake(1,1);
+
+
+    
+    letterLabel.text = [NSString stringWithFormat:@"%C",arabicLetter.unicodeGeneral];
+    [self addSubview:letterLabel];
+    
+    
     
     letterNameLabel = [[UILabel alloc] init];
     letterNameLabel.font = [UIFont fontWithName:@"MarkerFelt-Thin" size:15];
@@ -62,7 +79,10 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
     
-    CGRect labelFrame = CGRectMake(0, self.frame.size.height-2, self.frame.size.width+10, 50);
+    letterLabel.frame = self.bounds;
+    
+    
+    CGRect labelFrame = CGRectMake(0, self.frame.size.height-1, self.frame.size.width+10, 50);
     letterNameLabel.frame = labelFrame;
     [letterNameLabel sizeToFit];
     

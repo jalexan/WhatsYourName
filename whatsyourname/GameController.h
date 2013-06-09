@@ -12,10 +12,12 @@
 #import "AudioManager.h"
 
 @interface GameController : UIViewController {
+    
     IBOutlet UIButton* soundButton;
     IBOutlet UILabel* dialogLabel;
 }
 
+@property (nonatomic,readonly) CGSize screenBounds;
 @property (nonatomic,strong) AudioManager* audioManager;
 @property (nonatomic,strong) IBOutlet UIButton* soundButton;
 

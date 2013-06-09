@@ -13,7 +13,7 @@
     #import <Foundation/Foundation.h>
 #endif
 
-#define DEBUG_MODE 1
+#define DEBUG_MODE 0
 
 #if DEBUG_MODE
 #define SKIP_DIALOG 1
@@ -39,3 +39,6 @@
 #define SLOT_FRAME_INSET_FOR_FAILURE .5
 
 #endif
+
+#define RGB(r, g, b) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1]
+#define RGBA(r, g, b, a) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a]

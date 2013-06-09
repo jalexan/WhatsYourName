@@ -168,7 +168,7 @@
     
     //Spell out each letter in dialog label
     if (index==0) arabicSpellLabel.text = @"";
-    arabicSpellLabel.text = [NSString stringWithFormat:@"%@%C",arabicSpellLabel.text,letter.unicode];
+    arabicSpellLabel.text = [NSString stringWithFormat:@"%@%C",arabicSpellLabel.text,letter.unicodeGeneral];
         
     dialogLabel.alpha = .99;
     [UIView animateWithDuration: 2

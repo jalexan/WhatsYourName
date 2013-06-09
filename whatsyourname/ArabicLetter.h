@@ -15,5 +15,8 @@
 @property (nonatomic, readonly) NSString* letterName;
 @property (nonatomic, assign) int slotPosition;
 @property (nonatomic, assign) BOOL isInCorrectSlot;
-@property (nonatomic, readonly) unichar unicode;
+@property (nonatomic, readonly) unichar unicodeGeneral;
+@property (nonatomic, readonly) unichar unicodeInitial;
+@property (nonatomic, readonly) unichar unicodeMedial;
+@property (nonatomic, readonly) unichar unicodeFinal;
 @end
