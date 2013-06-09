@@ -10,13 +10,12 @@
 #import "GameController.h"
 
 @interface NameGameViewController : GameController <UITextFieldDelegate> {
-    
-    IBOutlet UILabel* dialogLabel;
+    IBOutlet UIImageView* background;
     IBOutlet UITextField* nameTextField;
     IBOutlet UIButton* goodByeButton;
     IBOutlet UIButton* restartButton;
 }
 
 - (IBAction)goodByeButtonTouched:(id)sender;
-- (IBAction)restartButtonTouched:(id)sender;
+//- (IBAction)restartButtonTouched:(id)sender;
 @end

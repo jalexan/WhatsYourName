@@ -10,7 +10,6 @@
 
 @interface NameSpellViewController : GameController {
     IBOutlet UIImageView* background;
-    IBOutlet UILabel* dialogLabel;
     IBOutlet UILabel* arabicSpellLabel;
     IBOutlet UIView* letterContainerView;
     

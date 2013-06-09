@@ -61,7 +61,7 @@
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
                         <outlet property="arabicNameView" destination="F03-GT-4x9" id="3QN-Zd-mUn"/>
-                        <outlet property="dialogLabel" destination="4g7-YX-LaA" id="exY-ay-hAx"/>
+                        <outlet property="dialogLabel" destination="4g7-YX-LaA" id="voO-g9-zhi"/>
                         <outlet property="gameProgressView" destination="Pim-J2-tjb" id="8Cs-bX-SRi"/>
                         <outlet property="mixedUpLettersAreaView" destination="oUu-Jv-0Vm" id="u0t-46-3R8"/>
                         <outlet property="slotContainerView" destination="vAG-pL-KWb" id="ipH-o0-YNm"/>
@@ -71,7 +71,48 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-494" y="-567"/>
+            <point key="canvasLocation" x="-1035" y="-139"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="p1J-pp-f1F">
+            <objects>
+                <viewController id="Tbj-Y2-qDz" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="sc4-Rd-Vwj">
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="320"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="bottomLeft" image="Resource/background.png" id="cRM-Ni-Slg">
+                                <rect key="frame" x="0.0" y="0.0" width="480" height="327"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="6rJ-97-9Ur">
+                                <rect key="frame" x="204" y="209" width="73" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Play">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="2" kind="push" id="wWZ-8D-CY6"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="BCZ-tx-1Y4"/>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XQ0-t1-pKX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-511" y="-567"/>
         </scene>
         <!--Surprise View Controller-->
         <scene sceneID="2U4-lO-KiI">
@@ -101,7 +142,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dOD-wn-Us8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1035" y="-142"/>
+            <point key="canvasLocation" x="-505" y="-139"/>
         </scene>
         <!--Name Game View Controller-->
         <scene sceneID="1Ce-3q-JD5">
@@ -111,6 +152,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="480" height="320"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="bottomLeft" image="Resource/background.png" id="u2S-xJ-ufr">
+                                <rect key="frame" x="0.0" y="0.0" width="480" height="320"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" id="CbC-Xj-Sxd">
                                 <rect key="frame" x="13" y="14" width="448" height="51"/>
                                 <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="28"/>
@@ -155,7 +200,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="restartButtonTouched:" destination="MVX-A1-ViX" eventType="touchUpInside" id="CME-G9-hJi"/>
+                                    <segue destination="Tbj-Y2-qDz" kind="push" id="xG4-ZF-rlo"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="mFS-bI-rbP">
@@ -183,18 +228,18 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
-                        <outlet property="dialogLabel" destination="CbC-Xj-Sxd" id="BQ7-Xz-gW4"/>
+                        <outlet property="background" destination="u2S-xJ-ufr" id="1cT-9M-Usn"/>
+                        <outlet property="dialogLabel" destination="CbC-Xj-Sxd" id="w67-GU-pCT"/>
                         <outlet property="goodByeButton" destination="iVx-Ek-W1U" id="CTa-8g-RNC"/>
                         <outlet property="nameTextField" destination="H7T-JC-GlF" id="Afz-vY-oCh"/>
                         <outlet property="restartButton" destination="wEg-Ri-z2Y" id="1ok-mR-BJ7"/>
                         <outlet property="soundButton" destination="mFS-bI-rbP" id="bDW-zv-WVK"/>
-                        <segue destination="2" kind="push" identifier="RestartSegue" id="Kzk-SN-JXN"/>
                         <segue destination="j5i-na-qqL" kind="push" identifier="SpellSegue" id="Hhw-8J-YMy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s4U-QE-vPB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-494" y="-142"/>
+            <point key="canvasLocation" x="-1035" y="274"/>
         </scene>
         <!--Name Spell View Controller-->
         <scene sceneID="qgt-VG-pJW">
@@ -204,7 +249,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="480" height="320"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="bottomLeft" image="background.png" id="0il-dN-9y4">
+                            <imageView userInteractionEnabled="NO" contentMode="bottomLeft" image="Resource/background.png" id="0il-dN-9y4">
                                 <rect key="frame" x="0.0" y="0.0" width="480" height="320"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </imageView>
@@ -238,13 +283,13 @@
                     <connections>
                         <outlet property="arabicSpellLabel" destination="bft-cA-YbK" id="A02-6N-GG9"/>
                         <outlet property="background" destination="0il-dN-9y4" id="msH-II-8SZ"/>
-                        <outlet property="dialogLabel" destination="qFA-W8-xeT" id="VK0-18-DBM"/>
+                        <outlet property="dialogLabel" destination="qFA-W8-xeT" id="8D5-aM-Hpd"/>
                         <outlet property="letterContainerView" destination="qfu-qU-fC2" id="9Ef-qT-F4L"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X1l-Vh-QEh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-494" y="274"/>
+            <point key="canvasLocation" x="-505" y="274"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="aTZ-UP-2aw">
@@ -261,7 +306,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="2" kind="relationship" relationship="rootViewController" id="40d-qa-xYx"/>
+                        <segue destination="Tbj-Y2-qDz" kind="relationship" relationship="rootViewController" id="JOp-GJ-nqH"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mjC-Go-9ht" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -270,7 +315,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="background.png" width="480" height="640"/>
+        <image name="Resource/background.png" width="16" height="16"/>
         <image name="question_mark.png" width="117" height="177"/>
         <image name="sound_on.png" width="128" height="128"/>
     </resources>
@@ -279,6 +324,7 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/GameController.h"/>
             <relationships>
                 <relationship kind="action" name="soundButtonTouched:"/>
+                <relationship kind="outlet" name="dialogLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="soundButton" candidateClass="UIButton"/>
             </relationships>
         </class>
@@ -292,7 +338,6 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/LetterGameViewController.h"/>
             <relationships>
                 <relationship kind="outlet" name="arabicNameView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="dialogLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="gameProgressView" candidateClass="GameProgressView"/>
                 <relationship kind="outlet" name="mixedUpLettersAreaView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="slotContainerView" candidateClass="UIView"/>
@@ -302,8 +347,7 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NameGameViewController.h"/>
             <relationships>
                 <relationship kind="action" name="goodByeButtonTouched:"/>
-                <relationship kind="action" name="restartButtonTouched:"/>
-                <relationship kind="outlet" name="dialogLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="background" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="goodByeButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="nameTextField" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="restartButton" candidateClass="UIButton"/>
@@ -314,7 +358,6 @@
             <relationships>
                 <relationship kind="outlet" name="arabicSpellLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="background" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="dialogLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="letterContainerView" candidateClass="UIView"/>
             </relationships>
         </class>
@@ -331,6 +374,6 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Kzk-SN-JXN"/>
+        <segue reference="xG4-ZF-rlo"/>
     </inferredMetricsTieBreakers>
 </document>

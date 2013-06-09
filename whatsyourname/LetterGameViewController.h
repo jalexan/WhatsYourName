@@ -12,7 +12,7 @@
 
 @interface LetterGameViewController : GameController {
 
-    IBOutlet UILabel* dialogLabel;
+    
     IBOutlet UIView* arabicNameView;
     IBOutlet UIView* slotContainerView;
     IBOutlet UIView* mixedUpLettersAreaView;

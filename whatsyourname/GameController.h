@@ -13,6 +13,7 @@
 
 @interface GameController : UIViewController {
     IBOutlet UIButton* soundButton;
+    IBOutlet UILabel* dialogLabel;
 }
 
 @property (nonatomic,strong) AudioManager* audioManager;

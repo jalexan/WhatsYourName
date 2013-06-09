@@ -41,10 +41,7 @@
     
     mainSpeaker = [SpeakerList sharedInstance].speakerArray[0];
     yourNameDialogDictionary = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];
-    
-    background.image = [UIImage imageNamed:@"Resource/background.png"];
-    background.contentMode = UIViewContentModeBottomLeft;
-    [self.view sendSubviewToBack:background];
+
     
     
     //TODO: use translatedLetterArrayForEnglishName instead of fake hardcoded array
