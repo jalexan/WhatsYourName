@@ -22,6 +22,7 @@
 		68240B2E173F07D200BDBDF8 /* LetterGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68240B2D173F07D200BDBDF8 /* LetterGameViewController.m */; };
 		68240B811740744F00BDBDF8 /* ArabicLetter.m in Sources */ = {isa = PBXBuildFile; fileRef = 68240B801740744F00BDBDF8 /* ArabicLetter.m */; };
 		68240B841740752F00BDBDF8 /* Speaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 68240B831740752F00BDBDF8 /* Speaker.m */; };
+		682900A71763D7D50067E1A8 /* ShuffleImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 682900A61763D7D50067E1A8 /* ShuffleImageView.m */; };
 		68353D691740B7810003D1EB /* ArabicLetterImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 68353D681740B7810003D1EB /* ArabicLetterImageView.m */; };
 		684FA0EB175068760074965D /* GameUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 684FA0EA175068760074965D /* GameUIView.m */; };
 		685D89021749273300847C7D /* Speakers in Resources */ = {isa = PBXBuildFile; fileRef = 685D89011749273300847C7D /* Speakers */; };
@@ -72,6 +73,8 @@
 		68240B821740752F00BDBDF8 /* Speaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Speaker.h; sourceTree = "<group>"; };
 		68240B831740752F00BDBDF8 /* Speaker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Speaker.m; sourceTree = "<group>"; };
 		68240B85174075F700BDBDF8 /* ArabicLetter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ArabicLetter.h; sourceTree = "<group>"; };
+		682900A51763D7D50067E1A8 /* ShuffleImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShuffleImageView.h; sourceTree = "<group>"; };
+		682900A61763D7D50067E1A8 /* ShuffleImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShuffleImageView.m; sourceTree = "<group>"; };
 		68353D671740B7810003D1EB /* ArabicLetterImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArabicLetterImageView.h; sourceTree = "<group>"; };
 		68353D681740B7810003D1EB /* ArabicLetterImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArabicLetterImageView.m; sourceTree = "<group>"; };
 		684FA0E9175068760074965D /* GameUIView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameUIView.h; sourceTree = "<group>"; };
@@ -218,6 +221,8 @@
 				68FA6E08174E6490000B08E1 /* GameProgressView.m */,
 				686446C3175C4DBD00BA5007 /* ProgressCircleImageView.h */,
 				686446C4175C4DBD00BA5007 /* ProgressCircleImageView.m */,
+				682900A51763D7D50067E1A8 /* ShuffleImageView.h */,
+				682900A61763D7D50067E1A8 /* ShuffleImageView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -338,6 +343,7 @@
 				681DDD3417546E0A007FFD64 /* AudioManager.m in Sources */,
 				686446C5175C4DBE00BA5007 /* ProgressCircleImageView.m in Sources */,
 				68BC242C1760485E00A041C6 /* NameSpellViewController.m in Sources */,
+				682900A71763D7D50067E1A8 /* ShuffleImageView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

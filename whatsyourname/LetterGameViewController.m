@@ -16,6 +16,7 @@
 #import "SlotImageView.h"
 #import "SurpriseViewController.h"
 #import "ProgressCircleImageView.h"
+#import "ShuffleImageView.h"
 
 @interface LetterGameViewController () {
     CGSize screenBounds;
@@ -33,6 +34,7 @@
     NSMutableArray* slotsImageViewArray;
     
     UIImageView* starsImageView;
+    ShuffleImageView* shuffleImageView;
 }
 @end
 
@@ -81,7 +83,6 @@
     [self.view addSubview:starsImageView];
     starsImageView.hidden = YES;
 
-    
     speakerArray = [SpeakerList sharedInstance].speakerArray;
     
     currentSpeakerIndex = 0;
@@ -102,10 +103,16 @@
     gameProgressView.left = scrollView.right + 30;
     gameProgressView.hidden = NO;
     
-    speakerImageView = [[SpeakerImageView alloc] initWithFrame:CGRectMake(16, 320+94, 140, 216) speaker:currentSpeaker];
+    speakerImageView = [[SpeakerImageView alloc] initWithFrame:CGRectMake(16, screenBounds.height+94, 140, 216) speaker:currentSpeaker];
     [scrollView addSubview:speakerImageView];
     speakerImageView.contentMode = UIViewContentModeBottomLeft;
     [speakerImageView animateWithDefaultAnimation];
+    
+    
+    shuffleImageView = [[ShuffleImageView alloc] initWithFrame:CGRectMake(self.view.right,speakerImageView.bottom-219,183,219) speaker:currentSpeaker];
+    [scrollView addSubview:shuffleImageView];
+                        
+    
     
     //Clear arabic name spelling
     [[arabicNameView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
@@ -141,6 +148,9 @@
             newFrame = mixedUpLettersAreaView.frame;
             newFrame.origin = CGPointMake(self.view.width-newFrame.origin.x-newFrame.size.width,newFrame.origin.y);
             mixedUpLettersAreaView.frame = newFrame;
+            
+            shuffleImageView.right = self.view.left;
+            
             
         }
         else {
@@ -246,7 +256,7 @@
             
             [self spellArabicNameWithCompletion:^() {
                 
-                [self animateType:SHUFFLE duration:3 completion:^() {
+                [self showSpeakerShuffleAnimationWithCompletion:^() {
                     
                     [self mixUpLettersWithCompletion: ^() {
                         
@@ -375,8 +385,6 @@
     [self animateArabicNameImageViewWithIndex:0 limit:[currentSpeaker.letterIndexArray count]-1 completion:completion];
 }
 
-
-
 - (void)animateArabicNameImageViewWithIndex:(NSUInteger)index limit:(NSUInteger)limit completion:(void(^)())completion {
     
     if (index>limit) {
@@ -433,14 +441,32 @@
     
 }
 
+
+- (void)showSpeakerShuffleAnimationWithCompletion:(void(^)())completion  {
+    if (!shuffleImageView.animationFound) {
+        [self animateType:SHUFFLE duration:2 completion:^() {
+
+            completion();
+        
+        }];
+    }
+    else {
+        completion();
+    }
+}
+
 - (void)animateType:(animationType)type duration:(NSTimeInterval)duration completion:(void(^)())completion {
     
+
     dialogLabel.alpha = .99;
-    [UIView animateWithDuration: duration
+    [UIView animateWithDuration: 3
                           delay: 0.0
-                        options: UIViewAnimationOptionCurveEaseIn
+                        options: UIViewAnimationOptionCurveLinear
                      animations:^{
                          dialogLabel.alpha = 1;
+                         
+
+                         
                          [speakerImageView animateWithType:type duration:duration];
                      }
                      completion:^(BOOL finished){
@@ -448,10 +474,43 @@
                         completion();
                          
                      }];
+    
+
 }
 
 - (void)mixUpLettersWithCompletion:(void(^)())completion {
+
+    NSTimeInterval shuffleDuration = 3.0;
     
+    if (shuffleImageView.animationFound)
+    {
+        
+        [speakerImageView animateWithType:SHUFFLE duration:shuffleDuration];
+        
+        [shuffleImageView animateWithDuration:shuffleDuration];
+        [UIView animateWithDuration: shuffleDuration-0.25
+                              delay: 0.0
+                            options: UIViewAnimationOptionCurveLinear
+                         animations:^{
+                             
+                              CGPoint startPoint = shuffleImageView.origin;
+                              CGPoint endPoint;
+                              endPoint.y = startPoint.y;
+                              
+                              if (startPoint.x >= screenBounds.width) {
+                                  endPoint.x = 0-shuffleImageView.width;
+                              }
+                              else {
+                                  endPoint.x = screenBounds.width;
+                              }
+                             
+                              shuffleImageView.origin = endPoint;
+                             
+                         }
+                         completion:^(BOOL finished){
+
+                         }];
+    }
     
     for (ArabicLetterImageView* imageView in letterImageViewArray) {
         CGRect r = mixedUpLettersAreaView.bounds;
@@ -461,11 +520,11 @@
         CGPoint randomPoint = CGPointMake(x, y);
         CGPoint convertedPoint = [self.view convertPoint:randomPoint fromView:mixedUpLettersAreaView];
         
-        [UIView animateWithDuration: ANIMATION_DURATION_MIX_UP_LETTERS
+        [UIView animateWithDuration: shuffleDuration
                               delay: 0.0
-                            options: UIViewAnimationOptionCurveEaseInOut
+                            options: UIViewAnimationOptionCurveLinear
                          animations:^{
-                             
+
                              imageView.center = convertedPoint;
                              
                          }
