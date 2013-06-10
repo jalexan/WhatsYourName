@@ -260,7 +260,7 @@
 }
 
 - (void)startShufflePhase {
-    //[self performSegueWithIdentifier:@"SurpriseSegue" sender:self];return;
+    [self performSegueWithIdentifier:@"SurpriseSegue" sender:self];return;
     
     [self displayDialogTextWithKey:@"Name" completion:^() {
         
@@ -293,7 +293,7 @@
 
 - (void)startSuccessPhase {
     
-    [self animateType:BRAVO duration:1 completion:^() {
+    [self animateType:BRAVO repeatingDuration:1 completion:^() {
         
         [self displayDialogTextWithKey:@"Excellent" completion:^() {
             
@@ -351,7 +351,7 @@
     dialogLabel.text = text;
     
     NSTimeInterval dialogDuration = [self getDurationAndPlaySpeakerDialogAudioWithKey:key prefix:currentSpeaker.name suffix:@"English"];
-    [speakerImageView animateWithType:TALK duration:dialogDuration];
+    [speakerImageView animateWithType:TALK repeatingDuration:dialogDuration];
     
     dialogLabel.alpha = 1;
     [UIView animateWithDuration: dialogDuration
@@ -365,7 +365,7 @@
                          dialogLabel.font = [UIFont fontWithName:@"GeezaPro-Bold" size:dialogLabel.font.pointSize];
                          dialogLabel.text = arabicText;
                          NSTimeInterval dialogDuration = [self getDurationAndPlaySpeakerDialogAudioWithKey:key prefix:currentSpeaker.name suffix:@"Arabic"];
-                         [speakerImageView animateWithType:TALK duration:dialogDuration];
+                         [speakerImageView animateWithType:TALK repeatingDuration:dialogDuration];
                          dialogLabel.alpha = 1;
                          
                          [UIView animateWithDuration: dialogDuration
@@ -385,11 +385,11 @@
     
 }
 
-- (void)animateType:(AnimationType)type duration:(NSTimeInterval)duration completion:(void(^)())completion {
+- (void)animateType:(AnimationType)type repeatingDuration:(NSTimeInterval)repeatingDuration completion:(void(^)())completion {
     
 
     dialogLabel.alpha = .99;
-    [UIView animateWithDuration: 3
+    [UIView animateWithDuration: repeatingDuration
                           delay: 0.0
                         options: UIViewAnimationOptionCurveLinear
                      animations:^{
@@ -397,7 +397,7 @@
                          
 
                          
-                         [speakerImageView animateWithType:type duration:duration];
+                         [speakerImageView animateWithType:type repeatingDuration:repeatingDuration];
                      }
                      completion:^(BOOL finished){
 
@@ -445,7 +445,7 @@
    
     
     NSTimeInterval dialogDuration = [self getDurationAndPlaySpeakerDialogAudioWithKey:@"Spell" prefix:currentSpeaker.name suffix:@"Arabic"];
-    [speakerImageView animateWithType:TALK duration:dialogDuration];
+    [speakerImageView animateWithType:TALK repeatingDuration:dialogDuration];
     [self animateArabicNameImageViewWithIndex:0 limit:[currentSpeaker.letterIndexArray count]-1 completion:completion];
 }
 
@@ -524,7 +524,7 @@
 
 - (void)showSpeakerShuffleAnimationWithCompletion:(void(^)())completion  {
     if (!shuffleImageView.animationFound) {
-        [self animateType:SHUFFLE duration:2 completion:^() {
+        [self animateType:SHUFFLE repeatingDuration:2 completion:^() {
             
             completion();
             
@@ -542,7 +542,7 @@
     if (shuffleImageView.animationFound)
     {
         
-        [speakerImageView animateWithType:SHUFFLE duration:shuffleDuration];
+        [speakerImageView animateWithType:SHUFFLE repeatingDuration:shuffleDuration];
         
         [shuffleImageView animateWithDuration:shuffleDuration];
         [UIView animateWithDuration: shuffleDuration-0.25
@@ -714,7 +714,7 @@
     //[scrollView drawBorderOnSubviews];
     speakerImageView.contentMode = UIViewContentModeCenter;
     
-    [self animateType:EXIT duration:3 completion:^() {
+    [self animateType:EXIT repeatingDuration:3 completion:^() {
         
     }];
     

@@ -18,6 +18,7 @@
 
     NSDictionary* yourNameDialogDictionary;
     SpeakerImageView* mainSpeakerImageView;
+    NSMutableArray* speakerImageViewArray;
     Speaker* mainSpeaker;
     NSString* playerName;
 }
@@ -34,11 +35,14 @@
     NSInteger leftFrameX = 0;
     NSInteger rightFrameX = 0;
     CGRect frame;
+    
+    speakerImageViewArray = [[NSMutableArray alloc] initWithCapacity:[SpeakerList sharedInstance].speakerArray.count];
     for (Speaker* speaker in [SpeakerList sharedInstance].speakerArray) {
         
         SpeakerImageView* speakerImageView = [[SpeakerImageView alloc] initWithFrame:CGRectZero
                                                                              speaker:speaker];
         speakerImageView.contentMode = UIViewContentModeScaleAspectFit;
+        [speakerImageViewArray addObject:speakerImageView];
         //speakerImageView.backgroundColor = [UIColor redColor];
         if (!mainSpeakerImageView) {
             mainSpeaker = speaker;
@@ -166,7 +170,7 @@
     dialogLabel.text = text;
    
     NSTimeInterval dialogDuration = [self getDurationAndPlaySpeakerDialogAudioWithKey:key prefix:mainSpeaker.name suffix:@"English"];
-    [mainSpeakerImageView animateWithType:TALK duration:dialogDuration];
+    [mainSpeakerImageView animateWithType:TALK repeatingDuration:dialogDuration];
     
     dialogLabel.alpha = .99;
     [UIView animateWithDuration: dialogDuration
@@ -181,7 +185,7 @@
                          dialogLabel.text = arabicText;
                          dialogLabel.alpha = .99;
                          NSTimeInterval dialogDuration = [self getDurationAndPlaySpeakerDialogAudioWithKey:key prefix:mainSpeaker.name suffix:@"Arabic"];
-                         [mainSpeakerImageView animateWithType:TALK duration:dialogDuration];
+                         [mainSpeakerImageView animateWithType:TALK repeatingDuration:dialogDuration];
                          
                          [UIView animateWithDuration: dialogDuration
                                                delay: 0.0
@@ -205,9 +209,19 @@
     nameTextField.hidden = YES;
     goodByeButton.hidden = YES;
     [self displayDialogTextWithKey:@"Nice" completion:^() {
-            [self displayDialogTextWithKey:@"Bye" completion:^() {
-                restartButton.hidden = NO;
-            }];
+
+        [self displayDialogTextWithKey:@"Bye" completion:^() {
+            
+            for (SpeakerImageView* speakerImageView in speakerImageViewArray) {
+                [speakerImageView animateWithType:BYE repeatingDuration:10];
+            }
+            
+            restartButton.hidden = NO;
+        }];
+        
+
+        
+        
     }];
     
 }

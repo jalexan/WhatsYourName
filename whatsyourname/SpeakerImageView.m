@@ -35,7 +35,7 @@
         
         NSString* filename = [NSString stringWithFormat:@"Speakers/%@/Images/default%02d.png",speaker.name,0];
         self.image = [UIImage imageNamed:filename];
-        [self animateWithType:DEFAULT duration:3.5];
+        [self animateWithType:DEFAULT repeatingDuration:3.5];
         
         defaultImagesArray = [[NSMutableArray alloc] init];
         speakImagesArray = [[NSMutableArray alloc] init];
@@ -60,6 +60,7 @@
     
     for (int i=0;i<FILE_CHECK_LITMIT;i++) {
         NSString* filename = [NSString stringWithFormat:@"Speakers/%@/Images/%@%02d.png",speaker.name,filePrefix,i];
+        
         UIImage* image = [UIImage imageNamed:filename];
         if (image) {
             [array addObject:image];
@@ -79,7 +80,7 @@
     }
 }
 
-- (void)animateWithType:(AnimationType)animationType duration:(NSTimeInterval)duration {
+- (void)animateWithType:(AnimationType)animationType repeatingDuration:(NSTimeInterval)repeatingDuration {
     lastAnimationType = animationType;
     
     if (animationType==TALK) {
@@ -90,7 +91,7 @@
         [self setAnimationRepeatCount:0];
         [self startAnimating];
         
-        [self performSelector:@selector(stopAnimatingWithType:) withObject:[NSNumber numberWithInt:lastAnimationType] afterDelay:duration];
+        [self performSelector:@selector(stopAnimatingWithType:) withObject:[NSNumber numberWithInt:lastAnimationType] afterDelay:repeatingDuration];
     }
     else if (animationType==SHUFFLE) {
         [self setAnimationImages: shuffleImagesArray]; //3
@@ -116,8 +117,10 @@
     else if (animationType==BYE) {
         [self setAnimationImages: byeImagesArray]; //1.65
         [self setAnimationDuration: byeImagesArray.count/ANIMATION_FRAMES_PER_SECOND];
-        [self setAnimationRepeatCount:1];
+        [self setAnimationRepeatCount:0];
         [self startAnimating];
+        
+        [self performSelector:@selector(stopAnimatingWithType:) withObject:[NSNumber numberWithInt:lastAnimationType] afterDelay:repeatingDuration];
         
     }
     else {
@@ -143,7 +146,7 @@
 - (void)animateWithDefaultAnimation {
     if ([self superview]) {
         if (!self.isAnimating) {
-            [self animateWithType:DEFAULT duration:1];
+            [self animateWithType:DEFAULT repeatingDuration:1];
         }
         
         NSUInteger randomDelay = (arc4random() % 3) + 4;

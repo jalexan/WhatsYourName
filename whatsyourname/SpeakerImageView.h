@@ -24,7 +24,7 @@ typedef enum {
 @property (nonatomic,strong) Speaker* speaker;
 
 - (id)initWithFrame:(CGRect)frame speaker:(Speaker*)theSpeaker;
-- (void)animateWithType:(AnimationType)animationType duration:(NSTimeInterval)duration;
+- (void)animateWithType:(AnimationType)animationType repeatingDuration:(NSTimeInterval)duration;
 - (void)animateWithDefaultAnimation;
 - (void)stopDefaultAnimation;
 - (void)setToLastExitImage;
