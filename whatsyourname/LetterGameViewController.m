@@ -124,8 +124,8 @@
     spellingArabicLetterLabel.textColor = [UIColor blackColor];
     spellingArabicLetterLabel.backgroundColor = [UIColor clearColor];
     spellingArabicLetterLabel.textAlignment = NSTextAlignmentRight;
-    spellingArabicLetterLabel.shadowColor = [UIColor whiteColor];
-    spellingArabicLetterLabel.shadowOffset = CGSizeMake(1,1);
+    //spellingArabicLetterLabel.shadowColor = [UIColor whiteColor];
+    //spellingArabicLetterLabel.shadowOffset = CGSizeMake(1,1);
     spellingArabicLetterLabel.adjustsFontSizeToFitWidth = YES;
     spellingArabicLetterLabel.minimumScaleFactor = 0.5;
     [arabicNameView addSubview:spellingArabicLetterLabel];
