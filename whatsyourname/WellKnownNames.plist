@@ -5,7 +5,7 @@
 	<key>renee</key>
 	<string>reh, yeh, noon, yeh, heh</string>
 	<key>michael</key>
-	<string>meem,  alef, yeh, kaaf, lam</string>
+	<string>meem, alef, yeh, kaaf, lam</string>
 	<key>mona</key>
 	<string>meem, wow, noon, alef maksoora</string>
 	<key>simona</key>
@@ -17,6 +17,6 @@
 	<key>ahmed</key>
 	<string>alef hamza, meem, daal</string>
 	<key>ramadan</key>
-	<string>reh, meem,  daad, alef, noon</string>
+	<string>reh, meem, daad, alef, noon</string>
 </dict>
 </plist>
