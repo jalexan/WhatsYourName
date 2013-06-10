@@ -14,7 +14,8 @@ typedef enum {
     TALK,
     SHUFFLE,
     BRAVO,
-    EXIT
+    EXIT,
+    BYE
 } AnimationType;
 
 @interface SpeakerImageView : UIImageView {

@@ -16,6 +16,7 @@
     NSMutableArray* shuffleImagesArray;
     NSMutableArray* bravoImagesArray;
     NSMutableArray* exitImagesArray;
+    NSMutableArray* byeImagesArray;
     
     AnimationType lastAnimationType;
 }
@@ -41,12 +42,14 @@
         shuffleImagesArray = [[NSMutableArray alloc] init];
         bravoImagesArray = [[NSMutableArray alloc] init];
         exitImagesArray = [[NSMutableArray alloc] init];
+        byeImagesArray = [[NSMutableArray alloc] init];
         
         [self addAnimationFilesToArray:defaultImagesArray filePrefix:@"default"];
         [self addAnimationFilesToArray:speakImagesArray filePrefix:@"talking"];
         [self addAnimationFilesToArray:shuffleImagesArray filePrefix:@"shuffle"];
         [self addAnimationFilesToArray:bravoImagesArray filePrefix:@"bravo"];
-        [self addAnimationFilesToArray:exitImagesArray filePrefix:@"exit"];        
+        [self addAnimationFilesToArray:exitImagesArray filePrefix:@"exit"];
+        [self addAnimationFilesToArray:byeImagesArray filePrefix:@"bye"];
     }
     
     return self;
@@ -109,6 +112,13 @@
         [self setAnimationRepeatCount:1];
         [self startAnimating];
 
+    }
+    else if (animationType==BYE) {
+        [self setAnimationImages: byeImagesArray]; //1.65
+        [self setAnimationDuration: byeImagesArray.count/ANIMATION_FRAMES_PER_SECOND];
+        [self setAnimationRepeatCount:1];
+        [self startAnimating];
+        
     }
     else {
         
