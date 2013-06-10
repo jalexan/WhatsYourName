@@ -120,7 +120,7 @@
     arabicNameView.backgroundColor = [UIColor clearColor];
     
     spellingArabicLetterLabel = [[UILabel alloc] initWithFrame:arabicNameView.bounds];
-    spellingArabicLetterLabel.font = [UIFont fontWithName:@"GeezaPro-Bold" size:80];
+    spellingArabicLetterLabel.font = [UIFont fontWithName:@"GeezaPro-Bold" size:100];
     spellingArabicLetterLabel.textColor = [UIColor blackColor];
     spellingArabicLetterLabel.backgroundColor = [UIColor clearColor];
     spellingArabicLetterLabel.textAlignment = NSTextAlignmentRight;
