@@ -120,7 +120,7 @@
     arabicNameView.backgroundColor = [UIColor clearColor];
     
     spellingArabicLetterLabel = [[UILabel alloc] initWithFrame:arabicNameView.bounds];
-    spellingArabicLetterLabel.font = [UIFont fontWithName:@"GeezaPro-Bold" size:100];
+    spellingArabicLetterLabel.font = [UIFont fontWithName:@"GeezaPro-Bold" size:84];
     spellingArabicLetterLabel.textColor = [UIColor blackColor];
     spellingArabicLetterLabel.backgroundColor = [UIColor clearColor];
     spellingArabicLetterLabel.textAlignment = NSTextAlignmentRight;
@@ -756,12 +756,9 @@
     pathAnimation.duration = 1.8;
     //pathAnimation.delegate = self;
     
-    
-    
     CGPoint viewOrigin = speakerImageView.center;
     CGPoint endPoint = adjustedScrollViewCenter;
-    
-    
+        
     CGMutablePathRef curvedPath = CGPathCreateMutable();
     CGPathMoveToPoint(curvedPath, NULL, viewOrigin.x, viewOrigin.y);
     CGPathAddCurveToPoint(curvedPath, NULL,
@@ -771,9 +768,7 @@
     pathAnimation.path = curvedPath;
     CGPathRelease(curvedPath);
     
-    
     [speakerImageView.layer addAnimation:pathAnimation forKey:@"curveAnimation"];
-    
     
     [UIView animateWithDuration: pathAnimation.duration/2
                           delay: 0.0
