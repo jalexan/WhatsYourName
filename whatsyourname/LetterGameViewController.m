@@ -491,9 +491,11 @@
     else { //middle letter
      
         //Spelling Exceptions
-        //TOOD: Make this less hard coded
+        //TOOD: Make this less hard coded by adding to plist
         if (index>0 && (previousLetterIndex==0 ||
+                        previousLetterIndex==31 ||
                         previousLetterIndex==32 ||
+                        previousLetterIndex==33 ||
                         previousLetterIndex==7 ||
                         previousLetterIndex==8 ||
                         previousLetterIndex==9 ||
