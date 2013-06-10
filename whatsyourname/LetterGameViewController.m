@@ -551,7 +551,7 @@
 
 - (void)showSpeakerShuffleAnimationWithCompletion:(void(^)())completion  {
     if (!shuffleImageView.animationFound) {
-        [self animateType:SHUFFLE repeatingDuration:2 keepLastFrame:YES completion:^() {
+        [self animateType:SHUFFLE repeatingDuration:3 completion:^() {
             
             completion();
             
@@ -753,7 +753,7 @@
     pathAnimation.calculationMode = kCAAnimationPaced;
     pathAnimation.fillMode = kCAFillModeForwards;
     pathAnimation.removedOnCompletion = NO;
-    pathAnimation.duration = 1.5;
+    pathAnimation.duration = 1.8;
     //pathAnimation.delegate = self;
     
     
@@ -765,8 +765,8 @@
     CGMutablePathRef curvedPath = CGPathCreateMutable();
     CGPathMoveToPoint(curvedPath, NULL, viewOrigin.x, viewOrigin.y);
     CGPathAddCurveToPoint(curvedPath, NULL,
-                          viewOrigin.x+10, viewOrigin.y-565,
-                          endPoint.x-10, endPoint.y-565,
+                          viewOrigin.x+10, viewOrigin.y-500,
+                          endPoint.x-10, endPoint.y-500,
                           endPoint.x, endPoint.y);
     pathAnimation.path = curvedPath;
     CGPathRelease(curvedPath);
@@ -775,7 +775,7 @@
     [speakerImageView.layer addAnimation:pathAnimation forKey:@"curveAnimation"];
     
     
-    [UIView animateWithDuration: .75
+    [UIView animateWithDuration: pathAnimation.duration/2
                           delay: 0.0
                         options: UIViewAnimationOptionCurveEaseInOut
                      animations:^{
@@ -791,7 +791,7 @@
                          circle_empty.center = endPoint;
                          [scrollView addSubview:circle_empty];
                          
-                         [UIView animateWithDuration: .75
+                         [UIView animateWithDuration: pathAnimation.duration/2
                                                delay: 0.0
                                              options: UIViewAnimationOptionCurveEaseInOut
                                           animations:^{
