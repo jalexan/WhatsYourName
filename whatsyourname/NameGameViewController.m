@@ -55,12 +55,12 @@
             leftFrameX = frame.origin.x;
             rightFrameX = frame.origin.x;
         }
-        else if ((index % 2) == 1) {
-            leftFrameX -= (imageSize.width*NON_PRIMARY_SPEAKER_IMAGE_SCALE);
+        else if ((index % 2) == 0) {
+            leftFrameX -= (imageSize.width*NON_PRIMARY_SPEAKER_IMAGE_SCALE-27);
             frame = CGRectMake(leftFrameX, 94, imageSize.width*NON_PRIMARY_SPEAKER_IMAGE_SCALE, imageSize.height*NON_PRIMARY_SPEAKER_IMAGE_SCALE);
         }
-        else if ((index % 2) == 0) {
-            rightFrameX += (imageSize.width);
+        else if ((index % 2) == 1) {
+            rightFrameX += (imageSize.width)-27;
             frame = CGRectMake(rightFrameX, 94, imageSize.width*NON_PRIMARY_SPEAKER_IMAGE_SCALE, imageSize.height*NON_PRIMARY_SPEAKER_IMAGE_SCALE);
         }
         
@@ -90,16 +90,12 @@
 
     [self addSpeakerImageViewsToView];
     
-    
-    
+
     goodByeButton.hidden = YES;
 	nameTextField.hidden = YES;
     restartButton.hidden = YES;
     
-
-    
 }
-
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -132,8 +128,6 @@
     
 }
 
-
-
 - (void)pushSpellController {
 
     [self displayDialogTextWithKey:@"Hello" completion:^() {
@@ -144,14 +138,12 @@
     
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.destinationViewController isKindOfClass:[NameSpellViewController class]]) {
         NameSpellViewController *spellVC = segue.destinationViewController;
         spellVC.playerName = playerName;
     }
 }
-
 
 - (void)displayDialogTextWithKey:(NSString*)key completion:(void(^)())completion {
     
@@ -202,7 +194,6 @@
                      }];
     
 }
-
 
 
 - (IBAction)goodByeButtonTouched:(id)sender {
