@@ -22,6 +22,7 @@
 @property (nonatomic,strong) IBOutlet UIButton* soundButton;
 
 - (NSTimeInterval)getDurationAndPlaySpeakerDialogAudioWithKey:(NSString*)key prefix:(NSString*)prefix  suffix:(NSString*)suffix;
+- (NSTimeInterval)getDurationDialogAudioWithKey:(NSString*)key prefix:(NSString*)prefix  suffix:(NSString*)suffix;
 - (IBAction)soundButtonTouched:(id)sender;
 
 @end

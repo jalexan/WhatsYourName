@@ -18,6 +18,8 @@
     NSMutableArray* exitImagesArray;
     NSMutableArray* byeImagesArray;
     
+    UIImage* mainSpeakerImage;
+    
     AnimationType lastAnimationType;
 }
 
@@ -34,7 +36,8 @@
         speaker = theSpeaker;
         
         NSString* filename = [NSString stringWithFormat:@"Speakers/%@/Images/default%02d.png",speaker.name,0];
-        self.image = [UIImage imageNamed:filename];
+        mainSpeakerImage = [UIImage imageNamed:filename];
+        self.image = mainSpeakerImage;
         [self animateWithType:DEFAULT repeatingDuration:3.5];
         
         defaultImagesArray = [[NSMutableArray alloc] init];
@@ -77,61 +80,78 @@
     
     if (lastAnimationType==type) {
         [self stopAnimating];
+        self.animationImages = nil;
+        self.image = mainSpeakerImage;
     }
 }
 
+- (void)animateWithType:(AnimationType)animationType repeatingDuration:(NSTimeInterval)repeatingDuration keepLastFrame:(BOOL)keepLastFrame {
+        
+     lastAnimationType = animationType;
+     
+     if (animationType==TALK) {                  
+         [self setAnimationImages: speakImagesArray]; //1.5
+         [self setAnimationDuration: speakImagesArray.count/ANIMATION_FRAMES_PER_SECOND];
+         [self setAnimationRepeatCount:0];
+         [self startAnimating];
+         
+         [self performSelector:@selector(stopAnimatingWithType:) withObject:[NSNumber numberWithInt:lastAnimationType] afterDelay:repeatingDuration];
+     }
+     else if (animationType==SHUFFLE) {
+         [self setAnimationImages: shuffleImagesArray]; //3
+         [self setAnimationDuration: shuffleImagesArray.count/ANIMATION_FRAMES_PER_SECOND];
+         [self setAnimationRepeatCount:1];
+         [self startAnimating];
+         
+     }
+
+     else if (animationType==BRAVO) {
+
+         self.animationImages = nil;
+         
+         if (keepLastFrame) {
+             self.image = bravoImagesArray.lastObject;
+         }
+
+         [self setAnimationImages: bravoImagesArray]; //1
+         [self setAnimationDuration:bravoImagesArray.count/ANIMATION_FRAMES_PER_SECOND];
+         [self setAnimationRepeatCount:1];
+         [self startAnimating];
+         
+         
+         [self performSelector:@selector(stopAnimatingWithType:) withObject:[NSNumber numberWithInt:lastAnimationType] afterDelay:repeatingDuration];
+         
+     }
+     else if (animationType==EXIT) {
+         [self setAnimationImages: exitImagesArray]; //1.65
+         [self setAnimationDuration: exitImagesArray.count/ANIMATION_FRAMES_PER_SECOND];
+         [self setAnimationRepeatCount:1];
+         [self startAnimating];
+         
+     }
+     else if (animationType==BYE) {
+         [self setAnimationImages: byeImagesArray]; //1.65
+         [self setAnimationDuration: byeImagesArray.count/ANIMATION_FRAMES_PER_SECOND];
+         [self setAnimationRepeatCount:0];
+         [self startAnimating];
+         
+         
+         [self performSelector:@selector(stopAnimatingWithType:) withObject:[NSNumber numberWithInt:lastAnimationType] afterDelay:repeatingDuration];
+         
+     }
+     else {
+         
+         [self setAnimationImages: defaultImagesArray]; //1
+         [self setAnimationDuration: defaultImagesArray.count/ANIMATION_FRAMES_PER_SECOND];
+         [self setAnimationRepeatCount: 1];
+         [self startAnimating];
+         
+         [self performSelector:@selector(stopAnimatingWithType:) withObject:[NSNumber numberWithInt:lastAnimationType] afterDelay:1];
+     }
+}
+
 - (void)animateWithType:(AnimationType)animationType repeatingDuration:(NSTimeInterval)repeatingDuration {
-    lastAnimationType = animationType;
-    
-    if (animationType==TALK) {
-        
-
-        [self setAnimationImages: speakImagesArray]; //1.5
-        [self setAnimationDuration: speakImagesArray.count/ANIMATION_FRAMES_PER_SECOND];
-        [self setAnimationRepeatCount:0];
-        [self startAnimating];
-        
-        [self performSelector:@selector(stopAnimatingWithType:) withObject:[NSNumber numberWithInt:lastAnimationType] afterDelay:repeatingDuration];
-    }
-    else if (animationType==SHUFFLE) {
-        [self setAnimationImages: shuffleImagesArray]; //3
-        [self setAnimationDuration: shuffleImagesArray.count/ANIMATION_FRAMES_PER_SECOND];
-        [self setAnimationRepeatCount:1];
-        [self startAnimating];
-
-    }
-    else if (animationType==BRAVO) {
-        [self setAnimationImages: bravoImagesArray]; //1
-        [self setAnimationDuration:bravoImagesArray.count/ANIMATION_FRAMES_PER_SECOND];
-        [self setAnimationRepeatCount:1];
-        [self startAnimating];
-
-    }
-    else if (animationType==EXIT) {
-        [self setAnimationImages: exitImagesArray]; //1.65
-        [self setAnimationDuration: exitImagesArray.count/ANIMATION_FRAMES_PER_SECOND];
-        [self setAnimationRepeatCount:1];
-        [self startAnimating];
-
-    }
-    else if (animationType==BYE) {
-        [self setAnimationImages: byeImagesArray]; //1.65
-        [self setAnimationDuration: byeImagesArray.count/ANIMATION_FRAMES_PER_SECOND];
-        [self setAnimationRepeatCount:0];
-        [self startAnimating];
-        
-        [self performSelector:@selector(stopAnimatingWithType:) withObject:[NSNumber numberWithInt:lastAnimationType] afterDelay:repeatingDuration];
-        
-    }
-    else {
-        
-        [self setAnimationImages: defaultImagesArray]; //1
-        [self setAnimationDuration: defaultImagesArray.count/ANIMATION_FRAMES_PER_SECOND];
-        [self setAnimationRepeatCount: 1];
-        [self startAnimating];
-
-        [self performSelector:@selector(stopAnimatingWithType:) withObject:[NSNumber numberWithInt:lastAnimationType] afterDelay:1];
-    }
+    [self animateWithType:animationType repeatingDuration:repeatingDuration keepLastFrame:NO];
 }
 
 - (void)setToLastExitImage {

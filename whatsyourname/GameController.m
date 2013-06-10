@@ -72,6 +72,14 @@
     return t;
 }
 
+- (NSTimeInterval)getDurationDialogAudioWithKey:(NSString*)key prefix:(NSString*)prefix  suffix:(NSString*)suffix {
+    NSString* path = [NSString stringWithFormat:@"Speakers/%@/Audio/%@%@.mp3",prefix,key,suffix];
+    [self.audioManager prepareAudioWithPath:path key:@"durationCheck"];
+    NSTimeInterval t = [self.audioManager durationOfAudio:@"durationCheck"];
+    
+    return t;
+}
+
 - (IBAction)soundButtonTouched:(id)sender {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     if (audioManager.backgroundPlayer.isPlaying) {

@@ -293,53 +293,52 @@
 
 - (void)startSuccessPhase {
     
-    [self animateType:BRAVO repeatingDuration:1 completion:^() {
+    //[self animateType:BRAVO repeatingDuration:5 keepLastFrame:YES completion:^() {
+    //}];
+    
+    [self displayDialogTextWithKey:@"Excellent" animationType:BRAVO completion:^() {
         
-        [self displayDialogTextWithKey:@"Excellent" completion:^() {
+        [self animateLevelSuccessWithCompletion:^() {
+        
+            [self displayDialogTextWithKey:@"Later" completion:^() {
             
-            [self animateLevelSuccessWithCompletion:^() {
-            
-                [self displayDialogTextWithKey:@"Later" completion:^() {
-                
-                    [self animateSpeakerSuccessWithCompletion:^() {
+                [self animateSpeakerSuccessWithCompletion:^() {
+                    
+                    [self animateProgressViewPhase1WithCompletion:^() {
+                    
+                        [self animateProgressViewPhase2WithCompletion:^() {
                         
-                        [self animateProgressViewPhase1WithCompletion:^() {
-                        
-                            [self animateProgressViewPhase2WithCompletion:^() {
-                            
-                                if ([[SpeakerList sharedInstance] isLastSpeaker:currentSpeaker]) {
-                                    
-                                    [self performSegueWithIdentifier:@"SurpriseSegue" sender:self];
-                                }
-                                else {
-                                    currentSpeakerIndex++;
-                                    currentSpeaker = [[SpeakerList sharedInstance].speakerArray objectAtIndex:currentSpeakerIndex];
-                                    [self startLevel];
-                                }
+                            if ([[SpeakerList sharedInstance] isLastSpeaker:currentSpeaker]) {
                                 
-                            }];
+                                [self performSegueWithIdentifier:@"SurpriseSegue" sender:self];
+                            }
+                            else {
+                                currentSpeakerIndex++;
+                                currentSpeaker = [[SpeakerList sharedInstance].speakerArray objectAtIndex:currentSpeakerIndex];
+                                [self startLevel];
+                            }
                             
                         }];
                         
                     }];
-                                        
+                    
                 }];
-                
+                                    
             }];
             
         }];
-                    
+        
     }];
     
 }
 
 #pragma mark Game Mechanics
-- (void)displayDialogTextWithKey:(NSString*)key completion:(void(^)())completion {
-
+- (void)displayDialogTextWithKey:(NSString*)key animationType:(AnimationType)animationType completion:(void(^)())completion {
+    
     NSDictionary* dialogDictionary = [currentSpeaker dialogForKey:key];
     if (!dialogDictionary)
         return;
-
+    
     NSString* text = [dialogDictionary objectForKey:@"English"];
     NSString* arabicText = nil;
     
@@ -350,11 +349,20 @@
     dialogLabel.font = [UIFont fontWithName:@"MarkerFelt-Thin" size:dialogLabel.font.pointSize];
     dialogLabel.text = text;
     
-    NSTimeInterval dialogDuration = [self getDurationAndPlaySpeakerDialogAudioWithKey:key prefix:currentSpeaker.name suffix:@"English"];
-    [speakerImageView animateWithType:TALK repeatingDuration:dialogDuration];
+    NSTimeInterval englishDialogDuration = [self getDurationAndPlaySpeakerDialogAudioWithKey:key prefix:currentSpeaker.name suffix:@"English"];
+    NSTimeInterval arabicDialogDuration = [self getDurationDialogAudioWithKey:key prefix:currentSpeaker.name suffix:@"Arabic"];
+    NSTimeInterval dialogDuration = englishDialogDuration + arabicDialogDuration;
+    
+    if ([key isEqualToString:@"Excellent"]) {
+        [speakerImageView animateWithType:animationType repeatingDuration:dialogDuration keepLastFrame:YES];
+    }
+    else {
+        [speakerImageView animateWithType:animationType repeatingDuration:dialogDuration];
+    }
+    
     
     dialogLabel.alpha = 1;
-    [UIView animateWithDuration: dialogDuration
+    [UIView animateWithDuration: englishDialogDuration
                           delay: 0.0
                         options: UIViewAnimationOptionCurveEaseIn
                      animations:^{
@@ -364,11 +372,11 @@
                          
                          dialogLabel.font = [UIFont fontWithName:@"GeezaPro-Bold" size:dialogLabel.font.pointSize];
                          dialogLabel.text = arabicText;
-                         NSTimeInterval dialogDuration = [self getDurationAndPlaySpeakerDialogAudioWithKey:key prefix:currentSpeaker.name suffix:@"Arabic"];
-                         [speakerImageView animateWithType:TALK repeatingDuration:dialogDuration];
+                         [self getDurationAndPlaySpeakerDialogAudioWithKey:key prefix:currentSpeaker.name suffix:@"Arabic"];
+                         //[speakerImageView animateWithType:animationType repeatingDuration:dialogDuration];
                          dialogLabel.alpha = 1;
                          
-                         [UIView animateWithDuration: dialogDuration
+                         [UIView animateWithDuration: arabicDialogDuration
                                                delay: 0.0
                                              options: UIViewAnimationOptionCurveEaseIn
                                           animations:^{
@@ -382,12 +390,15 @@
                          
                          
                      }];
-    
+
 }
 
-- (void)animateType:(AnimationType)type repeatingDuration:(NSTimeInterval)repeatingDuration completion:(void(^)())completion {
-    
+- (void)displayDialogTextWithKey:(NSString*)key completion:(void(^)())completion {
+    [self displayDialogTextWithKey:key animationType:TALK completion:completion];
+}
 
+- (void)animateType:(AnimationType)type repeatingDuration:(NSTimeInterval)repeatingDuration keepLastFrame:(BOOL)keepLastFrame completion:(void(^)())completion {
+    
     dialogLabel.alpha = .99;
     [UIView animateWithDuration: repeatingDuration
                           delay: 0.0
@@ -395,17 +406,20 @@
                      animations:^{
                          dialogLabel.alpha = 1;
                          
-
-                         
-                         [speakerImageView animateWithType:type repeatingDuration:repeatingDuration];
+                         [speakerImageView animateWithType:type repeatingDuration:repeatingDuration keepLastFrame:keepLastFrame];
                      }
                      completion:^(BOOL finished){
-
-                        completion();
+                         
+                         completion();
                          
                      }];
     
+}
 
+- (void)animateType:(AnimationType)type repeatingDuration:(NSTimeInterval)repeatingDuration completion:(void(^)())completion {
+    
+    [self animateType:type repeatingDuration:repeatingDuration keepLastFrame:NO completion:completion];
+    
 }
 
 - (void)animateImageView:(UIImageView*)imageView toPoint:(CGPoint)point {
