@@ -107,9 +107,8 @@
 
      else if (animationType==BRAVO) {
 
-         self.animationImages = nil;
-         
          if (keepLastFrame) {
+             self.animationImages = nil;
              self.image = bravoImagesArray.lastObject;
          }
 

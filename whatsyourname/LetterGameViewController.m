@@ -472,30 +472,41 @@
     
     NSUInteger letterIndex = [[currentSpeaker.letterIndexArray objectAtIndex:index] intValue];
     ArabicLetter* letter = [[ArabicLetter alloc] initWithLetterIndex:letterIndex];
+    NSUInteger previousLetterIndex;
+    
+    if (index>0) {
+        previousLetterIndex = [[currentSpeaker.letterIndexArray objectAtIndex:index-1] intValue];
+    }
+    
     letter.slotPosition = index;
-    
-    
-    //Arabic Writing
-    /*
-    UIImage* image = [UIImage imageNamed:[NSString stringWithFormat:@"Speakers/%@/Images/letter%02d.png",currentSpeaker.name,index]];
-    UIImageView* imageView = [[UIImageView alloc] initWithImage:image];
-    imageView.alpha = 0;
-    
-    CGRect imageFrame = CGRectMake((arabicNameView.width/2)-(194/2),0,194,84);
-    imageView.frame = imageFrame;
-    
-    [arabicNameView addSubview:imageView];
-    */
+
         
     unichar unicodeChar;
-    if (index==0) {
+    if (index==0) { //first letter
         unicodeChar = letter.unicodeInitial;
     }
-    else if (index==limit) {
+    else if (index==limit) { //last letter
         unicodeChar = letter.unicodeFinal;
     }
-    else {
-        unicodeChar = letter.unicodeMedial;
+    else { //middle letter
+     
+        //Spelling Exceptions
+        //TOOD: Make this less hard coded
+        if (index>0 && (previousLetterIndex==0 ||
+                        previousLetterIndex==32 ||
+                        previousLetterIndex==7 ||
+                        previousLetterIndex==8 ||
+                        previousLetterIndex==9 ||
+                        previousLetterIndex==10 ||
+                        previousLetterIndex==26 ||
+                        previousLetterIndex==28))
+            {
+                unicodeChar = letter.unicodeInitial;
+            }
+            else {
+                unicodeChar = letter.unicodeMedial;
+            }    
+        
     }
 
     spellingArabicLetterLabel.text = [NSString stringWithFormat:@"%@%C",spellingArabicLetterLabel.text,unicodeChar];
@@ -538,20 +549,20 @@
 
 - (void)showSpeakerShuffleAnimationWithCompletion:(void(^)())completion  {
     if (!shuffleImageView.animationFound) {
-        [self animateType:SHUFFLE repeatingDuration:2 completion:^() {
+        [self animateType:SHUFFLE repeatingDuration:2 keepLastFrame:YES completion:^() {
             
             completion();
             
         }];
     }
-    else {
+    else {  
         completion();
     }
 }
 
 - (void)mixUpLettersWithCompletion:(void(^)())completion {
     
-    NSTimeInterval shuffleDuration = 3.0;
+    NSTimeInterval shuffleDuration = 1.5;
     
     if (shuffleImageView.animationFound)
     {
