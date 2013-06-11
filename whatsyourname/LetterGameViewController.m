@@ -569,7 +569,7 @@
     if (shuffleImageView.animationFound)
     {
         
-        [speakerImageView animateWithType:SHUFFLE repeatingDuration:shuffleDuration];
+        [speakerImageView animateWithType:SHUFFLE repeatingDuration:shuffleDuration keepLastFrame:YES];
         
         [shuffleImageView animateWithDuration:shuffleDuration];
         [UIView animateWithDuration: shuffleDuration-0.25

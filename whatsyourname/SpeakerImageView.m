@@ -98,10 +98,17 @@
          [self performSelector:@selector(stopAnimatingWithType:) withObject:[NSNumber numberWithInt:lastAnimationType] afterDelay:repeatingDuration];
      }
      else if (animationType==SHUFFLE) {
+         if (keepLastFrame) {
+             self.animationImages = nil;
+             self.image = shuffleImagesArray.lastObject;
+         }
+         
          [self setAnimationImages: shuffleImagesArray]; //3
          [self setAnimationDuration: shuffleImagesArray.count/ANIMATION_FRAMES_PER_SECOND];
          [self setAnimationRepeatCount:1];
          [self startAnimating];
+         
+         [self performSelector:@selector(stopAnimatingWithType:) withObject:[NSNumber numberWithInt:lastAnimationType] afterDelay:repeatingDuration];
          
      }
 
