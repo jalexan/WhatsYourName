@@ -889,6 +889,7 @@
             if (objectToDrag.dragStartPoint.x != 0 && objectToDrag.dragStartPoint.y !=0) {
                 
                 if ([self isFailureIntersectCheckForSlotImageView:slotImageView arabicLetterImageView:objectToDrag]) {
+                    
                     [self displayDialogTextWithKey:@"Again" completion:^() {
                         
                     }];
