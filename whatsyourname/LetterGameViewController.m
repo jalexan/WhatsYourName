@@ -50,25 +50,25 @@
     [self startLevel];
 }
 
- -(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
+-(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
     return toInterfaceOrientation == UIInterfaceOrientationLandscapeLeft ||
     toInterfaceOrientation == UIInterfaceOrientationLandscapeRight;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     [super.audioManager prepareAudioWithPath:@"Resource/slot_correct.mp3"];
     [super.audioManager prepareAudioWithPath:@"Resource/slot_wrong.mp3"];
-
+    
     //screenBounds = CGSizeMake(480,320);
-
+    
     scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.screenBounds.width,self.screenBounds.height)];
     scrollView.bounces = NO;
     scrollView.showsHorizontalScrollIndicator = NO;
     scrollView.showsVerticalScrollIndicator = NO;
     scrollView.userInteractionEnabled = NO;
-
+    
     scrollView.contentSize = CGSizeMake(self.screenBounds.width,self.screenBounds.height*2);
     scrollView.contentOffset = CGPointMake(0,self.screenBounds.height);
     [self.view addSubview:scrollView];
@@ -79,24 +79,24 @@
     screenBackground.frame = CGRectMake(0,0,scrollView.contentSize.width,scrollView.contentSize.height);
     
     [scrollView addSubview:screenBackground];
-
+    
     
     starsImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Resource/fairy_dust.png"]];
     [self.view addSubview:starsImageView];
     starsImageView.hidden = YES;
-
+    
     speakerArray = [SpeakerList sharedInstance].speakerArray;
     
     currentSpeakerIndex = 0;
     currentSpeaker = [[SpeakerList sharedInstance].speakerArray objectAtIndex:currentSpeaker];
-
+    
     
     //add the progressview to the scrollview
     CGRect f = gameProgressView.frame;
     f.origin.y += self.screenBounds.height;
     gameProgressView.frame = f;
     [scrollView addSubview:gameProgressView];
-
+    
 }
 
 - (void)reloadGameArea {
@@ -113,7 +113,7 @@
     
     shuffleImageView = [[ShuffleImageView alloc] initWithFrame:CGRectMake(self.view.right,speakerImageView.bottom-219,183,219) speaker:currentSpeaker];
     [scrollView addSubview:shuffleImageView];
-                        
+    
     
     
     //Clear arabic name spelling
@@ -142,7 +142,7 @@
         subviewOriginDictionary[@"mixedUpLettersAreaView"] = [NSValue valueWithCGPoint:mixedUpLettersAreaView.origin];
     }
     else {
-    
+        
         //Position odd index speakers subviews to the opposite side
         if (currentSpeakerIndex % 2==1) {
             CGRect newFrame;
@@ -176,11 +176,11 @@
             newFrame = arabicNameView.frame;
             newFrame.origin = [subviewOriginDictionary[@"arabicNameView"] CGPointValue];
             arabicNameView.frame = newFrame;
-
+            
             newFrame = slotContainerView.frame;
             newFrame.origin = [subviewOriginDictionary[@"slotContainerView"] CGPointValue];
             slotContainerView.frame = newFrame;
-
+            
             newFrame = mixedUpLettersAreaView.frame;
             newFrame.origin = [subviewOriginDictionary[@"mixedUpLettersAreaView"] CGPointValue];
             mixedUpLettersAreaView.frame = newFrame;
@@ -198,7 +198,7 @@
         [imageView removeFromSuperview];
     }
     
-
+    
     CGSize slotImageSize = CGSizeMake(50, 50);
     NSInteger originY = 0;
     NSInteger heightToDivideEvenly = slotContainerView.height - slotImageSize.height; //Distance of origin of lowest slot to top of container
@@ -211,7 +211,7 @@
             numberOfSteps = (numberOfLetters/2)-1;
         }
         else { //Odd # of letters
-            numberOfSteps = (numberOfLetters/2);        
+            numberOfSteps = (numberOfLetters/2);
         }
         originYStep = heightToDivideEvenly/numberOfSteps;
     }
@@ -230,7 +230,7 @@
                 originY -= originYStep;
             }
         }
-
+        
         CGRect r = CGRectMake((slotContainerView.width-slotImageSize.width)-(slotImageSize.width*i), originY, slotImageSize.width, slotImageSize.height);
         Slot* s = [[Slot alloc] initWithPosition:i];
         SlotImageView* slotImageView = [[SlotImageView alloc] initWithFrame:r slot:s];
@@ -244,20 +244,20 @@
         //slots.alpha = 0;
     }
     
-
+    playedEnglishErrorAudio = NO;
     [self.audioManager loadErrorAudioWithPrefix:currentSpeaker.name key:@"Again"];
 }
 
 #pragma mark Game Phases
 - (void)startLevel {
-   
-
+    
+    
     [self reloadGameArea];
-
-   
+    
+    
     [self startShufflePhase];
-
-
+    
+    
 }
 
 - (void)startShufflePhase {
@@ -284,7 +284,7 @@
                     }];
                     
                 }];
-                                
+                
             }];
             
         }];
@@ -300,15 +300,15 @@
     [self displayDialogTextWithKey:@"Excellent" animationType:BRAVO completion:^() {
         
         [self animateLevelSuccessWithCompletion:^() {
-        
-            [self displayDialogTextWithKey:@"Later" completion:^() {
             
+            [self displayDialogTextWithKey:@"Later" completion:^() {
+                
                 [self animateSpeakerSuccessWithCompletion:^() {
                     
                     [self animateProgressViewPhase1WithCompletion:^() {
-                    
-                        [self animateProgressViewPhase2WithCompletion:^() {
                         
+                        [self animateProgressViewPhase2WithCompletion:^() {
+                            
                             if ([[SpeakerList sharedInstance] isLastSpeaker:currentSpeaker]) {
                                 
                                 [self performSegueWithIdentifier:@"SurpriseSegue" sender:self];
@@ -324,7 +324,7 @@
                     }];
                     
                 }];
-                                    
+                
             }];
             
         }];
@@ -391,7 +391,7 @@
                          
                          
                      }];
-
+    
 }
 
 - (void)displayDialogTextWithKey:(NSString*)key completion:(void(^)())completion {
@@ -457,7 +457,7 @@
     [spellingArabicLetterLabel sizeToFit];
     spellingArabicLetterLabel.text = @"";
     spellingArabicLetterLabel.center = CGPointMake(spellingArabicLetterLabel.superview.width/2,spellingArabicLetterLabel.superview.height/2);
-   
+    
     
     NSTimeInterval dialogDuration = [self getDurationAndPlaySpeakerDialogAudioWithKey:@"Spell" prefix:currentSpeaker.name suffix:@"Arabic"];
     [speakerImageView animateWithType:TALK repeatingDuration:dialogDuration];
@@ -480,8 +480,8 @@
     }
     
     letter.slotPosition = index;
-
-        
+    
+    
     unichar unicodeChar;
     if (index==0) { //first letter
         unicodeChar = letter.unicodeInitial;
@@ -490,7 +490,7 @@
         unicodeChar = letter.unicodeFinal;
     }
     else { //middle letter
-     
+        
         //Spelling Exceptions
         //TOOD: Make this less hard coded by adding to plist
         if (index>0 && (previousLetterIndex==0 ||
@@ -503,18 +503,18 @@
                         previousLetterIndex==10 ||
                         previousLetterIndex==26 ||
                         previousLetterIndex==28))
-            {
-                unicodeChar = letter.unicodeInitial;
-            }
-            else {
-                unicodeChar = letter.unicodeMedial;
-            }    
+        {
+            unicodeChar = letter.unicodeInitial;
+        }
+        else {
+            unicodeChar = letter.unicodeMedial;
+        }
         
     }
-
+    
     spellingArabicLetterLabel.text = [NSString stringWithFormat:@"%@%C",spellingArabicLetterLabel.text,unicodeChar];
     
-
+    
     
     //Spell out each letter in dialog label
     if (index==0) dialogLabel.text = @"";
@@ -551,7 +551,7 @@
 }
 
 - (void)showSpeakerShuffleAnimationWithCompletion:(void(^)())completion  {
-    playedEnglishErrorAudio = NO;
+    
     
     if (!shuffleImageView.animationFound) {
         [self animateType:SHUFFLE repeatingDuration:3 completion:^() {
@@ -560,7 +560,7 @@
             
         }];
     }
-    else {  
+    else {
         completion();
     }
 }
@@ -761,7 +761,7 @@
     
     CGPoint viewOrigin = speakerImageView.center;
     CGPoint endPoint = adjustedScrollViewCenter;
-        
+    
     CGMutablePathRef curvedPath = CGPathCreateMutable();
     CGPathMoveToPoint(curvedPath, NULL, viewOrigin.x, viewOrigin.y);
     CGPathAddCurveToPoint(curvedPath, NULL,
@@ -814,18 +814,18 @@
 #pragma mark Game Slot Mechanics
 - (BOOL)isCorrectSlot:(SlotImageView*)slotImageView forLetterImageView:(ArabicLetterImageView*)letterImageView {
     
-
+    
     if (slotImageView.slot.position == letterImageView.arabicLetter.slotPosition) {
         return YES;
     }
-
+    
     return NO;
 }
 
 - (SlotImageView*)slotThatIntersectsArabicLetterImageView:(ArabicLetterImageView*)letterImageView {
     
     for (SlotImageView* slotImageView in slotsImageViewArray) {
-
+        
         if (!slotImageView.slot.isFilled && CGRectIntersectsRect(slotImageView.frame, letterImageView.frame)) {
             return slotImageView;
         }
@@ -870,10 +870,10 @@
     //NSTimeInterval arabicDialogDuration = [self getDurationDialogAudioWithKey:key prefix:currentSpeaker.name suffix:@"Arabic"];
     //NSTimeInterval dialogDuration = englishDialogDuration + arabicDialogDuration;
     
-
-    [speakerImageView animateWithType:animationType repeatingDuration:2];
+    NSTimeInterval audioDuration = [self.audioManager playErrorAudio];
+    [speakerImageView animateWithType:animationType repeatingDuration:audioDuration];
     
-    [self.audioManager playErrorAudio];
+    
     
     dialogLabel.alpha = 1;
     [UIView animateWithDuration: 2
@@ -903,12 +903,12 @@
         
         objectToDrag.center = location;
         
-        SlotImageView* slotImageView = [self slotThatIntersectsArabicLetterImageView:objectToDrag];        
+        SlotImageView* slotImageView = [self slotThatIntersectsArabicLetterImageView:objectToDrag];
         
-        if (slotImageView && [self isCorrectSlot:slotImageView forLetterImageView:objectToDrag]) {            
+        if (slotImageView && [self isCorrectSlot:slotImageView forLetterImageView:objectToDrag]) {
             [super.audioManager playAudio:@"Resource/slot_correct.mp3" volume:1];
             [self animateImageView:objectToDrag toPoint:slotImageView.center];
-
+            
             objectToDrag.arabicLetter.isInCorrectSlot = YES;
             slotImageView.slot.arabicLetter = objectToDrag.arabicLetter;
             
@@ -923,7 +923,7 @@
                 
                 if ([self isFailureIntersectCheckForSlotImageView:slotImageView arabicLetterImageView:objectToDrag]) {
                     
-                    if (!playedEnglishErrorAudio) {
+                    if (!playedEnglishErrorAudio || !self.audioManager.hasErrorAudio) {
                         [self displayDialogTextWithKey:@"Again" completion:^() {}];
                         playedEnglishErrorAudio = YES;
                     }
@@ -936,12 +936,12 @@
                     [self animateImageView:objectToDrag toPoint:objectToDrag.dragStartPoint];
                     objectToDrag.dragStartPoint = CGPointZero;
                 }
-                                
+                
             }
         }
     }
- 
-
+    
+    
 }
 
 
@@ -957,7 +957,7 @@
         //Don't save the dragstartpoint when the letter is already on top of a slot to prevent false positives
         //SlotImageView* slotImageView = [self slotThatIntersectsArabicLetterImageView:objectToDrag];
         //if (!slotImageView) {
-            objectToDrag.dragStartPoint = location;
+        objectToDrag.dragStartPoint = location;
         //}
         [self.view bringSubviewToFront:objectToDrag];
     }

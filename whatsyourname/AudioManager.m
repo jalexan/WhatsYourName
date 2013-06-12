@@ -87,13 +87,17 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(AudioManager)
     
 }
 
+- (BOOL)hasErrorAudio {
+    return errorDialogSoundsArray.count>0;
+}
+
 - (void)loadErrorAudioWithPrefix:(NSString*)prefix key:(NSString*)key {
     playedSequentialErrorAudio = NO;
     sequentialErrorAudioIndex = 0;
     
     errorDialogSoundsArray = [[NSMutableArray alloc] init];
     
-    for (int i=1;i<5;i++) {
+    for (int i=1;i<9;i++) {
         
         NSString* path = [NSString stringWithFormat:@"Speakers/%@/Audio/%@Arabic%d.mp3",prefix,key,i];
         
@@ -114,14 +118,17 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(AudioManager)
     }
 }
 
-- (void)playErrorAudio {
+- (NSTimeInterval)playErrorAudio {
+    
+    NSTimeInterval t = 0;
     
     if (playedSequentialErrorAudio) {
         NSUInteger randomErrorAudioIndex = (arc4random() % errorDialogSoundsArray.count);
         
         NSString* path = errorDialogSoundsArray[randomErrorAudioIndex];
         [self prepareAudioWithPath:path key:@"talking"];
-        [self playAudio:path volume:0.5];
+        t = [self durationOfAudio:@"talking"];
+        [self playAudio:@"talking" volume:0.1];
         
     }
     else {
@@ -129,7 +136,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(AudioManager)
         if (errorDialogSoundsArray.count>0 && sequentialErrorAudioIndex < errorDialogSoundsArray.count) {
             NSString* path = errorDialogSoundsArray[sequentialErrorAudioIndex];
             [self prepareAudioWithPath:path key:@"talking"];
-            [self playAudio:path volume:0.5];
+            t = [self durationOfAudio:@"talking"];
+            [self playAudio:@"talking" volume:0.1];
             sequentialErrorAudioIndex++;
             
             if (sequentialErrorAudioIndex==errorDialogSoundsArray.count) {
@@ -140,6 +148,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(AudioManager)
         
     }
     
+    return t;
 }
 
 - (void)playAudio:(NSString*)audioName volume:(float)volume {
