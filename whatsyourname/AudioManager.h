@@ -26,6 +26,6 @@
 - (void)pauseAudio:(NSString*)audioName;
 - (NSTimeInterval)durationOfAudio:(NSString*)audioName;
 - (void)playBackgroundAudioWithPath:(NSString*)audioPath volume:(float)volume;
-
-
+- (void)loadErrorAudioWithPrefix:(NSString*)prefix key:(NSString*)key;
+- (void)playErrorAudio;
 @end

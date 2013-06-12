@@ -14,6 +14,10 @@
     NSMutableDictionary* audioNameToPlayer;
     AVAudioPlayer* backgroundPlayer;
     BOOL otherAudioIsPlaying;
+    
+    NSMutableArray* errorDialogSoundsArray;
+    BOOL playedSequentialErrorAudio;
+    int sequentialErrorAudioIndex;
 }
 @end
 
@@ -80,6 +84,61 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(AudioManager)
     
     [audioNameToPlayer setValue:player forKey:key];
     return player;
+    
+}
+
+- (void)loadErrorAudioWithPrefix:(NSString*)prefix key:(NSString*)key {
+    playedSequentialErrorAudio = NO;
+    sequentialErrorAudioIndex = 0;
+    
+    errorDialogSoundsArray = [[NSMutableArray alloc] init];
+    
+    for (int i=1;i<5;i++) {
+        
+        NSString* path = [NSString stringWithFormat:@"Speakers/%@/Audio/%@Arabic%d.mp3",prefix,key,i];
+        
+        NSURL *url = nil;
+
+        @try {
+            url = [NSURL fileURLWithPath:[[NSBundle mainBundle]
+                                             pathForResource:path
+                                             ofType:nil]];
+        }
+        @catch(NSException* e) {
+            NSLog(@"error in loadErrorAudioWithPrefix: audioPath: %@ Error: %@",path,e.description);
+        }
+        
+        if (url) {
+            [errorDialogSoundsArray addObject:path];
+        }
+    }
+}
+
+- (void)playErrorAudio {
+    
+    if (playedSequentialErrorAudio) {
+        NSUInteger randomErrorAudioIndex = (arc4random() % errorDialogSoundsArray.count);
+        
+        NSString* path = errorDialogSoundsArray[randomErrorAudioIndex];
+        [self prepareAudioWithPath:path key:@"talking"];
+        [self playAudio:path volume:0.5];
+        
+    }
+    else {
+        
+        if (errorDialogSoundsArray.count>0 && sequentialErrorAudioIndex < errorDialogSoundsArray.count) {
+            NSString* path = errorDialogSoundsArray[sequentialErrorAudioIndex];
+            [self prepareAudioWithPath:path key:@"talking"];
+            [self playAudio:path volume:0.5];
+            sequentialErrorAudioIndex++;
+            
+            if (sequentialErrorAudioIndex==errorDialogSoundsArray.count) {
+                playedSequentialErrorAudio = YES;
+            }
+
+        }
+        
+    }
     
 }
 

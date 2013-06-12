@@ -35,6 +35,8 @@
     UIImageView* starsImageView;
     ShuffleImageView* shuffleImageView;
     UILabel* spellingArabicLetterLabel;
+    
+    BOOL playedEnglishErrorAudio;
 }
 @end
 
@@ -163,7 +165,6 @@
             
             shuffleImageView.right = self.view.left;
             
-            
         }
         else {
             CGRect newFrame;
@@ -244,8 +245,8 @@
     }
     
 
-    
-}   
+    [self.audioManager loadErrorAudioWithPrefix:currentSpeaker.name key:@"Again"];
+}
 
 #pragma mark Game Phases
 - (void)startLevel {
@@ -550,6 +551,8 @@
 }
 
 - (void)showSpeakerShuffleAnimationWithCompletion:(void(^)())completion  {
+    playedEnglishErrorAudio = NO;
+    
     if (!shuffleImageView.animationFound) {
         [self animateType:SHUFFLE repeatingDuration:3 completion:^() {
             
@@ -857,6 +860,36 @@
     return YES;
 }
 
+- (void)playErrorAudioWithKey:(NSString*)key animationType:(AnimationType)animationType completion:(void(^)())completion {
+    NSDictionary* dialogDictionary = [currentSpeaker dialogForKey:key];
+    if (!dialogDictionary)
+        return;
+    
+    
+    //NSTimeInterval englishDialogDuration = [self getDurationAndPlaySpeakerDialogAudioWithKey:key prefix:currentSpeaker.name suffix:@"English"];
+    //NSTimeInterval arabicDialogDuration = [self getDurationDialogAudioWithKey:key prefix:currentSpeaker.name suffix:@"Arabic"];
+    //NSTimeInterval dialogDuration = englishDialogDuration + arabicDialogDuration;
+    
+
+    [speakerImageView animateWithType:animationType repeatingDuration:2];
+    
+    [self.audioManager playErrorAudio];
+    
+    dialogLabel.alpha = 1;
+    [UIView animateWithDuration: 2
+                          delay: 0.0
+                        options: UIViewAnimationOptionCurveEaseIn
+                     animations:^{
+                         dialogLabel.alpha = .99;
+                     }
+                     completion:^(BOOL finished){
+                         
+                         dialogLabel.alpha = 1;
+                         completion();
+                         
+                     }];
+}
+
 
 #pragma mark Touches
 - (void)touchesMoved:(NSSet*)touches withEvent:(UIEvent*)event {
@@ -890,9 +923,15 @@
                 
                 if ([self isFailureIntersectCheckForSlotImageView:slotImageView arabicLetterImageView:objectToDrag]) {
                     
-                    [self displayDialogTextWithKey:@"Again" completion:^() {
-                        
-                    }];
+                    if (!playedEnglishErrorAudio) {
+                        [self displayDialogTextWithKey:@"Again" completion:^() {}];
+                        playedEnglishErrorAudio = YES;
+                    }
+                    else {
+                        [self playErrorAudioWithKey:@"Again" animationType:TALK completion:^() {}];
+                    }
+                    
+                    
                     [super.audioManager playAudio:@"Resource/slot_wrong.mp3" volume:1];
                     [self animateImageView:objectToDrag toPoint:objectToDrag.dragStartPoint];
                     objectToDrag.dragStartPoint = CGPointZero;
@@ -904,6 +943,8 @@
  
 
 }
+
+
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     UITouch *touch = [touches anyObject];
