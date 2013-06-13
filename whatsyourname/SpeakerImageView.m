@@ -108,7 +108,7 @@
          [self setAnimationRepeatCount:1];
          [self startAnimating];
          
-         [self performSelector:@selector(stopAnimatingWithType:) withObject:[NSNumber numberWithInt:lastAnimationType] afterDelay:repeatingDuration];
+         [self performSelector:@selector(stopAnimatingWithType:) withObject:[NSNumber numberWithInt:lastAnimationType] afterDelay:self.animationDuration];
          
      }
 
@@ -125,7 +125,7 @@
          [self startAnimating];
          
          
-         [self performSelector:@selector(stopAnimatingWithType:) withObject:[NSNumber numberWithInt:lastAnimationType] afterDelay:repeatingDuration];
+         [self performSelector:@selector(stopAnimatingWithType:) withObject:[NSNumber numberWithInt:lastAnimationType] afterDelay:self.animationDuration];
          
      }
      else if (animationType==EXIT) {
@@ -138,11 +138,11 @@
      else if (animationType==BYE) {
          [self setAnimationImages: byeImagesArray]; //1.65
          [self setAnimationDuration: byeImagesArray.count/ANIMATION_FRAMES_PER_SECOND];
-         [self setAnimationRepeatCount:0];
+         [self setAnimationRepeatCount:1];
          [self startAnimating];
          
          
-         [self performSelector:@selector(stopAnimatingWithType:) withObject:[NSNumber numberWithInt:lastAnimationType] afterDelay:repeatingDuration];
+         [self performSelector:@selector(stopAnimatingWithType:) withObject:[NSNumber numberWithInt:lastAnimationType] afterDelay:self.animationDuration];
          
      }
      else {
@@ -152,7 +152,7 @@
          [self setAnimationRepeatCount: 1];
          [self startAnimating];
          
-         [self performSelector:@selector(stopAnimatingWithType:) withObject:[NSNumber numberWithInt:lastAnimationType] afterDelay:1];
+         [self performSelector:@selector(stopAnimatingWithType:) withObject:[NSNumber numberWithInt:lastAnimationType] afterDelay:self.animationDuration];
      }
 }
 
@@ -169,22 +169,26 @@
     return [exitImagesArray lastObject];;
 }
 
-- (void)animateWithDefaultAnimation {
+- (void)repeatAnimationNumber:(NSNumber*)type {
+    [self repeatAnimation:[type integerValue]];
+}
+
+- (void)repeatAnimation:(AnimationType)type {
     if ([self superview]) {
         if (!self.isAnimating) {
-            [self animateWithType:DEFAULT repeatingDuration:1];
+            [self animateWithType:type repeatingDuration:1];
         }
         
         NSUInteger randomDelay = (arc4random() % 3) + 4;
         
-        [self performSelector:@selector(animateWithDefaultAnimation) withObject:nil afterDelay:randomDelay];
+        [self performSelector:@selector(repeatAnimationNumber:) withObject:[NSNumber numberWithInt:type] afterDelay:randomDelay];
     }
     else {
         [NSObject cancelPreviousPerformRequestsWithTarget:self];        
     }
 }
 
-- (void)stopDefaultAnimation {
+- (void)stopRepeatingAnimations {
     [NSObject cancelPreviousPerformRequestsWithTarget:self];  
 }
 

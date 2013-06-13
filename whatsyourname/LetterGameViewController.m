@@ -108,7 +108,7 @@
     speakerImageView = [[SpeakerImageView alloc] initWithFrame:CGRectMake(16, self.screenBounds.height+94, 140, 216) speaker:currentSpeaker];
     [scrollView addSubview:speakerImageView];
     speakerImageView.contentMode = UIViewContentModeBottomLeft;
-    [speakerImageView animateWithDefaultAnimation];
+    [speakerImageView repeatAnimation:DEFAULT];
     
     
     shuffleImageView = [[ShuffleImageView alloc] initWithFrame:CGRectMake(self.view.right,speakerImageView.bottom-219,183,219) speaker:currentSpeaker];
@@ -738,7 +738,7 @@
 }
 
 - (void)animateSpeakerSuccessWithCompletion:(void(^)())completion {
-    [speakerImageView stopDefaultAnimation];
+    [speakerImageView stopRepeatingAnimations];
     [speakerImageView setToLastExitImage];
     
     //[scrollView drawBorderOnSubviews];

@@ -26,8 +26,8 @@ typedef enum {
 - (id)initWithFrame:(CGRect)frame speaker:(Speaker*)theSpeaker;
 - (void)animateWithType:(AnimationType)animationType repeatingDuration:(NSTimeInterval)duration;
 - (void)animateWithType:(AnimationType)animationType repeatingDuration:(NSTimeInterval)repeatingDuration keepLastFrame:(BOOL)keepLastFrame;
-- (void)animateWithDefaultAnimation;
-- (void)stopDefaultAnimation;
+- (void)repeatAnimation:(AnimationType)type;
+- (void)stopRepeatingAnimations;
 - (void)setToLastExitImage;
 - (UIImage*)lastExitImage;
 @end

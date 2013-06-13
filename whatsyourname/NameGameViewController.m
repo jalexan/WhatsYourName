@@ -69,7 +69,7 @@
         //        /speakerImageView.centerX = self.view.centerX;
         //speakerImageView.bottom = self.view.bottom;
         [self.view addSubview:speakerImageView];
-        [speakerImageView animateWithDefaultAnimation];
+        [speakerImageView repeatAnimation:DEFAULT];
         
         index++;
     }
@@ -204,15 +204,11 @@
         [self displayDialogTextWithKey:@"Bye" completion:^() {
             
             for (SpeakerImageView* speakerImageView in speakerImageViewArray) {
-                [speakerImageView animateWithType:BYE repeatingDuration:10];
+                [speakerImageView repeatAnimation:BYE];
             }
             
             restartButton.hidden = NO;
         }];
-        
-
-        
-        
     }];
     
 }
