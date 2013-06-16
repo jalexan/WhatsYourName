@@ -31,8 +31,14 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(AudioManager)
 	if ((self = [super init])) {
         
         [self initializeAudio];
-        [self playBackgroundAudioWithPath:@"Resource/bg.mp3" volume:BG_MUSIC_VOLUME];
         
+        
+        [self prepareBackgroundAudioWithPath:@"Resource/bg.mp3" volume:BG_MUSIC_VOLUME];
+        
+        if ([[NSUserDefaults standardUserDefaults] boolForKey:@"pauseMusic"] == 0 && !otherAudioIsPlaying) {
+            [backgroundPlayer play];
+        }
+
 	}
 	return self;
 }
@@ -199,17 +205,14 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(AudioManager)
     
 }
 
-- (void)playBackgroundAudioWithPath:(NSString*)audioPath volume:(float)volume {
+- (void)prepareBackgroundAudioWithPath:(NSString*)audioPath volume:(float)volume {
     if (backgroundPlayer != nil){
         [backgroundPlayer stop];
     }
     backgroundPlayer = [self prepareAudioWithPath:audioPath];
     [backgroundPlayer setNumberOfLoops:-1];
-    
-    if (!otherAudioIsPlaying){
-        backgroundPlayer.volume = BG_MUSIC_VOLUME;
-        [backgroundPlayer play];
-    }
+    backgroundPlayer.volume = BG_MUSIC_VOLUME;
+
 }
 
 - (void)beginInterruption{
