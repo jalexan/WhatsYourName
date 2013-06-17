@@ -17,6 +17,10 @@
 #import "SurpriseViewController.h"
 #import "ProgressCircleImageView.h"
 #import "ShuffleImageView.h"
+#import "StarImageView.h"
+
+#define ARC4RANDOM_MAX  0x100000000
+#define NUMBER_OF_SUCCESS_STARS 150
 
 @interface LetterGameViewController () {
     CGPoint adjustedScrollViewCenter;
@@ -37,6 +41,7 @@
     UILabel* spellingArabicLetterLabel;
     
     BOOL playedEnglishErrorAudio;
+
 }
 @end
 
@@ -49,6 +54,8 @@
     
     [self startLevel];
 }
+
+
 
 -(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
     return toInterfaceOrientation == UIInterfaceOrientationLandscapeLeft ||
@@ -96,6 +103,9 @@
     f.origin.y += self.screenBounds.height;
     gameProgressView.frame = f;
     [scrollView addSubview:gameProgressView];
+    
+    
+
     
 }
 
@@ -625,9 +635,106 @@
 }
 
 #pragma mark Success Methods
+
+- (void)addStarWithCompletion:(void(^)())completion {
+    
+    
+    int randomX = (arc4random() % 10)-5;
+    int randomY = (arc4random() % 10)-5;
+    StarImageView* star = [[StarImageView alloc] initWithFrame:CGRectMake(arabicNameView.center.x + randomX,arabicNameView.bottom + randomY,25,25)];
+
+    
+    
+    CGPoint endPoint = CGPointZero;
+    
+    int randomSide = arc4random() % 4;
+
+    switch (randomSide) {
+        case 0:
+            endPoint.x = 0;
+            endPoint.y = arc4random() % (int)self.screenBounds.height;
+            break;
+        case 1:
+            endPoint.x = self.screenBounds.width;
+            endPoint.y = arc4random() % (int)self.screenBounds.height;
+            break;
+        case 2:
+            endPoint.x = arc4random() % (int)self.screenBounds.width;
+            endPoint.y = 0;
+            break;
+        case 3:
+            endPoint.x = arc4random() % (int)self.screenBounds.height;
+            endPoint.y = self.screenBounds.height;
+            break;
+            
+        default:
+            break;
+    }
+    
+    [self.view addSubview:star];
+    [star animateWithEndPoint:(CGPoint)endPoint completion:^() {
+
+        completion();
+        
+        //NSLog(@"%d",starCount);
+        
+    }];
+  
+}
+
 - (void)animateLevelSuccessWithCompletion:(void(^)())completion {
     //CGRect startRect = CGRectMake(self.view.bounds.size.width, self.view.bounds.size/height/2, 79, 155);
     
+  
+    for (int index=0;index<NUMBER_OF_SUCCESS_STARS;index++) {
+        
+        float randomDuration;
+        if (index==0) {
+            randomDuration = ((float)arc4random()/ARC4RANDOM_MAX)*3;
+        }
+        else if (index%5==0) {
+            randomDuration = ((float)arc4random()/ARC4RANDOM_MAX)*3;
+        }
+        
+        
+        if (index==NUMBER_OF_SUCCESS_STARS-1) {
+            [self performSelector:@selector(addStarWithCompletion:) withObject:completion afterDelay:randomDuration];
+        }
+        else {
+            [self performSelector:@selector(addStarWithCompletion:) withObject:^(){} afterDelay:randomDuration];
+        }
+        
+    
+        
+
+    }
+    
+    
+    
+    [UIView animateWithDuration: 5
+                          delay: 0.0
+                        options: UIViewAnimationOptionCurveLinear
+                     animations:^{
+                         
+                         starsImageView.alpha = 1;
+                         starsImageView.center = self.view.center;
+                         arabicNameView.alpha = 0;
+                         
+                         for (UIImageView* v in letterImageViewArray) {
+                             v.alpha = 0;
+                         }
+                         
+                         for (UIImageView* v in slotsImageViewArray) {
+                             v.alpha = 0;
+                         }
+                         
+                     }
+                     completion:^(BOOL finished){
+                         
+                     }];
+    
+    
+    /*
     CGPoint startPoint = self.view.center;
     startPoint.x = self.view.right+80;
     
@@ -673,7 +780,7 @@
                          
                      }];
     
-    
+    */
     
 }
 
