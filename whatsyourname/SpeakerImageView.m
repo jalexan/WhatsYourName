@@ -93,9 +93,7 @@
          [self setAnimationImages: speakImagesArray]; //1.5
          [self setAnimationDuration: speakImagesArray.count/ANIMATION_FRAMES_PER_SECOND];
          [self setAnimationRepeatCount:0];
-         [self startAnimating];
          
-         [self performSelector:@selector(stopAnimatingWithType:) withObject:[NSNumber numberWithInt:lastAnimationType] afterDelay:repeatingDuration];
      }
      else if (animationType==SHUFFLE) {
          if (keepLastFrame) {
@@ -106,9 +104,7 @@
          [self setAnimationImages: shuffleImagesArray]; //3
          [self setAnimationDuration: shuffleImagesArray.count/ANIMATION_FRAMES_PER_SECOND];
          [self setAnimationRepeatCount:1];
-         [self startAnimating];
-         
-         [self performSelector:@selector(stopAnimatingWithType:) withObject:[NSNumber numberWithInt:lastAnimationType] afterDelay:self.animationDuration];
+
          
      }
 
@@ -122,27 +118,23 @@
          [self setAnimationImages: bravoImagesArray]; //1
          [self setAnimationDuration:bravoImagesArray.count/ANIMATION_FRAMES_PER_SECOND];
          [self setAnimationRepeatCount:1];
-         [self startAnimating];
+
          
-         
-         [self performSelector:@selector(stopAnimatingWithType:) withObject:[NSNumber numberWithInt:lastAnimationType] afterDelay:self.animationDuration];
          
      }
      else if (animationType==EXIT) {
          [self setAnimationImages: exitImagesArray]; //1.65
          [self setAnimationDuration: exitImagesArray.count/ANIMATION_FRAMES_PER_SECOND];
          [self setAnimationRepeatCount:1];
-         [self startAnimating];
+
          
      }
      else if (animationType==BYE) {
          [self setAnimationImages: byeImagesArray]; //1.65
          [self setAnimationDuration: byeImagesArray.count/ANIMATION_FRAMES_PER_SECOND];
          [self setAnimationRepeatCount:1];
-         [self startAnimating];
+
          
-         
-         [self performSelector:@selector(stopAnimatingWithType:) withObject:[NSNumber numberWithInt:lastAnimationType] afterDelay:self.animationDuration];
          
      }
      else {
@@ -150,10 +142,29 @@
          [self setAnimationImages: defaultImagesArray]; //1
          [self setAnimationDuration: defaultImagesArray.count/ANIMATION_FRAMES_PER_SECOND];
          [self setAnimationRepeatCount: 1];
-         [self startAnimating];
+
          
-         [self performSelector:@selector(stopAnimatingWithType:) withObject:[NSNumber numberWithInt:lastAnimationType] afterDelay:self.animationDuration];
      }
+    
+    
+    [self startAnimating];
+    
+    
+    if (animationType!=EXIT) {
+        NSTimeInterval afterDelay;
+        if (self.animationRepeatCount==0) {
+            afterDelay = repeatingDuration;
+        }
+        else {
+            afterDelay = self.animationDuration;
+        }
+        
+        
+        [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(stopAnimatingWithType:) object:[NSNumber numberWithInt:lastAnimationType]];
+        [self performSelector:@selector(stopAnimatingWithType:) withObject:[NSNumber numberWithInt:lastAnimationType] afterDelay:afterDelay];
+    
+    }
+    
 }
 
 - (void)animateWithType:(AnimationType)animationType repeatingDuration:(NSTimeInterval)repeatingDuration {
