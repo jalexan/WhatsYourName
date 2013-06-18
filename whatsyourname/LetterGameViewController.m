@@ -283,13 +283,13 @@
                     
                     [self mixUpLettersWithCompletion: ^() {
                         
-                        [self displayDialogTextWithKey:@"Shuffle" completion:^() {
+                        //[self displayDialogTextWithKey:@"Shuffle" completion:^() {
                             
                             [self displayDialogTextWithKey:@"Try" completion:^() {
                                 
                             }];
                             
-                        }];
+                        //}];
                         
                     }];
                     
@@ -364,7 +364,7 @@
     NSTimeInterval arabicDialogDuration = [self getDurationDialogAudioWithKey:key prefix:currentSpeaker.name suffix:@"Arabic"];
     NSTimeInterval dialogDuration = englishDialogDuration + arabicDialogDuration;
     
-    if ([key isEqualToString:@"Excellent"]) {
+    if ([key isEqualToString:@"Excellent"] || [key isEqualToString:@"Shuffle"]) {
         [speakerImageView animateWithType:animationType repeatingDuration:dialogDuration keepLastFrame:YES];
     }
     else {
@@ -398,8 +398,7 @@
                                               
                                               completion();
                                           }];
-                         
-                         
+                                                  
                      }];
     
 }
@@ -408,7 +407,7 @@
     [self displayDialogTextWithKey:key animationType:TALK completion:completion];
 }
 
-- (void)animateType:(AnimationType)type repeatingDuration:(NSTimeInterval)repeatingDuration keepLastFrame:(BOOL)keepLastFrame completion:(void(^)())completion {
+- (void)animateSpeakerWithType:(AnimationType)type repeatingDuration:(NSTimeInterval)repeatingDuration keepLastFrame:(BOOL)keepLastFrame completion:(void(^)())completion {
     
     dialogLabel.alpha = .99;
     [UIView animateWithDuration: repeatingDuration
@@ -427,9 +426,9 @@
     
 }
 
-- (void)animateType:(AnimationType)type repeatingDuration:(NSTimeInterval)repeatingDuration completion:(void(^)())completion {
+- (void)animateSpeakerWithType:(AnimationType)type repeatingDuration:(NSTimeInterval)repeatingDuration completion:(void(^)())completion {
     
-    [self animateType:type repeatingDuration:repeatingDuration keepLastFrame:NO completion:completion];
+    [self animateSpeakerWithType:type repeatingDuration:repeatingDuration keepLastFrame:NO completion:completion];
     
 }
 
@@ -564,7 +563,7 @@
     
     
     if (!shuffleImageView.animationFound) {
-        [self animateType:SHUFFLE repeatingDuration:3 completion:^() {
+        [self animateSpeakerWithType:SHUFFLE repeatingDuration:3 completion:^() {
             
             completion();
             
@@ -577,15 +576,19 @@
 
 - (void)mixUpLettersWithCompletion:(void(^)())completion {
     
-    NSTimeInterval shuffleDuration = 1.5;
+    NSTimeInterval shuffleDuration = 2;
     
     if (shuffleImageView.animationFound)
     {
+        [self displayDialogTextWithKey:@"Shuffle" animationType:SHUFFLE completion:^(){
+            completion();
+        }];
+        //[speakerImageView animateWithType:SHUFFLE repeatingDuration:shuffleDuration keepLastFrame:YES];
         
-        [speakerImageView animateWithType:SHUFFLE repeatingDuration:shuffleDuration keepLastFrame:YES];
         
-        [shuffleImageView animateWithDuration:shuffleDuration];
-        [UIView animateWithDuration: shuffleDuration-0.25
+        //Nolia runnign across screen
+        [shuffleImageView animateWithDuration:shuffleDuration];        
+        [UIView animateWithDuration: 1.25
                               delay: 0.0
                             options: UIViewAnimationOptionCurveLinear
                          animations:^{
@@ -609,6 +612,7 @@
                          }];
     }
     
+    //Letters falling out of slots
     for (ArabicLetterImageView* imageView in letterImageViewArray) {
         CGRect r = mixedUpLettersAreaView.bounds;
         int x = arc4random() % (int)r.size.width;
@@ -618,7 +622,7 @@
         CGPoint convertedPoint = [self.view convertPoint:randomPoint fromView:mixedUpLettersAreaView];
         
         [UIView animateWithDuration: shuffleDuration
-                              delay: 0.0
+                              delay: 0.25
                             options: UIViewAnimationOptionCurveLinear
                          animations:^{
                              
@@ -627,7 +631,7 @@
                          }
                          completion:^(BOOL finished){
                              if (imageView == [letterImageViewArray objectAtIndex:[letterImageViewArray count]-1]) {
-                                 completion();
+                                 //completion();
                              }
                          }];
         

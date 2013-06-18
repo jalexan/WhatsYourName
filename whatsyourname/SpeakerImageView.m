@@ -203,7 +203,7 @@
 }
 
 - (UIImage*)lastExitImage {
-    return [exitImagesArray lastObject];;
+    return [exitImagesArray lastObject];
 }
 
 - (void)repeatAnimationNumber:(NSNumber*)type {
@@ -212,7 +212,7 @@
 
 - (void)repeatAnimation:(AnimationType)type {
     if ([self superview]) {
-        if (!self.isAnimating) {
+        if (!self.isAnimating && self.image == mainSpeakerImage) {
             [self animateWithType:type repeatingDuration:1];
         }
         

@@ -80,7 +80,7 @@
     
 }
 
-- (NSArray*)translatedLetterArrayForEnglishName:(NSString*)name {
+- (NSString*)translatedLetterArrayForEnglishName:(NSString*)name {
     NSMutableArray* letters = [[NSMutableArray alloc] init];
     
     //TODO: Given the name passed in, return an array of arabic letter indexes
@@ -92,7 +92,7 @@
         NSLog(@"%C",currentChar);
         // 'a' and 'e' in the middle position will take their nil values if between 2 constanants (i.e. they don't have a vowel as a neighbor)
         //
-        
+ 
     }
     
     
