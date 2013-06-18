@@ -71,6 +71,7 @@
     letterNameLabel.numberOfLines = 2;
     
     letterNameLabel.text = arabicLetter.letterName;
+    [letterNameLabel sizeToFit];
     [self addSubview:letterNameLabel];
     
 }
