@@ -30,4 +30,5 @@ typedef enum {
 - (void)stopRepeatingAnimations;
 - (void)setToLastExitImage;
 - (UIImage*)lastExitImage;
+- (NSTimeInterval)animationDurationOfType:(AnimationType)animationType;
 @end

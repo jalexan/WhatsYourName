@@ -851,11 +851,11 @@
     //[scrollView drawBorderOnSubviews];
     speakerImageView.contentMode = UIViewContentModeCenter;
     
-    [self animateType:EXIT repeatingDuration:3 completion:^() {
+    //[self animateType:EXIT repeatingDuration:3 completion:^() {
         
-    }];
-    
-    
+    //}];
+    [speakerImageView animateWithType:EXIT repeatingDuration:0 keepLastFrame:NO];
+    NSTimeInterval animationDuration = [speakerImageView animationDurationOfType:EXIT];
     //UIImageView* circleImageView = [gameProgressView circleImageViewWithIndex:currentSpeakerIndex];
     
     
@@ -863,7 +863,7 @@
     pathAnimation.calculationMode = kCAAnimationPaced;
     pathAnimation.fillMode = kCAFillModeForwards;
     pathAnimation.removedOnCompletion = NO;
-    pathAnimation.duration = 1.8;
+    pathAnimation.duration = animationDuration;//1.8;
     //pathAnimation.delegate = self;
     
     CGPoint viewOrigin = speakerImageView.center;

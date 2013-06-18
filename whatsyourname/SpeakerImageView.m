@@ -91,7 +91,7 @@
      
      if (animationType==TALK) {                  
          [self setAnimationImages: speakImagesArray]; //1.5
-         [self setAnimationDuration: speakImagesArray.count/ANIMATION_FRAMES_PER_SECOND];
+         [self setAnimationDuration: (float)speakImagesArray.count/ANIMATION_FRAMES_PER_SECOND];
          [self setAnimationRepeatCount:0];
          
      }
@@ -102,7 +102,7 @@
          }
          
          [self setAnimationImages: shuffleImagesArray]; //3
-         [self setAnimationDuration: shuffleImagesArray.count/ANIMATION_FRAMES_PER_SECOND];
+         [self setAnimationDuration: (float)shuffleImagesArray.count/ANIMATION_FRAMES_PER_SECOND];
          [self setAnimationRepeatCount:1];
 
          
@@ -116,7 +116,7 @@
          }
 
          [self setAnimationImages: bravoImagesArray]; //1
-         [self setAnimationDuration:bravoImagesArray.count/ANIMATION_FRAMES_PER_SECOND];
+         [self setAnimationDuration: (float)bravoImagesArray.count/ANIMATION_FRAMES_PER_SECOND];
          [self setAnimationRepeatCount:1];
 
          
@@ -124,14 +124,14 @@
      }
      else if (animationType==EXIT) {
          [self setAnimationImages: exitImagesArray]; //1.65
-         [self setAnimationDuration: exitImagesArray.count/ANIMATION_FRAMES_PER_SECOND];
+         [self setAnimationDuration: (float)exitImagesArray.count/ANIMATION_FRAMES_PER_SECOND];
          [self setAnimationRepeatCount:1];
 
          
      }
      else if (animationType==BYE) {
          [self setAnimationImages: byeImagesArray]; //1.65
-         [self setAnimationDuration: byeImagesArray.count/ANIMATION_FRAMES_PER_SECOND];
+         [self setAnimationDuration: (float)byeImagesArray.count/ANIMATION_FRAMES_PER_SECOND];
          [self setAnimationRepeatCount:1];
 
          
@@ -140,7 +140,7 @@
      else {
          
          [self setAnimationImages: defaultImagesArray]; //1
-         [self setAnimationDuration: defaultImagesArray.count/ANIMATION_FRAMES_PER_SECOND];
+         [self setAnimationDuration: (float)defaultImagesArray.count/ANIMATION_FRAMES_PER_SECOND];
          [self setAnimationRepeatCount: 1];
 
          
@@ -150,7 +150,7 @@
     [self startAnimating];
     
     
-    if (animationType!=EXIT) {
+    if (animationType!=EXIT && animationType!=SHUFFLE) {
         NSTimeInterval afterDelay;
         if (self.animationRepeatCount==0) {
             afterDelay = repeatingDuration;
@@ -169,6 +169,32 @@
 
 - (void)animateWithType:(AnimationType)animationType repeatingDuration:(NSTimeInterval)repeatingDuration {
     [self animateWithType:animationType repeatingDuration:repeatingDuration keepLastFrame:NO];
+}
+
+- (NSTimeInterval)animationDurationOfType:(AnimationType)animationType {
+    if (animationType==TALK) {
+        return (float)speakImagesArray.count/ANIMATION_FRAMES_PER_SECOND;
+    }
+    else if (animationType==SHUFFLE) {
+        return (float)shuffleImagesArray.count/ANIMATION_FRAMES_PER_SECOND;
+    }
+    else if (animationType==BRAVO) {
+        
+        return (float)bravoImagesArray.count/ANIMATION_FRAMES_PER_SECOND;
+
+    }
+    else if (animationType==EXIT) {
+        return  (float)exitImagesArray.count/ANIMATION_FRAMES_PER_SECOND;
+    }
+    else if (animationType==BYE) {
+        return (float)byeImagesArray.count/ANIMATION_FRAMES_PER_SECOND;
+    }
+    else {
+        
+        return  (float)defaultImagesArray.count/ANIMATION_FRAMES_PER_SECOND;
+
+    }
+
 }
 
 - (void)setToLastExitImage {
