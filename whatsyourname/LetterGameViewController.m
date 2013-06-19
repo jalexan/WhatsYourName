@@ -630,9 +630,12 @@
                              
                          }
                          completion:^(BOOL finished){
-                             if (imageView == [letterImageViewArray objectAtIndex:[letterImageViewArray count]-1]) {
-                                 //completion();
+                             //if (imageView == [letterImageViewArray objectAtIndex:[letterImageViewArray count]-1]) {
+                             if (!shuffleImageView.animationFound) {
+                                 completion();
                              }
+                             
+                             //}
                          }];
         
     }
