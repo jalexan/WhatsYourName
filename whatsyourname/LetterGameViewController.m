@@ -690,8 +690,6 @@
 }
 
 - (void)animateLevelSuccessWithCompletion:(void(^)())completion {
-    //CGRect startRect = CGRectMake(self.view.bounds.size.width, self.view.bounds.size/height/2, 79, 155);
-    
     
     for (int index=0;index<NUMBER_OF_SUCCESS_STARS;index++) {
         
@@ -711,14 +709,10 @@
             [self performSelector:@selector(addStarWithCompletion:) withObject:^(){} afterDelay:randomDuration];
         }
         
-        
-        
-        
     }
+
     
-    
-    
-    [UIView animateWithDuration: 5
+    [UIView animateWithDuration: 4
                           delay: 0.0
                         options: UIViewAnimationOptionCurveLinear
                      animations:^{
@@ -739,56 +733,7 @@
                      completion:^(BOOL finished){
                          
                      }];
-    
-    
-    /*
-     CGPoint startPoint = self.view.center;
-     startPoint.x = self.view.right+80;
-     
-     starsImageView.center = startPoint;
-     starsImageView.hidden = NO;
-     starsImageView.alpha = .5;
-     
-     [UIView animateWithDuration: 1
-     delay: 0.0
-     options: UIViewAnimationOptionCurveLinear
-     animations:^{
-     
-     starsImageView.alpha = 1;
-     starsImageView.center = self.view.center;
-     arabicNameView.alpha = 0;
-     
-     for (UIImageView* v in letterImageViewArray) {
-     v.alpha = 0;
-     }
-     
-     for (UIImageView* v in slotsImageViewArray) {
-     v.alpha = 0;
-     }
-     
-     }
-     completion:^(BOOL finished){
-     
-     
-     [UIView animateWithDuration: 1
-     delay: 0.0
-     options: UIViewAnimationOptionCurveLinear
-     animations:^{
-     
-     starsImageView.alpha = 0;
-     starsImageView.center = CGPointMake(-100,starsImageView.centerY);
-     
-     }
-     completion:^(BOOL finished){
-     starsImageView.hidden = YES;
-     completion();
-     }];
-     
-     
-     }];
-     
-     */
-    
+        
 }
 
 - (void)animateProgressViewPhase1WithCompletion:(void(^)())completion {
