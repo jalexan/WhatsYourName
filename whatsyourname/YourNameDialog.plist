@@ -8,8 +8,6 @@
 		<string>Now we want to know who YOU are!</string>
 		<key>Arabic</key>
 		<string>دلوقتي عازين نعرف أنت مين؟</string>
-		<key>Duration</key>
-		<integer>4</integer>
 	</dict>
 	<key>Whats</key>
 	<dict>
@@ -17,8 +15,6 @@
 		<string>What&apos;s your name?</string>
 		<key>Arabic</key>
 		<string>اسمك إيه؟</string>
-		<key>Duration</key>
-		<integer>2</integer>
 	</dict>
 	<key>Write</key>
 	<dict>
@@ -26,8 +22,6 @@
 		<string>Write your name here</string>
 		<key>Arabic</key>
 		<string>اكتب اسمك هنا</string>
-		<key>Duration</key>
-		<integer>2</integer>
 	</dict>
 	<key>Hello</key>
 	<dict>
@@ -35,8 +29,6 @@
 		<string>Hello @name</string>
 		<key>Arabic</key>
 		<string> (Arabic) Hello</string>
-		<key>Duration</key>
-		<integer>3</integer>
 	</dict>
 	<key>LikeThis</key>
 	<dict>
@@ -44,8 +36,6 @@
 		<string>Like This</string>
 		<key>Arabic</key>
 		<string> (Arabic) Like This</string>
-		<key>Duration</key>
-		<integer>4</integer>
 	</dict>
 	<key>Nice</key>
 	<dict>
@@ -53,8 +43,6 @@
 		<string>Nice to meet you @name</string>
 		<key>Arabic</key>
 		<string>أهلاً يا</string>
-		<key>Duration</key>
-		<integer>3</integer>
 	</dict>
 	<key>Another</key>
 	<dict>
@@ -62,8 +50,6 @@
 		<string>Write another name</string>
 		<key>Arabic</key>
 		<string>نولية زي كده</string>
-		<key>Duration</key>
-		<integer>2</integer>
 	</dict>
 	<key>Bye</key>
 	<dict>
@@ -71,8 +57,6 @@
 		<string>Good Bye!</string>
 		<key>Arabic</key>
 		<string>نولية زي كده</string>
-		<key>Duration</key>
-		<integer>2</integer>
 	</dict>
 </dict>
 </plist>

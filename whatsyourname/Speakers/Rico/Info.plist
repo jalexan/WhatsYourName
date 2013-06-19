@@ -17,8 +17,6 @@
 			<string>Hi!  My name is Rico.</string>
 			<key>Arabic</key>
 			<string>اهلاً أنا اسمي ريكو</string>
-			<key>Duration</key>
-			<integer>1</integer>
 		</dict>
 		<key>Like</key>
 		<dict>
@@ -26,8 +24,6 @@
 			<string>Rico. Like this:</string>
 			<key>Arabic</key>
 			<string>ريكو زي كده</string>
-			<key>Duration</key>
-			<integer>2</integer>
 		</dict>
 		<key>Shuffle</key>
 		<dict>
@@ -35,8 +31,6 @@
 			<string>Nolia, no! Not again!</string>
 			<key>Arabic</key>
 			<string>لأ يانولية! ثاني؟</string>
-			<key>Duration</key>
-			<integer>1</integer>
 		</dict>
 		<key>Try</key>
 		<dict>
@@ -44,8 +38,6 @@
 			<string>Can you write it again?</string>
 			<key>Arabic</key>
 			<string>ممكن تكتبه ثاني؟</string>
-			<key>Duration</key>
-			<integer>2</integer>
 		</dict>
 		<key>Again</key>
 		<dict>
@@ -53,8 +45,6 @@
 			<string>Try again</string>
 			<key>Arabic</key>
 			<string>جرب ثاني</string>
-			<key>Duration</key>
-			<integer>1</integer>
 		</dict>
 		<key>Excellent</key>
 		<dict>
@@ -62,8 +52,6 @@
 			<string>Fantastic!</string>
 			<key>Arabic</key>
 			<string>عظيم!</string>
-			<key>Duration</key>
-			<integer>2</integer>
 		</dict>
 		<key>Later</key>
 		<dict>
@@ -71,8 +59,6 @@
 			<string>See you later!</string>
 			<key>Arabic</key>
 			<string>إلى الاقاء</string>
-			<key>Duration</key>
-			<integer>2</integer>
 		</dict>
 	</dict>
 </dict>
