@@ -11,10 +11,12 @@
 #import "ArabicLetterImageView.h"
 #import "SpeakerList.h"
 
+#define DEBUG_ARABIC_NAME 1
+
 @interface NameSpellViewController () {
     NSDictionary* yourNameDialogDictionary;
     Speaker* mainSpeaker;
-    NSArray* arabicLettersArray;
+    NSMutableArray* arabicLettersArray;
     NSMutableArray* letterImageViewArray;
 }
 
@@ -22,6 +24,10 @@
 
 @implementation NameSpellViewController
 @synthesize playerName;
+@synthesize knownNamesDictionary;
+@synthesize transliterationDictionary;
+@synthesize arabicLettersByNameDictionary;
+@synthesize arabicLettersDictionary;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -41,12 +47,22 @@
     
     mainSpeaker = [SpeakerList sharedInstance].speakerArray[0];
     yourNameDialogDictionary = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];
-
     
+    plistPath =  [bundle pathForResource:[NSString stringWithFormat:@"WellKnownNames"] ofType:@"plist"];
+    knownNamesDictionary = [[NSDictionary alloc] initWithContentsOfFile:plistPath];
+    
+    plistPath = [bundle pathForResource:[NSString stringWithFormat:@"TransliteratedLetters"] ofType:@"plist"];
+    transliterationDictionary = [[NSDictionary alloc] initWithContentsOfFile:plistPath];
+    
+    plistPath = [bundle pathForResource:[NSString stringWithFormat:@"LettersByName"] ofType:@"plist"];
+    arabicLettersByNameDictionary = [[NSDictionary alloc] initWithContentsOfFile:plistPath];
+    
+    plistPath = [bundle pathForResource:[NSString stringWithFormat:@"Letters"] ofType:@"plist"];
+    arabicLettersDictionary = [[NSArray alloc] initWithContentsOfFile:plistPath];
     
     //TODO: use translatedLetterArrayForEnglishName instead of fake hardcoded array
-    //arabicLettersArray = [self translatedLetterArrayForEnglishName:playerName];
-    arabicLettersArray = @[@10,@22,@25,@26,@27];
+    arabicLettersArray = [self translatedLetterArrayForEnglishName:playerName];
+    //arabicLettersArray = @[@10,@22,@25,@26,@27];
 
     [self createLetterImageViewArray];
 }
@@ -80,6 +96,7 @@
     
 }
 
+/*
 - (NSString*)translatedLetterArrayForEnglishName:(NSString*)name {
     NSMutableArray* letters = [[NSMutableArray alloc] init];
     
@@ -99,6 +116,7 @@
     
     return letters;
 }
+ */
 
 - (void)createLetterImageViewArray {
     NSUInteger numberOfLetters = arabicLettersArray.count;
@@ -231,6 +249,241 @@
                      }];
     
 }
+
+
+-(NSMutableArray*)getUnicodesForLetters:(id)arabicLetters{
+    NSMutableArray* arabicLettersArray = [[NSMutableArray alloc] init];
+    NSMutableArray* arabicUnicodes = [[NSMutableArray alloc] init];
+    
+    if ([arabicLetters isKindOfClass: [NSMutableString class]]) {
+        [arabicLettersArray addObject:arabicLetters];
+    } else if ([arabicLetters isKindOfClass: [NSString class]]) {
+        [arabicLettersArray addObject:arabicLetters];
+    } else if ([arabicLetters isKindOfClass: [NSArray class]]) {
+        arabicLettersArray = [arabicLetters mutableCopy];
+    } else {
+        if (DEBUG_ARABIC_NAME) { NSLog(@"Not sure what class type this is %@",[arabicLetters class]); }
+    }
+    for (NSString* s in arabicLettersArray) {
+        if (DEBUG_ARABIC_NAME) { NSLog(@"Looking up arabic letter: %@",s); }
+        NSString* unicodeValue = [[self.arabicLettersByNameDictionary objectForKey:s] objectForKey:@"Isolated"];
+        
+        if (DEBUG_ARABIC_NAME) { NSLog(@"Got this unicode value from lookup: %@", unicodeValue); }
+        if (unicodeValue) {
+            [arabicUnicodes addObject:[[self.arabicLettersByNameDictionary objectForKey:s] objectForKey:@"Isolated"]];
+        } else {
+            if (DEBUG_ARABIC_NAME) { NSLog(@"Letter key %@ was not found in arabicLettersByNameDictionary",s); }
+            return nil;
+        }
+    }
+    return arabicUnicodes;
+}
+
+-(NSMutableArray*)getUnicodeIndexes:(id)arabicLetters{
+    NSMutableArray* arabicLettersArray = [[NSMutableArray alloc] init];
+    NSMutableArray* unicodeIndexes = [[NSMutableArray alloc] init];
+    NSMutableDictionary* letterIndexHash = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary* unicodeLetterIndexHash = [[NSMutableDictionary alloc] init];
+    NSString* letterName = [[NSString alloc] init];
+    NSString* unicodeLetter = [[NSString alloc] init];
+    
+    if ([arabicLetters isKindOfClass: [NSMutableString class]]) {
+        [arabicLettersArray addObject:arabicLetters];
+    } else if ([arabicLetters isKindOfClass: [NSString class]]) {
+        [arabicLettersArray addObject:arabicLetters];
+    } else if ([arabicLetters isKindOfClass: [NSArray class]]) {
+        arabicLettersArray = [arabicLetters mutableCopy];
+    } else if ([arabicLetters isKindOfClass: [NSMutableArray class]]) {
+        arabicLettersArray = arabicLetters;
+    } else {
+        if (DEBUG_ARABIC_NAME) { NSLog(@"Not sure what class type this is %@",[arabicLetters class]); }
+    }
+    
+    for (NSUInteger i=0; i < [self.arabicLettersDictionary count]; i++) {
+        letterName = [[self.arabicLettersDictionary objectAtIndex:i ] objectForKey:@"Name"];
+        unicodeLetter = [[self.arabicLettersDictionary objectAtIndex:i ] objectForKey:@"Isolated"];
+        [letterIndexHash setValue:[NSNumber numberWithUnsignedInteger:i] forKey:letterName];
+        [unicodeLetterIndexHash setValue:[NSNumber numberWithUnsignedInteger:i] forKey:[unicodeLetter lowercaseString]];
+    }
+    
+    for (NSString* s in arabicLettersArray) {
+        if (DEBUG_ARABIC_NAME) { NSLog(@"Looking up arabic letter: %@",s); }
+        if ([letterIndexHash objectForKey:s]) {
+            [unicodeIndexes addObject: [letterIndexHash objectForKey:s]];
+            if (DEBUG_ARABIC_NAME) { NSLog(@"Got this unicode index from lookup: %@", [letterIndexHash objectForKey:s]); }
+        } else if ([unicodeLetterIndexHash objectForKey:s]) {
+            [unicodeIndexes addObject: [unicodeLetterIndexHash objectForKey:s]];
+            if (DEBUG_ARABIC_NAME) { NSLog(@"Got this unicode index from lookup: %@", [unicodeLetterIndexHash objectForKey:s]); }
+        } else {
+            if (DEBUG_ARABIC_NAME) { NSLog(@"Did NOT find an index for letter %@", s); }
+        }
+    }
+    return unicodeIndexes;
+}
+
+- (NSMutableString*)reduceName:(NSMutableString*)arabicName byPatterns:(NSMutableArray*)patterns {
+    NSMutableString* lettersToLookup = [[NSMutableString alloc] init];
+    NSMutableArray* unicodeLetters = [[NSMutableArray alloc] init];
+    BOOL pattern_found = FALSE;
+    
+    //for each pattern, check if that's in the name and reduce
+    for (NSString* p in patterns) {
+        if ([arabicName hasPrefix:p]) {
+            lettersToLookup = [[transliterationDictionary objectForKey:p] objectForKey:@"initial"];
+            if (DEBUG_ARABIC_NAME) { NSLog(@"Found prefix %@",lettersToLookup); }
+            pattern_found = TRUE;
+        } else if ([arabicName hasSuffix:p]) {
+            lettersToLookup = [[transliterationDictionary objectForKey:p] objectForKey:@"middle"];
+            if (DEBUG_ARABIC_NAME) { NSLog(@"Found suffix %@",lettersToLookup); }
+            pattern_found = TRUE;
+        } else if ([arabicName rangeOfString:p].location != NSNotFound) {
+            lettersToLookup = [[transliterationDictionary objectForKey:p] objectForKey:@"middle"];
+            if (DEBUG_ARABIC_NAME) { NSLog(@"Found pattern %@",lettersToLookup); }
+            pattern_found = TRUE;
+        } else {
+            pattern_found = FALSE;
+        }
+        
+        if(pattern_found) {
+            //lookup unicodes for replacement of string arabicName in place
+            NSArray* lettersToLookupArray = [lettersToLookup componentsSeparatedByString:@", "];
+            NSMutableString* replaceWith = [[NSMutableString alloc] initWithString:@""];
+            NSString* temp;
+
+            unicodeLetters = [self getUnicodesForLetters:lettersToLookupArray];
+            for (NSString* unicodeLetter in unicodeLetters) {
+                NSUInteger unicodeValue;
+                [[NSScanner scannerWithString:unicodeLetter] scanHexInt:&unicodeValue];
+                unicodeValue = (unichar)unicodeValue;
+                
+                NSString* str = [NSString stringWithFormat:@"%C", (unichar)unicodeValue];
+                [replaceWith appendString:str];
+                
+            }
+            temp = [arabicName stringByReplacingOccurrencesOfString:p
+                                                         withString:replaceWith
+                                                            options:NULL range:NSMakeRange(0,arabicName.length)];
+            arabicName = [temp mutableCopy];
+            
+        }
+    }
+    if (DEBUG_ARABIC_NAME) { NSLog(@"Name after reduction: %@", arabicName); }
+    
+    return arabicName;
+}
+
+//Given the name passed in, return an array of arabic letter indexes
+- (NSMutableArray*)translatedLetterArrayForEnglishName:(NSString*)name {
+    NSMutableString* arabicName = [name mutableCopy];
+    NSString* lettersToLookup = [[NSMutableString alloc] init];
+    NSMutableArray* unicodeLetters = [[NSMutableArray alloc] init];
+    NSMutableArray* unicodeIndexes = [[NSMutableArray alloc] init];
+    
+    //Step #1 ---- Check if it's a well known name first
+    if ((lettersToLookup = [self.knownNamesDictionary objectForKey:[arabicName lowercaseString]])) {
+        unicodeIndexes = [self getUnicodeIndexes:[[lettersToLookup componentsSeparatedByString:@", "] mutableCopy]];
+        return unicodeIndexes;
+    }
+    
+    //Step #2 ---- Loop through multiple character patterns
+    NSMutableArray* patterns = [[NSMutableArray alloc] init];
+    for (NSString* key in [self.transliterationDictionary allKeys]) {
+        if (key.length > 1) {
+            [patterns addObject:key];
+        }
+    }
+    NSMutableString* arabicNameCopy = [arabicName mutableCopy];
+    arabicName = [self reduceName:arabicNameCopy byPatterns:patterns ];
+    if (DEBUG_ARABIC_NAME) { NSLog(@"Name after multiple character pattern substitution: %@", name); }
+    
+    
+    //Step #3 ---- Loop through each uppercase charater
+    [patterns removeAllObjects];
+    for (NSString* key in [transliterationDictionary allKeys]) {
+        if([[NSCharacterSet uppercaseLetterCharacterSet] characterIsMember:[key characterAtIndex:0]]) {
+            [patterns addObject:key];
+        }
+    }
+    arabicNameCopy = [arabicName mutableCopy];
+    arabicName = [self reduceName:arabicNameCopy byPatterns:patterns ];
+    if (DEBUG_ARABIC_NAME) { NSLog(@"Name after uppercase pattern substitution: %@", name); }
+    
+    //Step #4 ---- Loop through all single charaters (will repeat but it's ok)
+    BOOL pattern_found = FALSE;
+    arabicName = [[arabicName lowercaseString] mutableCopy];
+    
+    [patterns removeAllObjects];
+    for (NSString* key in [self.transliterationDictionary allKeys]) {
+        if (key.length == 1) {
+            [patterns addObject:key];
+        }
+    }
+    for (NSString* p in patterns) {
+        if ([arabicName hasPrefix:p]) {
+            lettersToLookup = [[transliterationDictionary objectForKey:p] objectForKey:@"initial"];
+            if (DEBUG_ARABIC_NAME) { NSLog(@"Found prefix %@",lettersToLookup); }
+            pattern_found = TRUE;
+        } else if ([arabicName hasSuffix:p]) {
+            
+            // LEFT OFF HERE - add a regex substitution rule so that onlly numbers that are OUTSIDE of (\d) pattern would get replaced
+            //LEFT OFF HERE - add rules for 'a' and 'e' in the middle or end of a word before/between non-vowels
+            //reference a copy of original name to do the checks for character before / after
+            // Michelle
+            //mi <sheen> e <lam> e
+            // x = e.index
+            // if x - 1 && x + 1 is not a vowel OR if e.index == the end and x - 1 is not a vowel
+            //then use nothing for the e
+            if ([p isEqualToString:@"a"] || [p isEqualToString:@"e"] || [p isEqualToString:@"2"] ) {
+                lettersToLookup = [[transliterationDictionary objectForKey:p] objectForKey:@"final"];
+            } else {
+                lettersToLookup = [[transliterationDictionary objectForKey:p] objectForKey:@"middle"];
+            }
+            if (DEBUG_ARABIC_NAME) { NSLog(@"Found suffix %@",lettersToLookup); }
+            pattern_found = TRUE;
+        } else if ([arabicName rangeOfString:p].location != NSNotFound) {
+            lettersToLookup = [[transliterationDictionary objectForKey:p] objectForKey:@"middle"];
+            if (DEBUG_ARABIC_NAME) { NSLog(@"Found pattern %@",lettersToLookup); }
+            pattern_found = TRUE;
+        } else {
+            pattern_found = FALSE;
+        }
+        
+        if(pattern_found) {
+            //lookup unicodes for replacement of string arabicName in place
+            NSArray* lettersToLookupArray = [lettersToLookup componentsSeparatedByString:@", "];
+            NSMutableString* replaceWith = [[NSMutableString alloc] initWithString:@""];
+            NSString* temp;
+            
+            unicodeLetters = [self getUnicodesForLetters:lettersToLookupArray];
+            for (NSString* unicodeLetter in unicodeLetters) {
+                NSUInteger unicodeValue;
+                [[NSScanner scannerWithString:unicodeLetter] scanHexInt:&unicodeValue];
+                unicodeValue = (unichar)unicodeValue;
+                
+                NSString* str = [NSString stringWithFormat:@"%C", (unichar)unicodeValue];
+                [replaceWith appendString:str];
+                
+            }
+            //JULIE NOTE - DON"T REPLACE ALL OCCURANCES WHEN IT"S A SUFFIX/FINAL POSITION
+            temp = [arabicName stringByReplacingOccurrencesOfString:p
+                                                         withString:replaceWith
+                                                            options:NULL range:NSMakeRange(0,arabicName.length)];
+            arabicName = [temp mutableCopy];
+            
+        }
+    }
+    if (DEBUG_ARABIC_NAME) { NSLog(@"Name after single character substitution: %@", arabicName); }
+    
+    NSMutableArray* arabicArray = [[NSMutableArray alloc] init];
+    for (NSUInteger i=0; i < arabicName.length; i++) {
+        unichar a = [arabicName characterAtIndex:i];
+        [arabicArray addObject:[NSString stringWithFormat:@"%04x", a]];
+        if (DEBUG_ARABIC_NAME) { NSLog(@"Arabic letter codes: %04x", a); }
+    }
+    return [self getUnicodeIndexes:arabicArray];
+    
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

@@ -19,18 +19,25 @@
 	<key>a</key>
 	<dict>
 		<key>initial</key>
-		<string>alef hamza / alef madda</string>
+		<string>alef hamza</string>
 		<key>middle</key>
-		<string>alef / nil</string>
+		<string>alef</string>
 		<key>final</key>
-		<string>te marboota / alef maksoora</string>
+		<string>te marboota</string>
 	</dict>
 	<key>A</key>
 	<dict>
-		<key>initail</key>
-		<string>alef madda / alef hamza / alef</string>
+		<key>initial</key>
+		<string>alef madda</string>
 		<key>middle</key>
 		<string>alef madda</string>
+	</dict>
+	<key>an</key>
+	<dict>
+		<key>initial</key>
+		<string>alef madda, noon</string>
+		<key>middle</key>
+		<string>alef, noon</string>
 	</dict>
 	<key>b</key>
 	<dict>
@@ -51,294 +58,340 @@
 		<key>initial</key>
 		<string>sheen</string>
 		<key>middle</key>
-		<string>sheen / teh, sheen</string>
+		<string>sheen</string>
+	</dict>
+	<key>chr</key>
+	<dict>
+		<key>initial</key>
+		<string>kaaf, reh</string>
+		<key>middle</key>
+		<string>kaaf, reh</string>
+	</dict>
+	<key>cho</key>
+	<dict>
+		<key>initial</key>
+		<string>sheen, wow</string>
+		<key>middle</key>
+		<string>kaaf, wow</string>
 	</dict>
 	<key>d</key>
 	<dict>
 		<key>initial</key>
 		<string>daal</string>
 		<key>middle</key>
-		<string>daal / daad</string>
+		<string>daal</string>
 	</dict>
 	<key>e</key>
 	<dict>
 		<key>initial</key>
 		<string>alef hamza under</string>
 		<key>middle</key>
-		<string>yeh / nil</string>
+		<string>yeh</string>
+		<key>final</key>
+		<string>nil</string>
 	</dict>
 	<key>ee</key>
 	<dict>
-		<key>initail</key>
+		<key>initial</key>
 		<string>yeh</string>
 		<key>middle</key>
 		<string>yeh</string>
 	</dict>
 	<key>ei</key>
 	<dict>
-		<key>initail</key>
+		<key>initial</key>
 		<string>alef, yeh</string>
 		<key>middle</key>
 		<string>alef, yeh</string>
 	</dict>
 	<key>ie</key>
 	<dict>
-		<key>initail</key>
+		<key>initial</key>
 		<string>yeh</string>
 		<key>middle</key>
 		<string>yeh</string>
 	</dict>
 	<key>f</key>
 	<dict>
-		<key>initail</key>
+		<key>initial</key>
 		<string>feh</string>
 		<key>middle</key>
 		<string>feh</string>
 	</dict>
 	<key>g</key>
 	<dict>
-		<key>initail</key>
+		<key>initial</key>
 		<string>geem</string>
 		<key>middle</key>
 		<string>geem</string>
 	</dict>
 	<key>h</key>
 	<dict>
-		<key>initail</key>
+		<key>initial</key>
 		<string>heh</string>
 		<key>middle</key>
-		<string>heh / Ha</string>
+		<string>heh</string>
 	</dict>
 	<key>H</key>
 	<dict>
-		<key>initail</key>
+		<key>initial</key>
 		<string>Ha</string>
 		<key>middle</key>
 		<string>Ha</string>
 	</dict>
 	<key>gh</key>
 	<dict>
-		<key>initail</key>
+		<key>initial</key>
 		<string>ghein</string>
 		<key>middle</key>
 		<string>ghein</string>
 	</dict>
 	<key>kh</key>
 	<dict>
-		<key>initail</key>
+		<key>initial</key>
 		<string>KHa</string>
 		<key>middle</key>
 		<string>KHa</string>
 	</dict>
 	<key>7</key>
 	<dict>
-		<key>initail</key>
+		<key>initial</key>
 		<string>Ha</string>
 		<key>middle</key>
 		<string>Ha</string>
 	</dict>
 	<key>5</key>
 	<dict>
-		<key>initail</key>
+		<key>initial</key>
 		<string>ghien</string>
 		<key>middle</key>
 		<string>ghein</string>
 	</dict>
 	<key>3</key>
 	<dict>
-		<key>initail</key>
+		<key>initial</key>
 		<string>&apos;ein</string>
 		<key>middle</key>
 		<string>&apos;ein</string>
 	</dict>
 	<key>2</key>
 	<dict>
-		<key>initail</key>
-		<string>hamza / alef hamza / qaaf</string>
+		<key>initial</key>
+		<string>alef hamza</string>
 		<key>middle</key>
-		<string>hamza / alef hamza / qaaf</string>
+		<string>qaaf</string>
+		<key>final</key>
+		<string>hamza</string>
 	</dict>
 	<key>i</key>
 	<dict>
-		<key>initail</key>
+		<key>initial</key>
 		<string>alef hamza under</string>
 		<key>middle</key>
 		<string>yeh</string>
 	</dict>
 	<key>j</key>
 	<dict>
-		<key>initail</key>
+		<key>initial</key>
 		<string>geem</string>
 		<key>middle</key>
 		<string>geem</string>
 	</dict>
 	<key>k</key>
 	<dict>
-		<key>initail</key>
+		<key>initial</key>
 		<string>kaaf</string>
 		<key>middle</key>
 		<string>kaaf</string>
 	</dict>
 	<key>l</key>
 	<dict>
-		<key>initail</key>
+		<key>initial</key>
 		<string>lam</string>
 		<key>middle</key>
 		<string>lam</string>
 	</dict>
 	<key>ll</key>
 	<dict>
-		<key>initail</key>
+		<key>initial</key>
 		<string>lam</string>
 		<key>middle</key>
 		<string>lam</string>
 	</dict>
+	<key>elle</key>
+	<dict>
+		<key>initial</key>
+		<string>yeh, lam</string>
+		<key>middle</key>
+		<string>yeh, lam</string>
+	</dict>
+	<key>ette</key>
+	<dict>
+		<key>initial</key>
+		<string>teh</string>
+		<key>middle</key>
+		<string>teh</string>
+	</dict>
 	<key>m</key>
 	<dict>
-		<key>initail</key>
+		<key>initial</key>
 		<string>meem</string>
 		<key>middle</key>
 		<string>meem</string>
 	</dict>
 	<key>n</key>
 	<dict>
-		<key>initail</key>
+		<key>initial</key>
 		<string>noon</string>
 		<key>middle</key>
 		<string>noon</string>
 	</dict>
 	<key>o</key>
 	<dict>
-		<key>initail</key>
+		<key>initial</key>
 		<string>alef hamza, wow</string>
 		<key>middle</key>
 		<string>wow</string>
 	</dict>
 	<key>oo</key>
 	<dict>
-		<key>initail</key>
+		<key>initial</key>
 		<string>wow</string>
 		<key>middle</key>
 		<string>wow</string>
 	</dict>
 	<key>p</key>
 	<dict>
-		<key>initail</key>
+		<key>initial</key>
 		<string>beh</string>
 		<key>middle</key>
 		<string>beh</string>
 	</dict>
 	<key>ph</key>
 	<dict>
-		<key>initail</key>
+		<key>initial</key>
 		<string>feh</string>
 		<key>middle</key>
 		<string>feh</string>
 	</dict>
 	<key>q</key>
 	<dict>
-		<key>initail</key>
+		<key>initial</key>
 		<string>kaaf</string>
 		<key>middle</key>
-		<string>kaaf / qaaf</string>
+		<string>kaaf</string>
 	</dict>
 	<key>r</key>
 	<dict>
-		<key>initail</key>
+		<key>initial</key>
 		<string>reh</string>
 		<key>middle</key>
 		<string>reh</string>
 	</dict>
 	<key>s</key>
 	<dict>
-		<key>initail</key>
+		<key>initial</key>
 		<string>seen</string>
 		<key>middle</key>
 		<string>seen</string>
 	</dict>
 	<key>S</key>
 	<dict>
-		<key>initail</key>
+		<key>initial</key>
 		<string>saad</string>
 		<key>middle</key>
 		<string>saad</string>
 	</dict>
 	<key>ss</key>
 	<dict>
-		<key>initail</key>
+		<key>initial</key>
 		<string>saad</string>
 		<key>middle</key>
-		<string>saad / seen</string>
+		<string>saad</string>
 	</dict>
 	<key>sh</key>
 	<dict>
-		<key>initail</key>
+		<key>initial</key>
 		<string>sheen</string>
 		<key>middle</key>
 		<string>sheen</string>
 	</dict>
 	<key>t</key>
 	<dict>
-		<key>initail</key>
-		<string>teh / Taa</string>
+		<key>initial</key>
+		<string>teh</string>
 		<key>middle</key>
 		<string>teh</string>
 	</dict>
+	<key>tho</key>
+	<dict>
+		<key>initial</key>
+		<string>teh, wow</string>
+		<key>middle</key>
+		<string>thaal, wow</string>
+	</dict>
+	<key>th</key>
+	<dict>
+		<key>initial</key>
+		<string>theh</string>
+		<key>middle</key>
+		<string>theh</string>
+	</dict>
 	<key>T</key>
 	<dict>
-		<key>initail</key>
+		<key>initial</key>
 		<string>Taa</string>
 		<key>middle</key>
 		<string>Taa</string>
 	</dict>
 	<key>u</key>
 	<dict>
-		<key>initail</key>
+		<key>initial</key>
 		<string>wow</string>
 		<key>middle</key>
 		<string>wow</string>
 	</dict>
 	<key>v</key>
 	<dict>
-		<key>initail</key>
+		<key>initial</key>
 		<string>feh</string>
 		<key>middle</key>
 		<string>feh</string>
 	</dict>
 	<key>w</key>
 	<dict>
-		<key>initail</key>
+		<key>initial</key>
 		<string>wow</string>
 		<key>middle</key>
 		<string>wow</string>
 	</dict>
 	<key>x</key>
 	<dict>
-		<key>initail</key>
+		<key>initial</key>
 		<string>alef hamza under, kaaf, seen</string>
 		<key>middle</key>
 		<string>kaaf, seen</string>
 	</dict>
 	<key>y</key>
 	<dict>
-		<key>initail</key>
+		<key>initial</key>
 		<string>yeh</string>
 		<key>middle</key>
 		<string>yeh</string>
 	</dict>
 	<key>z</key>
 	<dict>
-		<key>initail</key>
-		<string>zein / thaal</string>
+		<key>initial</key>
+		<string>zein</string>
 		<key>middle</key>
-		<string>zein / thaal</string>
+		<string>zein</string>
 	</dict>
 	<key>Z</key>
 	<dict>
-		<key>initail</key>
-		<string>zein / thaal / Thaa</string>
+		<key>initial</key>
+		<string>Thaa</string>
 		<key>middle</key>
-		<string>Thaa / zein / thaal</string>
+		<string>Thaa</string>
 	</dict>
 </dict>
 </plist>

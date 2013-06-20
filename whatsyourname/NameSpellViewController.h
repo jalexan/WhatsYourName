@@ -17,5 +17,9 @@
 }
 
 @property (nonatomic, strong) NSString* playerName;
+@property (nonatomic, readonly) NSDictionary* knownNamesDictionary;
+@property (nonatomic, readonly) NSDictionary* transliterationDictionary;
+@property (nonatomic, readonly) NSDictionary* arabicLettersByNameDictionary;
+@property (nonatomic, readonly) NSArray* arabicLettersDictionary;
 
 @end
