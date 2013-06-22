@@ -28,35 +28,35 @@
 		<key>English</key>
 		<string>Hello @name</string>
 		<key>Arabic</key>
-		<string> (Arabic) Hello</string>
+		<string>اهلا </string>
 	</dict>
 	<key>LikeThis</key>
 	<dict>
 		<key>English</key>
 		<string>Like This</string>
 		<key>Arabic</key>
-		<string> (Arabic) Like This</string>
+		<string>زي كده</string>
 	</dict>
 	<key>Nice</key>
 	<dict>
 		<key>English</key>
-		<string>Nice to meet you @name</string>
+		<string>It was nice to meet you @name</string>
 		<key>Arabic</key>
-		<string>أهلاً يا</string>
+		<string>اتشرفنا بك</string>
 	</dict>
 	<key>Another</key>
 	<dict>
 		<key>English</key>
 		<string>Write another name</string>
 		<key>Arabic</key>
-		<string>نولية زي كده</string>
+		<string>اكتب اسم ثاني</string>
 	</dict>
 	<key>Bye</key>
 	<dict>
 		<key>English</key>
 		<string>Good Bye!</string>
 		<key>Arabic</key>
-		<string>نولية زي كده</string>
+		<string>مع السلامة!</string>
 	</dict>
 </dict>
 </plist>
