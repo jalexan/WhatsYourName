@@ -271,7 +271,7 @@
 }
 
 - (void)startShufflePhase {
-    [self performSegueWithIdentifier:@"SurpriseSegue" sender:self];return;
+    //[self performSegueWithIdentifier:@"SurpriseSegue" sender:self];return;
     
     [self displayDialogTextWithKey:@"Name" completion:^() {
         
@@ -500,8 +500,7 @@
     }
     else { //middle letter
         
-        //Spelling Exceptions
-        //TOOD: Make this less hard coded by adding to plist
+        /*
         if (index>0 && (previousLetterIndex==0 ||
                         previousLetterIndex==31 ||
                         previousLetterIndex==32 ||
@@ -518,6 +517,9 @@
         else {
             unicodeChar = letter.unicodeMedial;
         }
+        */
+        
+        unicodeChar = letter.unicodeMedial;
         
     }
     

@@ -254,21 +254,21 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" id="qFA-W8-xeT">
-                                <rect key="frame" x="12" y="14" width="448" height="51"/>
+                                <rect key="frame" x="12" y="14" width="457" height="51"/>
                                 <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="40"/>
                                 <nil key="highlightedColor"/>
                                 <color key="shadowColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <size key="shadowOffset" width="0.0" height="1"/>
                             </label>
-                            <view contentMode="scaleToFill" id="qfu-qU-fC2">
-                                <rect key="frame" x="115" y="178" width="250" height="70"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view userInteractionEnabled="NO" contentMode="scaleToFill" id="qfu-qU-fC2">
+                                <rect key="frame" x="79" y="178" width="323" height="70"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="bft-cA-YbK">
-                                <rect key="frame" x="96" y="83" width="289" height="89"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.10000000000000001" id="bft-cA-YbK">
+                                <rect key="frame" x="20" y="81" width="440" height="89"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="GeezaPro" family="Geeza Pro" pointSize="100"/>
+                                <fontDescription key="fontDescription" name="GeezaPro" family="Geeza Pro" pointSize="90"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -320,6 +320,55 @@
         <image name="question_mark.png" width="117" height="177"/>
         <image name="sound_on.png" width="128" height="128"/>
     </resources>
+    <classes>
+        <class className="GameController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/GameController.h"/>
+            <relationships>
+                <relationship kind="action" name="soundButtonTouched:"/>
+                <relationship kind="outlet" name="dialogLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="soundButton" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="GameProgressView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/GameProgressView.h"/>
+        </class>
+        <class className="GameUIView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/GameUIView.h"/>
+        </class>
+        <class className="LetterGameViewController" superclassName="GameController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LetterGameViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="arabicNameView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="gameProgressView" candidateClass="GameProgressView"/>
+                <relationship kind="outlet" name="mixedUpLettersAreaView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="slotContainerView" candidateClass="UIView"/>
+            </relationships>
+        </class>
+        <class className="NameGameViewController" superclassName="GameController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NameGameViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="goodByeButtonTouched:"/>
+                <relationship kind="outlet" name="background" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="goodByeButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="nameTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="restartButton" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="NameSpellViewController" superclassName="GameController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NameSpellViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="arabicSpellLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="background" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="letterContainerView" candidateClass="UIView"/>
+            </relationships>
+        </class>
+        <class className="SurpriseViewController" superclassName="GameController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SurpriseViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="question" candidateClass="UIImageView"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
