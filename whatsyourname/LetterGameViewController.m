@@ -273,9 +273,9 @@
 - (void)startShufflePhase {
     //[self performSegueWithIdentifier:@"SurpriseSegue" sender:self];return;
     
-    [self displayDialogTextWithKey:@"Name" completion:^() {
+    [self displayDialogTextWithKey:@"Name" animationType:TALK completion:^() {
         
-        [self displayDialogTextWithKey:@"Like" completion:^() {
+        [self displayDialogTextWithKey:@"Like" animationType:TALK completion:^() {
             
             [self spellArabicNameWithCompletion:^() {
                 
@@ -285,7 +285,7 @@
                         
                         //[self displayDialogTextWithKey:@"Shuffle" completion:^() {
                             
-                            [self displayDialogTextWithKey:@"Try" completion:^() {
+                            [self displayDialogTextWithKey:@"Try" animationType:TALK completion:^() {
                                 
                             }];
                             
@@ -311,7 +311,7 @@
         
         [self animateLevelSuccessWithCompletion:^() {
             
-            [self displayDialogTextWithKey:@"Later" completion:^() {
+            [self displayDialogTextWithKey:@"Later" animationType:TALK completion:^() {
                 
                 [self animateSpeakerSuccessWithCompletion:^() {
                     
@@ -386,10 +386,6 @@
     });
     
          
-}
-
-- (void)displayDialogTextWithKey:(NSString*)key completion:(void(^)())completion {
-    [self displayDialogTextWithKey:key animationType:TALK completion:completion];
 }
 
 - (void)animateSpeakerWithType:(AnimationType)type repeatingDuration:(NSTimeInterval)repeatingDuration keepLastFrame:(BOOL)keepLastFrame completion:(void(^)())completion {
@@ -946,7 +942,7 @@
                 if ([self isFailureIntersectCheckForSlotImageView:slotImageView arabicLetterImageView:objectToDrag]) {
                     
                     if (!playedEnglishErrorAudio || !self.audioManager.hasErrorAudio) {
-                        [self displayDialogTextWithKey:@"Again" completion:^() {}];
+                        [self displayDialogTextWithKey:@"Again" animationType:TALK completion:^() {}];
                         playedEnglishErrorAudio = YES;
                     }
                     else {
