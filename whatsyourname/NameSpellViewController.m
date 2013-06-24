@@ -79,18 +79,11 @@
         
         [self animateArabicNameImageViewWithIndex:0 limit:arabicLettersArray.count-1 completion:^() {
             
-            dialogLabel.alpha = .99;
-            [UIView animateWithDuration: 4
-                                  delay: 0.0
-                                options: UIViewAnimationOptionCurveEaseIn
-                             animations:^{
-                                 dialogLabel.alpha = 1;
-                             }
-                             completion:^(BOOL finished){
-                                 
-                                 [self.navigationController popViewControllerAnimated:YES];
-                                 
-                             }];
+            dispatch_after(DISPATCH_SECONDS_FROM_NOW(4), dispatch_get_current_queue(), ^{
+                
+                [self.navigationController popViewControllerAnimated:YES];
+            });
+
             
         }];
         
@@ -215,14 +208,12 @@
     }    
     arabicSpellLabel.text = [NSString stringWithFormat:@"%@%C",arabicSpellLabel.text,unicodeChar];
 
-    
-    dialogLabel.alpha = .99;
+
     [UIView animateWithDuration: 2
                           delay: 0.0
                         options: UIViewAnimationOptionCurveEaseInOut
                      animations:^{
                          
-                         dialogLabel.alpha = 1;
                          letterImageView.alpha = 1;
                          
                      }
@@ -243,35 +234,21 @@
 
     dialogLabel.font = [UIFont fontWithName:@"MarkerFelt-Thin" size:dialogLabel.font.pointSize];
     dialogLabel.text = text;
-
+    
+    
     NSTimeInterval dialogDuration = [self getDurationAndPlaySpeakerDialogAudioWithKey:key prefix:mainSpeaker.name suffix:@"English"];
-    dialogLabel.alpha = .99;
-    [UIView animateWithDuration: dialogDuration
-                          delay: 0.0
-                        options: UIViewAnimationOptionCurveEaseIn
-                     animations:^{
-                         dialogLabel.alpha = 1;
-                     }
-                     completion:^(BOOL finished){
-                         
-                         dialogLabel.font = [UIFont fontWithName:@"GeezaPro-Bold" size:dialogLabel.font.pointSize];
-                         dialogLabel.text = arabicText;
-                         dialogLabel.alpha = .99;
-                         NSTimeInterval dialogDuration = [self getDurationAndPlaySpeakerDialogAudioWithKey:key prefix:mainSpeaker.name suffix:@"Arabic"];
-                         
-                         [UIView animateWithDuration: dialogDuration
-                                               delay: 0.0
-                                             options: UIViewAnimationOptionCurveEaseIn
-                                          animations:^{
-                                              dialogLabel.alpha = 1;
-                                          }
-                                          completion:^(BOOL finished){
-                                              
-                                              completion();
-                                          }];
-                         
-                         
-                     }];
+    dispatch_after(DISPATCH_SECONDS_FROM_NOW(dialogDuration), dispatch_get_current_queue(), ^{
+        
+        dialogLabel.font = [UIFont fontWithName:@"GeezaPro-Bold" size:dialogLabel.font.pointSize];
+        dialogLabel.text = arabicText;
+        NSTimeInterval dialogDuration = [self getDurationAndPlaySpeakerDialogAudioWithKey:key prefix:mainSpeaker.name suffix:@"Arabic"];
+        
+        dispatch_after(DISPATCH_SECONDS_FROM_NOW(dialogDuration), dispatch_get_current_queue(), ^{
+            
+            completion();
+        });
+        
+    });
     
 }
 

@@ -163,35 +163,25 @@
    
     NSTimeInterval dialogDuration = [self getDurationAndPlaySpeakerDialogAudioWithKey:key prefix:mainSpeaker.name suffix:@"English"];
     [mainSpeakerImageView animateWithType:TALK repeatingDuration:dialogDuration];
+
     
-    dialogLabel.alpha = .99;
-    [UIView animateWithDuration: dialogDuration
-                          delay: 0.0
-                        options: UIViewAnimationOptionCurveEaseIn
-                     animations:^{
-                         dialogLabel.alpha = 1;
-                     }
-                     completion:^(BOOL finished){
-                         
-                         dialogLabel.font = [UIFont fontWithName:@"GeezaPro-Bold" size:dialogLabel.font.pointSize];
-                         dialogLabel.text = arabicText;
-                         dialogLabel.alpha = .99;
-                         NSTimeInterval dialogDuration = [self getDurationAndPlaySpeakerDialogAudioWithKey:key prefix:mainSpeaker.name suffix:@"Arabic"];
-                         [mainSpeakerImageView animateWithType:TALK repeatingDuration:dialogDuration];
-                         
-                         [UIView animateWithDuration: dialogDuration
-                                               delay: 0.0
-                                             options: UIViewAnimationOptionCurveEaseIn
-                                          animations:^{
-                                              dialogLabel.alpha = 1;
-                                          }
-                                          completion:^(BOOL finished){
-                                              
-                                              completion();
-                                          }];
-                         
-                         
-                     }];
+    dispatch_after(DISPATCH_SECONDS_FROM_NOW(dialogDuration), dispatch_get_current_queue(), ^{
+        
+        dialogLabel.font = [UIFont fontWithName:@"GeezaPro-Bold" size:dialogLabel.font.pointSize];
+        dialogLabel.text = arabicText;
+        
+        NSTimeInterval dialogDuration = [self getDurationAndPlaySpeakerDialogAudioWithKey:key prefix:mainSpeaker.name suffix:@"Arabic"];
+        [mainSpeakerImageView animateWithType:TALK repeatingDuration:dialogDuration];
+        
+        dispatch_after(DISPATCH_SECONDS_FROM_NOW(dialogDuration), dispatch_get_current_queue(), ^{
+        
+            completion();
+            
+        });
+        
+    });
+    
+
     
 }
 
