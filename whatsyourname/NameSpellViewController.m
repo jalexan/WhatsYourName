@@ -225,7 +225,7 @@
         else {
             unicodeChar = letter.unicodeMedial;
         }
-        unicodeChar = letter.unicodeMedial;
+        
     }    
     arabicSpellLabel.text = [NSString stringWithFormat:@"%@%C",arabicSpellLabel.text,unicodeChar];
 

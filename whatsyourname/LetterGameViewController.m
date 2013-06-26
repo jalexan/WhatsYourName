@@ -489,7 +489,7 @@
         else {
             unicodeChar = letter.unicodeMedial;
         }        
-        unicodeChar = letter.unicodeMedial;
+     
     }
     
     spellingArabicLetterLabel.text = [NSString stringWithFormat:@"%@%C",spellingArabicLetterLabel.text,unicodeChar];
