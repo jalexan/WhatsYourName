@@ -665,6 +665,7 @@
 }
 
 - (void)animateLevelSuccessWithCompletion:(void(^)())completion {
+    [speakerImageView animateWithType:DEFAULT repeatingDuration:3];
     
     for (int index=0;index<NUMBER_OF_SUCCESS_STARS;index++) {
         
