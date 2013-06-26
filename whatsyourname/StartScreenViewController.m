@@ -10,10 +10,16 @@
 
 @interface StartScreenViewController () {
     IBOutlet UIButton* bookLinkButton;
-    
+    IBOutlet UIButton* creditsButton;
+    IBOutlet UIButton* creditsBackButton;
+    IBOutlet UIButton* moreGamesButton;
+    IBOutlet UIButton* playButton;
+    UIScrollView* creditsScreen;
 
 }
 -(IBAction)bookLinkButtonTouched:(id)sender;
+-(IBAction)creditsButtonTouched:(id)sender;
+-(IBAction)creditsBackButtonTouched:(id)sender;
 @end
 
 @implementation StartScreenViewController
@@ -33,10 +39,61 @@
 
 }
 
+-(IBAction)creditsBackButtonTouched:(id)sender {
+    creditsBackButton.hidden = YES;
+    [creditsScreen setContentOffset:CGPointMake(0, 0)];
+    creditsScreen.hidden = YES;
+    [self showButtons];
+}
+
+-(IBAction)creditsButtonTouched:(id)sender {
+    bookLinkButton.hidden = YES;
+    creditsButton.hidden = YES;
+    moreGamesButton.hidden = YES;
+    playButton.hidden = YES;
+    creditsBackButton.hidden = NO;
+
+    if (!creditsScreen) {
+        creditsScreen = [[UIScrollView alloc] init];
+        creditsScreen.frame = CGRectMake(0,0,self.view.frame.size.width, self.view.frame.size.height - 50);
+        creditsScreen.contentSize = CGSizeMake(self.view.frame.size.width, self.view.frame.size.height*2);
+    }
+    creditsScreen.hidden = NO;
+    UILabel* sectionTitle = [[UILabel alloc] initWithFrame:CGRectMake(100, 10, creditsScreen.frame.size.width - 200, 50)];
+    sectionTitle.text = @"Programmers";
+    sectionTitle.textAlignment = NSTextAlignmentCenter;
+    sectionTitle.backgroundColor = [UIColor clearColor];
+    [creditsScreen addSubview:sectionTitle];
+    [self.view addSubview:creditsBackButton];
+    [self.view addSubview:creditsScreen];
+    
+    [UIView animateWithDuration:10 animations:^{
+        creditsScreen.contentOffset = CGPointMake(0, creditsScreen.contentSize.height);
+        
+    }];
+}
+
+-(void)setupStartScreenButtons {
+    bookLinkButton.hidden = YES;
+    creditsButton.hidden = YES;
+    creditsBackButton.hidden = YES;
+    moreGamesButton.hidden = YES;
+    playButton.hidden = YES;
+    playButton.backgroundColor = [UIColor clearColor];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    [self setupStartScreenButtons];
+    [self performSelector:@selector(showButtons) withObject:nil afterDelay:5];
+}
+
+-(void)showButtons {
+    bookLinkButton.hidden = NO;
+    creditsButton.hidden = NO;
+    moreGamesButton.hidden = NO;
+    playButton.hidden = NO;
 }
 
 - (void)didReceiveMemoryWarning
