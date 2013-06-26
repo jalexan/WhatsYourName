@@ -509,6 +509,8 @@
             }
             //if this is a [single character] suffix, then only replace that occurance
             if (IS_SUFFIX) {
+                NSLog(@"Character at index %u is %C", arabicName.length-2, (unichar)[arabicName characterAtIndex:arabicName.length-2]);
+                NSLog(@"Character at index %u is %C", arabicName.length-1, (unichar)[arabicName characterAtIndex:arabicName.length-1]);
                 temp = [arabicName stringByReplacingCharactersInRange:NSMakeRange(arabicName.length-2,arabicName.length-1) withString:replaceWith];
             } else {
                 temp = [arabicName stringByReplacingOccurrencesOfString:p
