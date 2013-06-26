@@ -443,7 +443,7 @@
         }
     }
       //just go through the loop for as many characters are in the name to make sure we've covered them all
-    for (NSUInteger times=0; times < arabicName.length; times++) {
+   // for (NSUInteger times=0; times < arabicName.length; times++) {
         for (NSString* p in patterns) {
             if ([arabicName hasPrefix:p]) {
                 lettersToLookup = [[transliterationDictionary objectForKey:p] objectForKey:@"initial"];
@@ -511,7 +511,7 @@
             if (IS_SUFFIX) {
                 NSLog(@"Character at index %u is %C", arabicName.length-2, (unichar)[arabicName characterAtIndex:arabicName.length-2]);
                 NSLog(@"Character at index %u is %C", arabicName.length-1, (unichar)[arabicName characterAtIndex:arabicName.length-1]);
-                temp = [arabicName stringByReplacingCharactersInRange:NSMakeRange(arabicName.length-2,arabicName.length-1) withString:replaceWith];
+                temp = [arabicName stringByReplacingCharactersInRange:NSMakeRange(arabicName.length-2,1) withString:replaceWith];
             } else {
                 temp = [arabicName stringByReplacingOccurrencesOfString:p
                                                          withString:replaceWith
@@ -520,7 +520,7 @@
             arabicName = [temp mutableCopy];
             
         }
-        }
+       // }
     }
     if (DEBUG_ARABIC_NAME) { NSLog(@"Name after single character substitution: %@", arabicName); }
     
