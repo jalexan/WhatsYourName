@@ -271,7 +271,9 @@
 }
 
 - (void)startShufflePhase {
-    //[self performSegueWithIdentifier:@"SurpriseSegue" sender:self];return;
+    if (SKIP_TO_BONUS_LEVEL) {
+        [self performSegueWithIdentifier:@"SurpriseSegue" sender:self];return;
+    }
     
     [self displayDialogTextWithKey:@"Name" animationType:TALK completion:^() {
         
