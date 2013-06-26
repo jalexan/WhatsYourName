@@ -18,5 +18,9 @@
 	<string>alef hamza, Ha, meem, daal</string>
 	<key>ramadan</key>
 	<string>reh, meem, daad, alef, noon</string>
+	<key>maged</key>
+	<string>meem, alef, geem, daal</string>
+	<key>magda</key>
+	<string>meem, alef, geem, daal, te marboota</string>
 </dict>
 </plist>
