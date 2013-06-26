@@ -473,7 +473,6 @@
     }
     else { //middle letter
         
-        /*
         if (index>0 && (previousLetterIndex==0 ||
                         previousLetterIndex==31 ||
                         previousLetterIndex==32 ||
@@ -489,11 +488,8 @@
         }
         else {
             unicodeChar = letter.unicodeMedial;
-        }
-        */
-        
+        }        
         unicodeChar = letter.unicodeMedial;
-        
     }
     
     spellingArabicLetterLabel.text = [NSString stringWithFormat:@"%@%C",spellingArabicLetterLabel.text,unicodeChar];

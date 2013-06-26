@@ -10,7 +10,7 @@
 		<key>Initial</key>
 		<string>FE8D</string>
 		<key>Medial</key>
-		<string>FE8D</string>
+		<string>FE8E</string>
 		<key>Final</key>
 		<string>FE8E</string>
 	</dict>
@@ -94,7 +94,7 @@
 		<key>Initial</key>
 		<string>062F</string>
 		<key>Medial</key>
-		<string>062F</string>
+		<string>FEAA</string>
 		<key>Final</key>
 		<string>FEAA</string>
 	</dict>
@@ -106,7 +106,7 @@
 		<key>Initial</key>
 		<string>0630</string>
 		<key>Medial</key>
-		<string>0630</string>
+		<string>FEAC</string>
 		<key>Final</key>
 		<string>FEAC</string>
 	</dict>
@@ -118,7 +118,7 @@
 		<key>Initial</key>
 		<string>0631</string>
 		<key>Medial</key>
-		<string>0631</string>
+		<string>FEAE</string>
 		<key>Final</key>
 		<string>FEAE</string>
 	</dict>
@@ -130,7 +130,7 @@
 		<key>Initial</key>
 		<string>0632</string>
 		<key>Medial</key>
-		<string>0632</string>
+		<string>FEB0</string>
 		<key>Final</key>
 		<string>FEB0</string>
 	</dict>
@@ -322,7 +322,7 @@
 		<key>Initial</key>
 		<string>0648</string>
 		<key>Medial</key>
-		<string>0648</string>
+		<string>FEEE</string>
 		<key>Final</key>
 		<string>FEEE</string>
 	</dict>
@@ -346,7 +346,7 @@
 		<key>Initial</key>
 		<string>0622</string>
 		<key>Medial</key>
-		<string>0622</string>
+		<string>FE82</string>
 		<key>Final</key>
 		<string>FE82</string>
 	</dict>
@@ -394,7 +394,7 @@
 		<key>Initial</key>
 		<string>FE83</string>
 		<key>Medial</key>
-		<string>FE83</string>
+		<string>FE84</string>
 		<key>Final</key>
 		<string>FE84</string>
 		<key>Unicode</key>
@@ -408,7 +408,7 @@
 		<key>Initial</key>
 		<string>FE87</string>
 		<key>Medial</key>
-		<string>FE87</string>
+		<string>FE88</string>
 		<key>Final</key>
 		<string>FE88</string>
 	</dict>
