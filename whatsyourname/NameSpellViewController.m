@@ -187,7 +187,12 @@
     //Arabic Tiles
     NSUInteger letterIndex = [[arabicLettersArray objectAtIndex:index] intValue];
     ArabicLetter* letter = [[ArabicLetter alloc] initWithLetterIndex:letterIndex];
+    NSUInteger previousLetterIndex;
     letter.slotPosition = index;
+    
+    if (index>0) {
+        previousLetterIndex = [[arabicLettersArray objectAtIndex:index-1] intValue];
+    }
     
     ArabicLetterImageView* letterImageView = letterImageViewArray[index];
     
@@ -204,6 +209,22 @@
     }
     else { //middle letter
 
+        if (index>0 && (previousLetterIndex==0 ||
+                        previousLetterIndex==31 ||
+                        previousLetterIndex==32 ||
+                        previousLetterIndex==33 ||
+                        previousLetterIndex==7 ||
+                        previousLetterIndex==8 ||
+                        previousLetterIndex==9 ||
+                        previousLetterIndex==10 ||
+                        previousLetterIndex==26 ||
+                        previousLetterIndex==28))
+        {
+            unicodeChar = letter.unicodeInitial;
+        }
+        else {
+            unicodeChar = letter.unicodeMedial;
+        }
         unicodeChar = letter.unicodeMedial;
     }    
     arabicSpellLabel.text = [NSString stringWithFormat:@"%@%C",arabicSpellLabel.text,unicodeChar];
