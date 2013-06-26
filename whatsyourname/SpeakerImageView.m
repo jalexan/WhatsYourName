@@ -150,7 +150,7 @@
     [self startAnimating];
     
     
-    if (animationType!=EXIT && animationType!=SHUFFLE) {
+    if (animationType!=EXIT && animationType!=SHUFFLE && animationType!=BRAVO) {
         NSTimeInterval afterDelay;
         if (self.animationRepeatCount==0) {
             afterDelay = repeatingDuration;
