@@ -60,11 +60,7 @@
     plistPath = [bundle pathForResource:[NSString stringWithFormat:@"Letters"] ofType:@"plist"];
     arabicLettersDictionary = [[NSArray alloc] initWithContentsOfFile:plistPath];
     
-    //TODO: use translatedLetterArrayForEnglishName instead of fake hardcoded array
-    arabicLettersArray = [self translatedLetterArrayForEnglishName:playerName];
-    //arabicLettersArray = @[@10,@22,@25,@26,@27];
 
-    [self createLetterImageViewArray];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -73,22 +69,21 @@
     if (!playerName)
         return;
 
+    arabicLettersArray = [self translatedLetterArrayForEnglishName:playerName];
+    
+    [self createLetterImageViewArray];
+    
     [self displayDialogTextWithKey:@"LikeThis" completion:^() {
+        
+        //arabicSpellLabel
         
         [self animateArabicNameImageViewWithIndex:0 limit:arabicLettersArray.count-1 completion:^() {
             
-            dialogLabel.alpha = .99;
-            [UIView animateWithDuration: 4
-                                  delay: 0.0
-                                options: UIViewAnimationOptionCurveEaseIn
-                             animations:^{
-                                 dialogLabel.alpha = 1;
-                             }
-                             completion:^(BOOL finished){
-                                 
-                                 [self.navigationController popViewControllerAnimated:YES];
-                                 
-                             }];
+            dispatch_after(DISPATCH_SECONDS_FROM_NOW(4), dispatch_get_current_queue(), ^{
+                
+                [self.navigationController popViewControllerAnimated:YES];
+            });
+
             
         }];
         
@@ -121,8 +116,19 @@
 - (void)createLetterImageViewArray {
     NSUInteger numberOfLetters = arabicLettersArray.count;
     letterImageViewArray = [NSMutableArray arrayWithCapacity:numberOfLetters];
-        
     CGSize letterImageSize = CGSizeMake(50, 50);
+    
+    NSUInteger containerWidth = numberOfLetters*letterImageSize.width;
+    if (containerWidth > letterContainerView.superview.frame.size.width-24) {
+        containerWidth = letterContainerView.superview.frame.size.width-24;
+    }
+    
+    CGRect containerFrame = letterContainerView.frame;
+    containerFrame.size.width = containerWidth;
+    letterContainerView.frame = containerFrame;
+    letterContainerView.centerX = letterContainerView.superview.centerX;
+   
+    
     NSInteger originY = 0;
     NSInteger heightToDivideEvenly = letterContainerView.height - letterImageSize.height; //Distance of origin of lowest slot to top of container
     
@@ -154,7 +160,6 @@
                 originY -= originYStep;
             }
         }
-        
         
         
         CGRect r = CGRectMake((letterContainerView.width-letterImageSize.width)-(letterImageSize.width*i), originY, letterImageSize.width, letterImageSize.height);
@@ -189,15 +194,26 @@
     
     //Spell out each letter in dialog label
     if (index==0) arabicSpellLabel.text = @"";
-    arabicSpellLabel.text = [NSString stringWithFormat:@"%@%C",arabicSpellLabel.text,letter.unicodeGeneral];
-        
-    dialogLabel.alpha = .99;
+    
+    unichar unicodeChar;
+    if (index==0) { //first letter
+        unicodeChar = letter.unicodeInitial;
+    }
+    else if (index==limit) { //last letter
+        unicodeChar = letter.unicodeFinal;
+    }
+    else { //middle letter
+
+        unicodeChar = letter.unicodeMedial;
+    }    
+    arabicSpellLabel.text = [NSString stringWithFormat:@"%@%C",arabicSpellLabel.text,unicodeChar];
+
+
     [UIView animateWithDuration: 2
                           delay: 0.0
                         options: UIViewAnimationOptionCurveEaseInOut
                      animations:^{
                          
-                         dialogLabel.alpha = 1;
                          letterImageView.alpha = 1;
                          
                      }
@@ -218,53 +234,39 @@
 
     dialogLabel.font = [UIFont fontWithName:@"MarkerFelt-Thin" size:dialogLabel.font.pointSize];
     dialogLabel.text = text;
-
+    
+    
     NSTimeInterval dialogDuration = [self getDurationAndPlaySpeakerDialogAudioWithKey:key prefix:mainSpeaker.name suffix:@"English"];
-    dialogLabel.alpha = .99;
-    [UIView animateWithDuration: dialogDuration
-                          delay: 0.0
-                        options: UIViewAnimationOptionCurveEaseIn
-                     animations:^{
-                         dialogLabel.alpha = 1;
-                     }
-                     completion:^(BOOL finished){
-                         
-                         dialogLabel.font = [UIFont fontWithName:@"GeezaPro-Bold" size:dialogLabel.font.pointSize];
-                         dialogLabel.text = arabicText;
-                         dialogLabel.alpha = .99;
-                         NSTimeInterval dialogDuration = [self getDurationAndPlaySpeakerDialogAudioWithKey:key prefix:mainSpeaker.name suffix:@"Arabic"];
-                         
-                         [UIView animateWithDuration: dialogDuration
-                                               delay: 0.0
-                                             options: UIViewAnimationOptionCurveEaseIn
-                                          animations:^{
-                                              dialogLabel.alpha = 1;
-                                          }
-                                          completion:^(BOOL finished){
-                                              
-                                              completion();
-                                          }];
-                         
-                         
-                     }];
+    dispatch_after(DISPATCH_SECONDS_FROM_NOW(dialogDuration), dispatch_get_current_queue(), ^{
+        
+        dialogLabel.font = [UIFont fontWithName:@"GeezaPro-Bold" size:dialogLabel.font.pointSize];
+        dialogLabel.text = arabicText;
+        NSTimeInterval dialogDuration = [self getDurationAndPlaySpeakerDialogAudioWithKey:key prefix:mainSpeaker.name suffix:@"Arabic"];
+        
+        dispatch_after(DISPATCH_SECONDS_FROM_NOW(dialogDuration), dispatch_get_current_queue(), ^{
+            
+            completion();
+        });
+        
+    });
     
 }
 
 
 -(NSMutableArray*)getUnicodesForLetters:(id)arabicLetters{
-    NSMutableArray* arabicLettersArray = [[NSMutableArray alloc] init];
+    NSMutableArray* mutableArabicLettersArray = [[NSMutableArray alloc] init];
     NSMutableArray* arabicUnicodes = [[NSMutableArray alloc] init];
     
     if ([arabicLetters isKindOfClass: [NSMutableString class]]) {
-        [arabicLettersArray addObject:arabicLetters];
+        [mutableArabicLettersArray addObject:arabicLetters];
     } else if ([arabicLetters isKindOfClass: [NSString class]]) {
-        [arabicLettersArray addObject:arabicLetters];
+        [mutableArabicLettersArray addObject:arabicLetters];
     } else if ([arabicLetters isKindOfClass: [NSArray class]]) {
-        arabicLettersArray = [arabicLetters mutableCopy];
+        mutableArabicLettersArray = [arabicLetters mutableCopy];
     } else {
         if (DEBUG_ARABIC_NAME) { NSLog(@"Not sure what class type this is %@",[arabicLetters class]); }
     }
-    for (NSString* s in arabicLettersArray) {
+    for (NSString* s in mutableArabicLettersArray) {
         if (DEBUG_ARABIC_NAME) { NSLog(@"Looking up arabic letter: %@",s); }
         NSString* unicodeValue = [[self.arabicLettersByNameDictionary objectForKey:s] objectForKey:@"Isolated"];
         
@@ -280,7 +282,7 @@
 }
 
 -(NSMutableArray*)getUnicodeIndexes:(id)arabicLetters{
-    NSMutableArray* arabicLettersArray = [[NSMutableArray alloc] init];
+    NSMutableArray* mutableArabicLettersArray = [[NSMutableArray alloc] init];
     NSMutableArray* unicodeIndexes = [[NSMutableArray alloc] init];
     NSMutableDictionary* letterIndexHash = [[NSMutableDictionary alloc] init];
     NSMutableDictionary* unicodeLetterIndexHash = [[NSMutableDictionary alloc] init];
@@ -288,13 +290,13 @@
     NSString* unicodeLetter = [[NSString alloc] init];
     
     if ([arabicLetters isKindOfClass: [NSMutableString class]]) {
-        [arabicLettersArray addObject:arabicLetters];
+        [mutableArabicLettersArray addObject:arabicLetters];
     } else if ([arabicLetters isKindOfClass: [NSString class]]) {
-        [arabicLettersArray addObject:arabicLetters];
+        [mutableArabicLettersArray addObject:arabicLetters];
     } else if ([arabicLetters isKindOfClass: [NSArray class]]) {
-        arabicLettersArray = [arabicLetters mutableCopy];
+        mutableArabicLettersArray = [arabicLetters mutableCopy];
     } else if ([arabicLetters isKindOfClass: [NSMutableArray class]]) {
-        arabicLettersArray = arabicLetters;
+        mutableArabicLettersArray = arabicLetters;
     } else {
         if (DEBUG_ARABIC_NAME) { NSLog(@"Not sure what class type this is %@",[arabicLetters class]); }
     }
@@ -306,7 +308,7 @@
         [unicodeLetterIndexHash setValue:[NSNumber numberWithUnsignedInteger:i] forKey:[unicodeLetter lowercaseString]];
     }
     
-    for (NSString* s in arabicLettersArray) {
+    for (NSString* s in mutableArabicLettersArray) {
         if (DEBUG_ARABIC_NAME) { NSLog(@"Looking up arabic letter: %@",s); }
         if ([letterIndexHash objectForKey:s]) {
             [unicodeIndexes addObject: [letterIndexHash objectForKey:s]];

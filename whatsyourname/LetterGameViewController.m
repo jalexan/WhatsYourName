@@ -271,11 +271,11 @@
 }
 
 - (void)startShufflePhase {
-    [self performSegueWithIdentifier:@"SurpriseSegue" sender:self];return;
+    //[self performSegueWithIdentifier:@"SurpriseSegue" sender:self];return;
     
-    [self displayDialogTextWithKey:@"Name" completion:^() {
+    [self displayDialogTextWithKey:@"Name" animationType:TALK completion:^() {
         
-        [self displayDialogTextWithKey:@"Like" completion:^() {
+        [self displayDialogTextWithKey:@"Like" animationType:TALK completion:^() {
             
             [self spellArabicNameWithCompletion:^() {
                 
@@ -285,7 +285,7 @@
                         
                         //[self displayDialogTextWithKey:@"Shuffle" completion:^() {
                             
-                            [self displayDialogTextWithKey:@"Try" completion:^() {
+                            [self displayDialogTextWithKey:@"Try" animationType:TALK completion:^() {
                                 
                             }];
                             
@@ -311,7 +311,7 @@
         
         [self animateLevelSuccessWithCompletion:^() {
             
-            [self displayDialogTextWithKey:@"Later" completion:^() {
+            [self displayDialogTextWithKey:@"Later" animationType:TALK completion:^() {
                 
                 [self animateSpeakerSuccessWithCompletion:^() {
                     
@@ -372,57 +372,30 @@
     }
     
     
-    dialogLabel.alpha = 1;
-    [UIView animateWithDuration: englishDialogDuration
-                          delay: 0.0
-                        options: UIViewAnimationOptionCurveEaseIn
-                     animations:^{
-                         dialogLabel.alpha = .99;
-                     }
-                     completion:^(BOOL finished){
-                         
-                         dialogLabel.font = [UIFont fontWithName:@"GeezaPro-Bold" size:dialogLabel.font.pointSize];
-                         dialogLabel.text = arabicText;
-                         [self getDurationAndPlaySpeakerDialogAudioWithKey:key prefix:currentSpeaker.name suffix:@"Arabic"];
-                         //[speakerImageView animateWithType:animationType repeatingDuration:dialogDuration];
-                         dialogLabel.alpha = 1;
-                         
-                         [UIView animateWithDuration: arabicDialogDuration
-                                               delay: 0.0
-                                             options: UIViewAnimationOptionCurveEaseIn
-                                          animations:^{
-                                              
-                                              dialogLabel.alpha = .99;
-                                          }
-                                          completion:^(BOOL finished){
-                                              
-                                              completion();
-                                          }];
-                                                  
-                     }];
+    dispatch_after(DISPATCH_SECONDS_FROM_NOW(englishDialogDuration), dispatch_get_current_queue(), ^{
+       
+        dialogLabel.font = [UIFont fontWithName:@"GeezaPro-Bold" size:dialogLabel.font.pointSize];
+        dialogLabel.text = arabicText;
+        [self getDurationAndPlaySpeakerDialogAudioWithKey:key prefix:currentSpeaker.name suffix:@"Arabic"];
+        
+        dispatch_after(DISPATCH_SECONDS_FROM_NOW(arabicDialogDuration), dispatch_get_current_queue(), ^{
+            completion();
+        });
+        
+        
+    });
     
-}
-
-- (void)displayDialogTextWithKey:(NSString*)key completion:(void(^)())completion {
-    [self displayDialogTextWithKey:key animationType:TALK completion:completion];
+         
 }
 
 - (void)animateSpeakerWithType:(AnimationType)type repeatingDuration:(NSTimeInterval)repeatingDuration keepLastFrame:(BOOL)keepLastFrame completion:(void(^)())completion {
     
-    dialogLabel.alpha = .99;
-    [UIView animateWithDuration: repeatingDuration
-                          delay: 0.0
-                        options: UIViewAnimationOptionCurveLinear
-                     animations:^{
-                         dialogLabel.alpha = 1;
-                         
-                         [speakerImageView animateWithType:type repeatingDuration:repeatingDuration keepLastFrame:keepLastFrame];
-                     }
-                     completion:^(BOOL finished){
-                         
-                         completion();
-                         
-                     }];
+
+    [speakerImageView animateWithType:type repeatingDuration:repeatingDuration keepLastFrame:keepLastFrame];
+    dispatch_after(DISPATCH_SECONDS_FROM_NOW(repeatingDuration), dispatch_get_current_queue(), ^{
+        
+       completion();
+    });
     
 }
 
@@ -500,8 +473,7 @@
     }
     else { //middle letter
         
-        //Spelling Exceptions
-        //TOOD: Make this less hard coded by adding to plist
+        /*
         if (index>0 && (previousLetterIndex==0 ||
                         previousLetterIndex==31 ||
                         previousLetterIndex==32 ||
@@ -518,6 +490,9 @@
         else {
             unicodeChar = letter.unicodeMedial;
         }
+        */
+        
+        unicodeChar = letter.unicodeMedial;
         
     }
     
@@ -764,6 +739,7 @@
     circleImageView.contentMode = UIViewContentModeCenter;
     [gameProgressView setImage:speakerImageView.lastExitImage atCircleIndex:currentSpeakerIndex];
     
+
     
     [UIView animateWithDuration: 2
                           delay: 0.0
@@ -776,21 +752,13 @@
                      completion:^(BOOL finished){
                          [gameProgressView stopRotations];
                          
-                         //Artificial Delay
-                         dialogLabel.alpha = .99;
-                         [UIView animateWithDuration: 2
-                                               delay: 0.0
-                                             options: UIViewAnimationOptionCurveEaseIn
-                                          animations:^{
-                                              dialogLabel.alpha = 1;
-                                              
-                                          }
-                                          completion:^(BOOL finished){
-                                              
-                                              completion();
-                                              
-                                          }];
                          
+                         
+                         dispatch_after(DISPATCH_SECONDS_FROM_NOW(2), dispatch_get_current_queue(), ^{
+                             
+                             completion();
+                         });
+
                      }];
     
     
@@ -933,20 +901,11 @@
     [speakerImageView animateWithType:animationType repeatingDuration:audioDuration];
     
     
-    
-    dialogLabel.alpha = 1;
-    [UIView animateWithDuration: 2
-                          delay: 0.0
-                        options: UIViewAnimationOptionCurveEaseIn
-                     animations:^{
-                         dialogLabel.alpha = .99;
-                     }
-                     completion:^(BOOL finished){
-                         
-                         dialogLabel.alpha = 1;
-                         completion();
-                         
-                     }];
+    dispatch_after(DISPATCH_SECONDS_FROM_NOW(2), dispatch_get_current_queue(), ^{
+        
+        completion();
+    });
+
 }
 
 
@@ -983,7 +942,7 @@
                 if ([self isFailureIntersectCheckForSlotImageView:slotImageView arabicLetterImageView:objectToDrag]) {
                     
                     if (!playedEnglishErrorAudio || !self.audioManager.hasErrorAudio) {
-                        [self displayDialogTextWithKey:@"Again" completion:^() {}];
+                        [self displayDialogTextWithKey:@"Again" animationType:TALK completion:^() {}];
                         playedEnglishErrorAudio = YES;
                     }
                     else {
