@@ -271,7 +271,7 @@
 }
 
 - (void)startShufflePhase {
-    [self performSegueWithIdentifier:@"SurpriseSegue" sender:self];return;
+    //[self performSegueWithIdentifier:@"SurpriseSegue" sender:self];return;
     
     [self displayDialogTextWithKey:@"Name" animationType:TALK completion:^() {
         
