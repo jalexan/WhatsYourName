@@ -782,7 +782,7 @@
     pathAnimation.calculationMode = kCAAnimationPaced;
     pathAnimation.fillMode = kCAFillModeForwards;
     pathAnimation.removedOnCompletion = NO;
-    pathAnimation.duration = animationDuration;//1.8;
+    pathAnimation.duration = animationDuration - 0.18;//1.8;
     //pathAnimation.delegate = self;
     
     CGPoint viewOrigin = speakerImageView.center;
