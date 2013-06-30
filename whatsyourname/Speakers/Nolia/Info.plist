@@ -8,7 +8,7 @@
 		<integer>26</integer>
 		<integer>22</integer>
 		<integer>27</integer>
-		<integer>29</integer>
+		<integer>0</integer>
 	</array>
 	<key>Dialog</key>
 	<dict>
@@ -17,14 +17,14 @@
 			<key>English</key>
 			<string>Hi!  My name is Nolia.</string>
 			<key>Arabic</key>
-			<string>اهلاً أنا اسمي نولية</string>
+			<string>اهلاً أنا اسمي نوليا</string>
 		</dict>
 		<key>Like</key>
 		<dict>
 			<key>English</key>
 			<string>Nolia. Like this:</string>
 			<key>Arabic</key>
-			<string>نولية زي كده</string>
+			<string>نوليا زي كده</string>
 		</dict>
 		<key>Shuffle</key>
 		<dict>
