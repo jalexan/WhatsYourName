@@ -8,30 +8,30 @@
 		<integer>0</integer>
 		<integer>24</integer>
 		<integer>27</integer>
-		<string>29</string>
+		<string>0</string>
 	</array>
 	<key>Dialog</key>
 	<dict>
 		<key>Name</key>
 		<dict>
 			<key>English</key>
-			<string>Hi!  My name is Rania.</string>
+			<string>Hello!  My name is Rania.</string>
 			<key>Arabic</key>
-			<string>اهلاً أنا اسمي رانية</string>
+			<string>اهلاً أنا اسمي رانيا</string>
 		</dict>
 		<key>Like</key>
 		<dict>
 			<key>English</key>
 			<string>Rania. Like this:</string>
 			<key>Arabic</key>
-			<string>رانية زي كده</string>
+			<string>رانيا زي كده</string>
 		</dict>
 		<key>Shuffle</key>
 		<dict>
 			<key>English</key>
 			<string>Nolia, no!</string>
 			<key>Arabic</key>
-			<string>لأ يانولية!</string>
+			<string>لأ يانوليا!</string>
 		</dict>
 		<key>Try</key>
 		<dict>
@@ -57,9 +57,9 @@
 		<key>Later</key>
 		<dict>
 			<key>English</key>
-			<string>See you later!</string>
+			<string>See you soon!</string>
 			<key>Arabic</key>
-			<string>إلى الاقاء</string>
+			<string>أشوفك قريب!</string>
 		</dict>
 	</dict>
 </dict>
