@@ -10,6 +10,7 @@
 		1500BC03177AABAD00F0DE3D /* LettersByName.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1500BC02177AABAD00F0DE3D /* LettersByName.plist */; };
 		15DEA758176525E00058852E /* TransliteratedLetters.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15DEA757176525E00058852E /* TransliteratedLetters.plist */; };
 		15DEA75A1765315F0058852E /* WellKnownNames.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15DEA7591765315F0058852E /* WellKnownNames.plist */; };
+		6808A9D2178012E500DBF72F /* AlphabetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6808A9D1178012E500DBF72F /* AlphabetViewController.m */; };
 		680E8386174F043A00AD8008 /* YourNameDialog.plist in Resources */ = {isa = PBXBuildFile; fileRef = 680E8385174F043A00AD8008 /* YourNameDialog.plist */; };
 		6812F6D8174BCFE100CBF5C2 /* NameGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6812F6D7174BCFE100CBF5C2 /* NameGameViewController.m */; };
 		681B4FE61748248600B5AF95 /* Speakers.plist in Resources */ = {isa = PBXBuildFile; fileRef = 681B4FE51748248600B5AF95 /* Speakers.plist */; };
@@ -56,6 +57,8 @@
 		1500BC02177AABAD00F0DE3D /* LettersByName.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = LettersByName.plist; sourceTree = "<group>"; };
 		15DEA757176525E00058852E /* TransliteratedLetters.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = TransliteratedLetters.plist; sourceTree = "<group>"; };
 		15DEA7591765315F0058852E /* WellKnownNames.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = WellKnownNames.plist; sourceTree = "<group>"; };
+		6808A9D0178012E500DBF72F /* AlphabetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlphabetViewController.h; sourceTree = "<group>"; };
+		6808A9D1178012E500DBF72F /* AlphabetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlphabetViewController.m; sourceTree = "<group>"; };
 		680E8385174F043A00AD8008 /* YourNameDialog.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = YourNameDialog.plist; sourceTree = "<group>"; };
 		6812F6D6174BCFE100CBF5C2 /* NameGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NameGameViewController.h; sourceTree = "<group>"; };
 		6812F6D7174BCFE100CBF5C2 /* NameGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NameGameViewController.m; sourceTree = "<group>"; };
@@ -191,6 +194,8 @@
 				68BC242B1760485E00A041C6 /* NameSpellViewController.m */,
 				68FA6DB2174C7309000B08E1 /* SurpriseViewController.h */,
 				68FA6DB3174C7309000B08E1 /* SurpriseViewController.m */,
+				6808A9D0178012E500DBF72F /* AlphabetViewController.h */,
+				6808A9D1178012E500DBF72F /* AlphabetViewController.m */,
 				681DDD3217546E0A007FFD64 /* AudioManager.h */,
 				681DDD3317546E0A007FFD64 /* AudioManager.m */,
 				684FA0E9175068760074965D /* GameUIView.h */,
@@ -368,6 +373,7 @@
 				682900A71763D7D50067E1A8 /* ShuffleImageView.m in Sources */,
 				68B6959A176C23A0002542EA /* StarImageView.m in Sources */,
 				689815D8177A95C100737B97 /* StartScreenViewController.m in Sources */,
+				6808A9D2178012E500DBF72F /* AlphabetViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
