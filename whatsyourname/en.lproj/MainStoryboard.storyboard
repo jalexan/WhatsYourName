@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12C54" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="OFY-Zf-6gI">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="OFY-Zf-6gI">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
@@ -141,6 +141,9 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="lef-yX-ejV" kind="push" id="Ewq-st-KJV"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ufh-pn-iul">
                                 <rect key="frame" x="415" y="204" width="45" height="44"/>
@@ -176,7 +179,91 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XQ0-t1-pKX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-455" y="-615"/>
+            <point key="canvasLocation" x="-505" y="-567"/>
+        </scene>
+        <!--Alphabet View Controller-->
+        <scene sceneID="2ow-N5-yE3">
+            <objects>
+                <viewController id="lef-yX-ejV" customClass="AlphabetViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ZPd-jO-f7n" customClass="GameUIView">
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="320"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="8xK-Zn-9Z7">
+                                <rect key="frame" x="0.0" y="0.0" width="480" height="325"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="geb-94-WCt">
+                                <rect key="frame" x="151" y="82" width="76" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Record">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="recordButtonTouched:" destination="lef-yX-ejV" eventType="touchUpInside" id="RKQ-HM-l3d"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="tNP-LR-j3Z">
+                                <rect key="frame" x="257" y="82" width="55" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Play">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="playButtonTouched:" destination="lef-yX-ejV" eventType="touchUpInside" id="4Fy-HT-MNZ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="sVI-21-xWg">
+                                <rect key="frame" x="20" y="257" width="73" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Back">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="backButtonTouched:" destination="lef-yX-ejV" eventType="touchUpInside" id="7Oa-0R-cKO"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2CR-su-CGp">
+                                <rect key="frame" x="143" y="164" width="182" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="b0o-Bg-ua6"/>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <connections>
+                        <outlet property="backButton" destination="sVI-21-xWg" id="K90-am-gWu"/>
+                        <outlet property="durationLabel" destination="2CR-su-CGp" id="XBh-GY-jbx"/>
+                        <outlet property="playButton" destination="tNP-LR-j3Z" id="kW1-ik-dqb"/>
+                        <outlet property="recordButton" destination="geb-94-WCt" id="Git-xj-syT"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="smg-WV-peC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="14" y="-567"/>
         </scene>
         <!--Surprise View Controller-->
         <scene sceneID="2U4-lO-KiI">
@@ -384,12 +471,86 @@
         <image name="question_mark.png" width="117" height="177"/>
         <image name="sound_on.png" width="128" height="128"/>
     </resources>
+    <classes>
+        <class className="AlphabetViewController" superclassName="GameController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AlphabetViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="backButtonTouched:"/>
+                <relationship kind="action" name="playButtonTouched:"/>
+                <relationship kind="action" name="recordButtonTouched:"/>
+                <relationship kind="outlet" name="backButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="durationLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="playButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="recordButton" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="GameController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/GameController.h"/>
+            <relationships>
+                <relationship kind="action" name="soundButtonTouched:"/>
+                <relationship kind="outlet" name="dialogLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="soundButton" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="GameProgressView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/GameProgressView.h"/>
+        </class>
+        <class className="GameUIView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/GameUIView.h"/>
+        </class>
+        <class className="LetterGameViewController" superclassName="GameController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LetterGameViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="arabicNameView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="gameProgressView" candidateClass="GameProgressView"/>
+                <relationship kind="outlet" name="mixedUpLettersAreaView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="slotContainerView" candidateClass="UIView"/>
+            </relationships>
+        </class>
+        <class className="NameGameViewController" superclassName="GameController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NameGameViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="goodByeButtonTouched:"/>
+                <relationship kind="outlet" name="background" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="goodByeButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="nameTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="restartButton" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="NameSpellViewController" superclassName="GameController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NameSpellViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="arabicSpellLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="background" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="letterContainerView" candidateClass="UIView"/>
+            </relationships>
+        </class>
+        <class className="StartScreenViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/StartScreenViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="bookLinkButtonTouched:"/>
+                <relationship kind="action" name="creditsBackButtonTouched:"/>
+                <relationship kind="action" name="creditsButtonTouched:"/>
+                <relationship kind="outlet" name="bookLinkButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="creditsBackButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="creditsButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="moreGamesButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="playButton" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="SurpriseViewController" superclassName="GameController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SurpriseViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="question" candidateClass="UIImageView"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="JOp-GJ-nqH"/>
+        <segue reference="xG4-ZF-rlo"/>
     </inferredMetricsTieBreakers>
 </document>
