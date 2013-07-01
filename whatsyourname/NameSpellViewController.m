@@ -288,10 +288,10 @@
         if (DEBUG_ARABIC_NAME) { NSLog(@"Not sure what class type this is %@",[arabicLetters class]); }
     }
     for (NSString* s in mutableArabicLettersArray) {
-        if (DEBUG_ARABIC_NAME) { NSLog(@"Looking up arabic letter: %@",s); }
+      //  if (DEBUG_ARABIC_NAME) { NSLog(@"Looking up arabic letter: %@",s); }
         NSString* unicodeValue = [[self.arabicLettersByNameDictionary objectForKey:s] objectForKey:@"Isolated"];
         
-        if (DEBUG_ARABIC_NAME) { NSLog(@"Got this unicode value from lookup: %@", unicodeValue); }
+      //  if (DEBUG_ARABIC_NAME) { NSLog(@"Got this unicode value from lookup: %@", unicodeValue); }
         if (unicodeValue) {
             [arabicUnicodes addObject:[[self.arabicLettersByNameDictionary objectForKey:s] objectForKey:@"Isolated"]];
         } else {
@@ -330,13 +330,13 @@
     }
     
     for (NSString* s in mutableArabicLettersArray) {
-        if (DEBUG_ARABIC_NAME) { NSLog(@"Looking up arabic letter: %@",s); }
+      //  if (DEBUG_ARABIC_NAME) { NSLog(@"Looking up arabic letter: %@",s); }
         if ([letterIndexHash objectForKey:s]) {
             [unicodeIndexes addObject: [letterIndexHash objectForKey:s]];
-            if (DEBUG_ARABIC_NAME) { NSLog(@"Got this unicode index from lookup: %@", [letterIndexHash objectForKey:s]); }
+        //    if (DEBUG_ARABIC_NAME) { NSLog(@"Got this unicode index from lookup: %@", [letterIndexHash objectForKey:s]); }
         } else if ([unicodeLetterIndexHash objectForKey:s]) {
             [unicodeIndexes addObject: [unicodeLetterIndexHash objectForKey:s]];
-            if (DEBUG_ARABIC_NAME) { NSLog(@"Got this unicode index from lookup: %@", [unicodeLetterIndexHash objectForKey:s]); }
+      //      if (DEBUG_ARABIC_NAME) { NSLog(@"Got this unicode index from lookup: %@", [unicodeLetterIndexHash objectForKey:s]); }
         } else {
             if (DEBUG_ARABIC_NAME) { NSLog(@"Did NOT find an index for letter %@", s); }
         }
@@ -348,18 +348,22 @@
     NSMutableString* lettersToLookup = [[NSMutableString alloc] init];
     NSMutableArray* unicodeLetters = [[NSMutableArray alloc] init];
     BOOL pattern_found = FALSE;
+    NSInteger position;
     
     //for each pattern, check if that's in the name and reduce
     for (NSString* p in patterns) {
         if ([arabicName hasPrefix:p]) {
+            position = 0;
             lettersToLookup = [[transliterationDictionary objectForKey:p] objectForKey:@"initial"];
             if (DEBUG_ARABIC_NAME) { NSLog(@"Found prefix %@",lettersToLookup); }
             pattern_found = TRUE;
         } else if ([arabicName hasSuffix:p]) {
+            position = [arabicName rangeOfString:p].location;
             lettersToLookup = [[transliterationDictionary objectForKey:p] objectForKey:@"middle"];
             if (DEBUG_ARABIC_NAME) { NSLog(@"Found suffix %@",lettersToLookup); }
             pattern_found = TRUE;
         } else if ([arabicName rangeOfString:p].location != NSNotFound) {
+            position = [arabicName rangeOfString:p].location;
             lettersToLookup = [[transliterationDictionary objectForKey:p] objectForKey:@"middle"];
             if (DEBUG_ARABIC_NAME) { NSLog(@"Found pattern %@",lettersToLookup); }
             pattern_found = TRUE;
@@ -372,7 +376,7 @@
             NSArray* lettersToLookupArray = [lettersToLookup componentsSeparatedByString:@", "];
             NSMutableString* replaceWith = [[NSMutableString alloc] initWithString:@""];
             NSString* temp;
-
+            
             unicodeLetters = [self getUnicodesForLetters:lettersToLookupArray];
             for (NSString* unicodeLetter in unicodeLetters) {
                 NSUInteger unicodeValue;
@@ -385,12 +389,11 @@
             }
             temp = [arabicName stringByReplacingOccurrencesOfString:p
                                                          withString:replaceWith
-                                                            options:NULL range:NSMakeRange(0,arabicName.length)];
+                                                            options:NULL range:NSMakeRange(position,p.length)];
             arabicName = [temp mutableCopy];
-            
         }
     }
-    if (DEBUG_ARABIC_NAME) { NSLog(@"Name after reduction: %@", arabicName); }
+    if (DEBUG_ARABIC_NAME) { NSLog(@"  *Name after reduction: %@", arabicName); }
     
     return arabicName;
 }
@@ -433,7 +436,6 @@
     
     //Step #4 ---- Loop through all single charaters (will repeat but it's ok)
     BOOL pattern_found = FALSE;
-    BOOL IS_SUFFIX = FALSE;
     arabicName = [[arabicName lowercaseString] mutableCopy];
     
     [patterns removeAllObjects];
@@ -442,85 +444,69 @@
             [patterns addObject:key];
         }
     }
-      //just go through the loop for as many characters are in the name to make sure we've covered them all
-   // for (NSUInteger times=0; times < arabicName.length; times++) {
-        for (NSString* p in patterns) {
-            if ([arabicName hasPrefix:p]) {
-                lettersToLookup = [[transliterationDictionary objectForKey:p] objectForKey:@"initial"];
+    
+    //LEFT OFF HERE - just need to add the part about 'a' or 'e' in the middle of the string
+    NSString* c;
+    BOOL middle_vowel_found = FALSE;
+    
+    for (NSInteger i=0; i < arabicName.length; i++) {
+        c = [NSString stringWithFormat:@"%C",[arabicName characterAtIndex:i]];
+        if (i==0) { //this is the first letter
+            lettersToLookup = [[transliterationDictionary objectForKey:c] objectForKey:@"initial"];
+            if (lettersToLookup) {
                 if (DEBUG_ARABIC_NAME) { NSLog(@"Found prefix %@",lettersToLookup); }
                 pattern_found = TRUE;
-            } else if ([arabicName hasSuffix:p]) {
-            //an 'e' on the end of a name is usually nothing ... NEEDS TESTING
-            if ( [p isEqualToString:@"e"]) {
-                NSString* temp = [arabicName substringWithRange:NSMakeRange(arabicName.length-1, arabicName.length)];
-                arabicName = [temp mutableCopy];
-                pattern_found = FALSE;
-                continue;
-            }
-            if ([p isEqualToString:@"a"] || [p isEqualToString:@"2"] ) {
-                lettersToLookup = [[transliterationDictionary objectForKey:p] objectForKey:@"final"];
-                IS_SUFFIX = TRUE;
             } else {
-                lettersToLookup = [[transliterationDictionary objectForKey:p] objectForKey:@"middle"];
-            }
-            if (DEBUG_ARABIC_NAME) { NSLog(@"Found suffix %@",lettersToLookup); }
-            pattern_found = TRUE;
-        } else if ([arabicName rangeOfString:p].location != NSNotFound) {
-                //LEFT OFF HERE - add rules for 'a' and 'e' in the middle of a word before/between non-vowels
-                // JULIE - NEED TO DEBUG THIS SECTION WITH 'FARAH' WHICH STRING TO GET LOCATION OF 'A' OR 'E' IN?
-                if ([p isEqualToString:@"a"] || [p isEqualToString:@"e"]) {
-                    NSUInteger i = [name rangeOfString:p].location;
-                    NSCharacterSet* vowels = [NSCharacterSet characterSetWithCharactersInString:@"aeiouAEIOU"];
-                
-                    if(![vowels characterIsMember:[name characterAtIndex:i-1]] && ![vowels characterIsMember:[name characterAtIndex:i+1]]) {
-                    if (DEBUG_ARABIC_NAME) { NSLog(@"Found 'a' or 'e' in between consanants at pos %lu in name %@",(unsigned long)i,name); }
-                    i = [arabicName rangeOfString:p].location;
-                    if (DEBUG_ARABIC_NAME) { NSLog(@"....and between consanants at pos %lu in arabicName %@ of length(%lu)",(unsigned long)i,arabicName,(unsigned long)arabicName.length); }
-
-                    NSString* temp = [arabicName substringWithRange:NSMakeRange(0,i)];
-                    NSString* temp2 = [arabicName substringWithRange:NSMakeRange(i+1, arabicName.length-i-1)];
-                    arabicName = [[temp stringByAppendingString:temp2] mutableCopy];
+                if (DEBUG_ARABIC_NAME) { NSLog(@"Found prefix %@ BUT couldn't get the letter to lookup",lettersToLookup);
                     pattern_found = FALSE;
-                    continue;
-                }
-                }
-                lettersToLookup = [[transliterationDictionary objectForKey:p] objectForKey:@"middle"];
-                if (DEBUG_ARABIC_NAME) { NSLog(@"Found pattern %@",lettersToLookup); }
+                }            }
+        } else if (i > 0 && i < arabicName.length-1) { //this is a middle letter
+            lettersToLookup = [[transliterationDictionary objectForKey:c] objectForKey:@"middle"];
+            if (lettersToLookup) {
+                if (DEBUG_ARABIC_NAME) { NSLog(@"Found middle %@",lettersToLookup); }
                 pattern_found = TRUE;
             } else {
+                if (DEBUG_ARABIC_NAME) { NSLog(@"Found middle %@ BUT couldn't get the letter to lookup",lettersToLookup);
+                    pattern_found = FALSE;
+                }            }
+            if ([c isEqualToString:@"a"] || [c isEqualToString:@"e"]) {
+                middle_vowel_found = TRUE;
+            }
+        } else {  //this is the last letter
+            if ([[transliterationDictionary objectForKey:c] objectForKey:@"final"]) {
+                lettersToLookup = [[transliterationDictionary objectForKey:c] objectForKey:@"final"];
+            } else {
+                lettersToLookup = [[transliterationDictionary objectForKey:c] objectForKey:@"middle"];
+            }
+            if (lettersToLookup) {
+                if (DEBUG_ARABIC_NAME) { NSLog(@"Found suffix %@",lettersToLookup); }
+                pattern_found = TRUE;
+            } else {
+                // if (DEBUG_ARABIC_NAME) { NSLog(@"Found suffix %@ BUT couldn't get the letter to lookup",lettersToLookup);
                 pattern_found = FALSE;
             }
-        
-            if(pattern_found) {
+        }
+        if (middle_vowel_found) {
+            //LEFT OFF HERE
+            //maybe remove it and if so,
+            //pattern_found = FALSE;
+        }
+        if (pattern_found) {
             //lookup unicodes for replacement of string arabicName in place
             NSArray* lettersToLookupArray = [lettersToLookup componentsSeparatedByString:@", "];
-            NSMutableString* replaceWith = [[NSMutableString alloc] initWithString:@""];
-            NSString* temp;
-            
             unicodeLetters = [self getUnicodesForLetters:lettersToLookupArray];
             for (NSString* unicodeLetter in unicodeLetters) {
+                
                 NSUInteger unicodeValue;
                 [[NSScanner scannerWithString:unicodeLetter] scanHexInt:&unicodeValue];
-                unicodeValue = (unichar)unicodeValue;
+                NSString* temp;
+                NSString* replaceWith = [NSString stringWithFormat:@"%C", (unichar)unicodeValue];
+                temp = [arabicName stringByReplacingCharactersInRange:NSMakeRange(i,1) withString:replaceWith];
                 
-                NSString* str = [NSString stringWithFormat:@"%C", (unichar)unicodeValue];
-                [replaceWith appendString:str];
-                
+                arabicName = [temp mutableCopy];
             }
-            //if this is a [single character] suffix, then only replace that occurance
-            if (IS_SUFFIX) {
-                NSLog(@"Character at index %u is %C", arabicName.length-2, (unichar)[arabicName characterAtIndex:arabicName.length-2]);
-                NSLog(@"Character at index %u is %C", arabicName.length-1, (unichar)[arabicName characterAtIndex:arabicName.length-1]);
-                temp = [arabicName stringByReplacingCharactersInRange:NSMakeRange(arabicName.length-2,1) withString:replaceWith];
-            } else {
-                temp = [arabicName stringByReplacingOccurrencesOfString:p
-                                                         withString:replaceWith
-                                                            options:NULL range:NSMakeRange(0,arabicName.length)];
-            }
-            arabicName = [temp mutableCopy];
-            
         }
-       // }
+        
     }
     if (DEBUG_ARABIC_NAME) { NSLog(@"Name after single character substitution: %@", arabicName); }
     
@@ -528,7 +514,7 @@
     for (NSUInteger i=0; i < arabicName.length; i++) {
         unichar a = [arabicName characterAtIndex:i];
         [arabicArray addObject:[NSString stringWithFormat:@"%04x", a]];
-        if (DEBUG_ARABIC_NAME) { NSLog(@"Arabic letter codes: %04x", a); }
+       // if (DEBUG_ARABIC_NAME) { NSLog(@"Arabic letter codes: %04x", a); }
     }
     return [self getUnicodeIndexes:arabicArray];
     
