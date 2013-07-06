@@ -87,7 +87,10 @@
 
     dialogLabel.adjustsFontSizeToFitWidth = YES;
 
-
+    UIImage *textFieldBackground = [[UIImage imageNamed:@"Resource/text_box_bg.png"] stretchableImageWithLeftCapWidth:12 topCapHeight:0];
+    nameTextField.background = textFieldBackground;
+    
+    
     [self addSpeakerImageViewsToView];
     
 
