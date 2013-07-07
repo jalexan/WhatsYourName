@@ -285,13 +285,20 @@
                     
                     [self mixUpLettersWithCompletion: ^() {
                         
-                        //[self displayDialogTextWithKey:@"Shuffle" completion:^() {
-                            
+                        if (!shuffleImageView.animationFound) {
+                            [self displayDialogTextWithKey:@"Shuffle" animationType:TALK completion:^() {
+                                
+                                [self displayDialogTextWithKey:@"Try" animationType:TALK completion:^() {
+                                    
+                                }];
+                            }];
+                        }
+                        else {
                             [self displayDialogTextWithKey:@"Try" animationType:TALK completion:^() {
                                 
-                            }];
-                            
-                        //}];
+                            }];                            
+                        }
+                        
                         
                     }];
                     
