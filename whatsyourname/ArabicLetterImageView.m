@@ -36,14 +36,11 @@
     arabicLetter = theArabicLetter;
     
     //NSString* filename = [NSString stringWithFormat:@"Letters/%02d.png",arabicLetter.letterIndex];
-    NSString* filename = [NSString stringWithFormat:@"Resource/slot.png"];
+    NSString* filename = [NSString stringWithFormat:@"Resource/slot_frame.png"];
     UIImage* i = [UIImage imageNamed:filename];
     
     if (i) {
-        //self.image = i;
-    }
-    else {
-        NSLog(@"Error: letter file not found: %@",filename);
+        self.image = i;
     }
 
     letterLabel = [[UILabel alloc] init];
@@ -53,13 +50,9 @@
     letterLabel.textAlignment = NSTextAlignmentCenter;
     letterLabel.shadowColor = [UIColor whiteColor];
     letterLabel.shadowOffset = CGSizeMake(1,1);
-
-
     
     letterLabel.text = [NSString stringWithFormat:@"%C",arabicLetter.unicodeGeneral];
     [self addSubview:letterLabel];
-    
-    
     
     letterNameLabel = [[UILabel alloc] init];
     letterNameLabel.font = [UIFont fontWithName:@"MarkerFelt-Thin" size:15];
