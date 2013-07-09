@@ -105,11 +105,11 @@
 
 
     if (nameTextField.hidden) {
-        [self displayDialogTextWithKey:@"Now" completion:^() {
+        [self displayDialogTextWithKey:@"Now" animateAllSpeakers:NO completion:^() {
             
-            [self displayDialogTextWithKey:@"Whats" completion:^() {
+            [self displayDialogTextWithKey:@"Whats" animateAllSpeakers:YES completion:^() {
                                 
-                [self displayDialogTextWithKey:@"Write" completion:^() {
+                [self displayDialogTextWithKey:@"Write" animateAllSpeakers:NO completion:^() {
                     
                     nameTextField.hidden = NO;
                     
@@ -123,7 +123,7 @@
         
         goodByeButton.hidden = NO;
         
-        [self displayDialogTextWithKey:@"Another" completion:^() {
+        [self displayDialogTextWithKey:@"Another" animateAllSpeakers:NO completion:^() {
 
         }];
                 
@@ -133,7 +133,7 @@
 
 - (void)pushSpellController {
 
-    [self displayDialogTextWithKey:@"Hello" completion:^() {
+    [self displayDialogTextWithKey:@"Hello" animateAllSpeakers:NO completion:^() {
 
         [self performSegueWithIdentifier:@"SpellSegue" sender:self];
         
@@ -148,7 +148,7 @@
     }
 }
 
-- (void)displayDialogTextWithKey:(NSString*)key completion:(void(^)())completion {
+- (void)displayDialogTextWithKey:(NSString*)key animateAllSpeakers:(BOOL)allspeakers completion:(void(^)())completion {
     
     NSDictionary* dialogDictionary = [yourNameDialogDictionary objectForKey:key];
     if (!dialogDictionary)
@@ -165,7 +165,15 @@
     dialogLabel.text = text;
    
     NSTimeInterval dialogDuration = [self getDurationAndPlaySpeakerDialogAudioWithKey:key prefix:mainSpeaker.name suffix:@"English"];
-    [mainSpeakerImageView animateWithType:TALK repeatingDuration:dialogDuration];
+    
+    if (allspeakers) {
+        for (SpeakerImageView* s in speakerImageViewArray) {
+            [s animateWithType:TALK repeatingDuration:dialogDuration];
+        }
+    }
+    else {
+        [mainSpeakerImageView animateWithType:TALK repeatingDuration:dialogDuration];
+    }
 
     
     dispatch_after(DISPATCH_SECONDS_FROM_NOW(dialogDuration), dispatch_get_current_queue(), ^{
@@ -174,7 +182,15 @@
         dialogLabel.text = arabicText;
         
         NSTimeInterval dialogDuration = [self getDurationAndPlaySpeakerDialogAudioWithKey:key prefix:mainSpeaker.name suffix:@"Arabic"];
-        [mainSpeakerImageView animateWithType:TALK repeatingDuration:dialogDuration];
+        
+        if (allspeakers) {
+            for (SpeakerImageView* s in speakerImageViewArray) {
+                [s animateWithType:TALK repeatingDuration:dialogDuration];
+            }
+        }
+        else {
+            [mainSpeakerImageView animateWithType:TALK repeatingDuration:dialogDuration];
+        }
         
         dispatch_after(DISPATCH_SECONDS_FROM_NOW(dialogDuration), dispatch_get_current_queue(), ^{
         
@@ -192,9 +208,9 @@
 - (IBAction)goodByeButtonTouched:(id)sender {
     nameTextField.hidden = YES;
     goodByeButton.hidden = YES;
-    [self displayDialogTextWithKey:@"Nice" completion:^() {
+    [self displayDialogTextWithKey:@"Nice" animateAllSpeakers:NO completion:^() {
 
-        [self displayDialogTextWithKey:@"Bye" completion:^() {
+        [self displayDialogTextWithKey:@"Bye" animateAllSpeakers:YES completion:^() {
             
             for (SpeakerImageView* speakerImageView in speakerImageViewArray) {
                 [speakerImageView repeatAnimation:BYE];
