@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Richard Nguyen. All rights reserved.
 //
 
-#define BG_MUSIC_VOLUME 0.05
+#define BG_MUSIC_VOLUME 0.20
 
 #import <Foundation/Foundation.h>
 #import <AVFoundation/AVFoundation.h>

@@ -134,7 +134,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(AudioManager)
         NSString* path = errorDialogSoundsArray[randomErrorAudioIndex];
         [self prepareAudioWithPath:path key:@"talking"];
         t = [self durationOfAudio:@"talking"];
-        [self playAudio:@"talking" volume:0.1];
+        [self playAudio:@"talking" volume:1];
         
     }
     else {
@@ -143,7 +143,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(AudioManager)
             NSString* path = errorDialogSoundsArray[sequentialErrorAudioIndex];
             [self prepareAudioWithPath:path key:@"talking"];
             t = [self durationOfAudio:@"talking"];
-            [self playAudio:@"talking" volume:0.1];
+            [self playAudio:@"talking" volume:1];
             sequentialErrorAudioIndex++;
             
             if (sequentialErrorAudioIndex==errorDialogSoundsArray.count) {

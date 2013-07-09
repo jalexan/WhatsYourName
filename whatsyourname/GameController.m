@@ -68,7 +68,7 @@
         t = 0;
     }
 
-    [self.audioManager playAudio:@"talking" volume:.1];
+    [self.audioManager playAudio:@"talking" volume:1];
     return t;
 }
 
