@@ -15,7 +15,7 @@
     IBOutlet UIButton* goodByeButton;
     IBOutlet UIButton* restartButton;
 }
-
+@property(nonatomic,strong)NSString* playerNameArabic;
 - (IBAction)goodByeButtonTouched:(id)sender;
 //- (IBAction)restartButtonTouched:(id)sender;
 @end

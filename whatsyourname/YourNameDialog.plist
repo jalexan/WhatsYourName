@@ -42,7 +42,7 @@
 		<key>English</key>
 		<string>It was nice to meet you @name</string>
 		<key>Arabic</key>
-		<string>اتشرفنا بك</string>
+		<string>اتشرفنا بك @name </string>
 	</dict>
 	<key>Another</key>
 	<dict>

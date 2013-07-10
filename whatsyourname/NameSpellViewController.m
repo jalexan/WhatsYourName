@@ -7,6 +7,7 @@
 //
 
 #import "NameSpellViewController.h"
+#import "NameGameViewController.h"
 #import "ArabicLetter.h"
 #import "ArabicLetterImageView.h"
 #import "SpeakerList.h"
@@ -18,6 +19,7 @@
     Speaker* mainSpeaker;
     NSMutableArray* arabicLettersArray;
     NSMutableArray* letterImageViewArray;
+    NSString* translatedArabicName;
 }
 
 @end
@@ -80,7 +82,11 @@
         [self animateArabicNameImageViewWithIndex:0 limit:arabicLettersArray.count-1 completion:^() {
             
             dispatch_after(DISPATCH_SECONDS_FROM_NOW(4), dispatch_get_current_queue(), ^{
-                
+                NSArray* viewControllers = self.navigationController.viewControllers;
+                if (viewControllers.count>1) {
+                    NameGameViewController* vc = (NameGameViewController*)viewControllers[viewControllers.count-2];
+                    vc.playerNameArabic = translatedArabicName;
+                }
                 [self.navigationController popViewControllerAnimated:YES];
             });
 
@@ -90,6 +96,7 @@
     }];
     
 }
+
 
 /*
 - (NSString*)translatedLetterArrayForEnglishName:(NSString*)name {
@@ -510,6 +517,8 @@
     }
     if (DEBUG_ARABIC_NAME) { NSLog(@"Name after single character substitution: %@", arabicName); }
     
+    
+    translatedArabicName = arabicName;
     NSMutableArray* arabicArray = [[NSMutableArray alloc] init];
     for (NSUInteger i=0; i < arabicName.length; i++) {
         unichar a = [arabicName characterAtIndex:i];

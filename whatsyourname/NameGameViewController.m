@@ -26,6 +26,7 @@
 @end
 
 @implementation NameGameViewController
+@synthesize playerNameArabic;
 
 - (void)addSpeakerImageViewsToView {
     
@@ -160,7 +161,16 @@
     if ([text rangeOfString:@"@name"].location != NSNotFound) {
         text = [text stringByReplacingOccurrencesOfString:@"@name" withString:playerName];
     }
-    
+    if ([arabicText rangeOfString:@"@name"].location != NSNotFound) {
+        
+        if (playerNameArabic) {
+            arabicText = [arabicText stringByReplacingOccurrencesOfString:@"@name" withString:playerNameArabic];
+        }
+        else {
+            arabicText = [arabicText stringByReplacingOccurrencesOfString:@"@name" withString:@""];
+        }
+    }
+
     dialogLabel.font = [UIFont fontWithName:@"MarkerFelt-Thin" size:dialogLabel.font.pointSize];
     dialogLabel.text = text;
    
