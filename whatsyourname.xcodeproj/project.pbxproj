@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		1500BC03177AABAD00F0DE3D /* LettersByName.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1500BC02177AABAD00F0DE3D /* LettersByName.plist */; };
-		15359AA3178D6DDD002D73BB /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15359AA2178D6DDD002D73BB /* Info.plist */; };
 		15DEA758176525E00058852E /* TransliteratedLetters.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15DEA757176525E00058852E /* TransliteratedLetters.plist */; };
 		15DEA75A1765315F0058852E /* WellKnownNames.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15DEA7591765315F0058852E /* WellKnownNames.plist */; };
 		6808A9D2178012E500DBF72F /* AlphabetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6808A9D1178012E500DBF72F /* AlphabetViewController.m */; };
@@ -56,7 +55,6 @@
 
 /* Begin PBXFileReference section */
 		1500BC02177AABAD00F0DE3D /* LettersByName.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = LettersByName.plist; sourceTree = "<group>"; };
-		15359AA2178D6DDD002D73BB /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		15DEA757176525E00058852E /* TransliteratedLetters.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = TransliteratedLetters.plist; sourceTree = "<group>"; };
 		15DEA7591765315F0058852E /* WellKnownNames.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = WellKnownNames.plist; sourceTree = "<group>"; };
 		6808A9D0178012E500DBF72F /* AlphabetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlphabetViewController.h; sourceTree = "<group>"; };
@@ -148,7 +146,6 @@
 		68240B02173F07D200BDBDF8 = {
 			isa = PBXGroup;
 			children = (
-				15359AA2178D6DDD002D73BB /* Info.plist */,
 				68240B17173F07D200BDBDF8 /* whatsyourname */,
 				68240B10173F07D200BDBDF8 /* Frameworks */,
 				68240B0E173F07D200BDBDF8 /* Products */,
@@ -344,7 +341,6 @@
 				15DEA758176525E00058852E /* TransliteratedLetters.plist in Resources */,
 				15DEA75A1765315F0058852E /* WellKnownNames.plist in Resources */,
 				1500BC03177AABAD00F0DE3D /* LettersByName.plist in Resources */,
-				15359AA3178D6DDD002D73BB /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
