@@ -35,7 +35,7 @@
 
 -(IBAction)bookLinkButtonTouched:(id)sender {
     
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://noliafasolia.com"]];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://noliafasolia.com/books"]];
 
 }
 
@@ -60,7 +60,8 @@
     }
     creditsScreen.hidden = NO;
     UILabel* sectionTitle = [[UILabel alloc] initWithFrame:CGRectMake(100, 10, creditsScreen.frame.size.width - 200, 50)];
-    sectionTitle.text = @"Programmers";
+
+    
     sectionTitle.textAlignment = NSTextAlignmentCenter;
     sectionTitle.backgroundColor = [UIColor clearColor];
     [creditsScreen addSubview:sectionTitle];
