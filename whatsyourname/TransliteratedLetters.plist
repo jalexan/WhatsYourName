@@ -355,6 +355,13 @@
 		<key>middle</key>
 		<string>reh</string>
 	</dict>
+	<key>rr</key>
+	<dict>
+		<key>initial</key>
+		<string>reh</string>
+		<key>middle</key>
+		<string>reh</string>
+	</dict>
 	<key>s</key>
 	<dict>
 		<key>initial</key>

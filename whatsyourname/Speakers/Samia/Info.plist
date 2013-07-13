@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Dialog</key>
+	<dict>
+		<key>ThisIs</key>
+		<dict>
+			<key>English</key>
+			<string>This is the Arabic Alphbet Song</string>
+			<key>Arabic</key>
+			<string>دي أغنية الحروف الأبجدية بالعربي</string>
+		</dict>
+		<key>SingAlong</key>
+		<dict>
+			<key>English</key>
+			<string>Why don&apos;t you sing along?</string>
+			<key>Arabic</key>
+			<string>تيجوا تغنوا معي؟</string>
+		</dict>
+	</dict>
+</dict>
+</plist>

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1500BC03177AABAD00F0DE3D /* LettersByName.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1500BC02177AABAD00F0DE3D /* LettersByName.plist */; };
+		15359AA5178D7933002D73BB /* Credits.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15359AA4178D7933002D73BB /* Credits.plist */; };
 		15DEA758176525E00058852E /* TransliteratedLetters.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15DEA757176525E00058852E /* TransliteratedLetters.plist */; };
 		15DEA75A1765315F0058852E /* WellKnownNames.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15DEA7591765315F0058852E /* WellKnownNames.plist */; };
 		6808A9D2178012E500DBF72F /* AlphabetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6808A9D1178012E500DBF72F /* AlphabetViewController.m */; };
@@ -55,6 +56,7 @@
 
 /* Begin PBXFileReference section */
 		1500BC02177AABAD00F0DE3D /* LettersByName.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = LettersByName.plist; sourceTree = "<group>"; };
+		15359AA4178D7933002D73BB /* Credits.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Credits.plist; sourceTree = "<group>"; };
 		15DEA757176525E00058852E /* TransliteratedLetters.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = TransliteratedLetters.plist; sourceTree = "<group>"; };
 		15DEA7591765315F0058852E /* WellKnownNames.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = WellKnownNames.plist; sourceTree = "<group>"; };
 		6808A9D0178012E500DBF72F /* AlphabetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlphabetViewController.h; sourceTree = "<group>"; };
@@ -207,6 +209,7 @@
 				1500BC02177AABAD00F0DE3D /* LettersByName.plist */,
 				15DEA757176525E00058852E /* TransliteratedLetters.plist */,
 				15DEA7591765315F0058852E /* WellKnownNames.plist */,
+				15359AA4178D7933002D73BB /* Credits.plist */,
 				685D89011749273300847C7D /* Speakers */,
 				685D890917495DEA00847C7D /* Resource */,
 				68240B18173F07D200BDBDF8 /* Supporting Files */,
@@ -341,6 +344,7 @@
 				15DEA758176525E00058852E /* TransliteratedLetters.plist in Resources */,
 				15DEA75A1765315F0058852E /* WellKnownNames.plist in Resources */,
 				1500BC03177AABAD00F0DE3D /* LettersByName.plist in Resources */,
+				15359AA5178D7933002D73BB /* Credits.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
