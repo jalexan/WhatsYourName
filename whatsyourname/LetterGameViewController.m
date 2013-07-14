@@ -543,7 +543,8 @@
     
     
     if (!shuffleImageView.animationFound) {
-        [self animateSpeakerWithType:SHUFFLE repeatingDuration:3 completion:^() {
+        NSTimeInterval shuffleSoundEffectDuration = [self getDurationAndPlaySpeakerDialogAudioWithKey:@"ShuffleSoundEffect" prefix:currentSpeaker.name suffix:@""];
+        [self animateSpeakerWithType:SHUFFLE repeatingDuration:shuffleSoundEffectDuration keepLastFrame:NO completion:^() {
             
             completion();
             
