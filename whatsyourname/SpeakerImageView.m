@@ -123,8 +123,18 @@
          
      }
      else if (animationType==EXIT) {
-         [self setAnimationImages: exitImagesArray]; //1.65
-         [self setAnimationDuration: (float)exitImagesArray.count/ANIMATION_FRAMES_PER_SECOND];
+         
+         NSMutableArray* arrayWithoutLastImage = [exitImagesArray mutableCopy];
+         [arrayWithoutLastImage removeLastObject];
+         
+         if (keepLastFrame) {
+             self.animationImages = nil;
+             self.image = arrayWithoutLastImage.lastObject;
+         }
+         
+         
+         [self setAnimationImages: arrayWithoutLastImage]; //1.65
+         [self setAnimationDuration: (float)arrayWithoutLastImage.count/ANIMATION_FRAMES_PER_SECOND];
          [self setAnimationRepeatCount:1];
 
          
@@ -184,7 +194,10 @@
 
     }
     else if (animationType==EXIT) {
-        return  (float)exitImagesArray.count/ANIMATION_FRAMES_PER_SECOND;
+        NSMutableArray* arrayWithoutLastImage = [exitImagesArray mutableCopy];
+        [arrayWithoutLastImage removeLastObject];
+
+        return  (float)arrayWithoutLastImage.count/ANIMATION_FRAMES_PER_SECOND;
     }
     else if (animationType==BYE) {
         return (float)byeImagesArray.count/ANIMATION_FRAMES_PER_SECOND;

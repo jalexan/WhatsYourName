@@ -784,12 +784,11 @@
     NSTimeInterval animationDuration = [speakerImageView animationDurationOfType:EXIT];
     //UIImageView* circleImageView = [gameProgressView circleImageViewWithIndex:currentSpeakerIndex];
     
-    
     CAKeyframeAnimation *pathAnimation = [CAKeyframeAnimation animationWithKeyPath:@"position"];
-    pathAnimation.calculationMode = kCAAnimationPaced;
+    //pathAnimation.calculationMode = kCAAnimationPaced;
     pathAnimation.fillMode = kCAFillModeForwards;
     pathAnimation.removedOnCompletion = NO;
-    pathAnimation.duration = animationDuration - 0.18;//1.8;
+    pathAnimation.duration = animationDuration;//1.8;
     //pathAnimation.delegate = self;
     
     CGPoint viewOrigin = speakerImageView.center;
@@ -833,6 +832,7 @@
                                               
                                           }
                                           completion:^(BOOL finished){
+                                              [speakerImageView setToLastExitImage];
                                               [circle_empty removeFromSuperview];
                                               completion();
                                               
