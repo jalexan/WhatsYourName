@@ -56,21 +56,48 @@
     if (!creditsScreen) {
         creditsScreen = [[UIScrollView alloc] init];
         creditsScreen.frame = CGRectMake(0,0,self.view.frame.size.width, self.view.frame.size.height - 50);
-        creditsScreen.contentSize = CGSizeMake(self.view.frame.size.width, self.view.frame.size.height*2);
+        creditsScreen.contentSize = CGSizeMake(self.view.frame.size.width, self.view.frame.size.height*3);
     }
     creditsScreen.hidden = NO;
-    UILabel* sectionTitle = [[UILabel alloc] initWithFrame:CGRectMake(100, 10, creditsScreen.frame.size.width - 200, 50)];
-
+    UILabel* creditSectionLabel;
     
-    sectionTitle.textAlignment = NSTextAlignmentCenter;
-    sectionTitle.backgroundColor = [UIColor clearColor];
-    [creditsScreen addSubview:sectionTitle];
+    NSBundle *bundle = [NSBundle mainBundle];
+    NSString *plistPath = [bundle pathForResource:[NSString stringWithFormat:@"Credits"] ofType:@"plist"];
+    NSArray *credits = [[NSArray alloc] initWithContentsOfFile:plistPath];
+    BOOL is_heading = NO;
+    NSInteger x_pos = 100;
+    NSInteger y_pos = 50;
+    NSInteger font_size = 14;
+    UIColor *label_bg_color = [UIColor clearColor];
+    
+    for (NSString *credit in credits) {
+        if ([credit isEqualToString:@""]) {  //if the credit is a blank, then the next one is a heading
+            is_heading = YES;
+            y_pos += 25;
+            continue;
+        }
+        if (is_heading) {
+            //change font to smaller size for heading
+            is_heading = NO;
+            font_size = 14;
+        } else {
+            //use this default font size
+            font_size = 16;
+        }
+        creditSectionLabel = [[UILabel alloc] initWithFrame:CGRectMake(x_pos, y_pos, creditsScreen.frame.size.width - 200, 20)];
+        creditSectionLabel.font = [UIFont fontWithName:@"MarkerFelt-Thin" size:font_size];
+        creditSectionLabel.text = credit;
+        creditSectionLabel.textAlignment = NSTextAlignmentCenter;
+        creditSectionLabel.backgroundColor = label_bg_color;
+        [creditsScreen addSubview:creditSectionLabel];
+        y_pos += 25;
+    }
+    
     [self.view addSubview:creditsBackButton];
     [self.view addSubview:creditsScreen];
     
-    [UIView animateWithDuration:10 animations:^{
+    [UIView animateWithDuration:[credits count]*0.75 animations:^{
         creditsScreen.contentOffset = CGPointMake(0, creditsScreen.contentSize.height);
-        
     }];
 }
 

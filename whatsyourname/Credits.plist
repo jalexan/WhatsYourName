@@ -1,42 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-<dict>
-	<key>Programmers</key>
-	<array>
-		<string>Richard Nguyen</string>
-		<string>Julie Alexan</string>
-	</array>
-	<key>Character Design</key>
-	<array>
-		<string>Fady Caesar</string>
-	</array>
-	<key>Character Animation</key>
-	<array>
-		<string>Sara Youssef</string>
-	</array>
-	<key>Graphics/Audio</key>
-	<array>
-		<string>Julie Alexan</string>
-	</array>
-	<key>Voice Actors</key>
-	<array>
-		<string>Farah</string>
-		<string>Mariam</string>
-		<string>Raffi</string>
-		<string>Renee</string>
-	</array>
-	<key>Music</key>
-	<array>
-		<string>???</string>
-	</array>
-	<key>© Copyright 2013
-COPYRIGHT SIGN
-Unicode: U+00A9, UTF-8: C2 A9 Copyright</key>
-	<array>
-		<string>BigKids Bilingual Books .com</string>
-	</array>
-	<key>All rights reserved</key>
-	<array/>
-</dict>
+<array>
+	<string>What&apos;s Your Name </string>
+	<string>Version 1.0</string>
+	<string></string>
+	<string>Programmers</string>
+	<string>Richard Nguyen</string>
+	<string>Julie Alexan</string>
+	<string></string>
+	<string>Character Design</string>
+	<string>Fady Caesar</string>
+	<string></string>
+	<string>Character Animation</string>
+	<string>Sara Youssef</string>
+	<string></string>
+	<string>Graphics &amp; Audio</string>
+	<string>Julie Alexan</string>
+	<string></string>
+	<string>Voice Actors</string>
+	<string>Farah</string>
+	<string>Raffi</string>
+	<string>Mariam</string>
+	<string>Renee</string>
+	<string></string>
+	<string>Music</string>
+	<string>???</string>
+	<string></string>
+	<string>Based on the book</string>
+	<string>&quot;Nolia Fasolia&quot;</string>
+	<string></string>
+	<string>Copyright</string>
+	<string>© Copyright 2013 BigKids Bilingual Books
+</string>
+	<string>All rights reserved</string>
+	<string></string>
+	<string>Visit Us</string>
+	<string>www.noliafasolia.com</string>
+	<string></string>
+	<string></string>
+</array>
 </plist>
