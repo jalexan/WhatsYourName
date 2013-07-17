@@ -19,6 +19,7 @@
 @implementation ArabicLetterImageView
 @synthesize arabicLetter;
 @synthesize dragStartPoint;
+@synthesize showName;
 
 - (id)initWithArabicLetter:(ArabicLetter*)letter
 {
@@ -27,13 +28,16 @@
         
         self.arabicLetter = letter;
         self.userInteractionEnabled = YES;
-        
+        self.showName = YES;
     }
     return self;
 }
 
 - (void)setArabicLetter:(ArabicLetter *)theArabicLetter {
     arabicLetter = theArabicLetter;
+    if (!self.showName) {
+        self.showName = YES;
+    }
     
     //NSString* filename = [NSString stringWithFormat:@"Letters/%02d.png",arabicLetter.letterIndex];
     NSString* filename = [NSString stringWithFormat:@"Resource/slot_frame.png"];
@@ -54,18 +58,20 @@
     letterLabel.text = [NSString stringWithFormat:@"%C",arabicLetter.unicodeGeneral];
     [self addSubview:letterLabel];
     
-    letterNameLabel = [[UILabel alloc] init];
-    letterNameLabel.font = [UIFont fontWithName:@"MarkerFelt-Thin" size:15];
-    letterNameLabel.backgroundColor = [UIColor clearColor];
-    letterNameLabel.textAlignment = NSTextAlignmentCenter;
-    letterNameLabel.shadowColor = [UIColor whiteColor];
-    letterNameLabel.shadowOffset = CGSizeMake(0,1);
-    letterNameLabel.lineBreakMode = NSLineBreakByWordWrapping;
-    letterNameLabel.numberOfLines = 2;
+    if (self.showName) {
+        letterNameLabel = [[UILabel alloc] init];
+        letterNameLabel.font = [UIFont fontWithName:@"MarkerFelt-Thin" size:15];
+        letterNameLabel.backgroundColor = [UIColor clearColor];
+        letterNameLabel.textAlignment = NSTextAlignmentCenter;
+        letterNameLabel.shadowColor = [UIColor whiteColor];
+        letterNameLabel.shadowOffset = CGSizeMake(0,1);
+        letterNameLabel.lineBreakMode = NSLineBreakByWordWrapping;
+        letterNameLabel.numberOfLines = 2;
     
-    letterNameLabel.text = arabicLetter.letterName;
-    [letterNameLabel sizeToFit];
-    [self addSubview:letterNameLabel];
+        letterNameLabel.text = arabicLetter.letterName;
+        [letterNameLabel sizeToFit];
+        [self addSubview:letterNameLabel];
+    }
     
 }
 

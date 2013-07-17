@@ -19,4 +19,5 @@
 @property(nonatomic, strong) ArabicLetter* arabicLetter;
 @property(nonatomic, assign) CGPoint dragStartPoint;
 @property(nonatomic, assign) BOOL isAnimating;
+@property(nonatomic, assign) BOOL showName;
 @end
