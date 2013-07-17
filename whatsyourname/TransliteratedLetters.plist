@@ -465,5 +465,12 @@
 		<key>middle</key>
 		<string>Thaa</string>
 	</dict>
+	<key> </key>
+	<dict>
+		<key>initial</key>
+		<string> </string>
+		<key>middle</key>
+		<string> </string>
+	</dict>
 </dict>
 </plist>
