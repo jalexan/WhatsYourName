@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1500BC03177AABAD00F0DE3D /* LettersByName.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1500BC02177AABAD00F0DE3D /* LettersByName.plist */; };
 		15359AA5178D7933002D73BB /* Credits.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15359AA4178D7933002D73BB /* Credits.plist */; };
+		15955EBA17962C4E00E11F14 /* ArabicLetterZoomImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 15955EB917962C4E00E11F14 /* ArabicLetterZoomImageView.m */; };
 		15DEA758176525E00058852E /* TransliteratedLetters.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15DEA757176525E00058852E /* TransliteratedLetters.plist */; };
 		15DEA75A1765315F0058852E /* WellKnownNames.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15DEA7591765315F0058852E /* WellKnownNames.plist */; };
 		6808A9D2178012E500DBF72F /* AlphabetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6808A9D1178012E500DBF72F /* AlphabetViewController.m */; };
@@ -57,6 +58,8 @@
 /* Begin PBXFileReference section */
 		1500BC02177AABAD00F0DE3D /* LettersByName.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = LettersByName.plist; sourceTree = "<group>"; };
 		15359AA4178D7933002D73BB /* Credits.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Credits.plist; sourceTree = "<group>"; };
+		15955EB817962C4E00E11F14 /* ArabicLetterZoomImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArabicLetterZoomImageView.h; sourceTree = "<group>"; };
+		15955EB917962C4E00E11F14 /* ArabicLetterZoomImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArabicLetterZoomImageView.m; sourceTree = "<group>"; };
 		15DEA757176525E00058852E /* TransliteratedLetters.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = TransliteratedLetters.plist; sourceTree = "<group>"; };
 		15DEA7591765315F0058852E /* WellKnownNames.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = WellKnownNames.plist; sourceTree = "<group>"; };
 		6808A9D0178012E500DBF72F /* AlphabetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlphabetViewController.h; sourceTree = "<group>"; };
@@ -238,6 +241,8 @@
 			children = (
 				68353D671740B7810003D1EB /* ArabicLetterImageView.h */,
 				68353D681740B7810003D1EB /* ArabicLetterImageView.m */,
+				15955EB817962C4E00E11F14 /* ArabicLetterZoomImageView.h */,
+				15955EB917962C4E00E11F14 /* ArabicLetterZoomImageView.m */,
 				68E73C2D1744B22B0064F7BC /* SpeakerImageView.h */,
 				68E73C2E1744B22B0064F7BC /* SpeakerImageView.m */,
 				685D8906174958C900847C7D /* SlotImageView.h */,
@@ -378,6 +383,7 @@
 				68B6959A176C23A0002542EA /* StarImageView.m in Sources */,
 				689815D8177A95C100737B97 /* StartScreenViewController.m in Sources */,
 				6808A9D2178012E500DBF72F /* AlphabetViewController.m in Sources */,
+				15955EBA17962C4E00E11F14 /* ArabicLetterZoomImageView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
