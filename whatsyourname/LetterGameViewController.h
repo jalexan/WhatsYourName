@@ -16,10 +16,7 @@
     IBOutlet UIView* arabicNameView;
     IBOutlet UIView* slotContainerView;
     IBOutlet UIView* mixedUpLettersAreaView;
-    IBOutlet GameProgressView* gameProgressView;
-    
+    IBOutlet GameProgressView* gameProgressView;    
 }
-
-- (IBAction)homeButtonTouched:(id)sender;
 
 @end
