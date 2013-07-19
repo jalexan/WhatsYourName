@@ -16,7 +16,6 @@
 
 @implementation GameController
 @synthesize audioManager;
-@synthesize soundButton;
 @synthesize screenBounds;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -59,6 +58,30 @@
 }
 
 
+- (IBAction)homeButtonTouched:(id)sender {
+    [NSObject cancelPreviousPerformRequestsWithTarget:self];
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
+- (IBAction)soundButtonTouched:(id)sender {
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    if (audioManager.backgroundPlayer.isPlaying) {
+        [audioManager.backgroundPlayer pause];
+        soundButton.selected = YES;
+        [userDefaults setBool:YES forKey:@"pauseMusic"];
+    }
+    else {
+        audioManager.backgroundPlayer.volume = BG_MUSIC_VOLUME;
+        [audioManager.backgroundPlayer play];
+        soundButton.selected = NO;
+        [userDefaults setBool:NO forKey:@"pauseMusic"];
+    }
+}
+
+
+
+
+
 - (NSTimeInterval)getDurationAndPlaySpeakerDialogAudioWithKey:(NSString*)key prefix:(NSString*)prefix  suffix:(NSString*)suffix {
     NSString* path = [NSString stringWithFormat:@"Speakers/%@/Audio/%@%@.mp3",prefix,key,suffix];
     [self.audioManager prepareAudioWithPath:path key:@"talking"];
@@ -80,28 +103,18 @@
     return t;
 }
 
-- (IBAction)soundButtonTouched:(id)sender {
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    if (audioManager.backgroundPlayer.isPlaying) {
-        [audioManager.backgroundPlayer pause];
-        soundButton.selected = YES;
-        [userDefaults setBool:YES forKey:@"pauseMusic"];
-    }
-    else {
-        audioManager.backgroundPlayer.volume = BG_MUSIC_VOLUME;
-        [audioManager.backgroundPlayer play];
-        soundButton.selected = NO;
-        [userDefaults setBool:NO forKey:@"pauseMusic"];
-    }
+- (void)stopAllAudio {
+    [self.audioManager stopAudio:@"talking"];
+    [self.audioManager pauseAudio:@"Resource/bg.mp3"];
 }
 
 - (void)applicationWillResignActive{
-    [audioManager pauseAudio:@"bg"];
+    [self.audioManager pauseAudio:@"Resource/bg.mp3"];
 }
 
 - (void)applicationDidBecomeActive{
     
-    [audioManager initializeAudio];
+    [self.audioManager initializeAudio];
 }
 
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12C54" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="OFY-Zf-6gI">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="OFY-Zf-6gI">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
@@ -33,7 +33,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="96C-zx-Jmw">
-                                <rect key="frame" x="6" y="283" width="32" height="32"/>
+                                <rect key="frame" x="9" y="44" width="32" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" image="sound_on.png">
@@ -51,6 +51,21 @@
                                 <rect key="frame" x="46" y="131" width="388" height="58"/>
                                 <autoresizingMask key="autoresizingMask"/>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="aUq-Au-kZq">
+                                <rect key="frame" x="9" y="7" width="47" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Home">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="homeButtonTouched:" destination="2" eventType="touchUpInside" id="blJ-d0-NvU"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
@@ -63,6 +78,7 @@
                         <outlet property="arabicNameView" destination="F03-GT-4x9" id="3QN-Zd-mUn"/>
                         <outlet property="dialogLabel" destination="4g7-YX-LaA" id="voO-g9-zhi"/>
                         <outlet property="gameProgressView" destination="Pim-J2-tjb" id="8Cs-bX-SRi"/>
+                        <outlet property="homeButton" destination="aUq-Au-kZq" id="dfK-Ui-6K6"/>
                         <outlet property="mixedUpLettersAreaView" destination="oUu-Jv-0Vm" id="u0t-46-3R8"/>
                         <outlet property="slotContainerView" destination="vAG-pL-KWb" id="ipH-o0-YNm"/>
                         <outlet property="soundButton" destination="96C-zx-Jmw" id="LWC-gd-Xz0"/>
@@ -368,6 +384,21 @@
                                     <action selector="soundButtonTouched:" destination="MVX-A1-ViX" eventType="touchUpInside" id="nak-ZH-NeF"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="6Vt-ZY-k0I">
+                                <rect key="frame" x="46" y="282" width="47" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Home">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="homeButtonTouched:" destination="MVX-A1-ViX" eventType="touchUpInside" id="GKG-Gu-Ckb"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
@@ -381,6 +412,7 @@
                         <outlet property="background" destination="u2S-xJ-ufr" id="1cT-9M-Usn"/>
                         <outlet property="dialogLabel" destination="CbC-Xj-Sxd" id="w67-GU-pCT"/>
                         <outlet property="goodByeButton" destination="iVx-Ek-W1U" id="CTa-8g-RNC"/>
+                        <outlet property="homeButton" destination="6Vt-ZY-k0I" id="HBX-R4-hUw"/>
                         <outlet property="nameTextField" destination="H7T-JC-GlF" id="Afz-vY-oCh"/>
                         <outlet property="restartButton" destination="wEg-Ri-z2Y" id="1ok-mR-BJ7"/>
                         <outlet property="soundButton" destination="mFS-bI-rbP" id="bDW-zv-WVK"/>
@@ -493,8 +525,10 @@
         <class className="GameController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/GameController.h"/>
             <relationships>
+                <relationship kind="action" name="homeButtonTouched:"/>
                 <relationship kind="action" name="soundButtonTouched:"/>
                 <relationship kind="outlet" name="dialogLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="homeButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="soundButton" candidateClass="UIButton"/>
             </relationships>
         </class>
@@ -507,6 +541,7 @@
         <class className="LetterGameViewController" superclassName="GameController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/LetterGameViewController.h"/>
             <relationships>
+                <relationship kind="action" name="homeButtonTouched:"/>
                 <relationship kind="outlet" name="arabicNameView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="gameProgressView" candidateClass="GameProgressView"/>
                 <relationship kind="outlet" name="mixedUpLettersAreaView" candidateClass="UIView"/>

@@ -47,13 +47,13 @@
 @implementation LetterGameViewController
 
 #pragma mark Setup
+
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
     
     [self startLevel];
 }
-
 
 
 -(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
@@ -110,6 +110,7 @@
     gameProgressView.hidden = NO;
     
     speakerImageView = [[SpeakerImageView alloc] initWithFrame:CGRectMake(16, self.screenBounds.height+94, 140, 216) speaker:currentSpeaker];
+    speakerImageView.hidden = YES;
     [scrollView addSubview:speakerImageView];
     speakerImageView.contentMode = UIViewContentModeBottomLeft;
     [speakerImageView repeatAnimation:DEFAULT];
@@ -252,6 +253,18 @@
     [self.audioManager loadErrorAudioWithPrefix:currentSpeaker.name key:@"Again"];
 }
 
+/*
+- (IBAction)homeButtonTouched:(id)sender {
+    [self stopAllAudio];
+    self.audioManager = nil;
+    
+    
+    [self reloadGameArea];
+
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
+*/
+
 #pragma mark Game Phases
 - (void)startLevel {
     
@@ -265,9 +278,12 @@
 }
 
 - (void)startShufflePhase {
+    
     if (SKIP_TO_BONUS_LEVEL) {
         [self performSegueWithIdentifier:@"SurpriseSegue" sender:self];return;
     }
+    
+    speakerImageView.hidden = NO;
     
     [self displayDialogTextWithKey:@"Name" animationType:TALK completion:^() {
         

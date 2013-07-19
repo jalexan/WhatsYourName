@@ -20,5 +20,6 @@
     
 }
 
+- (IBAction)homeButtonTouched:(id)sender;
 
 @end

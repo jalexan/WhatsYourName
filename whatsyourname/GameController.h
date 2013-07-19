@@ -13,16 +13,19 @@
 
 @interface GameController : UIViewController {
     
+    IBOutlet UIButton* homeButton;
     IBOutlet UIButton* soundButton;
     IBOutlet UILabel* dialogLabel;
 }
 
 @property (nonatomic,readonly) CGSize screenBounds;
-@property (nonatomic,strong) AudioManager* audioManager;
-@property (nonatomic,strong) IBOutlet UIButton* soundButton;
+@property (nonatomic,weak) AudioManager* audioManager;
+
 
 - (NSTimeInterval)getDurationAndPlaySpeakerDialogAudioWithKey:(NSString*)key prefix:(NSString*)prefix  suffix:(NSString*)suffix;
 - (NSTimeInterval)getDurationDialogAudioWithKey:(NSString*)key prefix:(NSString*)prefix  suffix:(NSString*)suffix;
+- (void)stopAllAudio;
+
 - (IBAction)soundButtonTouched:(id)sender;
 
 @end
