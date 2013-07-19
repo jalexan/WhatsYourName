@@ -14,58 +14,66 @@
 	<string>beh, heh, geem, teh</string>
 	<key>farah</key>
 	<string>feh, reh, Ha</string>
+	<key>ahmad</key>
+	<string>alef hamza, Ha, meem, daal</string>
+	<key>manal</key>
+	<string>meem, noon, alef, lam</string>
 	<key>habib</key>
 	<string>Ha, beh, yeh, beh</string>
 	<key>zaky</key>
 	<string>zein, kaaf, yeh</string>
-	<key>mina</key>
-	<string>meem, yeh, noon, alef</string>
+	<key>soraya</key>
+	<string>theh, reh, alef, yeh, alef</string>
+	<key>a7med</key>
+	<string>alef hamza, Ha, meem, daal</string>
+	<key>mo7amed</key>
+	<string>meem, Ha, meem, daal</string>
+	<key>eman</key>
+	<string>alef hamza below, meem, alef, noon</string>
 	<key>abraham</key>
 	<string>alef hamza below, beh, reh, alef, heh, yeh, meem</string>
+	<key>mina</key>
+	<string>meem, yeh, noon, alef</string>
 	<key>abdullah</key>
 	<string>&apos;ein, beh, daal, alef, lam, lam, heh</string>
 	<key>maged</key>
 	<string>meem, alef, geem, daal</string>
-	<key>mohamed</key>
-	<string>meem, Ha, meem, daal</string>
-	<key>mohamad</key>
+	<key>muhamed</key>
 	<string>meem, Ha, meem, daal</string>
 	<key>mohammad</key>
 	<string>meem, Ha, meem, daal</string>
-	<key>mohammed</key>
+	<key>mohamed</key>
 	<string>meem, Ha, meem, daal</string>
-	<key>muhamed</key>
-	<string>meem, Ha, meem, daal</string>
-	<key>muhamad</key>
-	<string>meem, Ha, meem, daal</string>
-	<key>muhammad</key>
-	<string>meem, Ha, meem, daal</string>
-	<key>muhammed</key>
-	<string>meem, Ha, meem, daal</string>
-	<key>mo7amed</key>
-	<string>meem, Ha, meem, daal</string>
-	<key>mo7ammed</key>
-	<string>meem, Ha, meem, daal</string>
-	<key>mo7ammad</key>
-	<string>meem, Ha, meem, daal</string>
+	<key>a7mad</key>
+	<string>alef hamza, Ha, meem, daal</string>
 	<key>salma</key>
 	<string>seen, lam, meem, alef maksoora</string>
-	<key>mubarak</key>
-	<string>meem, beh, alef, reh, kaaf</string>
+	<key>muhammad</key>
+	<string>meem, Ha, meem, daal</string>
+	<key>mohammed</key>
+	<string>meem, Ha, meem, daal</string>
 	<key>magda</key>
 	<string>meem, alef, geem, daal, te marboota</string>
+	<key>muhammed</key>
+	<string>meem, Ha, meem, daal</string>
+	<key>rania</key>
+	<string>reh, alef, noon, yeh, alef</string>
 	<key>essam</key>
 	<string>&apos;ein, saad, alef, meem</string>
-	<key>mona</key>
-	<string>meem, wow, noon, alef maksoora</string>
 	<key>medhat</key>
 	<string>meem, daal, Ha, teh</string>
 	<key>seif</key>
 	<string>seen, yeh, feh</string>
 	<key>nolia</key>
 	<string>noon, wow, lam, yeh, alef</string>
-	<key>rania</key>
-	<string>reh, alef, noon, yeh, alef</string>
+	<key>mona</key>
+	<string>meem, wow, noon, alef maksoora</string>
+	<key>mohamad</key>
+	<string>meem, Ha, meem, daal</string>
+	<key>mubarak</key>
+	<string>meem, beh, alef, reh, kaaf</string>
+	<key>muhamad</key>
+	<string>meem, Ha, meem, daal</string>
 	<key>phuong</key>
 	<string>feh, wow, alef hamza below, noon, geem</string>
 	<key>hosni</key>
@@ -74,21 +82,27 @@
 	<string>seen, lam, meem, alef maksoora</string>
 	<key>michael</key>
 	<string>meem, alef, yeh, kaaf, lam</string>
+	<key>mo7ammad</key>
+	<string>meem, Ha, meem, daal</string>
 	<key>habiba</key>
 	<string>Ha, beh, yeh, beh, te marboota</string>
 	<key>ashraf</key>
 	<string>alef hamza, sheen, reh, feh</string>
 	<key>reham</key>
 	<string>reh, heh, alef, meem</string>
+	<key>mo7ammed</key>
+	<string>meem, Ha, meem, daal</string>
 	<key>ahmed</key>
 	<string>alef hamza, Ha, meem, daal</string>
+	<key>emad</key>
+	<string>&apos;ein, meem, alef, daal</string>
 	<key>renee</key>
 	<string>reh, yeh, noon, yeh, heh</string>
 	<key>fatma</key>
 	<string>feh, alef, Ta, meem, te marboota</string>
 	<key>ibrahim</key>
 	<string>alef hamza below, beh, reh, alef, heh, yeh, meem</string>
-	<key>simona</key>
-	<string>seen, yeh, meem, wow, noon, alef</string>
+	<key>mervat</key>
+	<string>meem, reh, feh, teh</string>
 </dict>
 </plist>

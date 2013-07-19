@@ -115,7 +115,7 @@
     [super viewDidLoad];
     [self setupStartScreenButtons];
     
-    NSTimeInterval delay = DEBUG_MODE ? 0 : 5;
+    NSTimeInterval delay = DEBUG_MODE ? 0 : 1;
         
     [self performSelector:@selector(showButtons) withObject:nil afterDelay:delay];
 }
