@@ -26,7 +26,7 @@
     
     UIView *view;
     UIView *chalkboard;
-    UIView *dialogView;
+//    UILabel *dialogLabel;
     Speaker* currentSpeaker;
     SpeakerImageView* speakerImageView;
 }
@@ -38,6 +38,7 @@
 @end
 
 @implementation AlphabetViewController
+
 
 - (void)viewDidLoad
 {
@@ -58,9 +59,12 @@
     [self.view addSubview:chalkboard];
     
     //Add dialog view in UIView section
-    dialogView = [[UIView alloc] initWithFrame:CGRectMake(134, 13, 335, 68)];
-    dialogView.backgroundColor = [UIColor clearColor];
-    [self.view addSubview:dialogView];
+    dialogLabel = [[UILabel alloc] initWithFrame:CGRectMake(134, 13, 335, 68)];
+    dialogLabel.backgroundColor = [UIColor clearColor];
+    dialogLabel.textAlignment = UITextAlignmentCenter;
+    dialogLabel.font = [UIFont fontWithName:@"MarkerFelt-Thin" size:40];
+    dialogLabel.adjustsFontSizeToFitWidth = YES;
+    [self.view addSubview:dialogLabel];
     
     //Add Miss Samia as Speaker
     currentSpeaker = [[Speaker alloc] initWithName:@"Samia"];
@@ -69,7 +73,7 @@
     [self.view addSubview:speakerImageView];
     [speakerImageView repeatAnimation:DEFAULT];
 
-    
+    [self startAlphabetPhase];
     
     //Add array of arabic letters all 28  - import ArabicLetter model
     //in Chalkboard UIView section, add each row of 7 letters from right to left, decreasing X coord
@@ -80,7 +84,59 @@
     //then add sound
     //then lookup "outlet collections" to control target/action for the whole set of letters
     
+    [self startRecordingPhase];
+    [self.view sendSubviewToBack:screenBackground];
+    [self.view bringSubviewToFront:soundButton];
+    [self.view bringSubviewToFront:recordButton];
+    [self.view bringSubviewToFront:playButton];
+    recordButton.hidden = YES;
+    playButton.hidden = YES;
+}
+
+- (void)startAlphabetPhase {
     
+    speakerImageView.hidden = NO;
+    
+    [self displayDialogTextWithKey:@"ThisIs" animationType:TALK completion:^() {
+
+        [self displayDialogTextWithKey:@"AlphabetSong" animationType:TALK completion:^() {
+
+            [self displayDialogTextWithKey:@"SingAlong" animationType:TALK completion:^() {
+            
+          //  [self spellArabicNameWithCompletion:^() {
+                
+             //   [self showSpeakerShuffleAnimationWithCompletion:^() {
+                    
+               //     [self mixUpLettersWithCompletion: ^() {
+                        
+                 //       if (!shuffleImageView.animationFound) {
+                 //           [self displayDialogTextWithKey:@"Shuffle" animationType:TALK completion:^() {
+                                
+                  //              [self displayDialogTextWithKey:@"Try" animationType:TALK completion:^() {
+                                    
+                  //              }];
+                  //          }];
+                 //       }
+                 //       else {
+                  //          [self displayDialogTextWithKey:@"Try" animationType:TALK completion:^() {
+                                
+                  //          }];
+                 //       }
+                        
+                        
+                //    }];
+                    
+             //   }];
+                
+          //  }];
+            
+            }];
+        }];
+    }];
+}
+
+-(void)startRecordingPhase {
+
     //Recording section
     //
     // Set the audio file

@@ -11,12 +11,19 @@
 			<key>Arabic</key>
 			<string>دي أغنية الحروف الأبجدية بالعربي</string>
 		</dict>
+		<key>AlphabetSong</key>
+		<dict>
+			<key>English</key>
+			<string></string>
+			<key>Arabic</key>
+			<string></string>
+		</dict>
 		<key>SingAlong</key>
 		<dict>
 			<key>English</key>
 			<string>Why don&apos;t you sing along?</string>
 			<key>Arabic</key>
-			<string>تيجوا تغنوا معي؟</string>
+			<string>تيجوا تغنوا معيا؟</string>
 		</dict>
 	</dict>
 	<key>Letters</key>
