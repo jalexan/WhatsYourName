@@ -62,6 +62,10 @@
     plistPath = [bundle pathForResource:[NSString stringWithFormat:@"Letters"] ofType:@"plist"];
     arabicLettersDictionary = [[NSArray alloc] initWithContentsOfFile:plistPath];
     
+    
+    arabicSpellLabel.font = [UIFont fontWithName:@"GeezaPro-Bold" size:64];
+    arabicSpellLabel.adjustsFontSizeToFitWidth = YES;
+    arabicSpellLabel.minimumScaleFactor = 0.5;
 
 }
 
