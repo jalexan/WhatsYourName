@@ -136,8 +136,8 @@
     
     CGRect containerFrame = letterContainerView.frame;
     containerFrame.size.width = containerWidth;
+    containerFrame.origin.x = (letterContainerView.superview.width / 2) - (containerWidth/2);
     letterContainerView.frame = containerFrame;
-    letterContainerView.centerX = letterContainerView.superview.centerX;
    
     
     NSInteger originY = 0;

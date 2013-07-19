@@ -13,6 +13,7 @@
 #import "NameSpellViewController.h"
 
 #define NON_PRIMARY_SPEAKER_IMAGE_SCALE .90
+#define MAX_NAME_LENGTH 9
 
 @interface NameGameViewController () {
 
@@ -240,6 +241,19 @@
 
 
 #pragma mark UITextFieldDelegate
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    NSUInteger oldLength = [textField.text length];
+    NSUInteger replacementLength = [string length];
+    NSUInteger rangeLength = range.length;
+    
+    NSUInteger newLength = oldLength - rangeLength + replacementLength;
+    
+    BOOL returnKey = [string rangeOfString: @"\n"].location != NSNotFound;
+    
+    return newLength <= MAX_NAME_LENGTH || returnKey;
+    
+}
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
     
