@@ -141,6 +141,7 @@
     //Recording section
     //
     // Set the audio file
+    recordButton.hidden = NO;
     NSArray *pathComponents = [NSArray arrayWithObjects:
                                [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject],
                                @"recorderAudio.m4a",

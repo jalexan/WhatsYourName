@@ -21,7 +21,7 @@
 //LEFT OFF HERE...move touch and letterSoundFile to the ViewController
 //just add Zoom/Scale method here
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    UITouch *touch = [touches anyObject];
+   // UITouch *touch = [touches anyObject];
     
     CGAffineTransform scaleTransform =  CGAffineTransformMakeScale(10, 10);
     //CGAffineTransform transform = CGAffineTransformIdentity;
