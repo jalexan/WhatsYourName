@@ -7,6 +7,12 @@
 //
 
 #import "AlphabetViewController.h"
+#import "Speaker.h"
+#import "SpeakerImageView.h"
+#import "ArabicLetter.h"
+#import "ArabicLetterImageView.h"
+#import "Slot.h"
+#import "SlotImageView.h"
 
 @interface AlphabetViewController () {
     
@@ -17,6 +23,12 @@
     
     AVAudioRecorder* recorder;
     AVAudioPlayer *player;
+    
+    UIView *view;
+    UIView *chalkboard;
+    UIView *dialogView;
+    Speaker* currentSpeaker;
+    SpeakerImageView* speakerImageView;
 }
 
 - (IBAction)recordButtonTouched:(id)sender;
@@ -30,8 +42,47 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [super.audioManager prepareAudioWithPath:@"Speakers/Samia/Audio/AlphabetSongArabic.mp3"];
+    
+    //LEFT OFF HERE - 
+    //Add background image
+    view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.screenBounds.width, self.screenBounds.height)];
+    UIImageView* screenBackground = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Resource/background_alphabets.png"]];
+    screenBackground.frame = CGRectMake(0,0,view.width, view.height);
+    [view addSubview:screenBackground];
+    [self.view addSubview:view];
+
+    //Add Chalkboard in UIView section
+    chalkboard = [[UIView alloc] initWithFrame:CGRectMake(137, 90, 331, 221)]; //TEMP - until i create the new reduced chalkboard img
+    chalkboard.backgroundColor = [UIColor clearColor];
+    [self.view addSubview:chalkboard];
+    
+    //Add dialog view in UIView section
+    dialogView = [[UIView alloc] initWithFrame:CGRectMake(134, 13, 335, 68)];
+    dialogView.backgroundColor = [UIColor clearColor];
+    [self.view addSubview:dialogView];
+    
+    //Add Miss Samia as Speaker
+    currentSpeaker = [[Speaker alloc] initWithName:@"Samia"];
+    speakerImageView = [[SpeakerImageView alloc] initWithFrame:CGRectMake(9, 24, 119, 290) speaker:currentSpeaker];
+    speakerImageView.contentMode = UIViewContentModeBottomLeft;
+    [self.view addSubview:speakerImageView];
+    [speakerImageView repeatAnimation:DEFAULT];
 
     
+    
+    //Add array of arabic letters all 28  - import ArabicLetter model
+    //in Chalkboard UIView section, add each row of 7 letters from right to left, decreasing X coord
+    //I will need an instance of Audio Manager here
+    
+    //JUST FOR NOW - just display 1 arabic letter and do the touch / scale effect
+    //add touchesBegan here .. then delegate to the View that the touch happened so that it can then scale
+    //then add sound
+    //then lookup "outlet collections" to control target/action for the whole set of letters
+    
+    
+    //Recording section
+    //
     // Set the audio file
     NSArray *pathComponents = [NSArray arrayWithObjects:
                                [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject],
@@ -60,6 +111,57 @@
     //recorder = [AudioManager sharedInstance].recorder;
     //recorder.delegate = self;
 
+}
+
+#pragma mark Game Mechanics
+- (void)displayDialogTextWithKey:(NSString*)key animationType:(AnimationType)animationType completion:(void(^)())completion {
+    
+    NSDictionary* dialogDictionary = [currentSpeaker dialogForKey:key];
+    if (!dialogDictionary)
+        return;
+    
+    NSString* text = [dialogDictionary objectForKey:@"English"];
+    NSString* arabicText = nil;
+    
+    if ([dialogDictionary count]>1) {
+        arabicText = [[currentSpeaker dialogForKey:key] objectForKey:@"Arabic"];
+    }
+    
+    dialogLabel.font = [UIFont fontWithName:@"MarkerFelt-Thin" size:dialogLabel.font.pointSize];
+    dialogLabel.text = text;
+    
+    NSTimeInterval englishDialogDuration = [self getDurationAndPlaySpeakerDialogAudioWithKey:key prefix:currentSpeaker.name suffix:@"English"];
+    NSTimeInterval arabicDialogDuration = [self getDurationDialogAudioWithKey:key prefix:currentSpeaker.name suffix:@"Arabic"];
+    NSTimeInterval dialogDuration = englishDialogDuration + arabicDialogDuration;
+    
+    if ([key isEqualToString:@"Excellent"] || [key isEqualToString:@"Shuffle"]) {
+        [speakerImageView animateWithType:animationType repeatingDuration:dialogDuration keepLastFrame:YES];
+    }
+    else {
+        [speakerImageView animateWithType:animationType repeatingDuration:dialogDuration];
+    }
+    
+    
+    dispatch_after(DISPATCH_SECONDS_FROM_NOW(englishDialogDuration), dispatch_get_current_queue(), ^{
+        
+        dialogLabel.font = [UIFont fontWithName:@"GeezaPro-Bold" size:dialogLabel.font.pointSize];
+        dialogLabel.text = arabicText;
+        [self getDurationAndPlaySpeakerDialogAudioWithKey:key prefix:currentSpeaker.name suffix:@"Arabic"];
+        
+        dispatch_after(DISPATCH_SECONDS_FROM_NOW(arabicDialogDuration), dispatch_get_current_queue(), ^{
+            completion();
+        });
+        
+        
+    });
+    
+    
+}
+
+
+-(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
+    return toInterfaceOrientation == UIInterfaceOrientationLandscapeLeft ||
+    toInterfaceOrientation == UIInterfaceOrientationLandscapeRight;
 }
 
 - (IBAction)recordButtonTouched:(id)sender {
@@ -156,5 +258,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
 
 @end
