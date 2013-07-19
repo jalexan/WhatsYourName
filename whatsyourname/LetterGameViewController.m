@@ -36,7 +36,6 @@
     NSMutableArray* letterImageViewArray;
     NSMutableArray* slotsImageViewArray;
     
-    UIImageView* starsImageView;
     ShuffleImageView* shuffleImageView;
     UILabel* spellingArabicLetterLabel;
     
@@ -86,11 +85,6 @@
     screenBackground.frame = CGRectMake(0,0,scrollView.contentSize.width,scrollView.contentSize.height);
     
     [scrollView addSubview:screenBackground];
-    
-    
-    starsImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Resource/fairy_dust.png"]];
-    [self.view addSubview:starsImageView];
-    starsImageView.hidden = YES;
     
     speakerArray = [SpeakerList sharedInstance].speakerArray;
     
@@ -699,8 +693,6 @@
                         options: UIViewAnimationOptionCurveLinear
                      animations:^{
                          
-                         starsImageView.alpha = 1;
-                         starsImageView.center = self.view.center;
                          arabicNameView.alpha = 0;
                          
                          for (UIImageView* v in letterImageViewArray) {
