@@ -757,7 +757,7 @@
                          
                          
                          
-                         dispatch_after(DISPATCH_SECONDS_FROM_NOW(2), dispatch_get_current_queue(), ^{
+                         dispatch_after(DISPATCH_SECONDS_FROM_NOW(0.25), dispatch_get_current_queue(), ^{
                              
                              completion();
                          });
