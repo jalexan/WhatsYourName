@@ -18,6 +18,11 @@
 @synthesize audioManager;
 @synthesize screenBounds;
 
+- (void)dealloc {
+    
+    NSLog(@"");
+}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -59,6 +64,8 @@
 
 
 - (IBAction)homeButtonTouched:(id)sender {
+    [self stopAllAudio];
+    self.audioManager = nil;
     [NSObject cancelPreviousPerformRequestsWithTarget:self];
     [self.navigationController popToRootViewControllerAnimated:YES];
 }

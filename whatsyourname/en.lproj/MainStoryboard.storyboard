@@ -260,6 +260,21 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="cQk-cn-3qJ">
+                                <rect key="frame" x="8" y="6" width="49" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Home">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="homeButtonTouched:" destination="lef-yX-ejV" eventType="touchUpInside" id="1ud-gG-GXE"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
@@ -272,6 +287,7 @@
                     <connections>
                         <outlet property="backButton" destination="sVI-21-xWg" id="K90-am-gWu"/>
                         <outlet property="durationLabel" destination="2CR-su-CGp" id="XBh-GY-jbx"/>
+                        <outlet property="homeButton" destination="cQk-cn-3qJ" id="ViP-Q9-yE9"/>
                         <outlet property="playButton" destination="tNP-LR-j3Z" id="kW1-ik-dqb"/>
                         <outlet property="recordButton" destination="geb-94-WCt" id="Git-xj-syT"/>
                     </connections>

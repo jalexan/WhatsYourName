@@ -111,6 +111,8 @@
     //recorder = [AudioManager sharedInstance].recorder;
     //recorder.delegate = self;
 
+    
+    [self.view bringSubviewToFront:homeButton];
 }
 
 #pragma mark Game Mechanics

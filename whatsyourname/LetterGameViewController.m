@@ -253,18 +253,6 @@
     [self.audioManager loadErrorAudioWithPrefix:currentSpeaker.name key:@"Again"];
 }
 
-/*
-- (IBAction)homeButtonTouched:(id)sender {
-    [self stopAllAudio];
-    self.audioManager = nil;
-    
-    
-    [self reloadGameArea];
-
-    [self.navigationController popToRootViewControllerAnimated:YES];
-}
-*/
-
 #pragma mark Game Phases
 - (void)startLevel {
     
