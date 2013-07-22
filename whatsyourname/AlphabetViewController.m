@@ -193,14 +193,8 @@
     NSTimeInterval arabicDialogDuration = [self getDurationDialogAudioWithKey:key prefix:currentSpeaker.name suffix:@"Arabic"];
     NSTimeInterval dialogDuration = englishDialogDuration + arabicDialogDuration;
     
-    if ([key isEqualToString:@"Excellent"] || [key isEqualToString:@"Shuffle"]) {
-        [speakerImageView animateWithType:animationType repeatingDuration:dialogDuration keepLastFrame:YES];
-    }
-    else {
-        [speakerImageView animateWithType:animationType repeatingDuration:dialogDuration];
-    }
-    
-    
+    [speakerImageView animateWithType:animationType repeatingDuration:dialogDuration];
+
     dispatch_after(DISPATCH_SECONDS_FROM_NOW(englishDialogDuration), dispatch_get_current_queue(), ^{
         
         dialogLabel.font = [UIFont fontWithName:@"GeezaPro-Bold" size:dialogLabel.font.pointSize];
