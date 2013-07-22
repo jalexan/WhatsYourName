@@ -14,6 +14,7 @@
 @interface GameController : UIViewController {
     
     IBOutlet UIButton* homeButton;
+    IBOutlet UIButton* restartButton;
     IBOutlet UIButton* soundButton;
     IBOutlet UILabel* dialogLabel;
 }
@@ -26,6 +27,8 @@
 - (NSTimeInterval)getDurationDialogAudioWithKey:(NSString*)key prefix:(NSString*)prefix  suffix:(NSString*)suffix;
 - (void)stopAllAudio;
 
+- (IBAction)homeButtonTouched:(id)sender;
+- (IBAction)restartButtonTouched:(id)sender;
 - (IBAction)soundButtonTouched:(id)sender;
 
 @end

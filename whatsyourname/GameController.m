@@ -70,6 +70,13 @@
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
+- (IBAction)restartButtonTouched:(id)sender {
+    [self.audioManager stopAudio:@"talking"];
+    self.audioManager = nil;
+    [NSObject cancelPreviousPerformRequestsWithTarget:self];
+    
+}
+
 - (IBAction)soundButtonTouched:(id)sender {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     if (audioManager.backgroundPlayer.isPlaying) {

@@ -10,13 +10,14 @@
 #import "GameController.h"
 #import "GameProgressView.h"
 
-@interface LetterGameViewController : GameController {
 
-    
+
+@interface LetterGameViewController : GameController {
     IBOutlet UIView* arabicNameView;
     IBOutlet UIView* slotContainerView;
     IBOutlet UIView* mixedUpLettersAreaView;
     IBOutlet GameProgressView* gameProgressView;    
 }
+
 
 @end

@@ -7,6 +7,10 @@
 //
 
 #import "StartScreenViewController.h"
+#import "LetterGameViewController.h"
+#import "NameGameViewController.h"
+#import "NameSpellViewController.h"
+#import "AlphabetViewController.h"
 
 @interface StartScreenViewController () {
     IBOutlet UIButton* bookLinkButton;
@@ -113,11 +117,55 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [[NSNotificationCenter defaultCenter]
+     addObserver:self
+     selector:@selector(viewControllerPopped:)
+     name:kPopViewControllerNotification
+     object:nil
+     ];
+    
     [self setupStartScreenButtons];
     
     NSTimeInterval delay = DEBUG_MODE ? 0 : 1;
         
     [self performSelector:@selector(showButtons) withObject:nil afterDelay:delay];
+}
+
+- (void)viewControllerPopped:(id)theObject {
+    
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+    [self.navigationController popToRootViewControllerAnimated:NO];
+    
+    for (UIViewController* vc in self.navigationController.viewControllers) {
+        if ([LetterGameViewController class] == [[theObject object] class]) {
+            
+            LetterGameViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"LetterGameViewController"];
+            [self.navigationController pushViewController:vc animated:NO];
+            
+            break;
+        }
+        else if ([NameGameViewController class] == [[theObject object] class]) {
+            NameGameViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"NameGameViewController"];
+            [self.navigationController pushViewController:vc animated:NO];
+            
+            break;
+        }
+        else if ([NameSpellViewController class] == [[theObject object] class]) {
+            NameSpellViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"NameSpellViewController"];
+            [self.navigationController pushViewController:vc animated:NO];
+            
+            break;
+        }
+        else if ([AlphabetViewController class] == [[theObject object] class]) {
+            AlphabetViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"AlphabetViewController"];
+            [self.navigationController pushViewController:vc animated:NO];
+            
+            break;
+        }
+
+
+    }
 }
 
 -(void)showButtons {

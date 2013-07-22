@@ -26,7 +26,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         
-        [self setNeedsDisplay];
+        //[self setNeedsDisplay];
         
     }
     return self;
@@ -37,41 +37,41 @@
     self = [super initWithCoder:aDecoder];
     if (self) {
         
-        [self setNeedsDisplay];
+        self.backgroundColor = [UIColor clearColor];
+        
+        UIImage* coinImage = [UIImage imageNamed:DEFAULT_IMAGE];
+        CGSize circleSize = CGSizeMake(coinImage.size.width,coinImage.size.height);
+        
+        NSUInteger numberOfCircles = [SpeakerList sharedInstance].numberOfSpeakers;
+        circleImageViewArray = [[NSMutableArray alloc] initWithCapacity:numberOfCircles];
+        
+        //NSUInteger widthOfContent = (numberOfCircles+1)*(circleSize.width+52);
+        NSUInteger originX = 0;// (self.bounds.size.width/2)-(widthOfContent/2)+52;
+        
+        for (int i=0;i<numberOfCircles;i++)
+        {
+            
+            ProgressCircleImageView* circle = [[ProgressCircleImageView alloc] initWithImage:coinImage];
+            //circle.contentMode = UIViewContentModeCenter;
+            circle.frame = CGRectMake(originX,0,circleSize.width,circleSize.height);
+            [self addSubview:circle];
+            [circleImageViewArray addObject:circle];
+            
+            originX += (coinImage.size.width + 52);
+            
+        }
+        
+        
+        surpriseCircle = [[ProgressCircleImageView alloc] initWithImage:coinImage];
+        surpriseCircle.frame = CGRectMake(originX,0,coinImage.size.width,coinImage.size.height);
+        [self addSubview:surpriseCircle];
         
     }
     return self;
 }
 
 - (void)layoutSubviews {
-    self.backgroundColor = [UIColor clearColor];
-    
-    UIImage* coinImage = [UIImage imageNamed:DEFAULT_IMAGE];
-    CGSize circleSize = CGSizeMake(coinImage.size.width,coinImage.size.height);
-    
-    NSUInteger numberOfCircles = [SpeakerList sharedInstance].numberOfSpeakers;
-    circleImageViewArray = [[NSMutableArray alloc] initWithCapacity:numberOfCircles];
-    
-    //NSUInteger widthOfContent = (numberOfCircles+1)*(circleSize.width+52);
-    NSUInteger originX = 0;// (self.bounds.size.width/2)-(widthOfContent/2)+52;
-    
-    for (int i=0;i<numberOfCircles;i++)
-    {
-        
-        ProgressCircleImageView* circle = [[ProgressCircleImageView alloc] initWithImage:coinImage];
-        //circle.contentMode = UIViewContentModeCenter;
-        circle.frame = CGRectMake(originX,0,circleSize.width,circleSize.height);
-        [self addSubview:circle];
-        [circleImageViewArray addObject:circle];
-        
-        originX += (58 + 52);
 
-    }
-    
-    
-    surpriseCircle = [[ProgressCircleImageView alloc] initWithImage:[UIImage imageNamed:@"Resource/progress_circle_mystery.png"]];
-    surpriseCircle.frame = CGRectMake(originX,0,58,58);
-    [self addSubview:surpriseCircle];
 
 
 }
@@ -89,6 +89,7 @@
         ProgressCircleImageView* circle = [circleImageViewArray objectAtIndex:index];
         [circle.layer removeAllAnimations];
         circle.image = image;
+        circle.contentMode = UIViewContentModeCenter;
         circle.isComplete = YES;
         circle.hidden = NO;
     }

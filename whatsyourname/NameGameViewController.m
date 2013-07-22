@@ -98,7 +98,6 @@
 
     goodByeButton.hidden = YES;
 	nameTextField.hidden = YES;
-    restartButton.hidden = YES;
     
 }
 
@@ -132,6 +131,14 @@
     }
     
 }
+
+- (IBAction)restartButtonTouched:(id)sender {
+    [super restartButtonTouched:sender];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:kPopViewControllerNotification object:self];
+}
+
+
 
 - (void)pushSpellController {
 
@@ -227,7 +234,6 @@
                 [speakerImageView repeatAnimation:BYE];
             }
             
-            restartButton.hidden = NO;
         }];
     }];
     

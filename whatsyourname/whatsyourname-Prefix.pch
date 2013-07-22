@@ -48,3 +48,5 @@
 #define DISPATCH_SECONDS_FROM_NOW(s) dispatch_time(DISPATCH_TIME_NOW, (s) * NSEC_PER_SEC)
 
 #define ANIMATION_FRAMES_PER_SECOND 5
+
+#define kPopViewControllerNotification @"PopViewControllerNotification"

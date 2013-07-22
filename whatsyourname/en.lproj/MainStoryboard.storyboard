@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12C54" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="OFY-Zf-6gI">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="OFY-Zf-6gI">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
@@ -7,7 +7,7 @@
         <!--Letter Game View Controller-->
         <scene sceneID="5">
             <objects>
-                <viewController wantsFullScreenLayout="YES" id="2" customClass="LetterGameViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LetterGameViewController" wantsFullScreenLayout="YES" id="2" customClass="LetterGameViewController" sceneMemberID="viewController">
                     <view key="view" clipsSubviews="YES" contentMode="scaleToFill" id="3" customClass="GameUIView">
                         <rect key="frame" x="0.0" y="0.0" width="480" height="320"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
@@ -66,6 +66,21 @@
                                     <action selector="homeButtonTouched:" destination="2" eventType="touchUpInside" id="blJ-d0-NvU"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="oMb-nX-KH6">
+                                <rect key="frame" x="9" y="292" width="55" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Restart">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="restartButtonTouched:" destination="2" eventType="touchUpInside" id="ZpL-JU-dnL"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
@@ -80,6 +95,7 @@
                         <outlet property="gameProgressView" destination="Pim-J2-tjb" id="8Cs-bX-SRi"/>
                         <outlet property="homeButton" destination="aUq-Au-kZq" id="dfK-Ui-6K6"/>
                         <outlet property="mixedUpLettersAreaView" destination="oUu-Jv-0Vm" id="u0t-46-3R8"/>
+                        <outlet property="restartButton" destination="oMb-nX-KH6" id="Asm-XD-GNe"/>
                         <outlet property="slotContainerView" destination="vAG-pL-KWb" id="ipH-o0-YNm"/>
                         <outlet property="soundButton" destination="96C-zx-Jmw" id="LWC-gd-Xz0"/>
                         <segue destination="L4G-Pe-ZjN" kind="push" identifier="SurpriseSegue" id="WzV-xY-BYz"/>
@@ -199,7 +215,7 @@
         <!--Alphabet View Controller-->
         <scene sceneID="2ow-N5-yE3">
             <objects>
-                <viewController id="lef-yX-ejV" customClass="AlphabetViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AlphabetViewController" id="lef-yX-ejV" customClass="AlphabetViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ZPd-jO-f7n" customClass="GameUIView">
                         <rect key="frame" x="0.0" y="0.0" width="480" height="320"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -277,7 +293,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="cQk-cn-3qJ">
-                                <rect key="frame" x="8" y="6" width="49" height="33"/>
+                                <rect key="frame" x="8" y="6" width="49" height="19"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Home">
@@ -289,6 +305,21 @@
                                 </state>
                                 <connections>
                                     <action selector="homeButtonTouched:" destination="lef-yX-ejV" eventType="touchUpInside" id="1ud-gG-GXE"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="yyp-cs-bf3">
+                                <rect key="frame" x="59" y="6" width="55" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Restart">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="restartButtonTouched:" destination="lef-yX-ejV" eventType="touchUpInside" id="TPi-XK-Wb8"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -306,6 +337,7 @@
                         <outlet property="homeButton" destination="cQk-cn-3qJ" id="ViP-Q9-yE9"/>
                         <outlet property="playButton" destination="tNP-LR-j3Z" id="kW1-ik-dqb"/>
                         <outlet property="recordButton" destination="geb-94-WCt" id="Git-xj-syT"/>
+                        <outlet property="restartButton" destination="yyp-cs-bf3" id="6e3-KL-fdn"/>
                         <outlet property="soundButton" destination="T3g-a7-R5F" id="6ob-qO-bKu"/>
                     </connections>
                 </viewController>
@@ -346,7 +378,7 @@
         <!--Name Game View Controller-->
         <scene sceneID="1Ce-3q-JD5">
             <objects>
-                <viewController wantsFullScreenLayout="YES" id="MVX-A1-ViX" customClass="NameGameViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="NameGameViewController" wantsFullScreenLayout="YES" id="MVX-A1-ViX" customClass="NameGameViewController" sceneMemberID="viewController">
                     <view key="view" clipsSubviews="YES" contentMode="scaleToFill" id="KW2-2r-PXw" customClass="GameUIView">
                         <rect key="frame" x="0.0" y="0.0" width="480" height="320"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
@@ -387,21 +419,6 @@
                                     <action selector="goodByeButtonTouched:" destination="MVX-A1-ViX" eventType="touchUpInside" id="bex-67-mjH"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="wEg-Ri-z2Y">
-                                <rect key="frame" x="382" y="171" width="88" height="82"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="20"/>
-                                <state key="normal" image="Resource/icon_restart.png">
-                                    <color key="titleColor" red="0.1960784314" green="0.30980392159999998" blue="0.52156862749999999" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="Tbj-Y2-qDz" kind="push" id="xG4-ZF-rlo"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="mFS-bI-rbP">
                                 <rect key="frame" x="6" y="282" width="32" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -418,7 +435,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="6Vt-ZY-k0I">
-                                <rect key="frame" x="46" y="282" width="47" height="30"/>
+                                <rect key="frame" x="46" y="288" width="47" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Home">
@@ -430,6 +447,21 @@
                                 </state>
                                 <connections>
                                     <action selector="homeButtonTouched:" destination="MVX-A1-ViX" eventType="touchUpInside" id="GKG-Gu-Ckb"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="QGR-eO-RxS">
+                                <rect key="frame" x="6" y="251" width="65" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Restart">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="restartButtonTouched:" destination="MVX-A1-ViX" eventType="touchUpInside" id="ks0-63-YjQ"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -447,7 +479,7 @@
                         <outlet property="goodByeButton" destination="iVx-Ek-W1U" id="CTa-8g-RNC"/>
                         <outlet property="homeButton" destination="6Vt-ZY-k0I" id="HBX-R4-hUw"/>
                         <outlet property="nameTextField" destination="H7T-JC-GlF" id="Afz-vY-oCh"/>
-                        <outlet property="restartButton" destination="wEg-Ri-z2Y" id="1ok-mR-BJ7"/>
+                        <outlet property="restartButton" destination="QGR-eO-RxS" id="XcC-uZ-Sik"/>
                         <outlet property="soundButton" destination="mFS-bI-rbP" id="bDW-zv-WVK"/>
                         <segue destination="j5i-na-qqL" kind="push" identifier="SpellSegue" id="Hhw-8J-YMy"/>
                     </connections>
@@ -459,7 +491,7 @@
         <!--Name Spell View Controller-->
         <scene sceneID="qgt-VG-pJW">
             <objects>
-                <viewController wantsFullScreenLayout="YES" id="j5i-na-qqL" customClass="NameSpellViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="NameSpellViewController" wantsFullScreenLayout="YES" id="j5i-na-qqL" customClass="NameSpellViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vdK-V1-cnx" customClass="GameUIView">
                         <rect key="frame" x="0.0" y="0.0" width="480" height="320"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -536,18 +568,95 @@
         <image name="Resource/icon_book.png" width="16" height="16"/>
         <image name="Resource/icon_credits.png" width="16" height="16"/>
         <image name="Resource/icon_play.png" width="16" height="16"/>
-        <image name="Resource/icon_restart.png" width="16" height="16"/>
         <image name="Resource/icon_say_goodbye.png" width="16" height="16"/>
         <image name="Resource/splash.png" width="16" height="16"/>
         <image name="question_mark.png" width="117" height="177"/>
         <image name="sound_on.png" width="128" height="128"/>
     </resources>
+    <classes>
+        <class className="AlphabetViewController" superclassName="GameController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AlphabetViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="backButtonTouched:"/>
+                <relationship kind="action" name="playButtonTouched:"/>
+                <relationship kind="action" name="recordButtonTouched:"/>
+                <relationship kind="action" name="restartButtonTouched:"/>
+                <relationship kind="outlet" name="backButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="durationLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="playButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="recordButton" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="GameController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/GameController.h"/>
+            <relationships>
+                <relationship kind="action" name="homeButtonTouched:"/>
+                <relationship kind="action" name="restartButtonTouched:"/>
+                <relationship kind="action" name="soundButtonTouched:"/>
+                <relationship kind="outlet" name="dialogLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="homeButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="restartButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="soundButton" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="GameProgressView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/GameProgressView.h"/>
+        </class>
+        <class className="GameUIView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/GameUIView.h"/>
+        </class>
+        <class className="LetterGameViewController" superclassName="GameController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LetterGameViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="homeButtonTouched:"/>
+                <relationship kind="action" name="restartButtonTouched:"/>
+                <relationship kind="outlet" name="arabicNameView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="gameProgressView" candidateClass="GameProgressView"/>
+                <relationship kind="outlet" name="mixedUpLettersAreaView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="slotContainerView" candidateClass="UIView"/>
+            </relationships>
+        </class>
+        <class className="NameGameViewController" superclassName="GameController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NameGameViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="goodByeButtonTouched:"/>
+                <relationship kind="action" name="restartButtonTouched:"/>
+                <relationship kind="outlet" name="background" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="goodByeButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="nameTextField" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="NameSpellViewController" superclassName="GameController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NameSpellViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="arabicSpellLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="background" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="letterContainerView" candidateClass="UIView"/>
+            </relationships>
+        </class>
+        <class className="StartScreenViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/StartScreenViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="bookLinkButtonTouched:"/>
+                <relationship kind="action" name="creditsBackButtonTouched:"/>
+                <relationship kind="action" name="creditsButtonTouched:"/>
+                <relationship kind="outlet" name="bookLinkButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="creditsBackButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="creditsButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="moreGamesButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="playButton" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="SurpriseViewController" superclassName="GameController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SurpriseViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="question" candidateClass="UIImageView"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
-    <inferredMetricsTieBreakers>
-        <segue reference="xG4-ZF-rlo"/>
-    </inferredMetricsTieBreakers>
 </document>

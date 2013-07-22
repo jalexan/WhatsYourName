@@ -13,7 +13,7 @@
     IBOutlet UIImageView* background;
     IBOutlet UITextField* nameTextField;
     IBOutlet UIButton* goodByeButton;
-    IBOutlet UIButton* restartButton;
+
 }
 @property(nonatomic,strong)NSString* playerNameArabic;
 - (IBAction)goodByeButtonTouched:(id)sender;

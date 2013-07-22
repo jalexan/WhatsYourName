@@ -89,6 +89,7 @@
     [self.view bringSubviewToFront:soundButton];
     [self.view bringSubviewToFront:recordButton];
     [self.view bringSubviewToFront:playButton];
+    [self.view bringSubviewToFront:restartButton];
     recordButton.hidden = YES;
     playButton.hidden = YES;
 }
@@ -220,6 +221,13 @@
 -(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
     return toInterfaceOrientation == UIInterfaceOrientationLandscapeLeft ||
     toInterfaceOrientation == UIInterfaceOrientationLandscapeRight;
+}
+
+
+- (IBAction)restartButtonTouched:(id)sender {
+    [super restartButtonTouched:sender];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:kPopViewControllerNotification object:self];
 }
 
 - (IBAction)recordButtonTouched:(id)sender {

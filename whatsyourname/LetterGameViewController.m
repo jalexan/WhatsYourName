@@ -22,6 +22,8 @@
 #define ARC4RANDOM_MAX  0x100000000
 #define NUMBER_OF_SUCCESS_STARS 150
 
+static NSNumber* currentSpeakerIndex;
+
 @interface LetterGameViewController () {
     CGPoint adjustedScrollViewCenter;
     
@@ -31,7 +33,7 @@
     
     NSArray* speakerArray;
     Speaker* currentSpeaker;
-    NSUInteger currentSpeakerIndex;
+
     SpeakerImageView* speakerImageView;
     NSMutableArray* letterImageViewArray;
     NSMutableArray* slotsImageViewArray;
@@ -41,11 +43,12 @@
     
     BOOL playedEnglishErrorAudio;
     
+    BOOL levelRestarted; //When level is restarted make sure currentSpeakerIndex isn't incremented
+    
 }
 @end
 
 @implementation LetterGameViewController
-
 #pragma mark Setup
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -55,6 +58,9 @@
     [self startLevel];
 }
 
+- (void)dealloc {
+    NSLog(@"LetterGameViewController Dealloc");
+}
 
 -(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
     return toInterfaceOrientation == UIInterfaceOrientationLandscapeLeft ||
@@ -63,6 +69,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    levelRestarted = NO;
+    
+    if (currentSpeakerIndex == nil) {
+        currentSpeakerIndex = [NSNumber numberWithInt:0];
+    }
     
     [super.audioManager prepareAudioWithPath:@"Resource/slot_correct.mp3"];
     [super.audioManager prepareAudioWithPath:@"Resource/slot_wrong.mp3"];
@@ -88,9 +99,11 @@
     
     speakerArray = [SpeakerList sharedInstance].speakerArray;
     
-    currentSpeakerIndex = 0;
-    currentSpeaker = [[SpeakerList sharedInstance].speakerArray objectAtIndex:currentSpeaker];
-    
+    //currentSpeakerIndex = 0;
+    if ([currentSpeakerIndex intValue] < [SpeakerList sharedInstance].speakerArray.count) {
+        currentSpeaker = [[SpeakerList sharedInstance].speakerArray objectAtIndex:[currentSpeakerIndex intValue]];
+    }
+
     
     //add the progressview to the scrollview
     CGRect f = gameProgressView.frame;
@@ -98,10 +111,19 @@
     gameProgressView.frame = f;
     [scrollView addSubview:gameProgressView];
     
-    
+    //In a reloading scenario previous levels in the progress view need to be loaded
+    if ([currentSpeakerIndex intValue] > 0) {
+        
+        for (int i=0;i<[currentSpeakerIndex intValue] && i<[SpeakerList sharedInstance].speakerArray.count;i++) {
+            Speaker* s = [[SpeakerList sharedInstance].speakerArray objectAtIndex:i];
+            SpeakerImageView* speakerIV = [[SpeakerImageView alloc] initWithFrame:CGRectMake(16, self.screenBounds.height+94, 140, 216) speaker:s];
+            [gameProgressView setImage:speakerIV.lastExitImage atCircleIndex:i];
+        }
+    }
     
     
 }
+
 
 - (void)reloadGameArea {
     adjustedScrollViewCenter = CGPointMake(scrollView.center.x,scrollView.center.y+self.screenBounds.height);
@@ -138,6 +160,7 @@
     [arabicNameView addSubview:spellingArabicLetterLabel];
     
     //Save subview origins to reset positions on even index speakers 0,2 etc
+    
     if (!subviewOriginDictionary) {
         subviewOriginDictionary = [[NSMutableDictionary alloc] init];
         
@@ -147,51 +170,56 @@
         subviewOriginDictionary[@"mixedUpLettersAreaView"] = [NSValue valueWithCGPoint:mixedUpLettersAreaView.origin];
     }
     else {
+        CGRect newFrame;
         
-        //Position odd index speakers subviews to the opposite side
-        if (currentSpeakerIndex % 2==1) {
-            CGRect newFrame;
-            
-            newFrame = speakerImageView.frame;
-            newFrame.origin = CGPointMake(self.view.width-newFrame.origin.x-newFrame.size.width,newFrame.origin.y);
-            speakerImageView.frame = newFrame;
-            
-            newFrame = arabicNameView.frame;
-            newFrame.origin = CGPointMake(self.view.width-newFrame.origin.x-newFrame.size.width,newFrame.origin.y);
-            arabicNameView.frame = newFrame;
-            
-            newFrame = slotContainerView.frame;
-            newFrame.origin = CGPointMake(self.view.width-newFrame.origin.x-newFrame.size.width,newFrame.origin.y);
-            slotContainerView.frame = newFrame;
-            
-            newFrame = mixedUpLettersAreaView.frame;
-            newFrame.origin = CGPointMake(self.view.width-newFrame.origin.x-newFrame.size.width,newFrame.origin.y);
-            mixedUpLettersAreaView.frame = newFrame;
-            
-            shuffleImageView.right = self.view.left;
-            
-        }
-        else {
-            CGRect newFrame;
-            
-            newFrame = speakerImageView.frame;
-            newFrame.origin = [subviewOriginDictionary[@"speakerImageView"] CGPointValue];
-            speakerImageView.frame = newFrame;
-            
-            newFrame = arabicNameView.frame;
-            newFrame.origin = [subviewOriginDictionary[@"arabicNameView"] CGPointValue];
-            arabicNameView.frame = newFrame;
-            
-            newFrame = slotContainerView.frame;
-            newFrame.origin = [subviewOriginDictionary[@"slotContainerView"] CGPointValue];
-            slotContainerView.frame = newFrame;
-            
-            newFrame = mixedUpLettersAreaView.frame;
-            newFrame.origin = [subviewOriginDictionary[@"mixedUpLettersAreaView"] CGPointValue];
-            mixedUpLettersAreaView.frame = newFrame;
-        }
+        newFrame = speakerImageView.frame;
+        newFrame.origin = [subviewOriginDictionary[@"speakerImageView"] CGPointValue];
+        //newFrame.origin = [[NSValue valueWithCGPoint:speakerImageView.origin] CGPointValue];
+        speakerImageView.frame = newFrame;
+        
+        newFrame = arabicNameView.frame;
+        newFrame.origin = [subviewOriginDictionary[@"arabicNameView"] CGPointValue];
+        //newFrame.origin = [[NSValue valueWithCGPoint:arabicNameView.origin] CGPointValue];
+        arabicNameView.frame = newFrame;
+        
+        newFrame = slotContainerView.frame;
+        newFrame.origin = [subviewOriginDictionary[@"slotContainerView"] CGPointValue];
+        //newFrame.origin = [[NSValue valueWithCGPoint:slotContainerView.origin] CGPointValue];
+        slotContainerView.frame = newFrame;
+        
+        newFrame = mixedUpLettersAreaView.frame;
+        newFrame.origin = [subviewOriginDictionary[@"mixedUpLettersAreaView"] CGPointValue];
+        //newFrame.origin = [[NSValue valueWithCGPoint:mixedUpLettersAreaView.origin] CGPointValue];
+        mixedUpLettersAreaView.frame = newFrame;
+    }
+    
+        
+    //Position odd index speakers subviews to the opposite side
+    if ([currentSpeakerIndex intValue] % 2==1) {
+        CGRect newFrame;
+        
+        newFrame = speakerImageView.frame;
+        newFrame.origin = CGPointMake(self.view.width-newFrame.origin.x-newFrame.size.width,newFrame.origin.y);
+        speakerImageView.frame = newFrame;
+        
+        newFrame = arabicNameView.frame;
+        newFrame.origin = CGPointMake(self.view.width-newFrame.origin.x-newFrame.size.width,newFrame.origin.y);
+        arabicNameView.frame = newFrame;
+        
+        newFrame = slotContainerView.frame;
+        newFrame.origin = CGPointMake(self.view.width-newFrame.origin.x-newFrame.size.width,newFrame.origin.y);
+        slotContainerView.frame = newFrame;
+        
+        newFrame = mixedUpLettersAreaView.frame;
+        newFrame.origin = CGPointMake(self.view.width-newFrame.origin.x-newFrame.size.width,newFrame.origin.y);
+        mixedUpLettersAreaView.frame = newFrame;
+        
+        shuffleImageView.right = self.view.left;
         
     }
+
+    
+    
     
     
     //Setting up empty slots
@@ -251,6 +279,19 @@
     
     playedEnglishErrorAudio = NO;
     [self.audioManager loadErrorAudioWithPrefix:currentSpeaker.name key:@"Again"];
+}
+
+- (IBAction)homeButtonTouched:(id)sender  {
+    [super homeButtonTouched:sender];
+    
+    currentSpeakerIndex = [NSNumber numberWithInt:0];
+}
+
+- (IBAction)restartButtonTouched:(id)sender {
+    levelRestarted = YES;
+    [super restartButtonTouched:sender];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:kPopViewControllerNotification object:self];
 }
 
 #pragma mark Game Phases
@@ -326,14 +367,22 @@
                         
                         [self animateProgressViewPhase2WithCompletion:^() {
                             
-                            if ([[SpeakerList sharedInstance] isLastSpeaker:currentSpeaker]) {
-                                
-                                [self performSegueWithIdentifier:@"SurpriseSegue" sender:self];
-                            }
-                            else {
-                                currentSpeakerIndex++;
-                                currentSpeaker = [[SpeakerList sharedInstance].speakerArray objectAtIndex:currentSpeakerIndex];
-                                [self startLevel];
+                            if (!levelRestarted) {
+                                if ([[SpeakerList sharedInstance] isLastSpeaker:currentSpeaker]) {
+                                    currentSpeakerIndex = [NSNumber numberWithInt:0];
+                                    [self performSegueWithIdentifier:@"SurpriseSegue" sender:self];
+                                }
+                                else {
+                                    int addSpeakerIndex = [currentSpeakerIndex intValue] + 1;
+                                    currentSpeakerIndex = [NSNumber numberWithInt:addSpeakerIndex];
+                                    if (currentSpeakerIndex.intValue < [SpeakerList sharedInstance].speakerArray.count) {
+                                        currentSpeaker = [[SpeakerList sharedInstance].speakerArray objectAtIndex:[currentSpeakerIndex intValue]];
+                                        [self startLevel];
+                                    }
+                                    else {
+                                        currentSpeakerIndex = [NSNumber numberWithInt:0];
+                                    }
+                                }
                             }
                             
                         }];
@@ -609,7 +658,6 @@
                              
                          }
                          completion:^(BOOL finished){
-                             //if (imageView == [letterImageViewArray objectAtIndex:[letterImageViewArray count]-1]) {
                              if (!shuffleImageView.animationFound) {
                                  completion();
                              }
@@ -716,7 +764,7 @@
 
 - (void)animateProgressViewPhase1WithCompletion:(void(^)())completion {
     
-    [gameProgressView setCurrentLevelCircleIndex:currentSpeakerIndex];
+    [gameProgressView setCurrentLevelCircleIndex:[currentSpeakerIndex intValue]];
     [UIView animateWithDuration: 2
                           delay: 0.0
                         options: UIViewAnimationOptionCurveLinear
@@ -725,7 +773,7 @@
                          [gameProgressView startRotations];
                          
                          //Move the current level circle to the same coordinates as the speaker image view
-                         ProgressCircleImageView* circle = [gameProgressView circleImageViewWithIndex:currentSpeakerIndex];
+                         ProgressCircleImageView* circle = [gameProgressView circleImageViewWithIndex:[currentSpeakerIndex intValue]];
                          gameProgressView.left = adjustedScrollViewCenter.x - circle.origin.x - (circle.width/2);
                          
                      }
@@ -738,11 +786,9 @@
 
 - (void)animateProgressViewPhase2WithCompletion:(void(^)())completion {
     [speakerImageView removeFromSuperview];
-    ProgressCircleImageView* circleImageView = [gameProgressView circleImageViewWithIndex:currentSpeakerIndex];
-    circleImageView.contentMode = UIViewContentModeCenter;
-    [gameProgressView setImage:speakerImageView.lastExitImage atCircleIndex:currentSpeakerIndex];
-    
-
+    //ProgressCircleImageView* circleImageView = [gameProgressView circleImageViewWithIndex:[currentSpeakerIndex intValue]];
+    //circleImageView.contentMode = UIViewContentModeCenter;
+    [gameProgressView setImage:speakerImageView.lastExitImage atCircleIndex:[currentSpeakerIndex intValue]];
     
     [UIView animateWithDuration: 2
                           delay: 0.0
