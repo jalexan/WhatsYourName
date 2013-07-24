@@ -60,8 +60,9 @@
 
     if (!creditsScreen) {
         creditsScreen = [[UIScrollView alloc] init];
-        creditsScreen.frame = CGRectMake(0,0,self.view.frame.size.width, self.view.frame.size.height - 50);
-        creditsScreen.contentSize = CGSizeMake(self.view.frame.size.width, self.view.frame.size.height*3);
+        creditsScreen.delegate = self;
+        creditsScreen.frame = CGRectMake(0,0,self.view.frame.size.width, self.view.frame.size.height);
+        //creditsScreen.contentSize = CGSizeMake(self.view.frame.size.width, self.view.frame.size.height*4);
     }
     creditsScreen.hidden = NO;
     UILabel* creditSectionLabel;
@@ -70,8 +71,8 @@
     NSString *plistPath = [bundle pathForResource:[NSString stringWithFormat:@"Credits"] ofType:@"plist"];
     NSArray *credits = [[NSArray alloc] initWithContentsOfFile:plistPath];
     BOOL is_heading = NO;
-    NSInteger x_pos = 100;
-    NSInteger y_pos = 50;
+    NSInteger x_pos = 0;
+    NSInteger y_pos = 250;
     NSInteger font_size = 14;
     UIColor *label_bg_color = [UIColor clearColor];
     
@@ -84,25 +85,30 @@
         if (is_heading) {
             //change font to smaller size for heading
             is_heading = NO;
-            font_size = 14;
+            font_size = 20;
         } else {
             //use this default font size
-            font_size = 16;
+            font_size = 24;
         }
-        creditSectionLabel = [[UILabel alloc] initWithFrame:CGRectMake(x_pos, y_pos, creditsScreen.frame.size.width - 200, 20)];
+        creditSectionLabel = [[UILabel alloc] initWithFrame:CGRectMake(x_pos, y_pos, creditsScreen.frame.size.width, 20)];
         creditSectionLabel.font = [UIFont fontWithName:@"MarkerFelt-Thin" size:font_size];
+        creditSectionLabel.textColor = [UIColor whiteColor];
+        creditSectionLabel.shadowColor = [UIColor blackColor];
+        creditSectionLabel.shadowOffset = CGSizeMake(2.0f, 2.0f);
         creditSectionLabel.text = credit;
         creditSectionLabel.textAlignment = NSTextAlignmentCenter;
         creditSectionLabel.backgroundColor = label_bg_color;
         [creditsScreen addSubview:creditSectionLabel];
         y_pos += 25;
     }
+    creditsScreen.contentSize = CGSizeMake(self.view.frame.size.width, y_pos);
     
     [self.view addSubview:creditsBackButton];
     [self.view addSubview:creditsScreen];
     
-    [UIView animateWithDuration:[credits count]*0.75 animations:^{
-        creditsScreen.contentOffset = CGPointMake(0, creditsScreen.contentSize.height);
+//    [UIView animateWithDuration:[credits count]*0.75 animations:^{
+        [UIView animateWithDuration:1 animations:^{
+        creditsScreen.contentOffset = CGPointMake(0, 900);
     }];
 }
 
@@ -180,6 +186,14 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    NSLog(@"Scroll view context offset is: %f", creditsScreen.contentOffset.y);
+}
+- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {
+    NSLog(@"Scroll view end context offset is: %f", creditsScreen.contentOffset.y);
+
 }
 
 @end
