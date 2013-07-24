@@ -78,6 +78,7 @@ static NSNumber* currentSpeakerIndex;
     
     [super.audioManager prepareAudioWithPath:@"Resource/slot_correct.mp3"];
     [super.audioManager prepareAudioWithPath:@"Resource/slot_wrong.mp3"];
+    [super.audioManager prepareAudioWithPath:@"Resource/stars.mp3"];
     
     //screenBounds = CGSizeMake(480,320);
     
@@ -688,6 +689,7 @@ static NSNumber* currentSpeakerIndex;
 - (void)animateLevelSuccessWithCompletion:(void(^)())completion {
     [speakerImageView animateWithType:DEFAULT repeatingDuration:3];
     
+    [super.audioManager playAudio:@"Resource/stars.mp3" volume:1];
     for (int index=0;index<NUMBER_OF_SUCCESS_STARS;index++) {
         
         float randomDuration;
