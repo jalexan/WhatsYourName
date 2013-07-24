@@ -37,6 +37,7 @@ static NSNumber* currentSpeakerIndex;
     SpeakerImageView* speakerImageView;
     NSMutableArray* letterImageViewArray;
     NSMutableArray* slotsImageViewArray;
+    NSString* unicodeNameStringForSpelling;
     
     ShuffleImageView* shuffleImageView;
     UILabel* spellingArabicLetterLabel;
@@ -499,6 +500,8 @@ static NSNumber* currentSpeakerIndex;
     
     NSTimeInterval dialogDuration = [self getDurationAndPlaySpeakerDialogAudioWithKey:@"Spell" prefix:currentSpeaker.name suffix:@"Arabic"];
     [speakerImageView animateWithType:TALK repeatingDuration:dialogDuration];
+    
+    unicodeNameStringForSpelling = [Speaker uniCodeNameWithLetterIndexArray:currentSpeaker.letterIndexArray];
     [self animateArabicNameImageViewWithIndex:0 limit:[currentSpeaker.letterIndexArray count]-1 completion:completion];
 }
 
@@ -511,47 +514,13 @@ static NSNumber* currentSpeakerIndex;
     
     NSUInteger letterIndex = [[currentSpeaker.letterIndexArray objectAtIndex:index] intValue];
     ArabicLetter* letter = [[ArabicLetter alloc] initWithLetterIndex:letterIndex];
-    NSUInteger previousLetterIndex;
-    
-    if (index>0) {
-        previousLetterIndex = [[currentSpeaker.letterIndexArray objectAtIndex:index-1] intValue];
-    }
-    
     letter.slotPosition = index;
-    
-    
-    unichar unicodeChar;
-    if (index==0) { //first letter
-        unicodeChar = letter.unicodeInitial;
-    }
-    else if (index==limit) { //last letter
-        unicodeChar = letter.unicodeFinal;
-    }
-    else { //middle letter
-        
-        if (index>0 && (previousLetterIndex==0 ||
-                        previousLetterIndex==31 ||
-                        previousLetterIndex==32 ||
-                        previousLetterIndex==33 ||
-                        previousLetterIndex==7 ||
-                        previousLetterIndex==8 ||
-                        previousLetterIndex==9 ||
-                        previousLetterIndex==10 ||
-                        previousLetterIndex==26 ||
-                        previousLetterIndex==28))
-        {
-            unicodeChar = letter.unicodeInitial;
-        }
-        else {
-            unicodeChar = letter.unicodeMedial;
-        }        
-     
-    }
+    unichar unicodeChar = [unicodeNameStringForSpelling characterAtIndex:index];
+
     
     spellingArabicLetterLabel.text = [NSString stringWithFormat:@"%@%C",spellingArabicLetterLabel.text,unicodeChar];
     
-    
-    
+
     //Spell out each letter in dialog label
     if (index==0) dialogLabel.text = @"";
     dialogLabel.text = [NSString stringWithFormat:@"%@%C",dialogLabel.text,letter.unicodeGeneral];

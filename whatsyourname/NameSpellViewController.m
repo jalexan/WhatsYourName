@@ -20,6 +20,7 @@
     NSMutableArray* arabicLettersArray;
     NSMutableArray* letterImageViewArray;
     NSString* translatedArabicName;
+    NSString* unicodeNameStringForSpelling;
 }
 
 @end
@@ -76,6 +77,7 @@
         return;
 
     arabicLettersArray = [self translatedLetterArrayForEnglishName:playerName];
+    unicodeNameStringForSpelling = [Speaker uniCodeNameWithLetterIndexArray:arabicLettersArray];
     
     [self createLetterImageViewArray];
     
@@ -193,53 +195,16 @@
         completion();
         return;
     }
-
     
     //Arabic Tiles
+    unichar unicodeChar = [unicodeNameStringForSpelling characterAtIndex:index];
+    
     NSUInteger letterIndex = [[arabicLettersArray objectAtIndex:index] intValue];
     ArabicLetter* letter = [[ArabicLetter alloc] initWithLetterIndex:letterIndex];
-    NSUInteger previousLetterIndex;
+    ArabicLetterImageView* letterImageView = letterImageViewArray[index];
     letter.slotPosition = index;
     
-    if (index>0) {
-        previousLetterIndex = [[arabicLettersArray objectAtIndex:index-1] intValue];
-    }
-    
-    ArabicLetterImageView* letterImageView = letterImageViewArray[index];
-    
-    
-    //Spell out each letter in dialog label
-    if (index==0) arabicSpellLabel.text = @"";
-    
-    unichar unicodeChar;
-    if (index==0) { //first letter
-        unicodeChar = letter.unicodeInitial;
-    }
-    else if (index==limit) { //last letter
-        unicodeChar = letter.unicodeFinal;
-    }
-    else { //middle letter
-
-        if (index>0 && (previousLetterIndex==0 ||
-                        previousLetterIndex==31 ||
-                        previousLetterIndex==32 ||
-                        previousLetterIndex==33 ||
-                        previousLetterIndex==7 ||
-                        previousLetterIndex==8 ||
-                        previousLetterIndex==9 ||
-                        previousLetterIndex==10 ||
-                        previousLetterIndex==26 ||
-                        previousLetterIndex==28))
-        {
-            unicodeChar = letter.unicodeInitial;
-        }
-        else {
-            unicodeChar = letter.unicodeMedial;
-        }
-        
-    }    
     arabicSpellLabel.text = [NSString stringWithFormat:@"%@%C",arabicSpellLabel.text,unicodeChar];
-
 
     [UIView animateWithDuration: 2
                           delay: 0.0

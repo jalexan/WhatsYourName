@@ -17,4 +17,5 @@
 
 - (NSDictionary*)dialogForKey:(NSString*)key;
 - (NSString*)unicodeName;
++ (NSString*)uniCodeNameWithLetterIndexArray:(NSArray*)letterIndexArray;
 @end
