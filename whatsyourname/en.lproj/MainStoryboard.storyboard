@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="OFY-Zf-6gI">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12C54" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="OFY-Zf-6gI">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
@@ -395,7 +395,7 @@
                                 <size key="shadowOffset" width="0.0" height="1"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Your Name" textAlignment="center" minimumFontSize="17" clearButtonMode="unlessEditing" id="H7T-JC-GlF">
-                                <rect key="frame" x="109" y="62" width="263" height="38"/>
+                                <rect key="frame" x="140" y="57" width="200" height="38"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="20"/>
@@ -580,7 +580,6 @@
                 <relationship kind="action" name="backButtonTouched:"/>
                 <relationship kind="action" name="playButtonTouched:"/>
                 <relationship kind="action" name="recordButtonTouched:"/>
-                <relationship kind="action" name="restartButtonTouched:"/>
                 <relationship kind="outlet" name="backButton" candidateClass="GameUIButton"/>
                 <relationship kind="outlet" name="durationLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="playButton" candidateClass="GameUIButton"/>
@@ -611,6 +610,8 @@
         <class className="LetterGameViewController" superclassName="GameController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/LetterGameViewController.h"/>
             <relationships>
+                <relationship kind="action" name="homeButtonTouched:"/>
+                <relationship kind="action" name="restartButtonTouched:"/>
                 <relationship kind="outlet" name="arabicNameView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="gameProgressView" candidateClass="GameProgressView"/>
                 <relationship kind="outlet" name="mixedUpLettersAreaView" candidateClass="UIView"/>
@@ -621,6 +622,7 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NameGameViewController.h"/>
             <relationships>
                 <relationship kind="action" name="goodByeButtonTouched:"/>
+                <relationship kind="action" name="restartButtonTouched:"/>
                 <relationship kind="outlet" name="background" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="goodByeButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="nameTextField" candidateClass="UITextField"/>
