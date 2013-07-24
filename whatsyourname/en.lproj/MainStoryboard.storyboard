@@ -32,7 +32,7 @@
                                 <rect key="frame" x="175" y="248" width="289" height="49"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="96C-zx-Jmw">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="96C-zx-Jmw" customClass="GameUIButton">
                                 <rect key="frame" x="9" y="44" width="32" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -404,7 +404,7 @@
                                     <outlet property="delegate" destination="MVX-A1-ViX" id="qpG-Vk-24o"/>
                                 </connections>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="iVx-Ek-W1U">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="iVx-Ek-W1U" customClass="GameUIButton">
                                 <rect key="frame" x="382" y="171" width="88" height="82"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" size="button"/>
@@ -419,7 +419,7 @@
                                     <action selector="goodByeButtonTouched:" destination="MVX-A1-ViX" eventType="touchUpInside" id="bex-67-mjH"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="mFS-bI-rbP">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="mFS-bI-rbP" customClass="GameUIButton">
                                 <rect key="frame" x="6" y="282" width="32" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -580,6 +580,7 @@
                 <relationship kind="action" name="backButtonTouched:"/>
                 <relationship kind="action" name="playButtonTouched:"/>
                 <relationship kind="action" name="recordButtonTouched:"/>
+                <relationship kind="action" name="restartButtonTouched:"/>
                 <relationship kind="outlet" name="backButton" candidateClass="GameUIButton"/>
                 <relationship kind="outlet" name="durationLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="playButton" candidateClass="GameUIButton"/>
