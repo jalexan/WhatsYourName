@@ -41,8 +41,6 @@
     
     [soundButton setImage:[UIImage imageNamed:@"Resource/sound_on.png"] forState:UIControlStateNormal];
     [soundButton setImage:[UIImage imageNamed:@"Resource/sound_off.png"] forState:UIControlStateSelected];
-    
-    [self.audioManager prepareAudioWithPath:@"Resource/buttonpress.mp3"];
 
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"pauseMusic"] != 0) {
         soundButton.selected = YES;
