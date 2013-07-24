@@ -580,7 +580,6 @@
                 <relationship kind="action" name="backButtonTouched:"/>
                 <relationship kind="action" name="playButtonTouched:"/>
                 <relationship kind="action" name="recordButtonTouched:"/>
-                <relationship kind="action" name="restartButtonTouched:"/>
                 <relationship kind="outlet" name="backButton" candidateClass="GameUIButton"/>
                 <relationship kind="outlet" name="durationLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="playButton" candidateClass="GameUIButton"/>
