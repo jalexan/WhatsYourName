@@ -80,6 +80,7 @@ static NSNumber* currentSpeakerIndex;
     [super.audioManager prepareAudioWithPath:@"Resource/slot_wrong.mp3"];
     [super.audioManager prepareAudioWithPath:@"Resource/stars.mp3"];
     [super.audioManager prepareAudioWithPath:@"Resource/jumping.mp3"];
+    [super.audioManager prepareAudioWithPath:@"Resource/running.mp3"];
     
     //screenBounds = CGSizeMake(480,320);
     
@@ -579,6 +580,7 @@ static NSNumber* currentSpeakerIndex;
     
     if (shuffleImageView.animationFound)
     {
+        [super.audioManager playAudio:@"Resource/running.mp3" volume:1];
         [self displayDialogTextWithKey:@"Shuffle" animationType:SHUFFLE completion:^(){
             completion();
         }];
@@ -796,7 +798,7 @@ static NSNumber* currentSpeakerIndex;
         
     //}];
     [speakerImageView animateWithType:EXIT repeatingDuration:0 keepLastFrame:NO];
-    [super.audioManager playAudio:@"Resource/jumping" volume:1];
+    [super.audioManager playAudio:@"Resource/jumping.mp3" volume:1];
     NSTimeInterval animationDuration = [speakerImageView animationDurationOfType:EXIT];
     //UIImageView* circleImageView = [gameProgressView circleImageViewWithIndex:currentSpeakerIndex];
     

@@ -11,13 +11,14 @@
 #import "NameGameViewController.h"
 #import "NameSpellViewController.h"
 #import "AlphabetViewController.h"
+#import "GameUIButton.h"
 
 @interface StartScreenViewController () {
-    IBOutlet UIButton* bookLinkButton;
-    IBOutlet UIButton* creditsButton;
-    IBOutlet UIButton* creditsBackButton;
-    IBOutlet UIButton* moreGamesButton;
-    IBOutlet UIButton* playButton;
+    IBOutlet GameUIButton* bookLinkButton;
+    IBOutlet GameUIButton* creditsButton;
+    IBOutlet GameUIButton* creditsBackButton;
+    IBOutlet GameUIButton* moreGamesButton;
+    IBOutlet GameUIButton* playButton;
     UIScrollView* creditsScreen;
 
 }

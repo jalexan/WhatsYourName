@@ -224,7 +224,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="480" height="325"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="T3g-a7-R5F">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="T3g-a7-R5F" customClass="GameUIButton">
                                 <rect key="frame" x="9" y="283" width="32" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -239,7 +239,7 @@
                                     <action selector="soundButtonTouched:" destination="lef-yX-ejV" eventType="touchUpInside" id="gor-NU-4zs"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="geb-94-WCt">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="geb-94-WCt" customClass="GameUIButton">
                                 <rect key="frame" x="151" y="82" width="76" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -254,7 +254,7 @@
                                     <action selector="recordButtonTouched:" destination="lef-yX-ejV" eventType="touchUpInside" id="RKQ-HM-l3d"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="tNP-LR-j3Z">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="tNP-LR-j3Z" customClass="GameUIButton">
                                 <rect key="frame" x="257" y="82" width="55" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -269,7 +269,7 @@
                                     <action selector="playButtonTouched:" destination="lef-yX-ejV" eventType="touchUpInside" id="4Fy-HT-MNZ"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="sVI-21-xWg">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="sVI-21-xWg" customClass="GameUIButton">
                                 <rect key="frame" x="20" y="257" width="73" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -292,7 +292,7 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="cQk-cn-3qJ">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="cQk-cn-3qJ" customClass="GameUIButton">
                                 <rect key="frame" x="8" y="6" width="49" height="19"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -307,7 +307,7 @@
                                     <action selector="homeButtonTouched:" destination="lef-yX-ejV" eventType="touchUpInside" id="1ud-gG-GXE"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="yyp-cs-bf3">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="yyp-cs-bf3" customClass="GameUIButton">
                                 <rect key="frame" x="59" y="6" width="55" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -581,10 +581,10 @@
                 <relationship kind="action" name="playButtonTouched:"/>
                 <relationship kind="action" name="recordButtonTouched:"/>
                 <relationship kind="action" name="restartButtonTouched:"/>
-                <relationship kind="outlet" name="backButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="backButton" candidateClass="GameUIButton"/>
                 <relationship kind="outlet" name="durationLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="playButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="recordButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="playButton" candidateClass="GameUIButton"/>
+                <relationship kind="outlet" name="recordButton" candidateClass="GameUIButton"/>
             </relationships>
         </class>
         <class className="GameController" superclassName="UIViewController">
@@ -611,8 +611,6 @@
         <class className="LetterGameViewController" superclassName="GameController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/LetterGameViewController.h"/>
             <relationships>
-                <relationship kind="action" name="homeButtonTouched:"/>
-                <relationship kind="action" name="restartButtonTouched:"/>
                 <relationship kind="outlet" name="arabicNameView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="gameProgressView" candidateClass="GameProgressView"/>
                 <relationship kind="outlet" name="mixedUpLettersAreaView" candidateClass="UIView"/>
@@ -642,11 +640,11 @@
                 <relationship kind="action" name="bookLinkButtonTouched:"/>
                 <relationship kind="action" name="creditsBackButtonTouched:"/>
                 <relationship kind="action" name="creditsButtonTouched:"/>
-                <relationship kind="outlet" name="bookLinkButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="creditsBackButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="creditsButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="moreGamesButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="playButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="bookLinkButton" candidateClass="GameUIButton"/>
+                <relationship kind="outlet" name="creditsBackButton" candidateClass="GameUIButton"/>
+                <relationship kind="outlet" name="creditsButton" candidateClass="GameUIButton"/>
+                <relationship kind="outlet" name="moreGamesButton" candidateClass="GameUIButton"/>
+                <relationship kind="outlet" name="playButton" candidateClass="GameUIButton"/>
             </relationships>
         </class>
         <class className="SurpriseViewController" superclassName="GameController">

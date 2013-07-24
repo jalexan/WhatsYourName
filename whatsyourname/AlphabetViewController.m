@@ -13,12 +13,13 @@
 #import "ArabicLetterImageView.h"
 #import "Slot.h"
 #import "SlotImageView.h"
+#import "GameUIButton.h"
 
 @interface AlphabetViewController () {
     
-    IBOutlet UIButton* recordButton;
-    IBOutlet UIButton* playButton;
-    IBOutlet UIButton* backButton;
+    IBOutlet GameUIButton* recordButton;
+    IBOutlet GameUIButton* playButton;
+    IBOutlet GameUIButton* backButton;
     IBOutlet UILabel* durationLabel;
     
     AVAudioRecorder* recorder;
