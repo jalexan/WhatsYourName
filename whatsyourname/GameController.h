@@ -10,12 +10,13 @@
 #import <AVFoundation/AVFoundation.h>
 #import "UIView+Additions.h"
 #import "AudioManager.h"
+#import "GameUIButton.h"
 
 @interface GameController : UIViewController {
     
-    IBOutlet UIButton* homeButton;
-    IBOutlet UIButton* restartButton;
-    IBOutlet UIButton* soundButton;
+    IBOutlet GameUIButton* homeButton;
+    IBOutlet GameUIButton* restartButton;
+    IBOutlet GameUIButton* soundButton;
     IBOutlet UILabel* dialogLabel;
 }
 

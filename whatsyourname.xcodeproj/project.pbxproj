@@ -39,6 +39,7 @@
 		686446C5175C4DBE00BA5007 /* ProgressCircleImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 686446C4175C4DBD00BA5007 /* ProgressCircleImageView.m */; };
 		6883F4F91740D11A00487055 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6883F4F81740D11A00487055 /* AVFoundation.framework */; };
 		6883F4FB1740D47600487055 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6883F4FA1740D47600487055 /* AudioToolbox.framework */; };
+		68873390179F9B3C000877AB /* GameUIButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6887338F179F9B3C000877AB /* GameUIButton.m */; };
 		689815D8177A95C100737B97 /* StartScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 689815D7177A95C100737B97 /* StartScreenViewController.m */; };
 		68B6959A176C23A0002542EA /* StarImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B69599176C23A0002542EA /* StarImageView.m */; };
 		68BC242C1760485E00A041C6 /* NameSpellViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68BC242B1760485E00A041C6 /* NameSpellViewController.m */; };
@@ -106,6 +107,8 @@
 		686446C4175C4DBD00BA5007 /* ProgressCircleImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressCircleImageView.m; sourceTree = "<group>"; };
 		6883F4F81740D11A00487055 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		6883F4FA1740D47600487055 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		6887338E179F9B3C000877AB /* GameUIButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameUIButton.h; sourceTree = "<group>"; };
+		6887338F179F9B3C000877AB /* GameUIButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameUIButton.m; sourceTree = "<group>"; };
 		689815D6177A95C100737B97 /* StartScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartScreenViewController.h; sourceTree = "<group>"; };
 		689815D7177A95C100737B97 /* StartScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartScreenViewController.m; sourceTree = "<group>"; };
 		68B69598176C23A0002542EA /* StarImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StarImageView.h; sourceTree = "<group>"; };
@@ -255,6 +258,8 @@
 				682900A61763D7D50067E1A8 /* ShuffleImageView.m */,
 				68B69598176C23A0002542EA /* StarImageView.h */,
 				68B69599176C23A0002542EA /* StarImageView.m */,
+				6887338E179F9B3C000877AB /* GameUIButton.h */,
+				6887338F179F9B3C000877AB /* GameUIButton.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -384,6 +389,7 @@
 				689815D8177A95C100737B97 /* StartScreenViewController.m in Sources */,
 				6808A9D2178012E500DBF72F /* AlphabetViewController.m in Sources */,
 				15955EBA17962C4E00E11F14 /* ArabicLetterZoomImageView.m in Sources */,
+				68873390179F9B3C000877AB /* GameUIButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -79,6 +79,7 @@ static NSNumber* currentSpeakerIndex;
     [super.audioManager prepareAudioWithPath:@"Resource/slot_correct.mp3"];
     [super.audioManager prepareAudioWithPath:@"Resource/slot_wrong.mp3"];
     [super.audioManager prepareAudioWithPath:@"Resource/stars.mp3"];
+    [super.audioManager prepareAudioWithPath:@"Resource/jumping.mp3"];
     
     //screenBounds = CGSizeMake(480,320);
     
@@ -795,6 +796,7 @@ static NSNumber* currentSpeakerIndex;
         
     //}];
     [speakerImageView animateWithType:EXIT repeatingDuration:0 keepLastFrame:NO];
+    [super.audioManager playAudio:@"Resource/jumping" volume:1];
     NSTimeInterval animationDuration = [speakerImageView animationDurationOfType:EXIT];
     //UIImageView* circleImageView = [gameProgressView circleImageViewWithIndex:currentSpeakerIndex];
     

@@ -51,7 +51,7 @@
                                 <rect key="frame" x="46" y="131" width="388" height="58"/>
                                 <autoresizingMask key="autoresizingMask"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="aUq-Au-kZq">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="aUq-Au-kZq" customClass="GameUIButton">
                                 <rect key="frame" x="9" y="7" width="47" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -66,7 +66,7 @@
                                     <action selector="homeButtonTouched:" destination="2" eventType="touchUpInside" id="blJ-d0-NvU"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="oMb-nX-KH6">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="oMb-nX-KH6" customClass="GameUIButton">
                                 <rect key="frame" x="9" y="292" width="55" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -117,7 +117,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="480" height="320"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="6rJ-97-9Ur">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="6rJ-97-9Ur" customClass="GameUIButton">
                                 <rect key="frame" x="227" y="166" width="48" height="43"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -132,7 +132,7 @@
                                     <segue destination="2" kind="push" id="wWZ-8D-CY6"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="YOf-2P-KJq">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="YOf-2P-KJq" customClass="GameUIButton">
                                 <rect key="frame" x="421" y="263" width="39" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -147,7 +147,7 @@
                                     <action selector="creditsButtonTouched:" destination="Tbj-Y2-qDz" eventType="touchUpInside" id="wq1-YW-WzT"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="SaY-8R-jSN">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="SaY-8R-jSN" customClass="GameUIButton">
                                 <rect key="frame" x="12" y="283" width="41" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -161,7 +161,7 @@
                                     <action selector="creditsBackButtonTouched:" destination="Tbj-Y2-qDz" eventType="touchUpInside" id="NWG-yB-3wV"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="4uV-hj-YRq">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="4uV-hj-YRq" customClass="GameUIButton">
                                 <rect key="frame" x="421" y="149" width="39" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -176,7 +176,7 @@
                                     <segue destination="lef-yX-ejV" kind="push" id="Ewq-st-KJV"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ufh-pn-iul">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ufh-pn-iul" customClass="GameUIButton">
                                 <rect key="frame" x="421" y="205" width="39" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -434,7 +434,7 @@
                                     <action selector="soundButtonTouched:" destination="MVX-A1-ViX" eventType="touchUpInside" id="nak-ZH-NeF"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="6Vt-ZY-k0I">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="6Vt-ZY-k0I" customClass="GameUIButton">
                                 <rect key="frame" x="46" y="288" width="47" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -449,7 +449,7 @@
                                     <action selector="homeButtonTouched:" destination="MVX-A1-ViX" eventType="touchUpInside" id="GKG-Gu-Ckb"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="QGR-eO-RxS">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="QGR-eO-RxS" customClass="GameUIButton">
                                 <rect key="frame" x="6" y="251" width="65" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -594,13 +594,16 @@
                 <relationship kind="action" name="restartButtonTouched:"/>
                 <relationship kind="action" name="soundButtonTouched:"/>
                 <relationship kind="outlet" name="dialogLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="homeButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="restartButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="soundButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="homeButton" candidateClass="GameUIButton"/>
+                <relationship kind="outlet" name="restartButton" candidateClass="GameUIButton"/>
+                <relationship kind="outlet" name="soundButton" candidateClass="GameUIButton"/>
             </relationships>
         </class>
         <class className="GameProgressView" superclassName="UIView">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/GameProgressView.h"/>
+        </class>
+        <class className="GameUIButton" superclassName="UIButton">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/GameUIButton.h"/>
         </class>
         <class className="GameUIView" superclassName="UIView">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/GameUIView.h"/>
@@ -608,6 +611,8 @@
         <class className="LetterGameViewController" superclassName="GameController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/LetterGameViewController.h"/>
             <relationships>
+                <relationship kind="action" name="homeButtonTouched:"/>
+                <relationship kind="action" name="restartButtonTouched:"/>
                 <relationship kind="outlet" name="arabicNameView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="gameProgressView" candidateClass="GameProgressView"/>
                 <relationship kind="outlet" name="mixedUpLettersAreaView" candidateClass="UIView"/>
@@ -618,7 +623,6 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NameGameViewController.h"/>
             <relationships>
                 <relationship kind="action" name="goodByeButtonTouched:"/>
-                <relationship kind="action" name="restartButtonTouched:"/>
                 <relationship kind="outlet" name="background" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="goodByeButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="nameTextField" candidateClass="UITextField"/>
