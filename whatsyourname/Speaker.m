@@ -60,7 +60,10 @@
         }
         
         unichar unicodeChar;
-        if (index==0) { //first letter
+        if (letterIndexArray.count==1) {
+            unicodeChar = letter.unicodeGeneral;
+        }
+        else if (index==0) { //first letter
             unicodeChar = letter.unicodeInitial;
         }
         else { //middle letter
