@@ -577,9 +577,11 @@ static NSNumber* currentSpeakerIndex;
 - (void)mixUpLettersWithCompletion:(void(^)())completion {
     
     NSTimeInterval shuffleDuration = 2;
+    float letterFallDownAnimationDelay = 0;
     
     if (shuffleImageView.animationFound)
     {
+        letterFallDownAnimationDelay = 0.40;
         [super.audioManager playAudio:@"Resource/running.mp3" volume:1];
         [self displayDialogTextWithKey:@"Shuffle" animationType:SHUFFLE completion:^(){
             completion();
@@ -612,7 +614,7 @@ static NSNumber* currentSpeakerIndex;
                              
                          }];
     }
-    
+
     //Letters falling out of slots
     for (ArabicLetterImageView* imageView in letterImageViewArray) {
         CGRect r = mixedUpLettersAreaView.bounds;
@@ -623,7 +625,7 @@ static NSNumber* currentSpeakerIndex;
         CGPoint convertedPoint = [self.view convertPoint:randomPoint fromView:mixedUpLettersAreaView];
         
         [UIView animateWithDuration: shuffleDuration
-                              delay: 0.25
+                              delay: letterFallDownAnimationDelay
                             options: UIViewAnimationOptionCurveLinear
                          animations:^{
                              
