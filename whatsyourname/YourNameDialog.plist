@@ -23,19 +23,12 @@
 		<key>Arabic</key>
 		<string>اكتب اسمك هنا</string>
 	</dict>
-	<key>Hello</key>
-	<dict>
-		<key>English</key>
-		<string>Hello @name</string>
-		<key>Arabic</key>
-		<string>اهلا </string>
-	</dict>
 	<key>LikeThis</key>
 	<dict>
 		<key>English</key>
-		<string>Like This</string>
+		<string>We write it like this</string>
 		<key>Arabic</key>
-		<string>زي كده</string>
+		<string> نكتبها كده</string>
 	</dict>
 	<key>Nice</key>
 	<dict>

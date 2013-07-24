@@ -142,11 +142,7 @@
 
 - (void)pushSpellController {
 
-    [self displayDialogTextWithKey:@"Hello" animateAllSpeakers:NO completion:^() {
-
-        [self performSegueWithIdentifier:@"SpellSegue" sender:self];
-        
-    }];
+    [self performSegueWithIdentifier:@"SpellSegue" sender:self];
     
 }
 
