@@ -33,7 +33,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="96C-zx-Jmw" customClass="GameUIButton">
-                                <rect key="frame" x="9" y="44" width="32" height="32"/>
+                                <rect key="frame" x="443" y="287" width="32" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" image="sound_on.png">
@@ -51,12 +51,11 @@
                                 <rect key="frame" x="46" y="131" width="388" height="58"/>
                                 <autoresizingMask key="autoresizingMask"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="aUq-Au-kZq" customClass="GameUIButton">
-                                <rect key="frame" x="9" y="7" width="47" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="aUq-Au-kZq" customClass="GameUIButton">
+                                <rect key="frame" x="5" y="0.0" width="47" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Home">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Home" image="Resource/icon_home.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <state key="highlighted">
@@ -67,7 +66,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="oMb-nX-KH6" customClass="GameUIButton">
-                                <rect key="frame" x="9" y="292" width="55" height="18"/>
+                                <rect key="frame" x="35" y="7" width="55" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Restart">
@@ -225,7 +224,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="T3g-a7-R5F" customClass="GameUIButton">
-                                <rect key="frame" x="9" y="283" width="32" height="32"/>
+                                <rect key="frame" x="448" y="288" width="32" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" image="sound_on.png">
@@ -269,22 +268,6 @@
                                     <action selector="playButtonTouched:" destination="lef-yX-ejV" eventType="touchUpInside" id="4Fy-HT-MNZ"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="sVI-21-xWg" customClass="GameUIButton">
-                                <rect key="frame" x="20" y="257" width="73" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" image="Resource/icon_back.png">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="backButtonTouched:" destination="lef-yX-ejV" eventType="touchUpInside" id="7Oa-0R-cKO"/>
-                                    <action selector="soundButtonTouched:" destination="lef-yX-ejV" eventType="touchUpInside" id="SFe-du-bKx"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2CR-su-CGp">
                                 <rect key="frame" x="143" y="164" width="182" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -292,12 +275,11 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="cQk-cn-3qJ" customClass="GameUIButton">
-                                <rect key="frame" x="8" y="6" width="49" height="19"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="cQk-cn-3qJ" customClass="GameUIButton">
+                                <rect key="frame" x="7" y="5" width="49" height="19"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Home">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Home" image="Resource/icon_home.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <state key="highlighted">
@@ -308,7 +290,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="yyp-cs-bf3" customClass="GameUIButton">
-                                <rect key="frame" x="59" y="6" width="55" height="18"/>
+                                <rect key="frame" x="40" y="5" width="55" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Restart">
@@ -332,7 +314,6 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
-                        <outlet property="backButton" destination="sVI-21-xWg" id="K90-am-gWu"/>
                         <outlet property="durationLabel" destination="2CR-su-CGp" id="XBh-GY-jbx"/>
                         <outlet property="homeButton" destination="cQk-cn-3qJ" id="ViP-Q9-yE9"/>
                         <outlet property="playButton" destination="tNP-LR-j3Z" id="kW1-ik-dqb"/>
@@ -420,7 +401,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="mFS-bI-rbP" customClass="GameUIButton">
-                                <rect key="frame" x="6" y="282" width="32" height="32"/>
+                                <rect key="frame" x="448" y="288" width="32" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" image="sound_on.png">
@@ -434,12 +415,11 @@
                                     <action selector="soundButtonTouched:" destination="MVX-A1-ViX" eventType="touchUpInside" id="nak-ZH-NeF"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="6Vt-ZY-k0I" customClass="GameUIButton">
-                                <rect key="frame" x="46" y="288" width="47" height="24"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="6Vt-ZY-k0I" customClass="GameUIButton">
+                                <rect key="frame" x="5" y="6" width="47" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Home">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Home" image="Resource/icon_home.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <state key="highlighted">
@@ -450,7 +430,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="QGR-eO-RxS" customClass="GameUIButton">
-                                <rect key="frame" x="6" y="251" width="65" height="24"/>
+                                <rect key="frame" x="31" y="7" width="65" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Restart">
@@ -567,6 +547,7 @@
         <image name="Resource/icon_back.png" width="16" height="16"/>
         <image name="Resource/icon_book.png" width="16" height="16"/>
         <image name="Resource/icon_credits.png" width="16" height="16"/>
+        <image name="Resource/icon_home.png" width="16" height="16"/>
         <image name="Resource/icon_play.png" width="16" height="16"/>
         <image name="Resource/icon_say_goodbye.png" width="16" height="16"/>
         <image name="Resource/splash.png" width="16" height="16"/>
@@ -610,8 +591,6 @@
         <class className="LetterGameViewController" superclassName="GameController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/LetterGameViewController.h"/>
             <relationships>
-                <relationship kind="action" name="homeButtonTouched:"/>
-                <relationship kind="action" name="restartButtonTouched:"/>
                 <relationship kind="outlet" name="arabicNameView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="gameProgressView" candidateClass="GameProgressView"/>
                 <relationship kind="outlet" name="mixedUpLettersAreaView" candidateClass="UIView"/>
@@ -622,7 +601,6 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NameGameViewController.h"/>
             <relationships>
                 <relationship kind="action" name="goodByeButtonTouched:"/>
-                <relationship kind="action" name="restartButtonTouched:"/>
                 <relationship kind="outlet" name="background" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="goodByeButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="nameTextField" candidateClass="UITextField"/>
