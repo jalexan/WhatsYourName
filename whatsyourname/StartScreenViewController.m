@@ -101,15 +101,21 @@
         [creditsScreen addSubview:creditSectionLabel];
         y_pos += 25;
     }
-    creditsScreen.contentSize = CGSizeMake(self.view.frame.size.width, y_pos);
     
     [self.view addSubview:creditsBackButton];
     [self.view addSubview:creditsScreen];
     
 //    [UIView animateWithDuration:[credits count]*0.75 animations:^{
         [UIView animateWithDuration:1 animations:^{
-        creditsScreen.contentOffset = CGPointMake(0, 900);
+        creditsScreen.contentOffset = CGPointMake(0, y_pos);
     }];
+    
+    UIImageView* flag = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Resource/egy_flag.png"]];
+    flag.frame = CGRectMake((creditsScreen.frame.size.width/2) - (flag.image.size.width/2), y_pos + 20, flag.image.size.width, flag.image.size.height);
+    [creditsScreen addSubview:flag];
+    creditsScreen.contentSize = CGSizeMake(self.view.frame.size.width, flag.bottom + 50);
+    
+    [creditsBackButton.superview bringSubviewToFront:creditsBackButton];
 }
 
 -(void)setupStartScreenButtons {
