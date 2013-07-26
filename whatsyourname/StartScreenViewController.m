@@ -105,13 +105,12 @@
     [self.view addSubview:creditsBackButton];
     [self.view addSubview:creditsScreen];
     
-//    [UIView animateWithDuration:[credits count]*0.75 animations:^{
-        [UIView animateWithDuration:1 animations:^{
+    [UIView animateWithDuration:[credits count]*0.75 animations:^{
         creditsScreen.contentOffset = CGPointMake(0, y_pos);
     }];
     
     UIImageView* flag = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Resource/egy_flag.png"]];
-    flag.frame = CGRectMake((creditsScreen.frame.size.width/2) - (flag.image.size.width/2), y_pos + 20, flag.image.size.width, flag.image.size.height);
+    flag.frame = CGRectMake((creditsScreen.frame.size.width/2) - (flag.image.size.width/2), y_pos, flag.image.size.width, flag.image.size.height);
     [creditsScreen addSubview:flag];
     creditsScreen.contentSize = CGSizeMake(self.view.frame.size.width, flag.bottom + 50);
     
@@ -194,12 +193,5 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    NSLog(@"Scroll view context offset is: %f", creditsScreen.contentOffset.y);
-}
-- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {
-    NSLog(@"Scroll view end context offset is: %f", creditsScreen.contentOffset.y);
-
-}
 
 @end

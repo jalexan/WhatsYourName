@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface StartScreenViewController : UIViewController <UIScrollViewDelegate>
+@interface StartScreenViewController : UIViewController 
 
 @end
