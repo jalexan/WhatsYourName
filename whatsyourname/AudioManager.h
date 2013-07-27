@@ -19,6 +19,7 @@
 @property (nonatomic,readonly) AVAudioPlayer* backgroundPlayer;
 
 - (void)initializeAudio;
+- (void)setAudioSessionCategory:(NSString*)theCategory;
 - (AVAudioPlayer*)prepareAudioWithPath:(NSString*)audioPath;
 - (AVAudioPlayer*)prepareAudioWithPath:(NSString*)audioPath key:(NSString*)key;
 - (void)playAudio:(NSString*)audioName volume:(float)volume;
