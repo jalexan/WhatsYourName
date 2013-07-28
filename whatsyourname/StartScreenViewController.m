@@ -12,6 +12,7 @@
 #import "NameSpellViewController.h"
 #import "AlphabetViewController.h"
 #import "GameUIButton.h"
+#import "GameWebViewController.h"
 
 @interface StartScreenViewController () {
     IBOutlet GameUIButton* bookLinkButton;
@@ -39,9 +40,11 @@
 }
 
 -(IBAction)bookLinkButtonTouched:(id)sender {
-    
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://noliafasolia.com/books"]];
 
+    GameWebViewController *webController = [[GameWebViewController alloc] initWithNibName:nil bundle:nil];
+    [webController openURL:[NSURL URLWithString:@"http://noliafasolia.com/books"]];
+    [self.navigationController pushViewController:webController animated:YES];
+    
 }
 
 -(IBAction)creditsBackButtonTouched:(id)sender {
