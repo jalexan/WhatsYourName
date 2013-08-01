@@ -60,9 +60,7 @@
 
     if (!creditsScreen) {
         creditsScreen = [[UIScrollView alloc] init];
-        creditsScreen.delegate = self;
         creditsScreen.frame = CGRectMake(0,0,self.view.frame.size.width, self.view.frame.size.height);
-        //creditsScreen.contentSize = CGSizeMake(self.view.frame.size.width, self.view.frame.size.height*4);
     }
     creditsScreen.hidden = NO;
     UILabel* creditSectionLabel;
