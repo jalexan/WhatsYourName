@@ -19,34 +19,33 @@
     
     IBOutlet GameUIButton* recordButton;
     IBOutlet GameUIButton* playButton;
-    IBOutlet GameUIButton* backButton;
     IBOutlet UILabel* durationLabel;
     
     AVAudioRecorder* recorder;
     AVAudioPlayer *player;
     
     UIView *view;
-    UIView *chalkboard;
+    UIImageView *chalkboard;
 //    UILabel *dialogLabel;
+    UILabel *chalkboardLabel;
+    NSString *unicodeNameStringForSpelling;
     Speaker* currentSpeaker;
     SpeakerImageView* speakerImageView;
+    float songDelay;
 }
 
 - (IBAction)recordButtonTouched:(id)sender;
 - (IBAction)playButtonTouched:(id)sender;
-- (IBAction)backButtonTouched:(id)sender;
 
 @end
 
 @implementation AlphabetViewController
-
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     [super.audioManager prepareAudioWithPath:@"Speakers/Samia/Audio/AlphabetSongArabic.mp3"];
     
-    //LEFT OFF HERE - 
     //Add background image
     view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.screenBounds.width, self.screenBounds.height)];
     UIImageView* screenBackground = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Resource/background_alphabets.png"]];
@@ -55,12 +54,25 @@
     [self.view addSubview:view];
 
     //Add Chalkboard in UIView section
-    chalkboard = [[UIView alloc] initWithFrame:CGRectMake(137, 90, 331, 221)]; //TEMP - until i create the new reduced chalkboard img
-    chalkboard.backgroundColor = [UIColor clearColor];
+    UIImage *cImg = [[UIImage imageNamed:@"Resource/chalkboard.png"] stretchableImageWithLeftCapWidth:3 topCapHeight:5];
+    chalkboard = [[UIImageView alloc] initWithImage:cImg]; //TEMP - until i create the new reduced chalkboard img
+    chalkboard.frame = CGRectMake(132, 65, 331, 210);
     [self.view addSubview:chalkboard];
-    
+
+    //Add writing label on the chalkboard
+    chalkboardLabel = [[UILabel alloc]initWithFrame:CGRectMake(chalkboard.origin.x+5, chalkboard.origin.y+5, chalkboard.frame.size.width-10, chalkboard.frame.size.height-10)];
+    chalkboardLabel.font = [UIFont fontWithName:@"GeezaPro-Bold" size:150];
+    chalkboardLabel.textColor = [UIColor whiteColor];
+    chalkboardLabel.backgroundColor = [UIColor clearColor];
+    chalkboardLabel.textAlignment = NSTextAlignmentCenter;
+    chalkboard.layer.borderColor = [UIColor brownColor].CGColor;
+    chalkboard.layer.borderWidth = 3.0f;
+    chalkboardLabel.adjustsFontSizeToFitWidth = NO;
+    chalkboardLabel.minimumScaleFactor = 0.5;
+    [self.view addSubview:chalkboardLabel];
+
     //Add dialog view in UIView section
-    dialogLabel = [[UILabel alloc] initWithFrame:CGRectMake(134, 13, 335, 68)];
+    dialogLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 5, 448, 48)];
     dialogLabel.backgroundColor = [UIColor clearColor];
     dialogLabel.textAlignment = UITextAlignmentCenter;
     dialogLabel.font = [UIFont fontWithName:@"MarkerFelt-Thin" size:40];
@@ -69,13 +81,33 @@
     
     //Add Miss Samia as Speaker
     currentSpeaker = [[Speaker alloc] initWithName:@"Samia"];
-    speakerImageView = [[SpeakerImageView alloc] initWithFrame:CGRectMake(9, 24, 119, 290) speaker:currentSpeaker];
+    speakerImageView = [[SpeakerImageView alloc] initWithFrame:CGRectMake(19, 29, 119, 290) speaker:currentSpeaker];
     speakerImageView.contentMode = UIViewContentModeBottomLeft;
     [self.view addSubview:speakerImageView];
     [speakerImageView repeatAnimation:DEFAULT];
 
-    [self startAlphabetPhase];
+    //Adjust placement of record and play buttons
+    recordButton.origin = CGPointMake(chalkboard.centerX - recordButton.size.width, chalkboard.origin.y+chalkboard.size.height+3);
+    playButton.origin = CGPointMake(chalkboard.centerX, chalkboard.origin.y+chalkboard.size.height+3);
+    [self.view sendSubviewToBack:screenBackground];
+    [self.view bringSubviewToFront:soundButton];
+    [self.view bringSubviewToFront:recordButton];
+    [self.view bringSubviewToFront:playButton];
+    [self.view bringSubviewToFront:restartButton];
+    [self.view bringSubviewToFront:homeButton];
     
+    recordButton.hidden = YES;
+    playButton.hidden = YES;
+    soundButton.selected = NO;
+    [soundButton setImage:[UIImage imageNamed:@"Resource/sound_off.png"] forState:UIControlStateSelected];
+    
+    
+    if(DEBUG_DRAW_BORDERS) {
+        [self.view drawBorderOnSubviews];
+    }
+    
+    [self startAlphabetPhase];
+
     //Add array of arabic letters all 28  - import ArabicLetter model
     //in Chalkboard UIView section, add each row of 7 letters from right to left, decreasing X coord
     //I will need an instance of Audio Manager here
@@ -84,60 +116,35 @@
     //add touchesBegan here .. then delegate to the View that the touch happened so that it can then scale
     //then add sound
     //then lookup "outlet collections" to control target/action for the whole set of letters
-    
-    [self startRecordingPhase];
-    [self.view sendSubviewToBack:screenBackground];
-    [self.view bringSubviewToFront:soundButton];
-    [self.view bringSubviewToFront:recordButton];
-    [self.view bringSubviewToFront:playButton];
-    [self.view bringSubviewToFront:restartButton];
-    recordButton.hidden = YES;
-    playButton.hidden = YES;
+
 }
 
-- (void)startAlphabetPhase {
+#pragma mark Game Phases
+
+- (void)startAlphabetPhase{
     
     speakerImageView.hidden = NO;
     
     [self displayDialogTextWithKey:@"ThisIs" animationType:TALK completion:^() {
 
-        [self displayDialogTextWithKey:@"AlphabetSong" animationType:TALK completion:^() {
+       // [self displayDialogTextWithKey:@"AlphabetSong" animationType:TALK completion:^() { //TEMP end bracket }];
+        
+        [self singAndSpellArabicAlphabetWithCompletion:^() {
 
             [self displayDialogTextWithKey:@"SingAlong" animationType:TALK completion:^() {
-            
-          //  [self spellArabicNameWithCompletion:^() {
-                
-             //   [self showSpeakerShuffleAnimationWithCompletion:^() {
-                    
-               //     [self mixUpLettersWithCompletion: ^() {
-                        
-                 //       if (!shuffleImageView.animationFound) {
-                 //           [self displayDialogTextWithKey:@"Shuffle" animationType:TALK completion:^() {
-                                
-                  //              [self displayDialogTextWithKey:@"Try" animationType:TALK completion:^() {
-                                    
-                  //              }];
-                  //          }];
-                 //       }
-                 //       else {
-                  //          [self displayDialogTextWithKey:@"Try" animationType:TALK completion:^() {
-                                
-                  //          }];
-                 //       }
-                        
-                        
-                //    }];
-                    
-             //   }];
-                
-          //  }];
-            
+
+                [self startRecordingPhase:^() {}];
             }];
+            
         }];
+        
     }];
+    
 }
 
--(void)startRecordingPhase {
+
+
+-(void)startRecordingPhase:(void((^)()))completion {
 
     //Recording section
     //
@@ -169,9 +176,8 @@
     playButton.hidden = YES;
     //recorder = [AudioManager sharedInstance].recorder;
     //recorder.delegate = self;
+    completion();
 
-    
-    [self.view bringSubviewToFront:homeButton];
 }
 
 #pragma mark Game Mechanics
@@ -207,10 +213,51 @@
             completion();
         });
         
-        
     });
     
+}
+
+-(void)singAndSpellArabicAlphabetWithCompletion:(void((^)()))completion{
+    [self animateAndSingAlphabetsByIndex:0 forSection:1 withCompletion:^() {
+        [self animateAndSingAlphabetsByIndex:7 forSection:2 withCompletion:^() {
+            [self animateAndSingAlphabetsByIndex:14 forSection:3 withCompletion:^() {
+                [self animateAndSingAlphabetsByIndex:21 forSection:4 withCompletion:^() {
+                }];
+            }];
+        }];
+    }];
+}
+
+-(void)animateAndSingAlphabetsByIndex:(NSUInteger)index forSection:(NSUInteger)section withCompletion:(void((^)()) )completion {
+
+    NSString *suffix = [NSString stringWithFormat:@"Arabic%d",section];
+    NSString *prevSuffix = [NSString stringWithFormat:@"Arabic%d",section-1];
+    NSTimeInterval sectionDuration=0;
+    if (section == 1) {
+        songDelay = 0;
+    } else if(section > 1) {
+        sectionDuration = [self getDurationDialogAudioWithKey:@"AlphabetSong" prefix:currentSpeaker.name suffix:prevSuffix];
+        songDelay = songDelay + sectionDuration;
+    }
     
+    NSTimeInterval duration = [self getDurationDialogAudioWithKey:@"AlphabetSong" prefix:currentSpeaker.name suffix:suffix];
+
+    dispatch_after(DISPATCH_SECONDS_FROM_NOW(songDelay), dispatch_get_current_queue(), ^{
+    
+        NSTimeInterval duration = [self getDurationAndPlaySpeakerDialogAudioWithKey:@"AlphabetSong" prefix:currentSpeaker.name suffix:suffix];
+        [speakerImageView animateWithType:TALK repeatingDuration:duration];
+    });
+    for (NSUInteger i=0; i<7; i++) {
+        
+        dispatch_after(DISPATCH_SECONDS_FROM_NOW(((duration-0.5)/7*i) + songDelay), dispatch_get_current_queue(), ^{
+            
+            ArabicLetter *arabicLetter = [[ArabicLetter alloc] initWithLetterIndex:index];
+            chalkboardLabel.text = [NSString stringWithFormat:@"%C",[arabicLetter unicodeGeneral]];
+        });
+        index++;
+    }
+    
+    completion();
 }
 
 
@@ -282,12 +329,12 @@
 
 }
 
-- (IBAction)backButtonTouched:(id)sender {
+- (IBAction)homeButtonTouched:(id)sender {
     [recorder stop];
     [player stop];
     
-    [self.navigationController popViewControllerAnimated:YES];
-    
+//    [self.navigationController popViewControllerAnimated:YES];
+    [super homeButtonTouched:sender];
 }
 
 #pragma mark - AVAudioRecorderDelegate
