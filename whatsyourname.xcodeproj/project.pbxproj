@@ -28,6 +28,8 @@
 		68240B2E173F07D200BDBDF8 /* LetterGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68240B2D173F07D200BDBDF8 /* LetterGameViewController.m */; };
 		68240B811740744F00BDBDF8 /* ArabicLetter.m in Sources */ = {isa = PBXBuildFile; fileRef = 68240B801740744F00BDBDF8 /* ArabicLetter.m */; };
 		68240B841740752F00BDBDF8 /* Speaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 68240B831740752F00BDBDF8 /* Speaker.m */; };
+		68240C5917A4A4D6006C3B91 /* GameWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68240C5717A4A4D6006C3B91 /* GameWebViewController.m */; };
+		68240C5A17A4A4D6006C3B91 /* GameWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68240C5817A4A4D6006C3B91 /* GameWebViewController.xib */; };
 		682900A71763D7D50067E1A8 /* ShuffleImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 682900A61763D7D50067E1A8 /* ShuffleImageView.m */; };
 		682900AB176467520067E1A8 /* Letters.plist in Resources */ = {isa = PBXBuildFile; fileRef = 682900AA176467510067E1A8 /* Letters.plist */; };
 		68353D691740B7810003D1EB /* ArabicLetterImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 68353D681740B7810003D1EB /* ArabicLetterImageView.m */; };
@@ -90,6 +92,9 @@
 		68240B821740752F00BDBDF8 /* Speaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Speaker.h; sourceTree = "<group>"; };
 		68240B831740752F00BDBDF8 /* Speaker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Speaker.m; sourceTree = "<group>"; };
 		68240B85174075F700BDBDF8 /* ArabicLetter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ArabicLetter.h; sourceTree = "<group>"; };
+		68240C5617A4A4D6006C3B91 /* GameWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameWebViewController.h; sourceTree = "<group>"; };
+		68240C5717A4A4D6006C3B91 /* GameWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameWebViewController.m; sourceTree = "<group>"; };
+		68240C5817A4A4D6006C3B91 /* GameWebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GameWebViewController.xib; sourceTree = "<group>"; };
 		682900A51763D7D50067E1A8 /* ShuffleImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShuffleImageView.h; sourceTree = "<group>"; };
 		682900A61763D7D50067E1A8 /* ShuffleImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShuffleImageView.m; sourceTree = "<group>"; };
 		682900AA176467510067E1A8 /* Letters.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Letters.plist; sourceTree = "<group>"; };
@@ -190,6 +195,9 @@
 				68FA6DDC174D2936000B08E1 /* Singleton.h */,
 				68240B20173F07D200BDBDF8 /* AppDelegate.h */,
 				68240B21173F07D200BDBDF8 /* AppDelegate.m */,
+				68240C5617A4A4D6006C3B91 /* GameWebViewController.h */,
+				68240C5717A4A4D6006C3B91 /* GameWebViewController.m */,
+				68240C5817A4A4D6006C3B91 /* GameWebViewController.xib */,
 				681DDD2F17545A35007FFD64 /* GameController.h */,
 				681DDD3017545A35007FFD64 /* GameController.m */,
 				689815D6177A95C100737B97 /* StartScreenViewController.h */,
@@ -355,6 +363,7 @@
 				15DEA75A1765315F0058852E /* WellKnownNames.plist in Resources */,
 				1500BC03177AABAD00F0DE3D /* LettersByName.plist in Resources */,
 				15359AA5178D7933002D73BB /* Credits.plist in Resources */,
+				68240C5A17A4A4D6006C3B91 /* GameWebViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -390,6 +399,7 @@
 				6808A9D2178012E500DBF72F /* AlphabetViewController.m in Sources */,
 				15955EBA17962C4E00E11F14 /* ArabicLetterZoomImageView.m in Sources */,
 				68873390179F9B3C000877AB /* GameUIButton.m in Sources */,
+				68240C5917A4A4D6006C3B91 /* GameWebViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

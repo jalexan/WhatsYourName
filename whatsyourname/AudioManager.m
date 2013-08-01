@@ -43,12 +43,28 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(AudioManager)
 	return self;
 }
 
+- (void)setAudioSessionCategory:(NSString*)theCategory {
+    NSError *setCategoryErr = nil;
+    NSError *activationErr  = nil;
+    
+    AVAudioSession* session = [AVAudioSession sharedInstance];
+    //Set the general audio session category
+    [session setCategory:theCategory error: &setCategoryErr];
+    
+    //Make the default sound route for the session be to use the speaker
+    UInt32 doChangeDefaultRoute = 1;
+    AudioSessionSetProperty (kAudioSessionProperty_OverrideCategoryDefaultToSpeaker, sizeof (doChangeDefaultRoute), &doChangeDefaultRoute);
+    
+    //Activate the customized audio session
+    [session setActive:YES error: &activationErr];
+    
+    [session setDelegate:self];
+}
 
 #pragma mark Audio
 - (void)initializeAudio{
-    AVAudioSession* session = [AVAudioSession sharedInstance];
-    [session setCategory: AVAudioSessionCategoryAmbient error: nil];
-    [session setDelegate:self];
+    
+    [self setAudioSessionCategory:AVAudioSessionCategoryPlayAndRecord];
     
     UInt32 otherAudioIsPlayingVal;
     UInt32 propertySize = sizeof (otherAudioIsPlayingVal);

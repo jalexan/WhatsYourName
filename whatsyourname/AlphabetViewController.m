@@ -47,11 +47,10 @@
     [super.audioManager prepareAudioWithPath:@"Speakers/Samia/Audio/AlphabetSongArabic.mp3"];
     
     //Add background image
-    view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.screenBounds.width, self.screenBounds.height)];
+    //view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.screenBounds.width, self.screenBounds.height)];
     UIImageView* screenBackground = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Resource/background_alphabets.png"]];
-    screenBackground.frame = CGRectMake(0,0,view.width, view.height);
-    [view addSubview:screenBackground];
-    [self.view addSubview:view];
+    screenBackground.frame = CGRectMake(0,0,self.screenBounds.width, self.screenBounds.height);
+    [self.view addSubview:screenBackground];
 
     //Add Chalkboard in UIView section
     UIImage *cImg = [[UIImage imageNamed:@"Resource/chalkboard.png"] stretchableImageWithLeftCapWidth:3 topCapHeight:5];
@@ -107,16 +106,11 @@
     }
     
     [self startAlphabetPhase];
+ 
+    [self startRecordingPhase];
 
-    //Add array of arabic letters all 28  - import ArabicLetter model
-    //in Chalkboard UIView section, add each row of 7 letters from right to left, decreasing X coord
-    //I will need an instance of Audio Manager here
-    
-    //JUST FOR NOW - just display 1 arabic letter and do the touch / scale effect
-    //add touchesBegan here .. then delegate to the View that the touch happened so that it can then scale
-    //then add sound
-    //then lookup "outlet collections" to control target/action for the whole set of letters
-
+    recordButton.hidden = YES;
+    playButton.hidden = YES;
 }
 
 #pragma mark Game Phases
@@ -126,14 +120,11 @@
     speakerImageView.hidden = NO;
     
     [self displayDialogTextWithKey:@"ThisIs" animationType:TALK completion:^() {
-
-       // [self displayDialogTextWithKey:@"AlphabetSong" animationType:TALK completion:^() { //TEMP end bracket }];
         
         [self singAndSpellArabicAlphabetWithCompletion:^() {
 
             [self displayDialogTextWithKey:@"SingAlong" animationType:TALK completion:^() {
 
-                [self startRecordingPhase:^() {}];
             }];
             
         }];
@@ -144,7 +135,7 @@
 
 
 
--(void)startRecordingPhase:(void((^)()))completion {
+-(void)startRecordingPhase {
 
     //Recording section
     //
@@ -157,8 +148,8 @@
     NSURL *outputFileURL = [NSURL fileURLWithPathComponents:pathComponents];
     
     // Setup audio session
-    AVAudioSession *session = [AVAudioSession sharedInstance];
-    [session setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
+    //AVAudioSession *session = [AVAudioSession sharedInstance];
+    //[session setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
     
     // Define the recorder setting
     NSMutableDictionary *recordSetting = [[NSMutableDictionary alloc] init];
@@ -174,10 +165,7 @@
     [recorder prepareToRecord];
     
     playButton.hidden = YES;
-    //recorder = [AudioManager sharedInstance].recorder;
-    //recorder.delegate = self;
-    completion();
-
+    
 }
 
 #pragma mark Game Mechanics

@@ -206,6 +206,9 @@
     
     arabicSpellLabel.text = [NSString stringWithFormat:@"%@%C",arabicSpellLabel.text,unicodeChar];
 
+    [self.audioManager prepareAudioWithPath:[NSString stringWithFormat:@"Speakers/%@/Audio/Letters/%02d.mp3",mainSpeaker.name,letterIndex] key:@"talking"];
+    [self.audioManager playAudio:@"talking" volume:1];
+    
     [UIView animateWithDuration: 2
                           delay: 0.0
                         options: UIViewAnimationOptionCurveEaseInOut
