@@ -66,6 +66,9 @@
         else if (index==0) { //first letter
             unicodeChar = letter.unicodeInitial;
         }
+        else if (index==limit) { //last letter
+            unicodeChar = letter.unicodeFinal;
+        }
         else { //middle letter
             
             if (index>0 && (previousLetterIndex==0 ||
