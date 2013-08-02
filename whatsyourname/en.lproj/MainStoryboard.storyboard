@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="OFY-Zf-6gI">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12C54" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="OFY-Zf-6gI">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
@@ -382,7 +382,7 @@
                                 </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="iVx-Ek-W1U" customClass="GameUIButton">
-                                <rect key="frame" x="384" y="171" width="88" height="82"/>
+                                <rect key="frame" x="382" y="149" width="88" height="82"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" size="button"/>
                                 <state key="normal" image="Resource/icon_say_goodbye.png">
@@ -551,6 +551,86 @@
         <image name="question_mark.png" width="117" height="177"/>
         <image name="sound_on.png" width="128" height="128"/>
     </resources>
+    <classes>
+        <class className="AlphabetViewController" superclassName="GameController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AlphabetViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="homeButtonTouched:"/>
+                <relationship kind="action" name="playButtonTouched:"/>
+                <relationship kind="action" name="recordButtonTouched:"/>
+                <relationship kind="action" name="restartButtonTouched:"/>
+                <relationship kind="outlet" name="durationLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="playButton" candidateClass="GameUIButton"/>
+                <relationship kind="outlet" name="recordButton" candidateClass="GameUIButton"/>
+            </relationships>
+        </class>
+        <class className="GameController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/GameController.h"/>
+            <relationships>
+                <relationship kind="action" name="homeButtonTouched:"/>
+                <relationship kind="action" name="restartButtonTouched:"/>
+                <relationship kind="action" name="soundButtonTouched:"/>
+                <relationship kind="outlet" name="dialogLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="homeButton" candidateClass="GameUIButton"/>
+                <relationship kind="outlet" name="restartButton" candidateClass="GameUIButton"/>
+                <relationship kind="outlet" name="soundButton" candidateClass="GameUIButton"/>
+            </relationships>
+        </class>
+        <class className="GameProgressView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/GameProgressView.h"/>
+        </class>
+        <class className="GameUIButton" superclassName="UIButton">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/GameUIButton.h"/>
+        </class>
+        <class className="GameUIView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/GameUIView.h"/>
+        </class>
+        <class className="LetterGameViewController" superclassName="GameController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LetterGameViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="arabicNameView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="gameProgressView" candidateClass="GameProgressView"/>
+                <relationship kind="outlet" name="mixedUpLettersAreaView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="slotContainerView" candidateClass="UIView"/>
+            </relationships>
+        </class>
+        <class className="NameGameViewController" superclassName="GameController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NameGameViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="goodByeButtonTouched:"/>
+                <relationship kind="outlet" name="background" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="goodByeButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="nameTextField" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="NameSpellViewController" superclassName="GameController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NameSpellViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="arabicSpellLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="background" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="letterContainerView" candidateClass="UIView"/>
+            </relationships>
+        </class>
+        <class className="StartScreenViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/StartScreenViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="bookLinkButtonTouched:"/>
+                <relationship kind="action" name="creditsBackButtonTouched:"/>
+                <relationship kind="action" name="creditsButtonTouched:"/>
+                <relationship kind="outlet" name="bookLinkButton" candidateClass="GameUIButton"/>
+                <relationship kind="outlet" name="creditsBackButton" candidateClass="GameUIButton"/>
+                <relationship kind="outlet" name="creditsButton" candidateClass="GameUIButton"/>
+                <relationship kind="outlet" name="moreGamesButton" candidateClass="GameUIButton"/>
+                <relationship kind="outlet" name="playButton" candidateClass="GameUIButton"/>
+            </relationships>
+        </class>
+        <class className="SurpriseViewController" superclassName="GameController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SurpriseViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="question" candidateClass="UIImageView"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

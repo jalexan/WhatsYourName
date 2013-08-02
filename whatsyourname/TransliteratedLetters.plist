@@ -146,6 +146,15 @@
 		<key>final</key>
 		<string>noon</string>
 	</dict>
+	<key>eo</key>
+	<dict>
+		<key>initial</key>
+		<string>alef hamza below, wow</string>
+		<key>middle</key>
+		<string>wow</string>
+		<key>final</key>
+		<string>yeh, wow</string>
+	</dict>
 	<key>et</key>
 	<dict>
 		<key>initial</key>
