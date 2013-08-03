@@ -48,6 +48,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(AudioManager)
     NSError *activationErr  = nil;
     
     AVAudioSession* session = [AVAudioSession sharedInstance];
+    
     //Set the general audio session category
     [session setCategory:theCategory error: &setCategoryErr];
     
@@ -55,8 +56,12 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(AudioManager)
     UInt32 doChangeDefaultRoute = 1;
     AudioSessionSetProperty (kAudioSessionProperty_OverrideCategoryDefaultToSpeaker, sizeof (doChangeDefaultRoute), &doChangeDefaultRoute);
     
-    //Activate the customized audio session
-    [session setActive:YES error: &activationErr];
+    //if (theCategory == AVAudioSessionCategoryRecord) {
+        [session setActive:YES error:&activationErr];
+    //}
+    //else {
+    //    [session setActive:YES error: &activationErr];
+    //}
     
     [session setDelegate:self];
 }
@@ -64,7 +69,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(AudioManager)
 #pragma mark Audio
 - (void)initializeAudio{
     
-    [self setAudioSessionCategory:AVAudioSessionCategoryPlayAndRecord];
+    [self setAudioSessionCategory:AVAudioSessionCategorySoloAmbient];
     
     UInt32 otherAudioIsPlayingVal;
     UInt32 propertySize = sizeof (otherAudioIsPlayingVal);

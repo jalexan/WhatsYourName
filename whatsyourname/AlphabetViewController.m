@@ -41,8 +41,7 @@
 
 @implementation AlphabetViewController
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     [super.audioManager prepareAudioWithPath:@"Speakers/Samia/Audio/AlphabetSongArabic.mp3"];
     
@@ -95,8 +94,6 @@
     [self.view bringSubviewToFront:restartButton];
     [self.view bringSubviewToFront:homeButton];
     
-    recordButton.hidden = YES;
-    playButton.hidden = YES;
     soundButton.selected = NO;
     [soundButton setImage:[UIImage imageNamed:@"Resource/sound_off.png"] forState:UIControlStateSelected];
     
@@ -268,8 +265,7 @@
     }
     
     if (!recorder.recording) {
-        AVAudioSession *session = [AVAudioSession sharedInstance];
-        [session setActive:YES error:nil];
+        [self.audioManager setAudioSessionCategory:AVAudioSessionCategoryRecord];
         
         // Start recording
         [recorder record];
@@ -283,8 +279,8 @@
         
         [recorder stop];
         
-        AVAudioSession *audioSession = [AVAudioSession sharedInstance];
-        [audioSession setActive:NO error:nil];
+        [self.audioManager setAudioSessionCategory:AVAudioSessionCategorySoloAmbient];
+        
         [recordButton setTitle:@"Record" forState:UIControlStateNormal];
         
         player = [[AVAudioPlayer alloc] initWithContentsOfURL:recorder.url error:nil];
