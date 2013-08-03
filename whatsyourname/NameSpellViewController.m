@@ -397,6 +397,10 @@
             [patterns addObject:key];
         }
     }
+    //sort patterns array by string length desc so longer patterns get higher prioity
+    NSSortDescriptor *sorter = [[NSSortDescriptor alloc] initWithKey:@"length" ascending:NO];
+    NSArray *sortDescriptors = [NSArray arrayWithObject:sorter];
+    [patterns sortUsingDescriptors:sortDescriptors];
     NSMutableString* arabicNameCopy = [arabicName mutableCopy];
     arabicName = [self reduceName:arabicNameCopy byPatterns:patterns ];
     if (DEBUG_ARABIC_NAME) { NSLog(@"Name after multiple character pattern substitution: %@", name); }
