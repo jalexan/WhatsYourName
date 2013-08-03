@@ -50,7 +50,7 @@
  
     NSMutableString* string = [[NSMutableString alloc] init];
     int previousLetterIndex = -1;
-    NSUInteger limit = letterIndexArray.count;
+    NSUInteger limit = letterIndexArray.count - 1;  // 0-based array
     
     for (int index=0;index<letterIndexArray.count;index++) {
         ArabicLetter* letter = [[ArabicLetter alloc] initWithLetterIndex:[letterIndexArray[index] intValue]];
@@ -66,10 +66,7 @@
         else if (index==0) { //first letter
             unicodeChar = letter.unicodeInitial;
         }
-        else if (index==limit) { //last letter
-            unicodeChar = letter.unicodeFinal;
-        }
-        else { //middle letter
+        else { //middle or last letter
             
             if (index>0 && (previousLetterIndex==0 ||
                             previousLetterIndex==31 ||
@@ -82,17 +79,17 @@
                             previousLetterIndex==26 ||
                             previousLetterIndex==28))
             {
-                if (index==limit) { //last letter
+                if (index==limit) { //last letter special
                     unicodeChar = letter.unicodeGeneral;
                 }
-                else {
+                else {  //middle letter special
                     unicodeChar = letter.unicodeInitial;
                 }
             }
             else if (index==limit) { //last letter
                 unicodeChar = letter.unicodeFinal;
             }
-            else {
+            else { //middle letter
                 unicodeChar = letter.unicodeMedial;
             }
             
