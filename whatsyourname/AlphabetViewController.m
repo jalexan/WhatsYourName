@@ -28,6 +28,7 @@
     UIImageView *chalkboard;
 //    UILabel *dialogLabel;
     UILabel *chalkboardLabel;
+    UILabel *subtitleLabel;
     NSString *unicodeNameStringForSpelling;
     Speaker* currentSpeaker;
     SpeakerImageView* speakerImageView;
@@ -58,7 +59,7 @@
     [self.view addSubview:chalkboard];
 
     //Add writing label on the chalkboard
-    chalkboardLabel = [[UILabel alloc]initWithFrame:CGRectMake(chalkboard.origin.x+5, chalkboard.origin.y+5, chalkboard.frame.size.width-10, chalkboard.frame.size.height-10)];
+    chalkboardLabel = [[UILabel alloc]initWithFrame:CGRectMake(chalkboard.origin.x+5, chalkboard.origin.y+5, chalkboard.frame.size.width-10, chalkboard.frame.size.height-40)];
     chalkboardLabel.font = [UIFont fontWithName:@"GeezaPro-Bold" size:150];
     chalkboardLabel.textColor = [UIColor whiteColor];
     chalkboardLabel.backgroundColor = [UIColor clearColor];
@@ -68,6 +69,14 @@
     chalkboardLabel.adjustsFontSizeToFitWidth = NO;
     chalkboardLabel.minimumScaleFactor = 0.5;
     [self.view addSubview:chalkboardLabel];
+    
+    //See what subtitle label looks like on the chalkboard
+    subtitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(chalkboardLabel.origin.x+20, chalkboardLabel.origin.y+chalkboardLabel.size.height, chalkboardLabel.size.width-40, 30)];
+    subtitleLabel.font =  [UIFont fontWithName:@"MarkerFelt-Thin" size:20];
+    subtitleLabel.textColor = [UIColor whiteColor];
+    subtitleLabel.backgroundColor = [UIColor clearColor];
+    subtitleLabel.textAlignment = NSTextAlignmentCenter;
+    [self.view addSubview:subtitleLabel];
 
     //Add dialog view in UIView section
     dialogLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 5, 448, 48)];
@@ -85,7 +94,10 @@
     [speakerImageView repeatAnimation:DEFAULT];
 
     //Adjust placement of record and play buttons
+    [recordButton setImage:[UIImage imageNamed:@"Resource/icon_record.png"] forState:UIControlStateNormal];
+    [recordButton setImage:[UIImage imageNamed:@"Resource/icon_stop.png"] forState:UIControlStateSelected];
     recordButton.origin = CGPointMake(chalkboard.centerX - recordButton.size.width, chalkboard.origin.y+chalkboard.size.height+3);
+    recordButton.selected = NO;
     playButton.origin = CGPointMake(chalkboard.centerX, chalkboard.origin.y+chalkboard.size.height+3);
     [self.view sendSubviewToBack:screenBackground];
     [self.view bringSubviewToFront:soundButton];
@@ -94,8 +106,11 @@
     [self.view bringSubviewToFront:restartButton];
     [self.view bringSubviewToFront:homeButton];
     
-    soundButton.selected = NO;
-    [soundButton setImage:[UIImage imageNamed:@"Resource/sound_off.png"] forState:UIControlStateSelected];
+    // TEMP - turn off background music
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [super.audioManager.backgroundPlayer pause];
+    soundButton.selected = YES;
+    [userDefaults setBool:YES forKey:@"pauseMusic"];
     
     
     if(DEBUG_DRAW_BORDERS) {
@@ -103,8 +118,6 @@
     }
     
     [self startAlphabetPhase];
- 
-    [self startRecordingPhase];
 
     recordButton.hidden = YES;
     playButton.hidden = YES;
@@ -121,6 +134,7 @@
         [self singAndSpellArabicAlphabetWithCompletion:^() {
 
             [self displayDialogTextWithKey:@"SingAlong" animationType:TALK completion:^() {
+                [self startRecordingPhase];
 
             }];
             
@@ -137,7 +151,6 @@
     //Recording section
     //
     // Set the audio file
-    recordButton.hidden = NO;
     NSArray *pathComponents = [NSArray arrayWithObjects:
                                [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject],
                                @"recorderAudio.m4a",
@@ -160,7 +173,8 @@
     recorder.delegate = self;
     recorder.meteringEnabled = YES;
     [recorder prepareToRecord];
-    
+
+    recordButton.hidden = NO;
     playButton.hidden = YES;
     
 }
@@ -207,6 +221,11 @@
         [self animateAndSingAlphabetsByIndex:7 forSection:2 withCompletion:^() {
             [self animateAndSingAlphabetsByIndex:14 forSection:3 withCompletion:^() {
                 [self animateAndSingAlphabetsByIndex:21 forSection:4 withCompletion:^() {
+                    NSTimeInterval duration = [self getDurationAndPlaySpeakerDialogAudioWithKey:@"AlphabetSong" prefix:currentSpeaker.name suffix:@"Arabic"];
+                    dispatch_after(DISPATCH_SECONDS_FROM_NOW(duration+0.25), dispatch_get_current_queue(), ^(void){
+                        completion();
+                    });
+
                 }];
             }];
         }];
@@ -238,6 +257,7 @@
             
             ArabicLetter *arabicLetter = [[ArabicLetter alloc] initWithLetterIndex:index];
             chalkboardLabel.text = [NSString stringWithFormat:@"%C",[arabicLetter unicodeGeneral]];
+            subtitleLabel.text = arabicLetter.letterName;
         });
         index++;
     }
@@ -270,6 +290,7 @@
         // Start recording
         [recorder record];
         [recordButton setTitle:@"Stop" forState:UIControlStateNormal];
+        recordButton.selected = YES;
         
         playButton.hidden = YES;
         
@@ -282,6 +303,7 @@
         [self.audioManager setAudioSessionCategory:AVAudioSessionCategorySoloAmbient];
         
         [recordButton setTitle:@"Record" forState:UIControlStateNormal];
+        recordButton.selected = NO;
         
         player = [[AVAudioPlayer alloc] initWithContentsOfURL:recorder.url error:nil];
         [player setDelegate:self];
