@@ -140,9 +140,9 @@
     
     [self setupStartScreenButtons];
     
-    NSTimeInterval delay = DEBUG_MODE ? 0 : 1;
+   // NSTimeInterval delay = DEBUG_MODE ? 0 : 1;
         
-    [self performSelector:@selector(showButtons) withObject:nil afterDelay:delay];
+    [self performSelector:@selector(showButtons) withObject:nil];
 }
 
 - (void)viewControllerPopped:(id)theObject {
