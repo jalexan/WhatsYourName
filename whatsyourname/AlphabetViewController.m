@@ -19,6 +19,7 @@
     
     IBOutlet GameUIButton* recordButton;
     IBOutlet GameUIButton* playButton;
+    IBOutlet GameUIButton* bonusLevelButton;
     IBOutlet UILabel* durationLabel;
     
     AVAudioRecorder* recorder;
@@ -33,10 +34,13 @@
     Speaker* currentSpeaker;
     SpeakerImageView* speakerImageView;
     float songDelay;
+    BOOL recordedPlayedOnce;
+    BOOL shouldStopSinging;
 }
 
 - (IBAction)recordButtonTouched:(id)sender;
 - (IBAction)playButtonTouched:(id)sender;
+- (IBAction)bonusButtonTouched:(id)sender;
 
 @end
 
@@ -99,12 +103,20 @@
     recordButton.origin = CGPointMake(chalkboard.centerX - recordButton.size.width, chalkboard.origin.y+chalkboard.size.height+3);
     recordButton.selected = NO;
     playButton.origin = CGPointMake(chalkboard.centerX, chalkboard.origin.y+chalkboard.size.height+3);
+    [playButton setImage:[UIImage imageNamed:@"Resource/icon_stop.png"] forState:UIControlStateSelected];
     [self.view sendSubviewToBack:screenBackground];
     [self.view bringSubviewToFront:soundButton];
     [self.view bringSubviewToFront:recordButton];
     [self.view bringSubviewToFront:playButton];
     [self.view bringSubviewToFront:restartButton];
     [self.view bringSubviewToFront:homeButton];
+    
+    //Add bonus level button
+    [bonusLevelButton setImage:[UIImage imageNamed:@"Resource/icon_more.png"] forState:UIControlStateNormal];
+    bonusLevelButton.frame = CGRectMake(restartButton.origin.x, restartButton.origin.y - restartButton.size.height - 10, bonusLevelButton.size.width,bonusLevelButton.size.height);
+    bonusLevelButton.hidden = YES;
+    [self.view addSubview:bonusLevelButton];
+    [self.view bringSubviewToFront:bonusLevelButton];
     
     // TEMP - turn off background music
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
@@ -121,6 +133,8 @@
 
     recordButton.hidden = YES;
     playButton.hidden = YES;
+    shouldStopSinging = NO;
+
 }
 
 #pragma mark Game Phases
@@ -176,7 +190,16 @@
 
     recordButton.hidden = NO;
     playButton.hidden = YES;
+    recordedPlayedOnce = NO;
     
+}
+
+-(void)startBonusPhase {
+    //Display all the letters on the chalkboard
+    for (NSUInteger i=0; i<7; i++) {  //LEFT OFF HERE
+   // ArabicLetter* letter = [[ArabicLetter alloc] initWithLetterIndex:letterIndex];
+   // ArabicLetterImageView* letterImageView = letterImageViewArray[index];
+    }
 }
 
 #pragma mark Game Mechanics
@@ -219,10 +242,15 @@
 -(void)singAndSpellArabicAlphabetWithCompletion:(void((^)()))completion{
     [self animateAndSingAlphabetsByIndex:0 forSection:1 withCompletion:^() {
         [self animateAndSingAlphabetsByIndex:7 forSection:2 withCompletion:^() {
+
             [self animateAndSingAlphabetsByIndex:14 forSection:3 withCompletion:^() {
+
                 [self animateAndSingAlphabetsByIndex:21 forSection:4 withCompletion:^() {
                     NSTimeInterval duration = [self getDurationAndPlaySpeakerDialogAudioWithKey:@"AlphabetSong" prefix:currentSpeaker.name suffix:@"Arabic"];
+
                     dispatch_after(DISPATCH_SECONDS_FROM_NOW(duration+0.25), dispatch_get_current_queue(), ^(void){
+                        NSLog(@"Sing and Spell should be complete now.");
+                        shouldStopSinging = NO;  //reset 
                         completion();
                     });
 
@@ -232,8 +260,10 @@
     }];
 }
 
--(void)animateAndSingAlphabetsByIndex:(NSUInteger)index forSection:(NSUInteger)section withCompletion:(void((^)()) )completion {
 
+
+-(void)animateAndSingAlphabetsByIndex:(NSUInteger)index forSection:(NSUInteger)section withCompletion:(void((^)()) )completion {
+    //if (shouldStopSinging) { completion();  return;}
     NSString *suffix = [NSString stringWithFormat:@"Arabic%d",section];
     NSString *prevSuffix = [NSString stringWithFormat:@"Arabic%d",section-1];
     NSTimeInterval sectionDuration=0;
@@ -245,23 +275,38 @@
     }
     
     NSTimeInterval duration = [self getDurationDialogAudioWithKey:@"AlphabetSong" prefix:currentSpeaker.name suffix:suffix];
-
-    dispatch_after(DISPATCH_SECONDS_FROM_NOW(songDelay), dispatch_get_current_queue(), ^{
     
+    dispatch_after(DISPATCH_SECONDS_FROM_NOW(songDelay), dispatch_get_current_queue(), ^{
+      /*
+       if (shouldStopSinging == YES) {
+            [player stop];
+            NSLog(@"In loop audio section, I guess I should stop singing");
+            return;
+        }
+       */
         NSTimeInterval duration = [self getDurationAndPlaySpeakerDialogAudioWithKey:@"AlphabetSong" prefix:currentSpeaker.name suffix:suffix];
         [speakerImageView animateWithType:TALK repeatingDuration:duration];
+        
     });
+    
     for (NSUInteger i=0; i<7; i++) {
         
         dispatch_after(DISPATCH_SECONDS_FROM_NOW(((duration-0.5)/7*i) + songDelay), dispatch_get_current_queue(), ^{
+           /*
+            NSLog(@"ShouldStopSinging: %d",shouldStopSinging);
+            if (shouldStopSinging == YES) {
+                NSLog(@"In loop, I guess I should pause the chalkboard");
+                return;
+            }
+            */
             
             ArabicLetter *arabicLetter = [[ArabicLetter alloc] initWithLetterIndex:index];
             chalkboardLabel.text = [NSString stringWithFormat:@"%C",[arabicLetter unicodeGeneral]];
             subtitleLabel.text = arabicLetter.letterName;
         });
         index++;
+        
     }
-    
     completion();
 }
 
@@ -295,6 +340,7 @@
         playButton.hidden = YES;
         
         durationLabel.text = @"Recording...";
+        [self singAndSpellArabicAlphabetWithCompletion:^() { }];
         
     } else {
         
@@ -309,6 +355,8 @@
         [player setDelegate:self];
         
         durationLabel.text = [NSString stringWithFormat:@"Recorded %.02f seconds",player.duration];
+       // shouldStopSinging = YES;
+       // NSLog(@"Stop your singing now!");
     }
     
     
@@ -322,15 +370,19 @@
         if (player.playing) {
             [player stop];
             [playButton setTitle:@"Play" forState:UIControlStateNormal];
+            playButton.selected = NO;
         }
         else {
 
+            NSLog(@"Playing back audio recording");
+            [self singAndSpellArabicAlphabetWithCompletion:^() { }];
 
             [player play];
+
             [playButton setTitle:@"Stop" forState:UIControlStateNormal];
+            playButton.selected = YES;
         }
-    
-    
+        
     }
 
 }
@@ -341,6 +393,14 @@
     
 //    [self.navigationController popViewControllerAnimated:YES];
     [super homeButtonTouched:sender];
+}
+
+-(IBAction)bonusButtonTouched:(id)sender{
+    // Clear the Chalkboard
+    chalkboardLabel.text = @"";
+    subtitleLabel.text = @"";
+    // Start bonus level
+    [self startBonusPhase];
 }
 
 #pragma mark - AVAudioRecorderDelegate
@@ -357,6 +417,18 @@
 
 - (void) audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag{
     [playButton setTitle:@"Play" forState:UIControlStateNormal];
+    playButton.selected = NO;
+    
+    //shouldStopSinging = YES;
+    //NSLog(@"Stop the animation now because the recorded audio finished already.");
+    
+    if (recordedPlayedOnce == NO) {
+        recordedPlayedOnce = YES;
+        
+        bonusLevelButton.hidden = NO;
+        NSLog(@"Great job recording!");
+        NSLog(@"Make the new level icon appear now");
+    }
     /*
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Done"
                                                     message: @"Finish playing the recording!"
