@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="OFY-Zf-6gI">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12C54" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="OFY-Zf-6gI">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
@@ -116,7 +116,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="6rJ-97-9Ur" customClass="GameUIButton">
-                                <rect key="frame" x="227" y="166" width="48" height="43"/>
+                                <rect key="frame" x="216" y="186" width="48" height="43"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Play" image="Resource/icon_play.png">
@@ -131,7 +131,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="YOf-2P-KJq" customClass="GameUIButton">
-                                <rect key="frame" x="421" y="263" width="39" height="37"/>
+                                <rect key="frame" x="12" y="269" width="39" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" image="Resource/icon_credits.png">
@@ -160,7 +160,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ufh-pn-iul" customClass="GameUIButton">
-                                <rect key="frame" x="421" y="205" width="39" height="37"/>
+                                <rect key="frame" x="12" y="214" width="39" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" image="Resource/icon_book.png">
@@ -206,8 +206,24 @@
                                 <rect key="frame" x="0.0" y="0.0" width="480" height="320"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="center" image="Resource/icon_choose_game.png" id="nar-Vh-nfI">
+                                <rect key="frame" x="41" y="58" width="93" height="203"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" contentMode="center" image="Resource/icon_choose_game.png" id="kdb-IL-eJ6">
+                                <rect key="frame" x="193" y="59" width="93" height="203"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="center" image="Resource/icon_choose_game.png" id="abp-ks-P43">
+                                <rect key="frame" x="348" y="58" width="93" height="203"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="center" image="Resource/question_mark.png" id="X1p-aO-l20">
+                                <rect key="frame" x="361" y="91" width="66" height="159"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="nUa-2j-b92" customClass="GameUIButton">
-                                <rect key="frame" x="20" y="276" width="41" height="29"/>
+                                <rect key="frame" x="9" y="282" width="41" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" image="Resource/icon_back.png">
@@ -223,10 +239,9 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" image="Speakers/Nolia/Images/default00.png" id="rrm-Wx-pY7">
                                 <rect key="frame" x="41" y="58" width="93" height="203"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Lbp-az-lze" customClass="GameUIButton">
-                                <rect key="frame" x="69" y="138" width="48" height="43"/>
+                                <rect key="frame" x="63" y="219" width="48" height="43"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Play" image="Resource/icon_play.png">
@@ -243,10 +258,9 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" image="Speakers/Samia/Images/default00.png" id="usV-bA-LC6">
                                 <rect key="frame" x="194" y="58" width="93" height="203"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="IrB-Yu-0iI" customClass="GameUIButton">
-                                <rect key="frame" x="222" y="138" width="48" height="43"/>
+                                <rect key="frame" x="216" y="218" width="48" height="43"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Play" image="Resource/icon_play.png">
@@ -261,12 +275,11 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="kZ9-fW-NXu">
-                                <rect key="frame" x="348" y="58" width="93" height="203"/>
+                                <rect key="frame" x="340" y="58" width="93" height="203"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="new-sa-T3D" customClass="GameUIButton">
-                                <rect key="frame" x="370" y="138" width="48" height="43"/>
+                                <rect key="frame" x="362" y="219" width="48" height="43"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Play" image="Resource/icon_play.png">
@@ -281,7 +294,7 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="Resource/lock.png" id="uEv-it-Vsz">
-                                <rect key="frame" x="361" y="124" width="66" height="72"/>
+                                <rect key="frame" x="353" y="135" width="66" height="72"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
@@ -649,6 +662,7 @@
         <image name="Resource/background_alphabets.png" width="16" height="16"/>
         <image name="Resource/icon_back.png" width="16" height="16"/>
         <image name="Resource/icon_book.png" width="16" height="16"/>
+        <image name="Resource/icon_choose_game.png" width="16" height="16"/>
         <image name="Resource/icon_credits.png" width="16" height="16"/>
         <image name="Resource/icon_home.png" width="16" height="16"/>
         <image name="Resource/icon_more.png" width="16" height="16"/>
@@ -657,6 +671,7 @@
         <image name="Resource/icon_restart_circle.png" width="16" height="16"/>
         <image name="Resource/icon_say_goodbye.png" width="16" height="16"/>
         <image name="Resource/lock.png" width="16" height="16"/>
+        <image name="Resource/question_mark.png" width="16" height="16"/>
         <image name="Resource/splash.png" width="16" height="16"/>
         <image name="Speakers/Nolia/Images/default00.png" width="16" height="16"/>
         <image name="Speakers/Samia/Images/default00.png" width="16" height="16"/>
@@ -667,10 +682,10 @@
         <class className="AlphabetViewController" superclassName="GameController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/AlphabetViewController.h"/>
             <relationships>
-                <relationship kind="action" name="homeButtonTouched:"/>
+                <relationship kind="action" name="bonusButtonTouched:"/>
                 <relationship kind="action" name="playButtonTouched:"/>
                 <relationship kind="action" name="recordButtonTouched:"/>
-                <relationship kind="action" name="restartButtonTouched:"/>
+                <relationship kind="outlet" name="bonusLevelButton" candidateClass="GameUIButton"/>
                 <relationship kind="outlet" name="durationLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="playButton" candidateClass="GameUIButton"/>
                 <relationship kind="outlet" name="recordButton" candidateClass="GameUIButton"/>
