@@ -26,6 +26,8 @@
 	<string>feh, wow, alef hamza below, noon, geem</string>
 	<key>fatma</key>
 	<string>feh, alef, Ta, meem, te marboota</string>
+	<key>hosny</key>
+	<string>Ha, seen, noon, yeh</string>
 	<key>nabil</key>
 	<string>noon, beh, yeh, lam</string>
 	<key>medhat</key>
@@ -50,14 +52,16 @@
 	<string>alef hamza, Ha, meem, daal</string>
 	<key>soraya</key>
 	<string>theh, reh, alef, yeh, alef</string>
+	<key>ashraf</key>
+	<string>alef hamza, sheen, reh, feh</string>
 	<key>mo7ammad</key>
 	<string>meem, Ha, meem, daal</string>
 	<key>habiba</key>
 	<string>Ha, beh, yeh, beh, te marboota</string>
-	<key>ashraf</key>
-	<string>alef hamza, sheen, reh, feh</string>
 	<key>nagla</key>
 	<string>noon, geem, lam, alef, hamza</string>
+	<key>faten</key>
+	<string>feh, alef, teh, noon</string>
 	<key>michael</key>
 	<string>meem, alef, yeh, kaaf, lam</string>
 	<key>abdullah</key>
@@ -66,12 +70,20 @@
 	<string>meem, yeh, noon, alef</string>
 	<key>a7med</key>
 	<string>alef hamza, Ha, meem, daal</string>
+	<key>refaat</key>
+	<string>reh, feh, &apos;ein, teh</string>
 	<key>reham</key>
 	<string>reh, heh, alef, meem</string>
 	<key>emad</key>
 	<string>&apos;ein, meem, alef, daal</string>
+	<key>soad</key>
+	<string>seen, &apos;ein, alef, daal</string>
 	<key>renee</key>
 	<string>reh, yeh, noon, yeh, heh</string>
+	<key>rafat</key>
+	<string>reh, alef hamza, feh, teh</string>
+	<key>raafat</key>
+	<string>reh, alef hamza, feh, teh</string>
 	<key>rania</key>
 	<string>reh, alef, noon, yeh, alef</string>
 	<key>mo7ammed</key>
@@ -106,19 +118,17 @@
 	<string>meem, noon, alef, lam</string>
 	<key>hosni</key>
 	<string>Ha, seen, noon, yeh</string>
-	<key>hosny</key>
-	<string>Ha, seen, noon, yeh</string>
 	<key>naim</key>
 	<string>noon, &apos;ein, yeh, meem</string>
 	<key>mohammad</key>
 	<string>meem, Ha, meem, daal</string>
-	<key>rafat</key>
-	<string>reh, alef hamza, feh, teh</string>
-	<key>refaat</key>
-	<string>reh, feh, &apos;ein, teh</string>
-	<key>soad</key>
-	<string>seen, &apos;ein, alef, daal</string>
-	<key>faten</key>
-	<string>feh, alef, teh, noon</string>
+	<key>geo</key>
+	<string>geem, yeh, wow</string>
+	<key>bolos</key>
+	<string>beh, wow, lam, seen</string>
+	<key>boles</key>
+	<string>beh, wow, lam, seen</string>
+	<key>boules</key>
+	<string>beh, wow, lam, seen</string>
 </dict>
 </plist>

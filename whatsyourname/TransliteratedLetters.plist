@@ -151,7 +151,7 @@
 		<key>initial</key>
 		<string>alef hamza below, wow</string>
 		<key>middle</key>
-		<string>wow</string>
+		<string>yeh, wow</string>
 		<key>final</key>
 		<string>yeh, wow</string>
 	</dict>
@@ -205,6 +205,15 @@
 		<string>Ha</string>
 		<key>middle</key>
 		<string>Ha</string>
+	</dict>
+	<key>geo</key>
+	<dict>
+		<key>initial</key>
+		<string>geem, wow</string>
+		<key>middle</key>
+		<string>geem, yeh, wow</string>
+		<key>final</key>
+		<string>geem, yeh, wow</string>
 	</dict>
 	<key>gh</key>
 	<dict>
