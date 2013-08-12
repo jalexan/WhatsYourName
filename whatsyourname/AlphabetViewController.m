@@ -143,18 +143,18 @@
     
     speakerImageView.hidden = NO;
     
-    [self displayDialogTextWithKey:@"ThisIs" animationType:TALK completion:^() {
-        
-        [self singAndSpellArabicAlphabetWithCompletion:^() {
+    //[self displayDialogTextWithKey:@"ThisIs" animationType:TALK completion:^() {
+    
+        //[self singAndSpellArabicAlphabetWithCompletion:^() {
 
             [self displayDialogTextWithKey:@"SingAlong" animationType:TALK completion:^() {
                 [self startRecordingPhase];
 
             }];
             
-        }];
+        //}];
         
-    }];
+    //}];
     
 }
 
@@ -246,13 +246,13 @@
             [self animateAndSingAlphabetsByIndex:14 forSection:3 withCompletion:^() {
 
                 [self animateAndSingAlphabetsByIndex:21 forSection:4 withCompletion:^() {
-                    NSTimeInterval duration = [self getDurationAndPlaySpeakerDialogAudioWithKey:@"AlphabetSong" prefix:currentSpeaker.name suffix:@"Arabic"];
+                    //NSTimeInterval duration = [self getDurationAndPlaySpeakerDialogAudioWithKey:@"AlphabetSong" prefix:currentSpeaker.name suffix:@"Arabic"];
 
-                    dispatch_after(DISPATCH_SECONDS_FROM_NOW(duration+0.25), dispatch_get_current_queue(), ^(void){
-                        NSLog(@"Sing and Spell should be complete now.");
-                        shouldStopSinging = NO;  //reset 
+                    //dispatch_after(DISPATCH_SECONDS_FROM_NOW(duration+0.25), dispatch_get_current_queue(), ^(void){
+                    //    NSLog(@"Sing and Spell should be complete now.");
+                        shouldStopSinging = NO;  //reset
                         completion();
-                    });
+                    //});
 
                 }];
             }];
@@ -265,18 +265,21 @@
 -(void)animateAndSingAlphabetsByIndex:(NSUInteger)index forSection:(NSUInteger)section withCompletion:(void((^)()) )completion {
     //if (shouldStopSinging) { completion();  return;}
     NSString *suffix = [NSString stringWithFormat:@"Arabic%d",section];
-    NSString *prevSuffix = [NSString stringWithFormat:@"Arabic%d",section-1];
-    NSTimeInterval sectionDuration=0;
+    //NSString *prevSuffix = [NSString stringWithFormat:@"Arabic%d",section-1];
+    //NSTimeInterval sectionDuration=0;
+    
+    /*
     if (section == 1) {
         songDelay = 0;
     } else if(section > 1) {
         sectionDuration = [self getDurationDialogAudioWithKey:@"AlphabetSong" prefix:currentSpeaker.name suffix:prevSuffix];
         songDelay = songDelay + sectionDuration;
     }
+    */
+     
+    //NSTimeInterval duration = [self getDurationDialogAudioWithKey:@"AlphabetSong" prefix:currentSpeaker.name suffix:suffix];
     
-    NSTimeInterval duration = [self getDurationDialogAudioWithKey:@"AlphabetSong" prefix:currentSpeaker.name suffix:suffix];
-    
-    dispatch_after(DISPATCH_SECONDS_FROM_NOW(songDelay), dispatch_get_current_queue(), ^{
+    //dispatch_after(DISPATCH_SECONDS_FROM_NOW(songDelay), dispatch_get_current_queue(), ^{
       /*
        if (shouldStopSinging == YES) {
             [player stop];
@@ -287,27 +290,37 @@
         NSTimeInterval duration = [self getDurationAndPlaySpeakerDialogAudioWithKey:@"AlphabetSong" prefix:currentSpeaker.name suffix:suffix];
         [speakerImageView animateWithType:TALK repeatingDuration:duration];
         
-    });
+    //});
     
     for (NSUInteger i=0; i<7; i++) {
         
-        dispatch_after(DISPATCH_SECONDS_FROM_NOW(((duration-0.5)/7*i) + songDelay), dispatch_get_current_queue(), ^{
-           /*
+        dispatch_after(DISPATCH_SECONDS_FROM_NOW(((duration-0.5)/7*i)), dispatch_get_current_queue(), ^{
+           
             NSLog(@"ShouldStopSinging: %d",shouldStopSinging);
+            
             if (shouldStopSinging == YES) {
                 NSLog(@"In loop, I guess I should pause the chalkboard");
+
                 return;
             }
-            */
+            
             
             ArabicLetter *arabicLetter = [[ArabicLetter alloc] initWithLetterIndex:index];
             chalkboardLabel.text = [NSString stringWithFormat:@"%C",[arabicLetter unicodeGeneral]];
             subtitleLabel.text = arabicLetter.letterName;
+            
+
         });
         index++;
-        
+    
     }
-    completion();
+    
+    dispatch_after(DISPATCH_SECONDS_FROM_NOW(duration), dispatch_get_current_queue(), ^{
+        if (!shouldStopSinging) {
+            completion();
+        }
+    });
+    
 }
 
 
@@ -343,6 +356,7 @@
         [self singAndSpellArabicAlphabetWithCompletion:^() { }];
         
     } else {
+        [self.audioManager stopAudio:@"talking"];
         
         [recorder stop];
         
@@ -355,7 +369,8 @@
         [player setDelegate:self];
         
         durationLabel.text = [NSString stringWithFormat:@"Recorded %.02f seconds",player.duration];
-       // shouldStopSinging = YES;
+        shouldStopSinging = YES;
+        [speakerImageView stopAnimating];
        // NSLog(@"Stop your singing now!");
     }
     
@@ -419,7 +434,7 @@
     [playButton setTitle:@"Play" forState:UIControlStateNormal];
     playButton.selected = NO;
     
-    //shouldStopSinging = YES;
+    shouldStopSinging = YES;
     //NSLog(@"Stop the animation now because the recorded audio finished already.");
     
     if (recordedPlayedOnce == NO) {
