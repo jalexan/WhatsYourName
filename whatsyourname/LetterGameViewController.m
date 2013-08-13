@@ -42,8 +42,10 @@ static NSNumber* currentSpeakerIndex;
     ShuffleImageView* shuffleImageView;
     UILabel* spellingArabicLetterLabel;
     
-    BOOL playedEnglishErrorAudio;
+    UIImageView *finger;
+    BOOL fingerDraggingHintCancelled;
     
+    BOOL playedEnglishErrorAudio;
     BOOL levelRestarted; //When level is restarted make sure currentSpeakerIndex isn't incremented
     
 }
@@ -324,16 +326,18 @@ static NSNumber* currentSpeakerIndex;
             
             [self spellArabicNameWithCompletion:^() {
                 
-                [self showSpeakerShuffleAnimationWithCompletion:^() {
+                [self showSpeakerShuffleAnimationWithCompletion:^() {//Nolia Bubble
                     
                     [self mixUpLettersWithCompletion: ^() {
                         
                         if (!shuffleImageView.animationFound) {
-                            [self displayDialogTextWithKey:@"Shuffle" animationType:TALK completion:^() {
+                            [self displayDialogTextWithKey:@"Shuffle" animationType:TALK completion:^() {//Nolia Running
                                 
                                 [self displayDialogTextWithKey:@"Try" animationType:TALK completion:^() {
-                                    
+                                    [self animateFingerDraggingHint];
+                                                                        
                                 }];
+                                
                             }];
                         }
                         else {
@@ -633,7 +637,7 @@ static NSNumber* currentSpeakerIndex;
                              
                          }
                          completion:^(BOOL finished){
-                             if (!shuffleImageView.animationFound) {
+                             if (!shuffleImageView.animationFound && imageView == [letterImageViewArray lastObject]) {
                                  completion();
                              }
                              
@@ -641,6 +645,34 @@ static NSNumber* currentSpeakerIndex;
                          }];
         
     }
+}
+
+- (void)animateFingerDraggingHint {
+    ArabicLetterImageView* arabicLetterimageView = [letterImageViewArray objectAtIndex:0];
+    SlotImageView* slotImageView = [slotsImageViewArray objectAtIndex:0];
+    
+    if (!finger) {
+        finger = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Resource/finger.png"]];
+        finger.frame = CGRectMake(0,0,35,50);
+        [arabicLetterimageView.superview addSubview:finger];
+
+    }
+    
+    finger.center = CGPointMake(arabicLetterimageView.center.x,arabicLetterimageView.center.y+(arabicLetterimageView.height/2));
+    
+    [UIView animateWithDuration: 1.5
+                          delay: 0.0
+                        options: UIViewAnimationCurveEaseInOut
+                     animations:^{
+                         
+                         finger.center = CGPointMake(slotImageView.center.x,slotImageView.center.y+(slotImageView.height/2));
+                     }
+                     completion:^(BOOL finished){
+                         if (!fingerDraggingHintCancelled) {
+                             [self animateFingerDraggingHint];
+                         }
+
+                     }];
 }
 
 #pragma mark Success Methods
@@ -993,6 +1025,13 @@ static NSNumber* currentSpeakerIndex;
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     UITouch *touch = [touches anyObject];
     CGPoint location = [touch locationInView:self.view];
+    
+    
+    if (finger.superview) {
+        fingerDraggingHintCancelled = YES;
+        [finger removeFromSuperview];
+    }
+    
     
     ArabicLetterImageView* objectToDrag = (ArabicLetterImageView*)touch.view;
     
