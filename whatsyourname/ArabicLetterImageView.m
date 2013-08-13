@@ -20,6 +20,9 @@
 @synthesize arabicLetter;
 @synthesize dragStartPoint;
 @synthesize showName;
+@synthesize fontSize;
+@synthesize fontColor;
+@synthesize frameImage;
 
 - (id)initWithArabicLetter:(ArabicLetter*)letter
 {
@@ -29,31 +32,32 @@
         self.arabicLetter = letter;
         self.userInteractionEnabled = YES;
         self.showName = YES;
+        self.addShadows = YES;
     }
     return self;
 }
 
 - (void)setArabicLetter:(ArabicLetter *)theArabicLetter {
     arabicLetter = theArabicLetter;
-    if (!self.showName) {
-        self.showName = YES;
-    }
     
     //NSString* filename = [NSString stringWithFormat:@"Letters/%02d.png",arabicLetter.letterIndex];
-    NSString* filename = [NSString stringWithFormat:@"Resource/slot_frame.png"];
-    UIImage* i = [UIImage imageNamed:filename];
+    if (!self.frameImage) self.frameImage = [UIImage imageNamed:[NSString stringWithFormat:@"Resource/slot_frame.png"]];
     
-    if (i) {
-        self.image = i;
+    if (self.frameImage) {
+        self.image = self.frameImage;
     }
 
+    if (!self.fontSize) fontSize = 38;
+    if (!self.fontColor) fontColor = [UIColor blackColor];
     letterLabel = [[UILabel alloc] init];
-    letterLabel.font = [UIFont fontWithName:@"GeezaPro-Bold" size:38];
-    letterLabel.textColor = [UIColor blackColor];
+    letterLabel.font = [UIFont fontWithName:@"GeezaPro-Bold" size:self.fontSize];
+    letterLabel.textColor = self.fontColor;
     letterLabel.backgroundColor = [UIColor clearColor];
     letterLabel.textAlignment = NSTextAlignmentCenter;
-    letterLabel.shadowColor = [UIColor whiteColor];
-    letterLabel.shadowOffset = CGSizeMake(1,1);
+    if (self.addShadows) {
+        letterLabel.shadowColor = [UIColor whiteColor];
+        letterLabel.shadowOffset = CGSizeMake(1,1);
+    }
     
     letterLabel.text = [NSString stringWithFormat:@"%C",arabicLetter.unicodeGeneral];
     [self addSubview:letterLabel];

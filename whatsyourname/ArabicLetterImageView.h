@@ -20,4 +20,9 @@
 @property(nonatomic, assign) CGPoint dragStartPoint;
 @property(nonatomic, assign) BOOL isAnimating;
 @property(nonatomic, assign) BOOL showName;
+@property(nonatomic, assign) NSUInteger fontSize;
+@property(nonatomic, assign) UIColor *fontColor;
+@property(nonatomic, assign) BOOL addShadows;
+@property(nonatomic, assign) UIImage *frameImage;
+
 @end
