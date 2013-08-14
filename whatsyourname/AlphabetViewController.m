@@ -131,8 +131,7 @@
         [self.view drawBorderOnSubviews];
     }
     
-    //TEMP - just to quickly develop bonus phase  [self startAlphabetPhase];  //JULIE - TEMP
-    [self startBonusPhase];
+    [self startAlphabetPhase];
 
     recordButton.hidden = YES;
     playButton.hidden = YES;
@@ -436,9 +435,19 @@
 }
 
 -(void)letterImageViewWasTouchedWith:(ArabicLetterImageView *)letterImageView   {
-    NSLog(@"Got to delgated method");
+    ArabicLetterAudioImageView *letter = (ArabicLetterAudioImageView*)letterImageView;
+    NSTimeInterval duration = [self.audioManager durationOfAudio:letter.letterSoundFile];
+    CGAffineTransform scaleTransform = CGAffineTransformMakeScale(1.10, 1.10);
+    letter.transform = scaleTransform;
+    [speakerImageView animateWithType:TALK repeatingDuration:duration];
+    dialogLabel.font = [UIFont fontWithName:@"MarkerFelt-Thin" size:dialogLabel.font.pointSize];
+    dialogLabel.text = letter.arabicLetter.letterName;
 }
 
+-(void)letterImageViewTouchesStopped:(ArabicLetterImageView *)letterImageView   {
+    CGAffineTransform scaleTransform = CGAffineTransformMakeScale(1.0, 1.0);
+    letterImageView.transform = scaleTransform;
+}
 
 #pragma mark - AVAudioRecorderDelegate
 

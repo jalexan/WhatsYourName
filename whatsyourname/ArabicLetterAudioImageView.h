@@ -12,6 +12,8 @@
 
 @protocol ArabicLetterAudioImageViewDelegate <NSObject>
 -(void)letterImageViewWasTouchedWith: (ArabicLetterImageView*)letterImageView;
+-(void)letterImageViewTouchesStopped:(ArabicLetterImageView *)letterImageView;
+
 @end
 
 @interface ArabicLetterAudioImageView : ArabicLetterImageView
