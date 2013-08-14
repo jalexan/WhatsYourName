@@ -260,8 +260,16 @@
     
 }
 
-- (void)textFieldDidEndEditing:(UITextField *)textField {
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
     
+    NSString* text = @"Keyboard instructions here";
+    dialogLabel.font = [UIFont fontWithName:@"MarkerFelt-Thin" size:dialogLabel.font.pointSize];
+    dialogLabel.text = text;
+    
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    dialogLabel.text = @"";
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {    

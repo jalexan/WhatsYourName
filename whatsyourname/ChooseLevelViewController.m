@@ -48,8 +48,8 @@
 }
 
 
-- (void)viewDidAppear:(BOOL)animated  {
-    [super viewDidAppear:animated];
+- (void)viewWillAppear:(BOOL)animated  {
+    [super viewWillAppear:animated];
     
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"Level4Unlocked"] == YES) {
         isLevel4Unlocked = YES;
