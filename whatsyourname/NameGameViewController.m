@@ -22,6 +22,7 @@
     NSMutableArray* speakerImageViewArray;
     Speaker* mainSpeaker;
     NSString* playerName;
+    UIFont* originalDialogLabelFont;
 }
 
 @end
@@ -87,6 +88,8 @@
     
     yourNameDialogDictionary = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];
 
+    originalDialogLabelFont = dialogLabel.font;
+    
     dialogLabel.adjustsFontSizeToFitWidth = YES;
 
     UIImage *textFieldBackground = [[UIImage imageNamed:@"Resource/text_box_bg.png"] stretchableImageWithLeftCapWidth:12 topCapHeight:0];
@@ -262,13 +265,16 @@
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
     
-    NSString* text = @"Keyboard instructions here";
-    dialogLabel.font = [UIFont fontWithName:@"MarkerFelt-Thin" size:dialogLabel.font.pointSize];
+    NSString* text = @"Hint: You can use capitals or numbers like this: S = saad, D = daad, T = Taa,\nZ = Thaa, 2 = alef hamza, 3 = 'ein, 5 = ghein, 7 or H = Ha";
+    
+    dialogLabel.font = [UIFont fontWithName:@"MarkerFelt-Thin" size:15];
     dialogLabel.text = text;
+    
     
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
+    dialogLabel.font = [UIFont fontWithName:originalDialogLabelFont.fontName size:originalDialogLabelFont.pointSize];
     dialogLabel.text = @"";
 }
 
