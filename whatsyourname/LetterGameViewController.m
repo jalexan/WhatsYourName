@@ -565,7 +565,7 @@ static NSNumber* currentSpeakerIndex;
 - (void)showSpeakerShuffleAnimationWithCompletion:(void(^)())completion  {
     
     
-    if (!shuffleImageView.animationFound) {
+    if (!shuffleImageView.animationFound) { //Nolia Running Animation
         NSTimeInterval shuffleSoundEffectDuration = [self getDurationAndPlaySpeakerDialogAudioWithKey:@"ShuffleSoundEffect" prefix:currentSpeaker.name suffix:@""];
         [self animateSpeakerWithType:SHUFFLE repeatingDuration:shuffleSoundEffectDuration keepLastFrame:NO completion:^() {
             
@@ -590,12 +590,10 @@ static NSNumber* currentSpeakerIndex;
         [self displayDialogTextWithKey:@"Shuffle" animationType:SHUFFLE completion:^(){
             completion();
         }];
-        //[speakerImageView animateWithType:SHUFFLE repeatingDuration:shuffleDuration keepLastFrame:YES];
-        
         
         //Nolia runnign across screen
-        [shuffleImageView animateWithDuration:shuffleDuration];        
-        [UIView animateWithDuration: 1.25
+        [shuffleImageView animateWithDuration:shuffleDuration];
+        [UIView animateWithDuration: 1
                               delay: 0.0
                             options: UIViewAnimationOptionCurveLinear
                          animations:^{
