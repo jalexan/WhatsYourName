@@ -8,7 +8,10 @@
 
 #import "ArabicLetterAudioImageView.h"
 
-@implementation ArabicLetterAudioImageView
+@implementation ArabicLetterAudioImageView {
+    UITapGestureRecognizer *gr;
+}
+
 @synthesize delegate;
 @synthesize audioManager;
 @synthesize letterSoundFile;
@@ -24,18 +27,30 @@
     self.addShadows = NO;
     self.fontColor = [UIColor whiteColor];
     self.fontSize = 28;
-    
     return self;
 }
 
-//LEFT OFF HERE...move touch and letterSoundFile to the ViewController
-//just add Zoom/Scale method here
 
--(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+- (void)setArabicLetter:(ArabicLetter *)theArabicLetter {
+    [super setArabicLetter:theArabicLetter];
+    gr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap:)];
+    gr.numberOfTapsRequired=1;
+    [self setUserInteractionEnabled:YES];
+    [self addGestureRecognizer:gr];
+
+}
+
+-(void)tap:(UITapGestureRecognizer*)sender {
     [self.audioManager playAudio:self.letterSoundFile volume:1];
     if (self.delegate && [self.delegate respondsToSelector:@selector(letterImageViewWasTouched)] ) {
         [self.delegate letterImageViewWasTouchedWith: self];  //just call the delegate's method directly
     }
+}
+//LEFT OFF HERE...move touch and letterSoundFile to the ViewController
+//just add Zoom/Scale method here
+
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+
     //LEFT OFF HERE - need to call zoom method on letter that was touched
 /*    CGAffineTransform scaleTransform = CGAffineTransformMakeScale(1.10, 1.10);
     self.transform = scaleTransform;

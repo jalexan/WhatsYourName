@@ -10,12 +10,12 @@
 #import "Speaker.h"
 #import "SpeakerImageView.h"
 #import "ArabicLetter.h"
-#import "ArabicLetterImageView.h"
+#import "ArabicLetterAudioImageView.h"
 #import "Slot.h"
 #import "SlotImageView.h"
 #import "GameUIButton.h"
 
-@interface AlphabetViewController () {
+@interface AlphabetViewController () <ArabicLetterAudioImageViewDelegate> {
     
     IBOutlet GameUIButton* recordButton;
     IBOutlet GameUIButton* playButton;
@@ -36,6 +36,7 @@
     float songDelay;
     BOOL recordedPlayedOnce;
     BOOL shouldStopSinging;
+    NSMutableArray *letterImageViewArray;
 }
 
 - (IBAction)recordButtonTouched:(id)sender;
@@ -129,7 +130,8 @@
         [self.view drawBorderOnSubviews];
     }
     
-    [self startAlphabetPhase];
+    //TEMP - just to quickly develop bonus phase  [self startAlphabetPhase];  //JULIE - TEMP
+    [self startBonusPhase];
 
     recordButton.hidden = YES;
     playButton.hidden = YES;
@@ -194,13 +196,56 @@
     
 }
 
--(void)startBonusPhase {
+-(void)displayLettersOnChalkboardWithCompletion:(void(^)())completion {
+    NSUInteger tileSize = 44;
+    
+    ArabicLetter *arabicLetter;
+    NSString *soundFile;
+    ArabicLetterAudioImageView *arabicLetterView;
+    
+    
     //Display all the letters on the chalkboard
-    for (NSUInteger i=0; i<7; i++) {  //LEFT OFF HERE
-   // ArabicLetter* letter = [[ArabicLetter alloc] initWithLetterIndex:letterIndex];
-   // ArabicLetterImageView* letterImageView = letterImageViewArray[index];
+    letterImageViewArray = [[NSMutableArray alloc] init];
+    float delay = 0.1;
+    NSUInteger row = 0;
+    NSUInteger space = 2;  //allow 2 pixels between rows
+    NSUInteger mx = 0;
+    
+    for (NSUInteger i=0; i<28; i++) {
+        if (i%7 == 0) {
+            row++;
+            mx=0;
+        }
+        
+        arabicLetter = [[ArabicLetter alloc] initWithLetterIndex:i];
+        soundFile = [NSString stringWithFormat:@"Speakers/%@/Audio/Letters/%02d.mp3",currentSpeaker.name,i];
+        arabicLetterView = [[ArabicLetterAudioImageView alloc] initWithArabicLetter:arabicLetter andAudioManager:self.audioManager withSound:soundFile];
+        [arabicLetterView setArabicLetter:arabicLetter];
+        mx = mx + tileSize + space;
+        
+        arabicLetterView.delegate = self;
+        dispatch_after(DISPATCH_SECONDS_FROM_NOW(delay*i), dispatch_get_current_queue(), ^{
+            
+            arabicLetterView.frame = CGRectMake(chalkboard.size.width - mx - space,
+                                                tileSize*(row-1) + space*3*(row),
+                                                tileSize, tileSize);
+            
+            [letterImageViewArray addObject:arabicLetterView];
+            [chalkboard addSubview:arabicLetterView];
+            [chalkboard bringSubviewToFront:arabicLetterView];
+            
+        });
     }
+    
+    completion();
 }
+
+-(void)startBonusPhase {
+    [chalkboardLabel removeFromSuperview];
+    [subtitleLabel removeFromSuperview];
+    [self displayLettersOnChalkboardWithCompletion:^(){ }];
+}
+
 
 #pragma mark Game Mechanics
 - (void)displayDialogTextWithKey:(NSString*)key animationType:(AnimationType)animationType completion:(void(^)())completion {
@@ -240,20 +285,17 @@
 }
 
 -(void)singAndSpellArabicAlphabetWithCompletion:(void((^)()))completion{
+    
     [self animateAndSingAlphabetsByIndex:0 forSection:1 withCompletion:^() {
+        
         [self animateAndSingAlphabetsByIndex:7 forSection:2 withCompletion:^() {
 
             [self animateAndSingAlphabetsByIndex:14 forSection:3 withCompletion:^() {
 
                 [self animateAndSingAlphabetsByIndex:21 forSection:4 withCompletion:^() {
-                    //NSTimeInterval duration = [self getDurationAndPlaySpeakerDialogAudioWithKey:@"AlphabetSong" prefix:currentSpeaker.name suffix:@"Arabic"];
 
-                    //dispatch_after(DISPATCH_SECONDS_FROM_NOW(duration+0.25), dispatch_get_current_queue(), ^(void){
-                    //    NSLog(@"Sing and Spell should be complete now.");
                         shouldStopSinging = NO;  //reset
                         completion();
-                    //});
-
                 }];
             }];
         }];
@@ -263,35 +305,11 @@
 
 
 -(void)animateAndSingAlphabetsByIndex:(NSUInteger)index forSection:(NSUInteger)section withCompletion:(void((^)()) )completion {
-    //if (shouldStopSinging) { completion();  return;}
     NSString *suffix = [NSString stringWithFormat:@"Arabic%d",section];
-    //NSString *prevSuffix = [NSString stringWithFormat:@"Arabic%d",section-1];
-    //NSTimeInterval sectionDuration=0;
-    
-    /*
-    if (section == 1) {
-        songDelay = 0;
-    } else if(section > 1) {
-        sectionDuration = [self getDurationDialogAudioWithKey:@"AlphabetSong" prefix:currentSpeaker.name suffix:prevSuffix];
-        songDelay = songDelay + sectionDuration;
-    }
-    */
-     
-    //NSTimeInterval duration = [self getDurationDialogAudioWithKey:@"AlphabetSong" prefix:currentSpeaker.name suffix:suffix];
-    
-    //dispatch_after(DISPATCH_SECONDS_FROM_NOW(songDelay), dispatch_get_current_queue(), ^{
-      /*
-       if (shouldStopSinging == YES) {
-            [player stop];
-            NSLog(@"In loop audio section, I guess I should stop singing");
-            return;
-        }
-       */
-        NSTimeInterval duration = [self getDurationAndPlaySpeakerDialogAudioWithKey:@"AlphabetSong" prefix:currentSpeaker.name suffix:suffix];
-        [speakerImageView animateWithType:TALK repeatingDuration:duration];
-        
-    //});
-    
+
+    NSTimeInterval duration = [self getDurationAndPlaySpeakerDialogAudioWithKey:@"AlphabetSong" prefix:currentSpeaker.name suffix:suffix];
+    [speakerImageView animateWithType:TALK repeatingDuration:duration];
+            
     for (NSUInteger i=0; i<7; i++) {
         
         dispatch_after(DISPATCH_SECONDS_FROM_NOW(((duration-0.5)/7*i)), dispatch_get_current_queue(), ^{
@@ -304,15 +322,12 @@
                 return;
             }
             
-            
             ArabicLetter *arabicLetter = [[ArabicLetter alloc] initWithLetterIndex:index];
             chalkboardLabel.text = [NSString stringWithFormat:@"%C",[arabicLetter unicodeGeneral]];
             subtitleLabel.text = arabicLetter.letterName;
-            
 
         });
         index++;
-    
     }
     
     dispatch_after(DISPATCH_SECONDS_FROM_NOW(duration), dispatch_get_current_queue(), ^{
@@ -417,6 +432,11 @@
     // Start bonus level
     [self startBonusPhase];
 }
+
+-(void)letterImageViewWasTouchedWith:(ArabicLetterImageView *)letterImageView   {
+    NSLog(@"Got to delgated method");
+}
+
 
 #pragma mark - AVAudioRecorderDelegate
 
