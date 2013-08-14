@@ -27,18 +27,17 @@
     self.addShadows = NO;
     self.fontColor = [UIColor whiteColor];
     self.fontSize = 28;
-    return self;
-}
-
-
-- (void)setArabicLetter:(ArabicLetter *)theArabicLetter {
-    [super setArabicLetter:theArabicLetter];
+    
     gr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap:)];
     gr.numberOfTapsRequired=1;
     [self setUserInteractionEnabled:YES];
     [self addGestureRecognizer:gr];
 
+    
+    return self;
 }
+
+
 
 -(void)tap:(UITapGestureRecognizer*)sender {
     [self.audioManager playAudio:self.letterSoundFile volume:1];
@@ -49,31 +48,6 @@
 //LEFT OFF HERE...move touch and letterSoundFile to the ViewController
 //just add Zoom/Scale method here
 
--(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-
-    //LEFT OFF HERE - need to call zoom method on letter that was touched
-/*    CGAffineTransform scaleTransform = CGAffineTransformMakeScale(1.10, 1.10);
-    self.transform = scaleTransform;
-    
-    
-    UITouch *touch = [touches anyObject];
-    CGPoint location = [touch locationInView:self.view];
-    
-    ArabicLetterAudioImageView* objectToDrag = (ArabicLetterAudioImageView*)touch.view;
-    
-    if ([objectToDrag isKindOfClass:[ArabicLetterImageView class]])
-    {
-        [self.view bringSubviewToFront:objectToDrag];
-        objectToDrag.backgroundColor = [UIColor redColor];
-        [objectToDrag.delegate zoomLetter];
-    }
- */
-    
-}
-
--(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
- 
-}
 
 
 @end

@@ -73,6 +73,7 @@
     chalkboard.layer.borderWidth = 3.0f;
     chalkboardLabel.adjustsFontSizeToFitWidth = NO;
     chalkboardLabel.minimumScaleFactor = 0.5;
+    chalkboard.userInteractionEnabled = YES;
     [self.view addSubview:chalkboardLabel];
     
     //See what subtitle label looks like on the chalkboard
@@ -231,6 +232,7 @@
                                                 tileSize, tileSize);
             
             [letterImageViewArray addObject:arabicLetterView];
+
             [chalkboard addSubview:arabicLetterView];
             [chalkboard bringSubviewToFront:arabicLetterView];
             
