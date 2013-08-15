@@ -57,7 +57,13 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(AudioManager)
     AudioSessionSetProperty (kAudioSessionProperty_OverrideCategoryDefaultToSpeaker, sizeof (doChangeDefaultRoute), &doChangeDefaultRoute);
     
     //if (theCategory == AVAudioSessionCategoryRecord) {
-        [session setActive:YES error:&activationErr];
+    [session setActive:YES error:&activationErr];
+    
+    if (activationErr) {
+        NSLog(@"Eror: AudioManager.setAudioSessionCategory %@",activationErr);
+    }
+    
+    
     //}
     //else {
     //    [session setActive:YES error: &activationErr];

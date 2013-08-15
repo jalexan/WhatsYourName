@@ -359,7 +359,7 @@
     }
     
     if (!recorder.recording) {
-        [self.audioManager setAudioSessionCategory:AVAudioSessionCategoryRecord];
+        [self.audioManager setAudioSessionCategory:AVAudioSessionCategoryPlayAndRecord];
         
         // Start recording
         [recorder record];
