@@ -122,6 +122,7 @@
 }
 
 -(void)resetChalkboard {
+    [chalkboard removeAllSubviews];
     //Add writing label on the chalkboard
     chalkboardLabel = [[UILabel alloc]initWithFrame:CGRectMake(5, 5, chalkboard.frame.size.width-10, chalkboard.frame.size.height-40)];
     chalkboardLabel.font = [UIFont fontWithName:@"GeezaPro-Bold" size:150];
@@ -152,16 +153,16 @@
     
     //[self displayDialogTextWithKey:@"ThisIs" animationType:TALK completion:^() {
     
-        //[self singAndSpellArabicAlphabetForDuration: -1 withCompletion:^() {
+   //     [self singAndSpellArabicAlphabetForDuration: -1 withCompletion:^() {
 
             [self displayDialogTextWithKey:@"SingAlong" animationType:TALK completion:^() {
                 [self startRecordingPhase];
 
             }];
             
-        //}];
+    //    }];
         
-    //}];
+   // }];
     
 }
 
@@ -246,8 +247,8 @@
 }
 
 -(void)startBonusPhase {
-    [chalkboardLabel removeFromSuperview];
-    [subtitleLabel removeFromSuperview];
+    [chalkboard removeAllSubviews];
+
     [self displayLettersOnChalkboardWithCompletion:^(){ }];
     chalkboardNeedsReset = YES;
 }
@@ -293,10 +294,9 @@
 -(void)singAndSpellArabicAlphabetForDuration:(NSTimeInterval)d withCompletion:(void((^)()))completion{
     chalkboardLabel.text = @"";
     subtitleLabel.text = @"";
-    
+
     if (d != -1) {
         [player play];
-        [speakerImageView animateWithType:TALK repeatingDuration:d];
     }
     [self animateAndSingAlphabetsByIndex:0 forSection:1 forDuration:d withCompletion:^() {
         
@@ -319,12 +319,12 @@
 -(void)animateAndSingAlphabetsByIndex:(NSUInteger)index forSection:(NSUInteger)section forDuration:(NSTimeInterval)d withCompletion:(void((^)()) )completion {
     NSString *suffix = [NSString stringWithFormat:@"Arabic%d",section];
     NSTimeInterval duration;
-    // This will use the recorded song duration if we are playing back
+    
+    duration = [self getDurationAndPlaySpeakerDialogAudioWithKey:@"AlphabetSong" prefix:currentSpeaker.name suffix:suffix];
+
+    // Don't animate talking if we are playing back
     if (d == -1) {
-        duration = [self getDurationAndPlaySpeakerDialogAudioWithKey:@"AlphabetSong" prefix:currentSpeaker.name suffix:suffix];
         [speakerImageView animateWithType:TALK repeatingDuration:duration];
-    } else {
-        duration = d/4;
     }
     
     double part;
@@ -370,7 +370,10 @@
 }
 
 -(void)stopRecording {
+    // NSLog(@"Stop your singing now!");
+    shouldStopSinging = YES;
     [self.audioManager stopAudio:@"talking"];
+    [speakerImageView stopAnimating];
     [recorder stop];
     
     [self.audioManager setAudioSessionCategory:AVAudioSessionCategorySoloAmbient];
@@ -382,24 +385,23 @@
     [player setDelegate:self];
     
     durationLabel.text = [NSString stringWithFormat:@"Recorded %.02f seconds",player.duration];
-    shouldStopSinging = YES;
-    [speakerImageView stopAnimating];
-    // NSLog(@"Stop your singing now!");
 }
 
 - (IBAction)recordButtonTouched:(id)sender {
     
     if (player.playing) {
         [player stop];
+        [self.audioManager stopAudio:@"talking"];
+
         shouldStopSinging = YES;
-        if ([speakerImageView isAnimating]) [speakerImageView stopAnimating];
+        [speakerImageView stopAnimating];
     }
     
     if (!recorder.recording) {
-        [self.audioManager setAudioSessionCategory:AVAudioSessionCategoryRecord];
-        
         if (chalkboardNeedsReset) [self resetChalkboard];
-        
+        shouldStopSinging = NO;
+        [self.audioManager setAudioSessionCategory:AVAudioSessionCategoryRecord];
+                
         // Start recording
         [recorder record];
         [recordButton setTitle:@"Stop" forState:UIControlStateNormal];
@@ -411,12 +413,11 @@
             [self stopRecording];
         }];
         
-    } else {
+    } else {  // Stop recording
         [self stopRecording];
     }    
     
     [playButton setEnabled:NO];
-    
 }
 
 - (IBAction)playButtonTouched:(id)sender {
@@ -424,6 +425,8 @@
 
         if (player.playing) {
             [player stop];
+            [self.audioManager stopAudio:@"talking"];
+
             player.currentTime = 0; // This is disabling pause while replaying. Stop means stop.
             if( [speakerImageView isAnimating]) [speakerImageView stopAnimating];
             NSLog(@"Stopped was pressed during playback, for duration: %f", [player duration]);
@@ -436,7 +439,9 @@
             if (chalkboardNeedsReset) [self resetChalkboard];
             shouldStopSinging = NO;
             NSLog(@"Playing back audio recording");
-            [self singAndSpellArabicAlphabetForDuration: player.duration withCompletion:^() { }];
+            [self singAndSpellArabicAlphabetForDuration: player.duration withCompletion:^() {
+
+            }];
 
             [playButton setTitle:@"Stop" forState:UIControlStateNormal];
             playButton.selected = YES;
@@ -480,10 +485,12 @@
 #pragma mark - AVAudioRecorderDelegate
 
 - (void) audioRecorderDidFinishRecording:(AVAudioRecorder *)avrecorder successfully:(BOOL)flag{
+    NSLog(@"Finished recording ...");
+
     [recordButton setTitle:@"Record" forState:UIControlStateNormal];
     [playButton setEnabled:YES];
     
-    
+    shouldStopSinging = YES;
     playButton.hidden = NO;
 }
 
@@ -494,7 +501,8 @@
     playButton.selected = NO;
     
     shouldStopSinging = YES;
-    //NSLog(@"Stop the animation now because the recorded audio finished already.");
+    [self.audioManager stopAudio:@"talking"];
+    NSLog(@"Stop the animation now because the recorded audio finished already.");
     
     if (recordedPlayedOnce == NO) {
         recordedPlayedOnce = YES;
