@@ -152,7 +152,7 @@
     
     //[self displayDialogTextWithKey:@"ThisIs" animationType:TALK completion:^() {
     
-        //[self singAndSpellArabicAlphabetWithCompletion:^() {
+        //[self singAndSpellArabicAlphabetForDuration: -1 withCompletion:^() {
 
             [self displayDialogTextWithKey:@"SingAlong" animationType:TALK completion:^() {
                 [self startRecordingPhase];
@@ -207,7 +207,6 @@
     ArabicLetter *arabicLetter;
     NSString *soundFile;
     ArabicLetterAudioImageView *arabicLetterView;
-    
     
     //Display all the letters on the chalkboard
     letterImageViewArray = [[NSMutableArray alloc] init];
@@ -291,15 +290,21 @@
     
 }
 
--(void)singAndSpellArabicAlphabetWithCompletion:(void((^)()))completion{
+-(void)singAndSpellArabicAlphabetForDuration:(NSTimeInterval)d withCompletion:(void((^)()))completion{
+    chalkboardLabel.text = @"";
+    subtitleLabel.text = @"";
     
-    [self animateAndSingAlphabetsByIndex:0 forSection:1 withCompletion:^() {
+    if (d != -1) {
+        [player play];
+        [speakerImageView animateWithType:TALK repeatingDuration:d];
+    }
+    [self animateAndSingAlphabetsByIndex:0 forSection:1 forDuration:d withCompletion:^() {
         
-        [self animateAndSingAlphabetsByIndex:7 forSection:2 withCompletion:^() {
+        [self animateAndSingAlphabetsByIndex:7 forSection:2 forDuration:d withCompletion:^() {
 
-            [self animateAndSingAlphabetsByIndex:14 forSection:3 withCompletion:^() {
+            [self animateAndSingAlphabetsByIndex:14 forSection:3 forDuration:d withCompletion:^() {
 
-                [self animateAndSingAlphabetsByIndex:21 forSection:4 withCompletion:^() {
+                [self animateAndSingAlphabetsByIndex:21 forSection:4 forDuration:d withCompletion:^() {
 
                         shouldStopSinging = NO;  //reset
                         completion();
@@ -311,15 +316,21 @@
 
 
 
--(void)animateAndSingAlphabetsByIndex:(NSUInteger)index forSection:(NSUInteger)section withCompletion:(void((^)()) )completion {
+-(void)animateAndSingAlphabetsByIndex:(NSUInteger)index forSection:(NSUInteger)section forDuration:(NSTimeInterval)d withCompletion:(void((^)()) )completion {
     NSString *suffix = [NSString stringWithFormat:@"Arabic%d",section];
-
-    NSTimeInterval duration = [self getDurationAndPlaySpeakerDialogAudioWithKey:@"AlphabetSong" prefix:currentSpeaker.name suffix:suffix];
-    [speakerImageView animateWithType:TALK repeatingDuration:duration];
-            
+    NSTimeInterval duration;
+    // This will use the recorded song duration if we are playing back
+    if (d == -1) {
+        duration = [self getDurationAndPlaySpeakerDialogAudioWithKey:@"AlphabetSong" prefix:currentSpeaker.name suffix:suffix];
+        [speakerImageView animateWithType:TALK repeatingDuration:duration];
+    } else {
+        duration = d/4;
+    }
+    
+    double part;
     for (NSUInteger i=0; i<7; i++) {
-        
-        dispatch_after(DISPATCH_SECONDS_FROM_NOW(((duration-0.5)/7*i)), dispatch_get_current_queue(), ^{
+        part = ((double)duration - 0.5)/7;
+        dispatch_after(DISPATCH_SECONDS_FROM_NOW( part*i ), dispatch_get_current_queue(), ^{
            
             NSLog(@"ShouldStopSinging: %d",shouldStopSinging);
             
@@ -362,6 +373,8 @@
     
     if (player.playing) {
         [player stop];
+        shouldStopSinging = YES;
+        if ([speakerImageView isAnimating]) [speakerImageView stopAnimating];
     }
     
     if (!recorder.recording) {
@@ -376,7 +389,7 @@
         playButton.hidden = YES;
         
         durationLabel.text = @"Recording...";
-        [self singAndSpellArabicAlphabetWithCompletion:^() { }];
+        [self singAndSpellArabicAlphabetForDuration: -1 withCompletion:^() { }];
         
     } else {
         [self.audioManager stopAudio:@"talking"]; 
@@ -406,16 +419,19 @@
 
         if (player.playing) {
             [player stop];
+            player.currentTime = 0; // This is disabling pause while replaying. Stop means stop.
+            if( [speakerImageView isAnimating]) [speakerImageView stopAnimating];
+            NSLog(@"Stopped was pressed during playback, for duration: %f", [player duration]);
+
             [playButton setTitle:@"Play" forState:UIControlStateNormal];
             playButton.selected = NO;
+            shouldStopSinging = YES;
         }
         else {
             if (chalkboardNeedsReset) [self resetChalkboard];
-
+            shouldStopSinging = NO;
             NSLog(@"Playing back audio recording");
-            [self singAndSpellArabicAlphabetWithCompletion:^() { }];
-
-            [player play];
+            [self singAndSpellArabicAlphabetForDuration: player.duration withCompletion:^() { }];
 
             [playButton setTitle:@"Stop" forState:UIControlStateNormal];
             playButton.selected = YES;
