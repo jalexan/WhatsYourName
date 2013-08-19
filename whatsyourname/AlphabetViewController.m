@@ -332,10 +332,10 @@
         part = ((double)duration - 0.5)/7;
         dispatch_after(DISPATCH_SECONDS_FROM_NOW( part*i ), dispatch_get_current_queue(), ^{
            
-            NSLog(@"ShouldStopSinging: %d",shouldStopSinging);
+           // NSLog(@"ShouldStopSinging: %d",shouldStopSinging);
             
             if (shouldStopSinging == YES) {
-                NSLog(@"In loop, I guess I should pause the chalkboard");
+                NSLog(@"In loop, should pause the chalkboard");
 
                 return;
             }
@@ -369,6 +369,24 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:kPopViewControllerNotification object:self];
 }
 
+-(void)stopRecording {
+    [self.audioManager stopAudio:@"talking"];
+    [recorder stop];
+    
+    [self.audioManager setAudioSessionCategory:AVAudioSessionCategorySoloAmbient];
+    
+    [recordButton setTitle:@"Record" forState:UIControlStateNormal];
+    recordButton.selected = NO;
+    
+    player = [[AVAudioPlayer alloc] initWithContentsOfURL:recorder.url error:nil];
+    [player setDelegate:self];
+    
+    durationLabel.text = [NSString stringWithFormat:@"Recorded %.02f seconds",player.duration];
+    shouldStopSinging = YES;
+    [speakerImageView stopAnimating];
+    // NSLog(@"Stop your singing now!");
+}
+
 - (IBAction)recordButtonTouched:(id)sender {
     
     if (player.playing) {
@@ -389,26 +407,13 @@
         playButton.hidden = YES;
         
         durationLabel.text = @"Recording...";
-        [self singAndSpellArabicAlphabetForDuration: -1 withCompletion:^() { }];
+        [self singAndSpellArabicAlphabetForDuration: -1 withCompletion:^() {
+            [self stopRecording];
+        }];
         
     } else {
-        [self.audioManager stopAudio:@"talking"]; 
-        [recorder stop];
-        
-        [self.audioManager setAudioSessionCategory:AVAudioSessionCategorySoloAmbient];
-        
-        [recordButton setTitle:@"Record" forState:UIControlStateNormal];
-        recordButton.selected = NO;
-        
-        player = [[AVAudioPlayer alloc] initWithContentsOfURL:recorder.url error:nil];
-        [player setDelegate:self];
-        
-        durationLabel.text = [NSString stringWithFormat:@"Recorded %.02f seconds",player.duration];
-        shouldStopSinging = YES;
-        [speakerImageView stopAnimating];
-       // NSLog(@"Stop your singing now!");
-    }
-    
+        [self stopRecording];
+    }    
     
     [playButton setEnabled:NO];
     
