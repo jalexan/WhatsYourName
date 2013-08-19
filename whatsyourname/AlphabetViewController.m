@@ -37,6 +37,7 @@
     BOOL recordedPlayedOnce;
     BOOL shouldStopSinging;
     NSMutableArray *letterImageViewArray;
+    BOOL chalkboardNeedsReset;
 }
 
 - (IBAction)recordButtonTouched:(id)sender;
@@ -63,26 +64,7 @@
     chalkboard.frame = CGRectMake(132, 65, 331, 210);
     [self.view addSubview:chalkboard];
 
-    //Add writing label on the chalkboard
-    chalkboardLabel = [[UILabel alloc]initWithFrame:CGRectMake(chalkboard.origin.x+5, chalkboard.origin.y+5, chalkboard.frame.size.width-10, chalkboard.frame.size.height-40)];
-    chalkboardLabel.font = [UIFont fontWithName:@"GeezaPro-Bold" size:150];
-    chalkboardLabel.textColor = [UIColor whiteColor];
-    chalkboardLabel.backgroundColor = [UIColor clearColor];
-    chalkboardLabel.textAlignment = NSTextAlignmentCenter;
-    chalkboard.layer.borderColor = [UIColor brownColor].CGColor;
-    chalkboard.layer.borderWidth = 3.0f;
-    chalkboardLabel.adjustsFontSizeToFitWidth = NO;
-    chalkboardLabel.minimumScaleFactor = 0.5;
-    chalkboard.userInteractionEnabled = YES;
-    [self.view addSubview:chalkboardLabel];
-    
-    //See what subtitle label looks like on the chalkboard
-    subtitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(chalkboardLabel.origin.x+20, chalkboardLabel.origin.y+chalkboardLabel.size.height, chalkboardLabel.size.width-40, 30)];
-    subtitleLabel.font =  [UIFont fontWithName:@"MarkerFelt-Thin" size:20];
-    subtitleLabel.textColor = [UIColor whiteColor];
-    subtitleLabel.backgroundColor = [UIColor clearColor];
-    subtitleLabel.textAlignment = NSTextAlignmentCenter;
-    [self.view addSubview:subtitleLabel];
+    [self resetChalkboard];
 
     //Add dialog view in UIView section
     dialogLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 5, 448, 48)];
@@ -139,6 +121,29 @@
 
 }
 
+-(void)resetChalkboard {
+    //Add writing label on the chalkboard
+    chalkboardLabel = [[UILabel alloc]initWithFrame:CGRectMake(5, 5, chalkboard.frame.size.width-10, chalkboard.frame.size.height-40)];
+    chalkboardLabel.font = [UIFont fontWithName:@"GeezaPro-Bold" size:150];
+    chalkboardLabel.textColor = [UIColor whiteColor];
+    chalkboardLabel.backgroundColor = [UIColor clearColor];
+    chalkboardLabel.textAlignment = NSTextAlignmentCenter;
+    chalkboard.layer.borderColor = [UIColor brownColor].CGColor;
+    chalkboard.layer.borderWidth = 3.0f;
+    chalkboardLabel.adjustsFontSizeToFitWidth = NO;
+    chalkboardLabel.minimumScaleFactor = 0.5;
+    chalkboard.userInteractionEnabled = YES;
+    [chalkboard addSubview:chalkboardLabel];
+    
+    //See what subtitle label looks like on the chalkboard
+    subtitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, chalkboardLabel.size.height, chalkboardLabel.size.width-40, 30)];
+    subtitleLabel.font =  [UIFont fontWithName:@"MarkerFelt-Thin" size:20];
+    subtitleLabel.textColor = [UIColor whiteColor];
+    subtitleLabel.backgroundColor = [UIColor clearColor];
+    subtitleLabel.textAlignment = NSTextAlignmentCenter;
+    [chalkboard addSubview:subtitleLabel];
+    chalkboardNeedsReset = NO;
+}
 #pragma mark Game Phases
 
 - (void)startAlphabetPhase{
@@ -245,6 +250,7 @@
     [chalkboardLabel removeFromSuperview];
     [subtitleLabel removeFromSuperview];
     [self displayLettersOnChalkboardWithCompletion:^(){ }];
+    chalkboardNeedsReset = YES;
 }
 
 
@@ -361,19 +367,19 @@
     if (!recorder.recording) {
         [self.audioManager setAudioSessionCategory:AVAudioSessionCategoryRecord];
         
+        if (chalkboardNeedsReset) [self resetChalkboard];
+        
         // Start recording
         [recorder record];
         [recordButton setTitle:@"Stop" forState:UIControlStateNormal];
         recordButton.selected = YES;
-        
         playButton.hidden = YES;
         
         durationLabel.text = @"Recording...";
         [self singAndSpellArabicAlphabetWithCompletion:^() { }];
         
     } else {
-        [self.audioManager stopAudio:@"talking"];
-        
+        [self.audioManager stopAudio:@"talking"]; 
         [recorder stop];
         
         [self.audioManager setAudioSessionCategory:AVAudioSessionCategorySoloAmbient];
@@ -404,6 +410,7 @@
             playButton.selected = NO;
         }
         else {
+            if (chalkboardNeedsReset) [self resetChalkboard];
 
             NSLog(@"Playing back audio recording");
             [self singAndSpellArabicAlphabetWithCompletion:^() { }];
@@ -437,7 +444,7 @@
 -(void)letterImageViewWasTouchedWith:(ArabicLetterImageView *)letterImageView   {
     ArabicLetterAudioImageView *letter = (ArabicLetterAudioImageView*)letterImageView;
     NSTimeInterval duration = [self.audioManager durationOfAudio:letter.letterSoundFile];
-    CGAffineTransform scaleTransform = CGAffineTransformMakeScale(1.10, 1.10);
+    CGAffineTransform scaleTransform = CGAffineTransformMakeScale(1.20, 1.20);
     letter.transform = scaleTransform;
     [speakerImageView animateWithType:TALK repeatingDuration:duration];
     dialogLabel.font = [UIFont fontWithName:@"MarkerFelt-Thin" size:dialogLabel.font.pointSize];
