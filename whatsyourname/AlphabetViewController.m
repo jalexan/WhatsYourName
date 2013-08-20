@@ -433,11 +433,14 @@
 
             [playButton setTitle:@"Play" forState:UIControlStateNormal];
             playButton.selected = NO;
+            [recordButton setEnabled:YES];
             shouldStopSinging = YES;
         }
-        else {
+        else { // press play
             if (chalkboardNeedsReset) [self resetChalkboard];
             shouldStopSinging = NO;
+            [recordButton setEnabled:NO];
+
             NSLog(@"Playing back audio recording");
             [self singAndSpellArabicAlphabetForDuration: player.duration withCompletion:^() {
 
@@ -501,6 +504,8 @@
     playButton.selected = NO;
     
     shouldStopSinging = YES;
+    [recordButton setEnabled:YES];
+
     [self.audioManager stopAudio:@"talking"];
     NSLog(@"Stop the animation now because the recorded audio finished already.");
     
