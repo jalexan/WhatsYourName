@@ -37,6 +37,7 @@
     BOOL recordedPlayedOnce;
     BOOL shouldStopSinging;
     NSMutableArray *letterImageViewArray;
+    BOOL chalkboardNeedsReset;
 }
 
 - (IBAction)recordButtonTouched:(id)sender;
@@ -63,26 +64,7 @@
     chalkboard.frame = CGRectMake(132, 65, 331, 210);
     [self.view addSubview:chalkboard];
 
-    //Add writing label on the chalkboard
-    chalkboardLabel = [[UILabel alloc]initWithFrame:CGRectMake(chalkboard.origin.x+5, chalkboard.origin.y+5, chalkboard.frame.size.width-10, chalkboard.frame.size.height-40)];
-    chalkboardLabel.font = [UIFont fontWithName:@"GeezaPro-Bold" size:150];
-    chalkboardLabel.textColor = [UIColor whiteColor];
-    chalkboardLabel.backgroundColor = [UIColor clearColor];
-    chalkboardLabel.textAlignment = NSTextAlignmentCenter;
-    chalkboard.layer.borderColor = [UIColor brownColor].CGColor;
-    chalkboard.layer.borderWidth = 3.0f;
-    chalkboardLabel.adjustsFontSizeToFitWidth = NO;
-    chalkboardLabel.minimumScaleFactor = 0.5;
-    chalkboard.userInteractionEnabled = YES;
-    [self.view addSubview:chalkboardLabel];
-    
-    //See what subtitle label looks like on the chalkboard
-    subtitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(chalkboardLabel.origin.x+20, chalkboardLabel.origin.y+chalkboardLabel.size.height, chalkboardLabel.size.width-40, 30)];
-    subtitleLabel.font =  [UIFont fontWithName:@"MarkerFelt-Thin" size:20];
-    subtitleLabel.textColor = [UIColor whiteColor];
-    subtitleLabel.backgroundColor = [UIColor clearColor];
-    subtitleLabel.textAlignment = NSTextAlignmentCenter;
-    [self.view addSubview:subtitleLabel];
+    [self resetChalkboard];
 
     //Add dialog view in UIView section
     dialogLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 5, 448, 48)];
@@ -139,6 +121,30 @@
 
 }
 
+-(void)resetChalkboard {
+    [chalkboard removeAllSubviews];
+    //Add writing label on the chalkboard
+    chalkboardLabel = [[UILabel alloc]initWithFrame:CGRectMake(5, 5, chalkboard.frame.size.width-10, chalkboard.frame.size.height-40)];
+    chalkboardLabel.font = [UIFont fontWithName:@"GeezaPro-Bold" size:150];
+    chalkboardLabel.textColor = [UIColor whiteColor];
+    chalkboardLabel.backgroundColor = [UIColor clearColor];
+    chalkboardLabel.textAlignment = NSTextAlignmentCenter;
+    chalkboard.layer.borderColor = [UIColor brownColor].CGColor;
+    chalkboard.layer.borderWidth = 3.0f;
+    chalkboardLabel.adjustsFontSizeToFitWidth = NO;
+    chalkboardLabel.minimumScaleFactor = 0.5;
+    chalkboard.userInteractionEnabled = YES;
+    [chalkboard addSubview:chalkboardLabel];
+    
+    //See what subtitle label looks like on the chalkboard
+    subtitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, chalkboardLabel.size.height, chalkboardLabel.size.width-40, 30)];
+    subtitleLabel.font =  [UIFont fontWithName:@"MarkerFelt-Thin" size:20];
+    subtitleLabel.textColor = [UIColor whiteColor];
+    subtitleLabel.backgroundColor = [UIColor clearColor];
+    subtitleLabel.textAlignment = NSTextAlignmentCenter;
+    [chalkboard addSubview:subtitleLabel];
+    chalkboardNeedsReset = NO;
+}
 #pragma mark Game Phases
 
 - (void)startAlphabetPhase{
@@ -147,16 +153,16 @@
     
     //[self displayDialogTextWithKey:@"ThisIs" animationType:TALK completion:^() {
     
-        //[self singAndSpellArabicAlphabetWithCompletion:^() {
+   //     [self singAndSpellArabicAlphabetForDuration: -1 withCompletion:^() {
 
             [self displayDialogTextWithKey:@"SingAlong" animationType:TALK completion:^() {
                 [self startRecordingPhase];
 
             }];
             
-        //}];
+    //    }];
         
-    //}];
+   // }];
     
 }
 
@@ -203,7 +209,6 @@
     NSString *soundFile;
     ArabicLetterAudioImageView *arabicLetterView;
     
-    
     //Display all the letters on the chalkboard
     letterImageViewArray = [[NSMutableArray alloc] init];
     float delay = 0.1;
@@ -242,9 +247,10 @@
 }
 
 -(void)startBonusPhase {
-    [chalkboardLabel removeFromSuperview];
-    [subtitleLabel removeFromSuperview];
+    [chalkboard removeAllSubviews];
+
     [self displayLettersOnChalkboardWithCompletion:^(){ }];
+    chalkboardNeedsReset = YES;
 }
 
 
@@ -285,15 +291,20 @@
     
 }
 
--(void)singAndSpellArabicAlphabetWithCompletion:(void((^)()))completion{
-    
-    [self animateAndSingAlphabetsByIndex:0 forSection:1 withCompletion:^() {
+-(void)singAndSpellArabicAlphabetForDuration:(NSTimeInterval)d withCompletion:(void((^)()))completion{
+    chalkboardLabel.text = @"";
+    subtitleLabel.text = @"";
+
+    if (d != -1) {
+        [player play];
+    }
+    [self animateAndSingAlphabetsByIndex:0 forSection:1 forDuration:d withCompletion:^() {
         
-        [self animateAndSingAlphabetsByIndex:7 forSection:2 withCompletion:^() {
+        [self animateAndSingAlphabetsByIndex:7 forSection:2 forDuration:d withCompletion:^() {
 
-            [self animateAndSingAlphabetsByIndex:14 forSection:3 withCompletion:^() {
+            [self animateAndSingAlphabetsByIndex:14 forSection:3 forDuration:d withCompletion:^() {
 
-                [self animateAndSingAlphabetsByIndex:21 forSection:4 withCompletion:^() {
+                [self animateAndSingAlphabetsByIndex:21 forSection:4 forDuration:d withCompletion:^() {
 
                         shouldStopSinging = NO;  //reset
                         completion();
@@ -305,20 +316,26 @@
 
 
 
--(void)animateAndSingAlphabetsByIndex:(NSUInteger)index forSection:(NSUInteger)section withCompletion:(void((^)()) )completion {
+-(void)animateAndSingAlphabetsByIndex:(NSUInteger)index forSection:(NSUInteger)section forDuration:(NSTimeInterval)d withCompletion:(void((^)()) )completion {
     NSString *suffix = [NSString stringWithFormat:@"Arabic%d",section];
+    NSTimeInterval duration;
+    
+    duration = [self getDurationAndPlaySpeakerDialogAudioWithKey:@"AlphabetSong" prefix:currentSpeaker.name suffix:suffix];
 
-    NSTimeInterval duration = [self getDurationAndPlaySpeakerDialogAudioWithKey:@"AlphabetSong" prefix:currentSpeaker.name suffix:suffix];
-    [speakerImageView animateWithType:TALK repeatingDuration:duration];
-            
+    // Don't animate talking if we are playing back
+    if (d == -1) {
+        [speakerImageView animateWithType:TALK repeatingDuration:duration];
+    }
+    
+    double part;
     for (NSUInteger i=0; i<7; i++) {
-        
-        dispatch_after(DISPATCH_SECONDS_FROM_NOW(((duration-0.5)/7*i)), dispatch_get_current_queue(), ^{
+        part = ((double)duration - 0.5)/7;
+        dispatch_after(DISPATCH_SECONDS_FROM_NOW( part*i ), dispatch_get_current_queue(), ^{
            
-            NSLog(@"ShouldStopSinging: %d",shouldStopSinging);
+           // NSLog(@"ShouldStopSinging: %d",shouldStopSinging);
             
             if (shouldStopSinging == YES) {
-                NSLog(@"In loop, I guess I should pause the chalkboard");
+                NSLog(@"In loop, should pause the chalkboard");
 
                 return;
             }
@@ -352,47 +369,55 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:kPopViewControllerNotification object:self];
 }
 
+-(void)stopRecording {
+    // NSLog(@"Stop your singing now!");
+    shouldStopSinging = YES;
+    [self.audioManager stopAudio:@"talking"];
+    [speakerImageView stopAnimating];
+    [recorder stop];
+    
+    [self.audioManager setAudioSessionCategory:AVAudioSessionCategorySoloAmbient];
+    
+    [recordButton setTitle:@"Record" forState:UIControlStateNormal];
+    recordButton.selected = NO;
+    
+    player = [[AVAudioPlayer alloc] initWithContentsOfURL:recorder.url error:nil];
+    [player setDelegate:self];
+    
+    durationLabel.text = [NSString stringWithFormat:@"Recorded %.02f seconds",player.duration];
+}
+
 - (IBAction)recordButtonTouched:(id)sender {
     
     if (player.playing) {
         [player stop];
+        [self.audioManager stopAudio:@"talking"];
+
+        shouldStopSinging = YES;
+        [speakerImageView stopAnimating];
     }
     
     if (!recorder.recording) {
+        if (chalkboardNeedsReset) [self resetChalkboard];
+        shouldStopSinging = NO;
         [self.audioManager setAudioSessionCategory:AVAudioSessionCategoryPlayAndRecord];
-        
+                
         // Start recording
         [recorder record];
         [recordButton setTitle:@"Stop" forState:UIControlStateNormal];
         recordButton.selected = YES;
-        
         playButton.hidden = YES;
         
         durationLabel.text = @"Recording...";
-        [self singAndSpellArabicAlphabetWithCompletion:^() { }];
+        [self singAndSpellArabicAlphabetForDuration: -1 withCompletion:^() {
+            [self stopRecording];
+        }];
         
-    } else {
-        [self.audioManager stopAudio:@"talking"];
-        
-        [recorder stop];
-        
-        [self.audioManager setAudioSessionCategory:AVAudioSessionCategorySoloAmbient];
-        
-        [recordButton setTitle:@"Record" forState:UIControlStateNormal];
-        recordButton.selected = NO;
-        
-        player = [[AVAudioPlayer alloc] initWithContentsOfURL:recorder.url error:nil];
-        [player setDelegate:self];
-        
-        durationLabel.text = [NSString stringWithFormat:@"Recorded %.02f seconds",player.duration];
-        shouldStopSinging = YES;
-        [speakerImageView stopAnimating];
-       // NSLog(@"Stop your singing now!");
-    }
-    
+    } else {  // Stop recording
+        [self stopRecording];
+    }    
     
     [playButton setEnabled:NO];
-    
 }
 
 - (IBAction)playButtonTouched:(id)sender {
@@ -400,15 +425,26 @@
 
         if (player.playing) {
             [player stop];
+            [self.audioManager stopAudio:@"talking"];
+
+            player.currentTime = 0; // This is disabling pause while replaying. Stop means stop.
+            if( [speakerImageView isAnimating]) [speakerImageView stopAnimating];
+            NSLog(@"Stopped was pressed during playback, for duration: %f", [player duration]);
+
             [playButton setTitle:@"Play" forState:UIControlStateNormal];
             playButton.selected = NO;
+            [recordButton setEnabled:YES];
+            shouldStopSinging = YES;
         }
-        else {
+        else { // press play
+            if (chalkboardNeedsReset) [self resetChalkboard];
+            shouldStopSinging = NO;
+            [recordButton setEnabled:NO];
 
             NSLog(@"Playing back audio recording");
-            [self singAndSpellArabicAlphabetWithCompletion:^() { }];
+            [self singAndSpellArabicAlphabetForDuration: player.duration withCompletion:^() {
 
-            [player play];
+            }];
 
             [playButton setTitle:@"Stop" forState:UIControlStateNormal];
             playButton.selected = YES;
@@ -437,7 +473,7 @@
 -(void)letterImageViewWasTouchedWith:(ArabicLetterImageView *)letterImageView   {
     ArabicLetterAudioImageView *letter = (ArabicLetterAudioImageView*)letterImageView;
     NSTimeInterval duration = [self.audioManager durationOfAudio:letter.letterSoundFile];
-    CGAffineTransform scaleTransform = CGAffineTransformMakeScale(1.10, 1.10);
+    CGAffineTransform scaleTransform = CGAffineTransformMakeScale(1.20, 1.20);
     letter.transform = scaleTransform;
     [speakerImageView animateWithType:TALK repeatingDuration:duration];
     dialogLabel.font = [UIFont fontWithName:@"MarkerFelt-Thin" size:dialogLabel.font.pointSize];
@@ -452,10 +488,12 @@
 #pragma mark - AVAudioRecorderDelegate
 
 - (void) audioRecorderDidFinishRecording:(AVAudioRecorder *)avrecorder successfully:(BOOL)flag{
+    NSLog(@"Finished recording ...");
+
     [recordButton setTitle:@"Record" forState:UIControlStateNormal];
     [playButton setEnabled:YES];
     
-    
+    shouldStopSinging = YES;
     playButton.hidden = NO;
 }
 
@@ -466,7 +504,10 @@
     playButton.selected = NO;
     
     shouldStopSinging = YES;
-    //NSLog(@"Stop the animation now because the recorded audio finished already.");
+    [recordButton setEnabled:YES];
+
+    [self.audioManager stopAudio:@"talking"];
+    NSLog(@"Stop the animation now because the recorded audio finished already.");
     
     if (recordedPlayedOnce == NO) {
         recordedPlayedOnce = YES;
