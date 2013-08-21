@@ -35,7 +35,7 @@
     SpeakerImageView* speakerImageView;
     float songDelay;
     BOOL recordedPlayedOnce;
-    BOOL shouldStopSinging;
+    //BOOL shouldStopSinging;
     NSMutableArray *letterImageViewArray;
     BOOL chalkboardNeedsReset;
 }
@@ -117,7 +117,7 @@
 
     recordButton.hidden = YES;
     playButton.hidden = YES;
-    shouldStopSinging = NO;
+    //shouldStopSinging = NO;
 
 }
 
@@ -306,7 +306,7 @@
 
                 [self animateAndSingAlphabetsByIndex:21 forSection:4 forDuration:d withCompletion:^() {
 
-                        shouldStopSinging = NO;  //reset
+                        //shouldStopSinging = NO;  //reset
                         completion();
                 }];
             }];
@@ -330,7 +330,11 @@
     double part;
     for (NSUInteger i=0; i<7; i++) {
         part = ((double)duration - 0.5)/7;
-        dispatch_after(DISPATCH_SECONDS_FROM_NOW( part*i ), dispatch_get_current_queue(), ^{
+        
+        [self performSelector:@selector(displayChalkboardLetterWithLetterIndex:) withObject:[NSNumber numberWithInt:index] afterDelay:part*i];
+
+        /*
+        dispatch_after(DISPATCH_SECONDS_FROM_NOW(  ), dispatch_get_current_queue(), ^{
            
            // NSLog(@"ShouldStopSinging: %d",shouldStopSinging);
             
@@ -340,22 +344,36 @@
                 return;
             }
             
-            ArabicLetter *arabicLetter = [[ArabicLetter alloc] initWithLetterIndex:index];
-            chalkboardLabel.text = [NSString stringWithFormat:@"%C",[arabicLetter unicodeGeneral]];
-            subtitleLabel.text = arabicLetter.letterName;
 
         });
+        */
         index++;
     }
     
+    [self performSelector:@selector(finishAnimateAndSingAlphabetWithCompletion:) withObject:completion afterDelay:duration];
+    
+    /*
     dispatch_after(DISPATCH_SECONDS_FROM_NOW(duration), dispatch_get_current_queue(), ^{
         if (!shouldStopSinging) {
             completion();
         }
     });
-    
+    */
 }
 
+- (void)displayChalkboardLetterWithLetterIndex:(NSNumber*)letterIndex {    
+    ArabicLetter *arabicLetter = [[ArabicLetter alloc] initWithLetterIndex:[letterIndex intValue]];
+    chalkboardLabel.text = [NSString stringWithFormat:@"%C",[arabicLetter unicodeGeneral]];
+    subtitleLabel.text = arabicLetter.letterName;    
+}
+
+- (void)finishAnimateAndSingAlphabetWithCompletion:(void((^)()) )completion  {
+    completion();
+}
+
+- (void)cancelAnimateAndSingAlphabet {
+    [NSObject cancelPreviousPerformRequestsWithTarget:self];
+}
 
 -(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
     return toInterfaceOrientation == UIInterfaceOrientationLandscapeLeft ||
@@ -369,9 +387,14 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:kPopViewControllerNotification object:self];
 }
 
+
+
 -(void)stopRecording {
     // NSLog(@"Stop your singing now!");
-    shouldStopSinging = YES;
+    [self cancelAnimateAndSingAlphabet];
+    
+    
+    //shouldStopSinging = YES;
     [self.audioManager stopAudio:@"talking"];
     [speakerImageView stopAnimating];
     [recorder stop];
@@ -392,14 +415,16 @@
     if (player.playing) {
         [player stop];
         [self.audioManager stopAudio:@"talking"];
-
-        shouldStopSinging = YES;
+        
+        [self cancelAnimateAndSingAlphabet];
+        
         [speakerImageView stopAnimating];
+        
     }
     
     if (!recorder.recording) {
         if (chalkboardNeedsReset) [self resetChalkboard];
-        shouldStopSinging = NO;
+        //shouldStopSinging = NO;
         [self.audioManager setAudioSessionCategory:AVAudioSessionCategoryPlayAndRecord];
                 
         // Start recording
@@ -421,9 +446,10 @@
 }
 
 - (IBAction)playButtonTouched:(id)sender {
-    if (!recorder.recording){
+    if (!recorder.recording){        
+        [self cancelAnimateAndSingAlphabet];
 
-        if (player.playing) {
+        if (player.playing) { //press stop
             [player stop];
             [self.audioManager stopAudio:@"talking"];
 
@@ -434,11 +460,9 @@
             [playButton setTitle:@"Play" forState:UIControlStateNormal];
             playButton.selected = NO;
             [recordButton setEnabled:YES];
-            shouldStopSinging = YES;
         }
         else { // press play
             if (chalkboardNeedsReset) [self resetChalkboard];
-            shouldStopSinging = NO;
             [recordButton setEnabled:NO];
 
             NSLog(@"Playing back audio recording");
@@ -487,14 +511,14 @@
 
 #pragma mark - AVAudioRecorderDelegate
 
-- (void) audioRecorderDidFinishRecording:(AVAudioRecorder *)avrecorder successfully:(BOOL)flag{
+- (void)audioRecorderDidFinishRecording:(AVAudioRecorder *)avrecorder successfully:(BOOL)flag{
     NSLog(@"Finished recording ...");
 
     [recordButton setTitle:@"Record" forState:UIControlStateNormal];
     [playButton setEnabled:YES];
     
-    shouldStopSinging = YES;
     playButton.hidden = NO;
+    
 }
 
 #pragma mark - AVAudioPlayerDelegate
@@ -503,11 +527,12 @@
     [playButton setTitle:@"Play" forState:UIControlStateNormal];
     playButton.selected = NO;
     
-    shouldStopSinging = YES;
     [recordButton setEnabled:YES];
 
     [self.audioManager stopAudio:@"talking"];
     NSLog(@"Stop the animation now because the recorded audio finished already.");
+
+    [self cancelAnimateAndSingAlphabet];
     
     if (recordedPlayedOnce == NO) {
         recordedPlayedOnce = YES;
