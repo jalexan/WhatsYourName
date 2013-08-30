@@ -173,29 +173,47 @@
     //Recording section
     //
     // Set the audio file
+    
+    /*
     NSArray *pathComponents = [NSArray arrayWithObjects:
                                [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject],
                                @"recorderAudio.m4a",
                                nil];
     NSURL *outputFileURL = [NSURL fileURLWithPathComponents:pathComponents];
+    */
+    
+    NSArray* dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString* docsDir = [dirPaths objectAtIndex:0];
+    NSString *soundFilePath = [docsDir stringByAppendingPathComponent:@"recorderAudio.caf"];
+    
+    NSURL *soundFileURL = [NSURL fileURLWithPath:soundFilePath];
     
     // Setup audio session
     //AVAudioSession *session = [AVAudioSession sharedInstance];
     //[session setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
     
     // Define the recorder setting
-    NSMutableDictionary *recordSetting = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *recordSettings = [[NSMutableDictionary alloc] init];
     
-    [recordSetting setValue:[NSNumber numberWithInt:kAudioFormatMPEG4AAC] forKey:AVFormatIDKey];
-    [recordSetting setValue:[NSNumber numberWithFloat:44100.0] forKey:AVSampleRateKey];
-    [recordSetting setValue:[NSNumber numberWithInt: 2] forKey:AVNumberOfChannelsKey];
-    
-    // Initiate and prepare the recorder
-    recorder = [[AVAudioRecorder alloc] initWithURL:outputFileURL settings:recordSetting error:nil];
-    recorder.delegate = self;
-    recorder.meteringEnabled = YES;
-    [recorder prepareToRecord];
+    //[recordSettings setValue:[NSNumber numberWithInt:kAudioFormatMPEG4AAC] forKey:AVFormatIDKey];
+    [recordSettings setValue:[NSNumber numberWithFloat:44100.0] forKey:AVSampleRateKey];
+    //[recordSettings setValue:[NSNumber numberWithInt: 1] forKey:AVNumberOfChannelsKey];
+    //[recordSettings setValue:[NSNumber numberWithInt: AVAudioQualityMedium] forKey:AVEncoderAudioQualityKey];
+    //[recordSettings setValue:[NSNumber numberWithInt: 16] forKey:AVEncoderBitRateKey];
+    //[recordSettings setObject:[NSNumber numberWithInt:AVAudioQualityLow] forKey: AVEncoderAudioQualityKey];
 
+    // Initiate and prepare the recorder
+    NSError* error;
+    recorder = [[AVAudioRecorder alloc] initWithURL:soundFileURL settings:recordSettings error:&error];
+    
+    if (error) {
+        NSLog(@"AVAudioRecorder error: %@",error);
+    }
+    
+    recorder.delegate = self;
+    //recorder.meteringEnabled = YES;
+    [recorder prepareToRecord];
+    
     recordButton.hidden = NO;
     playButton.hidden = YES;
     recordedPlayedOnce = NO;
@@ -526,6 +544,14 @@
     
     playButton.hidden = NO;
     
+}
+
+- (void)audioRecorderEncodeErrorDidOccur:(AVAudioRecorder *)recorder error:(NSError *)error {
+    NSLog(@"audioRecorderEncodeErrorDidOccur: %@",error);
+}
+
+- (void)audioRecorderBeginInterruption:(AVAudioRecorder *)recorder {
+    [self stopRecording];
 }
 
 #pragma mark - AVAudioPlayerDelegate
