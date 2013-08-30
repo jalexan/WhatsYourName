@@ -87,7 +87,7 @@
         
         [self animateArabicNameImageViewWithIndex:0 limit:arabicLettersArray.count-1 completion:^() {
             
-            dispatch_after(DISPATCH_SECONDS_FROM_NOW(4), dispatch_get_current_queue(), ^{
+            dispatch_after(DISPATCH_SECONDS_FROM_NOW(4), dispatch_get_main_queue(), ^{
                 NSArray* viewControllers = self.navigationController.viewControllers;
                 if (viewControllers.count>1) {
                     NameGameViewController* vc = (NameGameViewController*)viewControllers[viewControllers.count-2];
@@ -237,13 +237,13 @@
     
     
     NSTimeInterval dialogDuration = [self getDurationAndPlaySpeakerDialogAudioWithKey:key prefix:mainSpeaker.name suffix:@"English"];
-    dispatch_after(DISPATCH_SECONDS_FROM_NOW(dialogDuration), dispatch_get_current_queue(), ^{
+    dispatch_after(DISPATCH_SECONDS_FROM_NOW(dialogDuration), dispatch_get_main_queue(), ^{
         
         dialogLabel.font = [UIFont fontWithName:@"GeezaPro-Bold" size:dialogLabel.font.pointSize];
         dialogLabel.text = arabicText;
         NSTimeInterval dialogDuration = [self getDurationAndPlaySpeakerDialogAudioWithKey:key prefix:mainSpeaker.name suffix:@"Arabic"];
         
-        dispatch_after(DISPATCH_SECONDS_FROM_NOW(dialogDuration), dispatch_get_current_queue(), ^{
+        dispatch_after(DISPATCH_SECONDS_FROM_NOW(dialogDuration), dispatch_get_main_queue(), ^{
             
             completion();
         });

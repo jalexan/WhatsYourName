@@ -436,13 +436,13 @@ static NSNumber* currentSpeakerIndex;
     }
     
     
-    dispatch_after(DISPATCH_SECONDS_FROM_NOW(englishDialogDuration), dispatch_get_current_queue(), ^{
+    dispatch_after(DISPATCH_SECONDS_FROM_NOW(englishDialogDuration), dispatch_get_main_queue(), ^{
        
         dialogLabel.font = [UIFont fontWithName:@"GeezaPro-Bold" size:dialogLabel.font.pointSize];
         dialogLabel.text = arabicText;
         [self getDurationAndPlaySpeakerDialogAudioWithKey:key prefix:currentSpeaker.name suffix:@"Arabic"];
         
-        dispatch_after(DISPATCH_SECONDS_FROM_NOW(arabicDialogDuration), dispatch_get_current_queue(), ^{
+        dispatch_after(DISPATCH_SECONDS_FROM_NOW(arabicDialogDuration), dispatch_get_main_queue(), ^{
             completion();
         });
         
@@ -456,7 +456,7 @@ static NSNumber* currentSpeakerIndex;
     
 
     [speakerImageView animateWithType:type repeatingDuration:repeatingDuration keepLastFrame:keepLastFrame];
-    dispatch_after(DISPATCH_SECONDS_FROM_NOW(repeatingDuration), dispatch_get_current_queue(), ^{
+    dispatch_after(DISPATCH_SECONDS_FROM_NOW(repeatingDuration), dispatch_get_main_queue(), ^{
         
        completion();
     });
@@ -809,7 +809,7 @@ static NSNumber* currentSpeakerIndex;
                          
                          
                          
-                         dispatch_after(DISPATCH_SECONDS_FROM_NOW(0.25), dispatch_get_current_queue(), ^{
+                         dispatch_after(DISPATCH_SECONDS_FROM_NOW(0.25), dispatch_get_main_queue(), ^{
                              
                              completion();
                          });
@@ -957,7 +957,7 @@ static NSNumber* currentSpeakerIndex;
     [speakerImageView animateWithType:animationType repeatingDuration:audioDuration];
     
     
-    dispatch_after(DISPATCH_SECONDS_FROM_NOW(2), dispatch_get_current_queue(), ^{
+    dispatch_after(DISPATCH_SECONDS_FROM_NOW(2), dispatch_get_main_queue(), ^{
         
         completion();
     });

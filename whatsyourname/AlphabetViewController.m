@@ -69,7 +69,7 @@
     //Add dialog view in UIView section
     dialogLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 5, 448, 48)];
     dialogLabel.backgroundColor = [UIColor clearColor];
-    dialogLabel.textAlignment = UITextAlignmentCenter;
+    dialogLabel.textAlignment = NSTextAlignmentCenter;
     dialogLabel.font = [UIFont fontWithName:@"MarkerFelt-Thin" size:40];
     dialogLabel.adjustsFontSizeToFitWidth = YES;
     [self.view addSubview:dialogLabel];
@@ -247,7 +247,7 @@
         mx = mx + tileSize + space;
         
         arabicLetterView.delegate = self;
-        dispatch_after(DISPATCH_SECONDS_FROM_NOW(delay*i), dispatch_get_current_queue(), ^{
+        dispatch_after(DISPATCH_SECONDS_FROM_NOW(delay*i), dispatch_get_main_queue(), ^{
             
             arabicLetterView.frame = CGRectMake(chalkboard.size.width - mx - space,
                                                 tileSize*(row-1) + space*3*(row),
@@ -295,13 +295,13 @@
     
     [speakerImageView animateWithType:animationType repeatingDuration:dialogDuration];
 
-    dispatch_after(DISPATCH_SECONDS_FROM_NOW(englishDialogDuration), dispatch_get_current_queue(), ^{
+    dispatch_after(DISPATCH_SECONDS_FROM_NOW(englishDialogDuration), dispatch_get_main_queue(), ^{
         
         dialogLabel.font = [UIFont fontWithName:@"GeezaPro-Bold" size:dialogLabel.font.pointSize];
         dialogLabel.text = arabicText;
         [self getDurationAndPlaySpeakerDialogAudioWithKey:key prefix:currentSpeaker.name suffix:@"Arabic"];
         
-        dispatch_after(DISPATCH_SECONDS_FROM_NOW(arabicDialogDuration), dispatch_get_current_queue(), ^{
+        dispatch_after(DISPATCH_SECONDS_FROM_NOW(arabicDialogDuration), dispatch_get_main_queue(), ^{
             completion();
         });
         
@@ -352,7 +352,7 @@
         [self performSelector:@selector(displayChalkboardLetterWithLetterIndex:) withObject:[NSNumber numberWithInt:index] afterDelay:part*i];
 
         /*
-        dispatch_after(DISPATCH_SECONDS_FROM_NOW(  ), dispatch_get_current_queue(), ^{
+        dispatch_after(DISPATCH_SECONDS_FROM_NOW(  ), dispatch_get_main_queue(), ^{
            
            // NSLog(@"ShouldStopSinging: %d",shouldStopSinging);
             
@@ -371,7 +371,7 @@
     [self performSelector:@selector(finishAnimateAndSingAlphabetWithCompletion:) withObject:completion afterDelay:duration];
     
     /*
-    dispatch_after(DISPATCH_SECONDS_FROM_NOW(duration), dispatch_get_current_queue(), ^{
+    dispatch_after(DISPATCH_SECONDS_FROM_NOW(duration), dispatch_get_main_queue(), ^{
         if (!shouldStopSinging) {
             completion();
         }

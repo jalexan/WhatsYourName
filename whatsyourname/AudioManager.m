@@ -30,6 +30,11 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(AudioManager)
 - (id)init {
 	if ((self = [super init])) {
         
+        [[NSNotificationCenter defaultCenter] addObserver: self
+                                                 selector: @selector(handleAudioSessionInterruption:)
+                                                     name: AVAudioSessionInterruptionNotification
+                                                   object: [AVAudioSession sharedInstance]];
+        
         [self initializeAudio];
         
         
@@ -69,7 +74,6 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(AudioManager)
     //    [session setActive:YES error: &activationErr];
     //}
     
-    [session setDelegate:self];
 }
 
 #pragma mark Audio
@@ -242,13 +246,17 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(AudioManager)
     
 }
 
-- (void)beginInterruption{
-    [backgroundPlayer pause];
+- (void)handleAudioSessionInterruption:(NSNotification*)notification {
+    
+    NSDictionary *interuptionDict = notification.userInfo;
+    NSUInteger interuptionType = (NSUInteger)[interuptionDict valueForKey:AVAudioSessionInterruptionTypeKey];
+    if (interuptionType == AVAudioSessionInterruptionTypeBegan) {
+        [backgroundPlayer pause];
+    }
+    else if (interuptionType == AVAudioSessionInterruptionTypeEnded) {
+        backgroundPlayer.volume = BG_MUSIC_VOLUME;
+        [backgroundPlayer play];
+    }
 }
-- (void)endInterruption{
-    backgroundPlayer.volume = BG_MUSIC_VOLUME;
-    [backgroundPlayer play];
-}
-
 
 @end

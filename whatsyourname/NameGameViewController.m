@@ -196,7 +196,7 @@
     }
 
     
-    dispatch_after(DISPATCH_SECONDS_FROM_NOW(dialogDuration), dispatch_get_current_queue(), ^{
+    dispatch_after(DISPATCH_SECONDS_FROM_NOW(dialogDuration), dispatch_get_main_queue(), ^{
         
         dialogLabel.font = [UIFont fontWithName:@"GeezaPro-Bold" size:dialogLabel.font.pointSize];
         dialogLabel.text = arabicText;
@@ -212,7 +212,7 @@
             [mainSpeakerImageView animateWithType:TALK repeatingDuration:dialogDuration];
         }
         
-        dispatch_after(DISPATCH_SECONDS_FROM_NOW(dialogDuration), dispatch_get_current_queue(), ^{
+        dispatch_after(DISPATCH_SECONDS_FROM_NOW(dialogDuration), dispatch_get_main_queue(), ^{
         
             completion();
             
