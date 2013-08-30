@@ -30,6 +30,7 @@ static NSNumber* currentSpeakerIndex;
     NSMutableDictionary* subviewOriginDictionary;
     
     UIScrollView* scrollView;
+    UIImageView* screenBackground;
     
     NSArray* speakerArray;
     Speaker* currentSpeaker;
@@ -135,7 +136,9 @@ static NSNumber* currentSpeakerIndex;
     gameProgressView.hidden = NO;
     
     NSString* backgroundPath = [NSString stringWithFormat:@"Speakers/%@/Images/background.png",currentSpeaker.name];
-    UIImageView* screenBackground = [[UIImageView alloc] initWithImage:[UIImage imageNamed:backgroundPath]];
+    
+    [screenBackground removeFromSuperview];
+    screenBackground = [[UIImageView alloc] initWithImage:[UIImage imageNamed:backgroundPath]];
     screenBackground.frame = CGRectMake(0,0,scrollView.contentSize.width,scrollView.contentSize.height);    
     [scrollView addSubview:screenBackground];
     [scrollView sendSubviewToBack:screenBackground];
