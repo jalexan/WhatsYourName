@@ -429,20 +429,27 @@
                 
         // Start recording
         [recorder record];
-        [recordButton setTitle:@"Stop" forState:UIControlStateNormal];
-        recordButton.selected = YES;
-        playButton.hidden = YES;
         
-        durationLabel.text = @"Recording...";
-        [self singAndSpellArabicAlphabetForDuration: -1 withCompletion:^() {
-            [self stopRecording];
-        }];
+        if (recorder.recording) {
+            [recordButton setTitle:@"Stop" forState:UIControlStateNormal];
+            recordButton.selected = YES;
+            playButton.hidden = YES;
+            
+            durationLabel.text = @"Recording...";
+            [self singAndSpellArabicAlphabetForDuration: -1 withCompletion:^() {
+                [self stopRecording];
+            }];
+            
+            [playButton setEnabled:NO];
+        }
         
     } else {  // Stop recording
         [self stopRecording];
+        
+        [playButton setEnabled:NO];
     }    
     
-    [playButton setEnabled:NO];
+
 }
 
 - (IBAction)playButtonTouched:(id)sender {
