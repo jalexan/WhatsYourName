@@ -52,9 +52,12 @@
     [super viewDidLoad];
     [super.audioManager prepareAudioWithPath:@"Speakers/Samia/Audio/AlphabetSongArabic.mp3"];
     
+    currentSpeaker = [[Speaker alloc] initWithName:@"Samia"];
     //Add background image
     //view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.screenBounds.width, self.screenBounds.height)];
-    UIImageView* screenBackground = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Resource/background_alphabets.png"]];
+    
+    NSString* backgroundPath = [NSString stringWithFormat:@"Speakers/%@/Images/background.png",currentSpeaker.name];
+    UIImageView* screenBackground = [[UIImageView alloc] initWithImage:[UIImage imageNamed:backgroundPath]];
     screenBackground.frame = CGRectMake(0,0,self.screenBounds.width, self.screenBounds.height);
     [self.view addSubview:screenBackground];
 
@@ -75,7 +78,6 @@
     [self.view addSubview:dialogLabel];
     
     //Add Miss Samia as Speaker
-    currentSpeaker = [[Speaker alloc] initWithName:@"Samia"];
     speakerImageView = [[SpeakerImageView alloc] initWithFrame:CGRectMake(19, 29, 119, 290) speaker:currentSpeaker];
     speakerImageView.contentMode = UIViewContentModeBottomLeft;
     [self.view addSubview:speakerImageView];
