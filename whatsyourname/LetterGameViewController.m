@@ -528,6 +528,7 @@ static NSNumber* currentSpeakerIndex;
     NSUInteger letterIndex = [[currentSpeaker.letterIndexArray objectAtIndex:index] intValue];
     ArabicLetter* letter = [[ArabicLetter alloc] initWithLetterIndex:letterIndex];
     letter.slotPosition = index;
+    letter.isInCorrectSlot = YES;
     unichar unicodeChar = [unicodeNameStringForSpelling characterAtIndex:index];
 
     
@@ -641,7 +642,8 @@ static NSNumber* currentSpeakerIndex;
                              
                          }
                          completion:^(BOOL finished){
-                             if (!shuffleImageView.animationFound && imageView == [letterImageViewArray lastObject]) {
+                             imageView.arabicLetter.isInCorrectSlot = NO;
+                             if (!shuffleImageView.animationFound && imageView == [letterImageViewArray lastObject]) {                                 
                                  completion();
                              }
                              
