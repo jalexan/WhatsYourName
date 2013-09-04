@@ -98,7 +98,7 @@
     [self.view bringSubviewToFront:homeButton];
     
     //Add bonus level button
-    [bonusLevelButton setImage:[UIImage imageNamed:@"Resource/icon_more.png"] forState:UIControlStateNormal];
+    [bonusLevelButton setImage:[UIImage imageNamed:@"Resource/icon_star.png"] forState:UIControlStateNormal];
     bonusLevelButton.frame = CGRectMake(restartButton.origin.x, restartButton.origin.y - restartButton.size.height - 10, bonusLevelButton.size.width,bonusLevelButton.size.height);
     bonusLevelButton.hidden = YES;
     [self.view addSubview:bonusLevelButton];
