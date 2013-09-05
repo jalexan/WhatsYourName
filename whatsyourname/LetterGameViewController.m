@@ -654,6 +654,10 @@ static NSNumber* currentSpeakerIndex;
 }
 
 - (void)animateFingerDraggingHint {
+    
+    if (fingerDraggingHintCancelled)
+        return;
+    
     ArabicLetterImageView* arabicLetterimageView = [letterImageViewArray objectAtIndex:0];
     SlotImageView* slotImageView = [slotsImageViewArray objectAtIndex:0];
     
@@ -674,10 +678,7 @@ static NSNumber* currentSpeakerIndex;
                          finger.center = CGPointMake(slotImageView.center.x,slotImageView.center.y+(slotImageView.height/2));
                      }
                      completion:^(BOOL finished){
-                         if (!fingerDraggingHintCancelled) {
-                             [self animateFingerDraggingHint];
-                         }
-
+                         [self animateFingerDraggingHint];
                      }];
 }
 
@@ -987,7 +988,7 @@ static NSNumber* currentSpeakerIndex;
         
         SlotImageView* slotImageView = [self slotThatIntersectsArabicLetterImageView:objectToDrag];
         
-        if (slotImageView && [self isCorrectSlot:slotImageView forLetterImageView:objectToDrag]) {
+        if (slotImageView && [self isCorrectSlot:slotImageView forLetterImageView:objectToDrag]) { //letter drag close to the correct slot
             [super.audioManager playAudio:@"Resource/slot_correct.mp3" volume:1];
             [self animateImageView:objectToDrag toPoint:slotImageView.center];
             
@@ -1002,7 +1003,7 @@ static NSNumber* currentSpeakerIndex;
         }
         else if (slotImageView && !slotImageView.slot.isFilled) {
             if (objectToDrag.dragStartPoint.x != 0 && objectToDrag.dragStartPoint.y !=0) {
-                
+                fingerDraggingHintCancelled = YES;
                 if ([self isFailureIntersectCheckForSlotImageView:slotImageView arabicLetterImageView:objectToDrag]) {
                     
                     if (!playedEnglishErrorAudio || !self.audioManager.hasErrorAudio) {
