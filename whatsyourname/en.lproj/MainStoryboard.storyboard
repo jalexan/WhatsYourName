@@ -382,13 +382,6 @@
                                     <action selector="playButtonTouched:" destination="lef-yX-ejV" eventType="touchUpInside" id="4Fy-HT-MNZ"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2CR-su-CGp">
-                                <rect key="frame" x="143" y="164" width="182" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="cQk-cn-3qJ" customClass="GameUIButton">
                                 <rect key="frame" x="443" y="280" width="30" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -428,7 +421,6 @@
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
                         <outlet property="bonusLevelButton" destination="Whc-id-60w" id="qtF-PX-vSN"/>
-                        <outlet property="durationLabel" destination="2CR-su-CGp" id="XBh-GY-jbx"/>
                         <outlet property="homeButton" destination="cQk-cn-3qJ" id="ViP-Q9-yE9"/>
                         <outlet property="playButton" destination="tNP-LR-j3Z" id="kW1-ik-dqb"/>
                         <outlet property="recordButton" destination="geb-94-WCt" id="Git-xj-syT"/>
@@ -683,7 +675,6 @@
                 <relationship kind="action" name="playButtonTouched:"/>
                 <relationship kind="action" name="recordButtonTouched:"/>
                 <relationship kind="outlet" name="bonusLevelButton" candidateClass="GameUIButton"/>
-                <relationship kind="outlet" name="durationLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="playButton" candidateClass="GameUIButton"/>
                 <relationship kind="outlet" name="recordButton" candidateClass="GameUIButton"/>
             </relationships>
