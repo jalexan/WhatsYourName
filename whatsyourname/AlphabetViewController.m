@@ -20,7 +20,7 @@
     IBOutlet GameUIButton* recordButton;
     IBOutlet GameUIButton* playButton;
     IBOutlet GameUIButton* bonusLevelButton;
-    IBOutlet UILabel* durationLabel;
+    //IBOutlet UILabel* durationLabel;
     
     AVAudioRecorder* recorder;
     AVAudioPlayer *player;
@@ -427,7 +427,7 @@
     player = [[AVAudioPlayer alloc] initWithContentsOfURL:recorder.url error:nil];
     [player setDelegate:self];
     
-    durationLabel.text = [NSString stringWithFormat:@"Recorded %.02f seconds",player.duration];
+    //durationLabel.text = [NSString stringWithFormat:@"Recorded %.02f seconds",player.duration];
 }
 
 - (IBAction)recordButtonTouched:(id)sender {
@@ -455,7 +455,7 @@
             recordButton.selected = YES;
             playButton.hidden = YES;
             
-            durationLabel.text = @"Recording...";
+            //durationLabel.text = @"Recording...";
             [self singAndSpellArabicAlphabetForDuration: -1 withCompletion:^() {
                 [self stopRecording];
             }];
