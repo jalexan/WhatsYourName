@@ -9,6 +9,8 @@
 #import "SurpriseViewController.h"
 #import "NameGameViewController.h"
 
+#define SURPRISE_DELAY 2.0
+
 @interface SurpriseViewController ()
 
 @end
@@ -35,7 +37,7 @@
 
     question.image = [UIImage imageNamed:@"Resource/question_mark.png"];
     
-    [self performSelector:@selector(segueAfterDelay) withObject:nil afterDelay:4];
+    [self performSelector:@selector(segueAfterDelay) withObject:nil afterDelay:SURPRISE_DELAY];
 
 }
 
