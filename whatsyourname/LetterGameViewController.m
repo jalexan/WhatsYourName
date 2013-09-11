@@ -55,8 +55,8 @@ static NSNumber* currentSpeakerIndex;
 @implementation LetterGameViewController
 #pragma mark Setup
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     
     
     [self startLevel];
@@ -99,7 +99,10 @@ static NSNumber* currentSpeakerIndex;
     
     [scrollView.superview sendSubviewToBack:scrollView];
     
-
+    screenBackground = [[UIImageView alloc] init];
+    screenBackground.frame = CGRectMake(0,0,scrollView.contentSize.width,scrollView.contentSize.height);
+    [scrollView addSubview:screenBackground];
+    //[scrollView sendSubviewToBack:screenBackground];
     
     speakerArray = [SpeakerList sharedInstance].speakerArray;
     
@@ -134,14 +137,9 @@ static NSNumber* currentSpeakerIndex;
     
     gameProgressView.left = scrollView.right + 30;
     gameProgressView.hidden = NO;
-    
+        
     NSString* backgroundPath = [NSString stringWithFormat:@"Speakers/%@/Images/background.png",currentSpeaker.name];
-    
-    [screenBackground removeFromSuperview];
-    screenBackground = [[UIImageView alloc] initWithImage:[UIImage imageNamed:backgroundPath]];
-    screenBackground.frame = CGRectMake(0,0,scrollView.contentSize.width,scrollView.contentSize.height);    
-    [scrollView addSubview:screenBackground];
-    [scrollView sendSubviewToBack:screenBackground];
+    screenBackground.image = [UIImage imageNamed:backgroundPath];
     
     speakerImageView = [[SpeakerImageView alloc] initWithFrame:CGRectMake(16, self.screenBounds.height+94, 140, 216) speaker:currentSpeaker];
     speakerImageView.hidden = YES;
@@ -149,11 +147,8 @@ static NSNumber* currentSpeakerIndex;
     speakerImageView.contentMode = UIViewContentModeBottomLeft;
     [speakerImageView repeatAnimation:DEFAULT];
     
-    
     shuffleImageView = [[ShuffleImageView alloc] initWithFrame:CGRectMake(self.view.right,speakerImageView.bottom-219,183,219) speaker:currentSpeaker];
     [scrollView addSubview:shuffleImageView];
-    
-    
     
     //Clear arabic name spelling
     [[arabicNameView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
