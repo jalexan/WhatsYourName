@@ -419,7 +419,7 @@
     [speakerImageView stopAnimating];
     [recorder stop];
     
-    [self.audioManager setAudioSessionCategory:AVAudioSessionCategorySoloAmbient];
+    //[self.audioManager setAudioSessionCategory:AVAudioSessionCategorySoloAmbient];
     
     [recordButton setTitle:@"Record" forState:UIControlStateNormal];
     recordButton.selected = NO;
@@ -445,7 +445,7 @@
     if (!recorder.recording) {
         if (chalkboardNeedsReset) [self resetChalkboard];
         //shouldStopSinging = NO;
-        [self.audioManager setAudioSessionCategory:AVAudioSessionCategoryPlayAndRecord];
+        //[self.audioManager setAudioSessionCategory:AVAudioSessionCategoryPlayAndRecord];
                 
         // Start recording
         [recorder record];
