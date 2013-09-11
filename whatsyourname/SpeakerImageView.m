@@ -148,7 +148,7 @@
          
      }
      else {
-         
+         self.image = mainSpeakerImage;
          [self setAnimationImages: defaultImagesArray]; //1
          [self setAnimationDuration: (float)defaultImagesArray.count/ANIMATION_FRAMES_PER_SECOND];
          [self setAnimationRepeatCount: 1];

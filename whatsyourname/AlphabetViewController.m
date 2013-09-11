@@ -21,7 +21,7 @@
     IBOutlet GameUIButton* recordButton;
     IBOutlet GameUIButton* playButton;
     IBOutlet GameUIButton* bonusLevelButton;
-    IBOutlet UILabel* durationLabel;
+    //IBOutlet UILabel* durationLabel;
     
     AVAudioRecorder* recorder;
     AVAudioPlayer *player;
@@ -436,7 +436,7 @@
     [speakerImageView stopAnimating];
     [recorder stop];
     
-    [self.audioManager setAudioSessionCategory:AVAudioSessionCategorySoloAmbient];
+    //[self.audioManager setAudioSessionCategory:AVAudioSessionCategorySoloAmbient];
     
     [recordButton setTitle:@"Record" forState:UIControlStateNormal];
     recordButton.selected = NO;
@@ -444,7 +444,7 @@
     player = [[AVAudioPlayer alloc] initWithContentsOfURL:recorder.url error:nil];
     [player setDelegate:self];
     
-    durationLabel.text = [NSString stringWithFormat:@"Recorded %.02f seconds",player.duration];
+    //durationLabel.text = [NSString stringWithFormat:@"Recorded %.02f seconds",player.duration];
 }
 
 - (IBAction)recordButtonTouched:(id)sender {
@@ -462,7 +462,7 @@
     if (!recorder.recording) {
         if (chalkboardNeedsReset) [self resetChalkboard];
         //shouldStopSinging = NO;
-        [self.audioManager setAudioSessionCategory:AVAudioSessionCategoryPlayAndRecord];
+        //[self.audioManager setAudioSessionCategory:AVAudioSessionCategoryPlayAndRecord];
                 
         // Start recording
         [recorder record];
@@ -472,7 +472,7 @@
             recordButton.selected = YES;
             playButton.hidden = YES;
             
-            durationLabel.text = @"Recording...";
+            //durationLabel.text = @"Recording...";
             [self singAndSpellArabicAlphabetForDuration: -1 withCompletion:^() {
                 [self stopRecording];
             }];
