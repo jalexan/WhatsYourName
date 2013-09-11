@@ -19,6 +19,8 @@
 
     IBOutlet GameUIButton* level4GameUIButton;
     IBOutlet UIImageView* lockImageView;
+    IBOutlet UIImageView* bonusLevelLockedImageView;
+
 }
 
 - (IBAction)backButtonTouched:(id)sender;
@@ -57,10 +59,13 @@
     
     if (isLevel4Unlocked) {
         level4GameUIButton.hidden = NO;
+        [bonusLevelLockedImageView setImage:[UIImage imageNamed:@"Speakers/Nolia/Images/level_select_bonus.png"]];
         
     }
     else {
         level4GameUIButton.hidden = YES;
+        [bonusLevelLockedImageView setImage:[UIImage imageNamed:@"Speakers/Nolia/Images/level_select_bonus_locked.png"]];
+
     }
     lockImageView.hidden = !level4GameUIButton.hidden;
     

@@ -14,6 +14,7 @@
 #import "Slot.h"
 #import "SlotImageView.h"
 #import "GameUIButton.h"
+#import "ButtonExpander.h"
 
 @interface AlphabetViewController () <ArabicLetterAudioImageViewDelegate> {
     
@@ -30,6 +31,8 @@
 //    UILabel *dialogLabel;
     UILabel *chalkboardLabel;
     UILabel *subtitleLabel;
+    ButtonExpander *settingsButtonExpander;
+    
     NSString *unicodeNameStringForSpelling;
     Speaker* currentSpeaker;
     SpeakerImageView* speakerImageView;
@@ -90,12 +93,26 @@
     recordButton.selected = NO;
     playButton.origin = CGPointMake(chalkboard.centerX, chalkboard.origin.y+chalkboard.size.height+3);
     [playButton setImage:[UIImage imageNamed:@"Resource/icon_stop.png"] forState:UIControlStateSelected];
+    
+    [soundButton removeFromSuperview];
+
+    settingsButtonExpander = [[ButtonExpander alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+    [settingsButtonExpander setImage:[UIImage imageNamed:@"Resource/icon_settings.png"] forState:UIControlStateNormal];
+    [settingsButtonExpander setFrame:CGRectMake(self.view.frame.origin.x + 5,
+                                                self.screenBounds.height - settingsButtonExpander.imageView.image.size.height - 5,
+                                                settingsButtonExpander.imageView.image.size.width,
+                                                settingsButtonExpander.imageView.image.size.height)];
+    [settingsButtonExpander setChildButtonsArray:[[NSArray alloc] initWithObjects: homeButton, restartButton, soundButton, nil]];
+    [self.view addSubview:settingsButtonExpander];
+    
+
     [self.view sendSubviewToBack:screenBackground];
-    [self.view bringSubviewToFront:soundButton];
+    //[self.view bringSubviewToFront:soundButton];
+    [self.view bringSubviewToFront:settingsButtonExpander];
     [self.view bringSubviewToFront:recordButton];
     [self.view bringSubviewToFront:playButton];
-    [self.view bringSubviewToFront:restartButton];
-    [self.view bringSubviewToFront:homeButton];
+    //[self.view bringSubviewToFront:restartButton];
+   // [self.view bringSubviewToFront:homeButton];
     
     //Add bonus level button
     [bonusLevelButton setImage:[UIImage imageNamed:@"Resource/icon_star.png"] forState:UIControlStateNormal];

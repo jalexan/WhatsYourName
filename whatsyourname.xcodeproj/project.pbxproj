@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1500BC03177AABAD00F0DE3D /* LettersByName.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1500BC02177AABAD00F0DE3D /* LettersByName.plist */; };
 		15359AA5178D7933002D73BB /* Credits.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15359AA4178D7933002D73BB /* Credits.plist */; };
+		155C369A17D9891400E28109 /* ButtonExpander.m in Sources */ = {isa = PBXBuildFile; fileRef = 155C369917D9891400E28109 /* ButtonExpander.m */; };
 		15955EBA17962C4E00E11F14 /* ArabicLetterAudioImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 15955EB917962C4E00E11F14 /* ArabicLetterAudioImageView.m */; };
 		15DEA758176525E00058852E /* TransliteratedLetters.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15DEA757176525E00058852E /* TransliteratedLetters.plist */; };
 		15DEA75A1765315F0058852E /* WellKnownNames.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15DEA7591765315F0058852E /* WellKnownNames.plist */; };
@@ -62,6 +63,8 @@
 /* Begin PBXFileReference section */
 		1500BC02177AABAD00F0DE3D /* LettersByName.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = LettersByName.plist; sourceTree = "<group>"; };
 		15359AA4178D7933002D73BB /* Credits.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Credits.plist; sourceTree = "<group>"; };
+		155C369817D9891400E28109 /* ButtonExpander.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ButtonExpander.h; path = ../ButtonExpander.h; sourceTree = "<group>"; };
+		155C369917D9891400E28109 /* ButtonExpander.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ButtonExpander.m; path = ../ButtonExpander.m; sourceTree = "<group>"; };
 		15955EB817962C4E00E11F14 /* ArabicLetterAudioImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArabicLetterAudioImageView.h; sourceTree = "<group>"; };
 		15955EB917962C4E00E11F14 /* ArabicLetterAudioImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArabicLetterAudioImageView.m; sourceTree = "<group>"; };
 		15DEA757176525E00058852E /* TransliteratedLetters.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = TransliteratedLetters.plist; sourceTree = "<group>"; };
@@ -255,6 +258,8 @@
 		68240B48173F3C6800BDBDF8 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				155C369817D9891400E28109 /* ButtonExpander.h */,
+				155C369917D9891400E28109 /* ButtonExpander.m */,
 				68353D671740B7810003D1EB /* ArabicLetterImageView.h */,
 				68353D681740B7810003D1EB /* ArabicLetterImageView.m */,
 				15955EB817962C4E00E11F14 /* ArabicLetterAudioImageView.h */,
@@ -406,6 +411,7 @@
 				68873390179F9B3C000877AB /* GameUIButton.m in Sources */,
 				68240C5917A4A4D6006C3B91 /* GameWebViewController.m in Sources */,
 				68F0825217B0B71200A633AD /* ChooseLevelViewController.m in Sources */,
+				155C369A17D9891400E28109 /* ButtonExpander.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
