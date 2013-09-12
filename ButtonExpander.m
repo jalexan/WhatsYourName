@@ -70,7 +70,7 @@
                 button = [self.childButtonsArray objectAtIndex:i];
                 //[button setFrame:CGRectMake(self.frame.size.width/2 - button.frame.size.width/2, self.frame.origin.y,
                      //                       button.frame.size.width, button.frame.size.height)];
-                button.hidden = YES;
+                //button.hidden = YES;
                 [button setUserInteractionEnabled:NO];
                 
                 //JULIE - FIX THIS CALCULATION TO ANIMATE BACK DOWN
@@ -88,12 +88,12 @@
                                     options: UIViewAnimationOptionCurveLinear
                                  animations:^{
                                      
-                                     [button setFrame:CGRectMake(button.frame.origin.x, y,
-                                                                 button.frame.size.width, button.frame.size.height)];;
+                                     [button setFrame:CGRectMake(button.frame.origin.x, 0,
+                                                                 button.frame.size.width, button.frame.size.height)];
                                      
                                  }
                                  completion:^(BOOL finished){
-                                     
+                                     NSLog(@"");
                                  }];
     
                 
@@ -117,7 +117,8 @@
                 }];
               */
                 
-                
+                y = y - button.frame.size.height - spaceBetweenButtons,
+                lastYPosition = y; 
                 [UIView animateWithDuration: 2
                                       delay: 0.0
                                     options: UIViewAnimationOptionCurveLinear
@@ -125,12 +126,12 @@
                                      
 
 
-                                     [button setFrame:CGRectMake(button.frame.origin.x, button.frame.size.height - spaceBetweenButtons,
+                                     [button setFrame:CGRectMake(button.frame.origin.x, y,
                                                                  button.frame.size.width, button.frame.size.height)];
                                      
                                  }
                                  completion:^(BOOL finished){
-                                     
+
                                  }];
                 
                 
@@ -138,7 +139,7 @@
                 
             }
         }
-        lastYPosition = y;
+        
         isExpanded = YES;
     }
 
