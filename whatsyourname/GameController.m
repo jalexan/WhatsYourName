@@ -65,7 +65,7 @@
 
 
 - (IBAction)homeButtonTouched:(id)sender {
-    [self stopAllAudio];
+    [self.audioManager stopAudio:@"talking"];
     self.audioManager = nil;
     [NSObject cancelPreviousPerformRequestsWithTarget:self];
     [self.navigationController popToRootViewControllerAnimated:YES];
@@ -93,10 +93,6 @@
     }
 }
 
-
-
-
-
 - (NSTimeInterval)getDurationAndPlaySpeakerDialogAudioWithKey:(NSString*)key prefix:(NSString*)prefix  suffix:(NSString*)suffix {
     NSString* path = [NSString stringWithFormat:@"Speakers/%@/Audio/%@%@.mp3",prefix,key,suffix];
     [self.audioManager prepareAudioWithPath:path key:@"talking"];
@@ -118,11 +114,6 @@
     return t;
 }
 
-- (void)stopAllAudio {
-    [self.audioManager stopAudio:@"talking"];
-    [self.audioManager pauseAudio:@"Resource/bg.mp3"];
-}
-
 - (void)applicationWillResignActive{
     [self.audioManager pauseAudio:@"Resource/bg.mp3"];
 }
@@ -131,9 +122,6 @@
     
     [self.audioManager initializeAudio];
 }
-
-
-
 
 
 - (void)didReceiveMemoryWarning

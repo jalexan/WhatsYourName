@@ -131,7 +131,6 @@ static NSNumber* currentSpeakerIndex;
     
 }
 
-
 - (void)reloadGameArea {
     adjustedScrollViewCenter = CGPointMake(scrollView.center.x,scrollView.center.y+self.screenBounds.height);
     

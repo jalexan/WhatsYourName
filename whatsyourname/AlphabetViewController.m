@@ -41,6 +41,8 @@
     //BOOL shouldStopSinging;
     NSMutableArray *letterImageViewArray;
     BOOL chalkboardNeedsReset;
+    
+    BOOL backgroundPlayerPlaying;
 }
 
 - (IBAction)recordButtonTouched:(id)sender;
@@ -120,14 +122,7 @@
     bonusLevelButton.hidden = YES;
     [self.view addSubview:bonusLevelButton];
     [self.view bringSubviewToFront:bonusLevelButton];
-    
-    // TEMP - turn off background music
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    [super.audioManager.backgroundPlayer pause];
-    soundButton.selected = YES;
-    [userDefaults setBool:YES forKey:@"pauseMusic"];
-    
-    
+
     if(DEBUG_DRAW_BORDERS) {
         [self.view drawBorderOnSubviews];
     }
@@ -138,6 +133,24 @@
     playButton.hidden = YES;
     //shouldStopSinging = NO;
 
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    backgroundPlayerPlaying = [AudioManager sharedInstance].backgroundPlayer.isPlaying;
+    
+    if (backgroundPlayerPlaying) {
+        [[AudioManager sharedInstance].backgroundPlayer pause];
+    }
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+
+    if (backgroundPlayerPlaying) {
+        [[AudioManager sharedInstance].backgroundPlayer play];
+    }
 }
 
 -(void)resetChalkboard {

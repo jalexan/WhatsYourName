@@ -13,6 +13,7 @@
 #import "AlphabetViewController.h"
 #import "GameUIButton.h"
 #import "GameWebViewController.h"
+#import "AudioManager.h"
 
 @interface StartScreenViewController () {
     IBOutlet GameUIButton* bookLinkButton;
@@ -21,7 +22,7 @@
     IBOutlet GameUIButton* moreGamesButton;
     IBOutlet GameUIButton* playButton;
     UIScrollView* creditsScreen;
-
+    AudioManager* audioManager;
 }
 -(IBAction)bookLinkButtonTouched:(id)sender;
 -(IBAction)creditsButtonTouched:(id)sender;
@@ -37,6 +38,26 @@
         // Custom initialization
     }
     return self;
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    [[NSNotificationCenter defaultCenter]
+     addObserver:self
+     selector:@selector(viewControllerPopped:)
+     name:kPopViewControllerNotification
+     object:nil
+     ];
+    audioManager = [AudioManager sharedInstance];
+    
+    [self setupStartScreenButtons];
+    
+    // NSTimeInterval delay = DEBUG_MODE ? 0 : 1;
+    
+    [self performSelector:@selector(showButtons) withObject:nil];
+    
 }
 
 -(IBAction)bookLinkButtonTouched:(id)sender {
@@ -125,24 +146,6 @@
     moreGamesButton.hidden = YES;
     playButton.hidden = YES;
     playButton.backgroundColor = [UIColor clearColor];
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    
-    [[NSNotificationCenter defaultCenter]
-     addObserver:self
-     selector:@selector(viewControllerPopped:)
-     name:kPopViewControllerNotification
-     object:nil
-     ];
-    
-    [self setupStartScreenButtons];
-    
-   // NSTimeInterval delay = DEBUG_MODE ? 0 : 1;
-        
-    [self performSelector:@selector(showButtons) withObject:nil];
 }
 
 - (void)viewControllerPopped:(id)theObject {
