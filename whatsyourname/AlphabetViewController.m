@@ -104,10 +104,11 @@
                                                 self.screenBounds.height - settingsButtonExpander.imageView.image.size.height - 5,
                                                 settingsButtonExpander.imageView.image.size.width,
                                                 settingsButtonExpander.imageView.image.size.height)];
-    [settingsButtonExpander setChildButtonsArray:[[NSArray alloc] initWithObjects: homeButton, restartButton, soundButton, nil]];
+    [settingsButtonExpander setChildButtonsArray:[[NSArray alloc] initWithObjects: homeButton, nil]]; //JULIE remove sound button
+    //    [settingsButtonExpander setChildButtonsArray:[[NSArray alloc] initWithObjects: homeButton, restartButton, soundButton, nil]]; //JULIE remove sound button
+
     [self.view addSubview:settingsButtonExpander];
     
-
     [self.view sendSubviewToBack:screenBackground];
     //[self.view bringSubviewToFront:soundButton];
     [self.view bringSubviewToFront:settingsButtonExpander];
