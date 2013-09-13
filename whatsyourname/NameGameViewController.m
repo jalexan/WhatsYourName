@@ -14,6 +14,7 @@
 
 #define NON_PRIMARY_SPEAKER_IMAGE_SCALE .90
 #define MAX_NAME_LENGTH 9
+#define DIALOG_LABEL_ZOOM_FACTOR 2.6
 
 @interface NameGameViewController () {
 
@@ -23,7 +24,11 @@
     Speaker* mainSpeaker;
     NSString* playerName;
     UIFont* originalDialogLabelFont;
+    UIButton* dialogZoomButton;
 }
+
+- (IBAction)dialogLabelTouchDown:(id)sender;
+- (IBAction)dialogLabelTouchUp:(id)sender;
 
 @end
 
@@ -89,8 +94,15 @@
     yourNameDialogDictionary = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];
 
     originalDialogLabelFont = dialogLabel.font;
-    
     dialogLabel.adjustsFontSizeToFitWidth = YES;
+    
+    dialogZoomButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    dialogZoomButton.frame = dialogLabel.bounds;
+    
+    [dialogZoomButton addTarget:self action:@selector(dialogLabelTouchDown:) forControlEvents:UIControlEventTouchDown];
+    [dialogZoomButton addTarget:self action:@selector(dialogLabelTouchUp:) forControlEvents:UIControlEventTouchUpInside];
+    [dialogZoomButton addTarget:self action:@selector(dialogLabelTouchUp:) forControlEvents:UIControlEventTouchUpOutside];
+    
 
     UIImage *textFieldBackground = [[UIImage imageNamed:@"Resource/text_box_bg.png"] stretchableImageWithLeftCapWidth:12 topCapHeight:0];
     nameTextField.background = textFieldBackground;
@@ -247,6 +259,72 @@
 }
 */
 
+- (void)dialogLabelTouchDown:(id)sender {
+    
+    
+    [dialogLabel.superview bringSubviewToFront:dialogLabel];
+    
+    CGRect f = dialogLabel.frame;
+    f.size = CGSizeMake(f.size.width,f.size.height*DIALOG_LABEL_ZOOM_FACTOR);
+    dialogLabel.frame = f;
+    
+    dialogLabel.font = [dialogLabel.font fontWithSize:dialogLabel.font.pointSize+13];
+    dialogLabel.numberOfLines = 4;
+    
+    dialogLabel.backgroundColor = RGBA(255, 255, 255, .70);
+    
+    /*
+    //dialogLabel.transform = CGAffineTransformScale(dialogLabel.transform, 0.35, 0.35);
+    [UIView animateWithDuration:0.5 animations:^{
+        dialogLabel.transform = CGAffineTransformScale(dialogLabel.transform, DIALOG_LABEL_ZOOM_FACTOR, DIALOG_LABEL_ZOOM_FACTOR);
+    }];
+
+
+    [UIView animateWithDuration: .5
+                          delay: 0.0
+                        options: UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+
+                         
+                         
+                     }
+                     completion:^(BOOL finished){
+                        
+                     }];
+ */
+    
+    
+    
+}
+- (void)dialogLabelTouchUp:(id)sender {
+    
+    CGRect f = dialogLabel.frame;
+    f.size = CGSizeMake(f.size.width,f.size.height*(1.0/DIALOG_LABEL_ZOOM_FACTOR));
+    dialogLabel.frame = f;
+
+    dialogLabel.font = [dialogLabel.font fontWithSize:dialogLabel.font.pointSize-13];
+    dialogLabel.numberOfLines = 2;
+    
+    dialogLabel.backgroundColor = [UIColor clearColor];
+    
+    /*
+    [UIView animateWithDuration:0.5 animations:^{
+        dialogLabel.transform = CGAffineTransformIdentity;
+    }];
+
+    
+    [UIView animateWithDuration: .5
+                          delay: 0.0
+                        options: UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+
+                         
+                     }
+                     completion:^(BOOL finished){
+                         
+                     }];
+     */
+}
 
 #pragma mark UITextFieldDelegate
 
@@ -265,6 +343,8 @@
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
     
+    [dialogLabel addSubview:dialogZoomButton];
+    
     NSString* text = @"Hint: You can use capitals or numbers like this: S = saad, D = daad, T = Taa,\nZ = Thaa, 2 = alef hamza, 3 = 'ein, 5 = ghein, 7 or H = Ha";
     
     dialogLabel.font = [UIFont fontWithName:@"MarkerFelt-Thin" size:15];
@@ -274,6 +354,8 @@
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
+    [dialogZoomButton removeFromSuperview];
+    
     dialogLabel.font = [UIFont fontWithName:originalDialogLabelFont.fontName size:originalDialogLabelFont.pointSize];
     dialogLabel.text = @"";
 }

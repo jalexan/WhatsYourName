@@ -458,9 +458,9 @@
                                 <rect key="frame" x="0.0" y="0.0" width="480" height="320"/>
                                 <autoresizingMask key="autoresizingMask"/>
                             </imageView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="15" id="CbC-Xj-Sxd">
+                            <label opaque="NO" clipsSubviews="YES" contentMode="left" text="" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="15" id="CbC-Xj-Sxd">
                                 <rect key="frame" x="16" y="14" width="448" height="50"/>
-                                <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="40"/>
+                                <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="30"/>
                                 <nil key="highlightedColor"/>
                                 <color key="shadowColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <size key="shadowOffset" width="0.0" height="1"/>
@@ -711,6 +711,8 @@
         <class className="NameGameViewController" superclassName="GameController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NameGameViewController.h"/>
             <relationships>
+                <relationship kind="action" name="dialogLabelTouchDown:"/>
+                <relationship kind="action" name="dialogLabelTouchUp:"/>
                 <relationship kind="action" name="goodByeButtonTouched:"/>
                 <relationship kind="outlet" name="background" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="goodByeButton" candidateClass="UIButton"/>
