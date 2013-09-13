@@ -8,11 +8,10 @@
 
 #import "ButtonExpander.h"
 
-# define EXPAND_DURATION 1.5
+# define EXPAND_DURATION 0.5
 
 
 @implementation ButtonExpander {
- //   UIView *containerView;
     UITapGestureRecognizer *gr;
     BOOL isExpanded;
     float lastYPosition;
@@ -30,13 +29,7 @@
         [self addGestureRecognizer:gr];
         self.clipsToBounds = NO;
         [self setUserInteractionEnabled:YES];
-/*
-        containerView = [[UIView alloc] initWithFrame:CGRectMake(frame.origin.x, 0, frame.size.width, self.superview.frame.size.height)];
-        containerView.backgroundColor = [UIColor brownColor];
-        containerView.alpha = 0.5;
-        [self addSubview:containerView];  //intuitively backwards to add the containerView as a subview of button but that's ok
-        [self sendSubviewToBack:containerView];
- */       
+    
         isExpanded = NO;
     }
     
@@ -63,27 +56,23 @@
     float y;
     
     if (isExpanded) {
-        // collapse
+        // collapse child icons
         y = lastYPosition;
         for (NSInteger i=[self.childButtonsArray count]-1; i>=0; i--) {
             if ([[self.childButtonsArray objectAtIndex:i] isKindOfClass:[UIButton class]]) {
                 button = [self.childButtonsArray objectAtIndex:i];
-                //[button setFrame:CGRectMake(self.frame.size.width/2 - button.frame.size.width/2, self.frame.origin.y,
-                     //                       button.frame.size.width, button.frame.size.height)];
-                //button.hidden = YES;
+
                 [button setUserInteractionEnabled:NO];
                 
-                //JULIE - FIX THIS CALCULATION TO ANIMATE BACK DOWN
                 y = y + button.frame.size.height + spaceBetweenButtons;
 
-                /*       [UIView animateWithDuration:(EXPAND_DURATION) animations:^{
+          /*      [UIView animateWithDuration:(EXPAND_DURATION) animations:^{
                     [button setFrame:CGRectMake(button.frame.origin.x, y,
                                                 button.frame.size.width, button.frame.size.height)];
                 }];
-                 */
+           */
                 
-                
-                [UIView animateWithDuration: 2
+                [UIView animateWithDuration: EXPAND_DURATION
                                       delay: 0.0
                                     options: UIViewAnimationOptionCurveLinear
                                  animations:^{
@@ -95,15 +84,13 @@
                                  completion:^(BOOL finished){
                                      NSLog(@"");
                                  }];
-    
-                
-                
-                
+                    
             }
         }
         isExpanded = NO;
         
     } else {
+        // expand child icons
         y=0;
         for (NSInteger i=0; i < [self.childButtonsArray count]; i++) {
             if ([[self.childButtonsArray objectAtIndex:i] isKindOfClass:[UIButton class]]) {
@@ -111,35 +98,29 @@
                 button.hidden = NO;
                 [button setUserInteractionEnabled:YES];
                     
-             /*   [UIView animateWithDuration:(EXPAND_DURATION) animations:^{
+                y = y - button.frame.size.height - spaceBetweenButtons,
+               /* [UIView animateWithDuration:(EXPAND_DURATION) animations:^{
                     [button setFrame:CGRectMake(button.frame.origin.x, y,
                                                 button.frame.size.width, button.frame.size.height)];
                 }];
-              */
-                
-                y = y - button.frame.size.height - spaceBetweenButtons,
-                lastYPosition = y; 
-                [UIView animateWithDuration: 2
+                */
+             
+                [UIView animateWithDuration: EXPAND_DURATION
                                       delay: 0.0
                                     options: UIViewAnimationOptionCurveLinear
                                  animations:^{
                                      
-
-
                                      [button setFrame:CGRectMake(button.frame.origin.x, y,
                                                                  button.frame.size.width, button.frame.size.height)];
                                      
                                  }
                                  completion:^(BOOL finished){
-
+                                     NSLog(@"");
                                  }];
-                
-                
-                
-                
+               
             }
         }
-        
+        lastYPosition = y;
         isExpanded = YES;
     }
 
