@@ -16,6 +16,8 @@
 #import "GameUIButton.h"
 #import "ButtonExpander.h"
 
+#define CHALKBOARD_LETTER_DELAY 0.1
+
 @interface AlphabetViewController () <ArabicLetterAudioImageViewDelegate> {
     
     IBOutlet GameUIButton* recordButton;
@@ -28,7 +30,7 @@
     
     UIView *view;
     UIImageView *chalkboard;
-//    UILabel *dialogLabel;
+    UILabel *dialogLabel;
     UILabel *chalkboardLabel;
     UILabel *subtitleLabel;
     ButtonExpander *settingsButtonExpander;
@@ -39,9 +41,7 @@
     float songDelay;
     BOOL recordedPlayedOnce;
     //BOOL shouldStopSinging;
-    NSMutableArray *letterImageViewArray;
     BOOL chalkboardNeedsReset;
-    
     BOOL backgroundPlayerPlaying;
 }
 
@@ -68,8 +68,8 @@
 
     //Add Chalkboard in UIView section
     UIImage *cImg = [[UIImage imageNamed:@"Resource/chalkboard.png"] stretchableImageWithLeftCapWidth:3 topCapHeight:5];
-    chalkboard = [[UIImageView alloc] initWithImage:cImg]; //TEMP - until i create the new reduced chalkboard img
-    chalkboard.frame = CGRectMake(132, 65, 331, 210);
+    chalkboard = [[UIImageView alloc] initWithImage:cImg];
+    chalkboard.frame = CGRectMake(145, 65, 331, 210);
     [self.view addSubview:chalkboard];
 
     [self resetChalkboard];
@@ -83,7 +83,7 @@
     [self.view addSubview:dialogLabel];
     
     //Add Miss Samia as Speaker
-    speakerImageView = [[SpeakerImageView alloc] initWithFrame:CGRectMake(19, 29, 119, 290) speaker:currentSpeaker];
+    speakerImageView = [[SpeakerImageView alloc] initWithFrame:CGRectMake(34, 25, 119, 290) speaker:currentSpeaker];
     speakerImageView.contentMode = UIViewContentModeBottomLeft;
     [self.view addSubview:speakerImageView];
     [speakerImageView repeatAnimation:DEFAULT];
@@ -91,35 +91,32 @@
     //Adjust placement of record and play buttons
     [recordButton setImage:[UIImage imageNamed:@"Resource/icon_record.png"] forState:UIControlStateNormal];
     [recordButton setImage:[UIImage imageNamed:@"Resource/icon_stop.png"] forState:UIControlStateSelected];
-    recordButton.origin = CGPointMake(chalkboard.centerX - recordButton.size.width, chalkboard.origin.y+chalkboard.size.height+3);
+    recordButton.origin = CGPointMake(chalkboard.centerX - recordButton.size.width, chalkboard.origin.y+chalkboard.size.height+5);
     recordButton.selected = NO;
-    playButton.origin = CGPointMake(chalkboard.centerX, chalkboard.origin.y+chalkboard.size.height+3);
+    playButton.origin = CGPointMake(chalkboard.centerX, chalkboard.origin.y+chalkboard.size.height+5);
     [playButton setImage:[UIImage imageNamed:@"Resource/icon_stop.png"] forState:UIControlStateSelected];
     
-    [soundButton removeFromSuperview];
+    //Set up the settings icon expanders
+    [homeButton removeFromSuperview];
+    [restartButton removeFromSuperview];
 
     settingsButtonExpander = [[ButtonExpander alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
     [settingsButtonExpander setImage:[UIImage imageNamed:@"Resource/icon_settings.png"] forState:UIControlStateNormal];
     [settingsButtonExpander setFrame:CGRectMake(self.view.frame.origin.x + 5,
-                                                self.screenBounds.height - settingsButtonExpander.imageView.image.size.height - 5,
+                                                self.screenBounds.height - settingsButtonExpander.imageView.image.size.height - 4,
                                                 settingsButtonExpander.imageView.image.size.width,
                                                 settingsButtonExpander.imageView.image.size.height)];
-    [settingsButtonExpander setChildButtonsArray:[[NSArray alloc] initWithObjects: homeButton, nil]]; //JULIE remove sound button
-    //    [settingsButtonExpander setChildButtonsArray:[[NSArray alloc] initWithObjects: homeButton, restartButton, soundButton, nil]]; //JULIE remove sound button
-
+    [settingsButtonExpander setChildButtonsArray:[[NSArray alloc] initWithObjects: homeButton, restartButton, nil]];
     [self.view addSubview:settingsButtonExpander];
     
     [self.view sendSubviewToBack:screenBackground];
-    //[self.view bringSubviewToFront:soundButton];
     [self.view bringSubviewToFront:settingsButtonExpander];
     [self.view bringSubviewToFront:recordButton];
     [self.view bringSubviewToFront:playButton];
-    //[self.view bringSubviewToFront:restartButton];
-   // [self.view bringSubviewToFront:homeButton];
     
     //Add bonus level button
     [bonusLevelButton setImage:[UIImage imageNamed:@"Resource/icon_star.png"] forState:UIControlStateNormal];
-    bonusLevelButton.frame = CGRectMake(restartButton.origin.x, restartButton.origin.y - restartButton.size.height - 10, bonusLevelButton.size.width,bonusLevelButton.size.height);
+    bonusLevelButton.frame = CGRectMake(chalkboard.origin.x+chalkboard.size.width - bonusLevelButton.size.width - 5, recordButton.origin.y, bonusLevelButton.size.width,bonusLevelButton.size.height);
     bonusLevelButton.hidden = YES;
     [self.view addSubview:bonusLevelButton];
     [self.view bringSubviewToFront:bonusLevelButton];
@@ -184,18 +181,18 @@
     
     speakerImageView.hidden = NO;
     
-    //[self displayDialogTextWithKey:@"ThisIs" animationType:TALK completion:^() {
+    [self displayDialogTextWithKey:@"ThisIs" animationType:TALK completion:^() {
     
-   //     [self singAndSpellArabicAlphabetForDuration: -1 withCompletion:^() {
+        [self singAndSpellArabicAlphabetForDuration: -1 withCompletion:^() {
 
             [self displayDialogTextWithKey:@"SingAlong" animationType:TALK completion:^() {
                 [self startRecordingPhase];
 
             }];
             
-    //    }];
+        }];
         
-   // }];
+    }];
     
 }
 
@@ -253,16 +250,14 @@
     
 }
 
+
 -(void)displayLettersOnChalkboardWithCompletion:(void(^)())completion {
     NSUInteger tileSize = 44;
-    
     ArabicLetter *arabicLetter;
     NSString *soundFile;
     ArabicLetterAudioImageView *arabicLetterView;
     
     //Display all the letters on the chalkboard
-    letterImageViewArray = [[NSMutableArray alloc] init];
-    float delay = 0.1;
     NSUInteger row = 0;
     NSUInteger space = 2;  //allow 2 pixels between rows
     NSUInteger mx = 0;
@@ -280,27 +275,40 @@
         mx = mx + tileSize + space;
         
         arabicLetterView.delegate = self;
-        dispatch_after(DISPATCH_SECONDS_FROM_NOW(delay*i), dispatch_get_main_queue(), ^{
+        
+        dispatch_after(DISPATCH_SECONDS_FROM_NOW(CHALKBOARD_LETTER_DELAY*i), dispatch_get_main_queue(), ^{
             
             arabicLetterView.frame = CGRectMake(chalkboard.size.width - mx - space,
                                                 tileSize*(row-1) + space*3*(row),
                                                 tileSize, tileSize);
             
-            [letterImageViewArray addObject:arabicLetterView];
-
             [chalkboard addSubview:arabicLetterView];
             [chalkboard bringSubviewToFront:arabicLetterView];
             
         });
+        
     }
     
     completion();
 }
 
--(void)startBonusPhase {
-    [chalkboard removeAllSubviews];
+-(void)reenableRecordAndPlay {
+    [recordButton setEnabled:YES];
+    [playButton setEnabled:YES];
+    [bonusLevelButton setEnabled:YES];
+}
 
+-(void)startBonusPhase {
+    [recordButton setEnabled:NO];
+    [playButton setEnabled:NO];
+    [bonusLevelButton setEnabled:NO];
+    
     [self displayLettersOnChalkboardWithCompletion:^(){ }];
+    
+    dispatch_after(DISPATCH_SECONDS_FROM_NOW(CHALKBOARD_LETTER_DELAY*28), dispatch_get_main_queue(), ^{
+        [self reenableRecordAndPlay];
+    });
+
     chalkboardNeedsReset = YES;
 }
 
@@ -418,10 +426,12 @@
     subtitleLabel.text = arabicLetter.letterName;    
 }
 
+/* Completion block for performSelector withDeplay method */
 - (void)finishAnimateAndSingAlphabetWithCompletion:(void((^)()) )completion  {
     completion();
 }
 
+/* Assist method to cancel previous requests to performSelector withDeplay method */
 - (void)cancelAnimateAndSingAlphabet {
     [NSObject cancelPreviousPerformRequestsWithTarget:self];
 }
@@ -546,8 +556,8 @@
 
 -(IBAction)bonusButtonTouched:(id)sender{
     // Clear the Chalkboard
-    chalkboardLabel.text = @"";
-    subtitleLabel.text = @"";
+    [chalkboard removeAllSubviews];
+
     // Start bonus level
     [self startBonusPhase];
 }
