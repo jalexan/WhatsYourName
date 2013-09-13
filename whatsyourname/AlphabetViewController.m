@@ -102,7 +102,7 @@
 
     settingsButtonExpander = [[ButtonExpander alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
     [settingsButtonExpander setImage:[UIImage imageNamed:@"Resource/icon_settings.png"] forState:UIControlStateNormal];
-    [settingsButtonExpander setFrame:CGRectMake(self.view.frame.origin.x + 5,
+    [settingsButtonExpander setFrame:CGRectMake( 5,
                                                 self.screenBounds.height - settingsButtonExpander.imageView.image.size.height - 4,
                                                 settingsButtonExpander.imageView.image.size.width,
                                                 settingsButtonExpander.imageView.image.size.height)];
