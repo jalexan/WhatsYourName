@@ -14,6 +14,7 @@
 
 #define NON_PRIMARY_SPEAKER_IMAGE_SCALE .90
 #define MAX_NAME_LENGTH 9
+#define HINT_TEXT_SIZE 15
 #define DIALOG_LABEL_ZOOM_FACTOR 2.6
 
 @interface NameGameViewController () {
@@ -302,7 +303,7 @@
     f.size = CGSizeMake(f.size.width,f.size.height*(1.0/DIALOG_LABEL_ZOOM_FACTOR));
     dialogLabel.frame = f;
 
-    dialogLabel.font = [dialogLabel.font fontWithSize:dialogLabel.font.pointSize-13];
+    dialogLabel.font = [dialogLabel.font fontWithSize:HINT_TEXT_SIZE];
     dialogLabel.numberOfLines = 2;
     
     dialogLabel.backgroundColor = [UIColor clearColor];
@@ -347,7 +348,7 @@
     
     NSString* text = @"Hint: You can use capitals or numbers like this: S = saad, D = daad, T = Taa,\nZ = Thaa, 2 = alef hamza, 3 = 'ein, 5 = ghein, 7 or H = Ha";
     
-    dialogLabel.font = [UIFont fontWithName:@"MarkerFelt-Thin" size:15];
+    dialogLabel.font = [UIFont fontWithName:@"MarkerFelt-Thin" size:HINT_TEXT_SIZE];
     dialogLabel.text = text;
     
     
