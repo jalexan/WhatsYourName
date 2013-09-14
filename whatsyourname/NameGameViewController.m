@@ -194,8 +194,11 @@
         }
     }
 
-    dialogLabel.font = [UIFont fontWithName:@"MarkerFelt-Thin" size:dialogLabel.font.pointSize];
-    dialogLabel.text = text;
+    //Don't change text if the hint text is being displayed
+    if (!dialogZoomButton.superview) {
+        dialogLabel.font = [UIFont fontWithName:@"MarkerFelt-Thin" size:dialogLabel.font.pointSize];
+        dialogLabel.text = text;
+    }
    
     NSTimeInterval dialogDuration = [self getDurationAndPlaySpeakerDialogAudioWithKey:key prefix:mainSpeaker.name suffix:@"English"];
     
@@ -211,8 +214,11 @@
     
     dispatch_after(DISPATCH_SECONDS_FROM_NOW(dialogDuration), dispatch_get_main_queue(), ^{
         
-        dialogLabel.font = [UIFont fontWithName:@"GeezaPro-Bold" size:dialogLabel.font.pointSize];
-        dialogLabel.text = arabicText;
+        //Don't change text if the hint text is being displayed
+        if (!dialogZoomButton.superview) {
+            dialogLabel.font = [UIFont fontWithName:@"GeezaPro-Bold" size:dialogLabel.font.pointSize];
+            dialogLabel.text = arabicText;
+        }
         
         NSTimeInterval dialogDuration = [self getDurationAndPlaySpeakerDialogAudioWithKey:key prefix:mainSpeaker.name suffix:@"Arabic"];
         
