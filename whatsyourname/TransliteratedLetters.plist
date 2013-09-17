@@ -30,6 +30,24 @@
 		<key>middle</key>
 		<string>alef madda</string>
 	</dict>
+	<key>anne</key>
+	<dict>
+		<key>initial</key>
+		<string>alef madda, noon</string>
+		<key>middle</key>
+		<string>alef, noon</string>
+		<key>final</key>
+		<string>alef, noon</string>
+	</dict>
+	<key>ann</key>
+	<dict>
+		<key>initial</key>
+		<string>alef madda, noon</string>
+		<key>middle</key>
+		<string>alef, noon</string>
+		<key>final</key>
+		<string>alef, noon</string>
+	</dict>
 	<key>alla</key>
 	<dict>
 		<key>initial</key>
@@ -239,7 +257,7 @@
 	<key>5</key>
 	<dict>
 		<key>initial</key>
-		<string>ghien</string>
+		<string>ghein</string>
 		<key>middle</key>
 		<string>ghein</string>
 	</dict>
@@ -304,9 +322,9 @@
 	<key>ette</key>
 	<dict>
 		<key>initial</key>
-		<string>teh</string>
+		<string>alef hamza, teh</string>
 		<key>middle</key>
-		<string>teh</string>
+		<string>yeh, teh</string>
 	</dict>
 	<key>m</key>
 	<dict>
@@ -316,6 +334,13 @@
 		<string>meem</string>
 	</dict>
 	<key>n</key>
+	<dict>
+		<key>initial</key>
+		<string>noon</string>
+		<key>middle</key>
+		<string>noon</string>
+	</dict>
+	<key>nn</key>
 	<dict>
 		<key>initial</key>
 		<string>noon</string>
@@ -344,6 +369,13 @@
 		<string>wow</string>
 	</dict>
 	<key>p</key>
+	<dict>
+		<key>initial</key>
+		<string>beh</string>
+		<key>middle</key>
+		<string>beh</string>
+	</dict>
+	<key>pp</key>
 	<dict>
 		<key>initial</key>
 		<string>beh</string>
@@ -407,6 +439,13 @@
 		<string>sheen</string>
 	</dict>
 	<key>t</key>
+	<dict>
+		<key>initial</key>
+		<string>teh</string>
+		<key>middle</key>
+		<string>teh</string>
+	</dict>
+	<key>tt</key>
 	<dict>
 		<key>initial</key>
 		<string>teh</string>
