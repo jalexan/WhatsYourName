@@ -101,7 +101,18 @@
     }];
     
 }
-
+- (IBAction)backButtonTouched:(id)sender {
+    [self.audioManager stopAudio:@"talking"];
+    self.audioManager = nil;
+    [NSObject cancelPreviousPerformRequestsWithTarget:self];
+    
+    NSArray* viewControllers = self.navigationController.viewControllers;
+    if (viewControllers.count>1) {
+        NameGameViewController* vc = (NameGameViewController*)viewControllers[viewControllers.count-2];
+        vc.playerNameArabic = translatedArabicName;
+    }
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 /*
 - (NSString*)translatedLetterArrayForEnglishName:(NSString*)name {
