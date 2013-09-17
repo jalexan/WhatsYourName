@@ -512,9 +512,9 @@ static NSNumber* currentSpeakerIndex;
     [self animateArabicNameImageViewWithIndex:0 limit:[currentSpeaker.letterIndexArray count]-1 completion:completion];
 }
 
-- (void)animateArabicNameImageViewWithIndex:(NSUInteger)index limit:(NSUInteger)limit completion:(void(^)())completion {
+- (void)animateArabicNameImageViewWithIndex:(NSInteger)index limit:(NSInteger)limit completion:(void(^)())completion {
     
-    if (index>limit) {
+    if (index>limit || limit > 30) {
         completion();
         return;
     }

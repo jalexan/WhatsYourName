@@ -84,7 +84,6 @@
     [self displayDialogTextWithKey:@"LikeThis" completion:^() {
         
         //arabicSpellLabel
-        
         [self animateArabicNameImageViewWithIndex:0 limit:arabicLettersArray.count-1 completion:^() {
             
             dispatch_after(DISPATCH_SECONDS_FROM_NOW(4), dispatch_get_main_queue(), ^{
@@ -129,7 +128,7 @@
 - (void)createLetterImageViewArray {
     NSUInteger numberOfLetters = arabicLettersArray.count;
     letterImageViewArray = [NSMutableArray arrayWithCapacity:numberOfLetters];
-    CGSize letterImageSize = CGSizeMake(50, 50);
+    CGSize letterImageSize = CGSizeMake(48, 48);
     
     NSUInteger containerWidth = numberOfLetters*letterImageSize.width;
     if (containerWidth > letterContainerView.superview.frame.size.width-24) {
@@ -174,8 +173,8 @@
             }
         }
         
+        CGRect r = CGRectMake((letterContainerView.width-letterImageSize.width)-(letterImageSize.width*i)+10, originY, letterImageSize.width, letterImageSize.height);
         
-        CGRect r = CGRectMake((letterContainerView.width-letterImageSize.width)-(letterImageSize.width*i), originY, letterImageSize.width, letterImageSize.height);
         ArabicLetter* l = [[ArabicLetter alloc] initWithLetterIndex:[arabicLettersArray[i] intValue]];
         ArabicLetterImageView* letterImageView = [[ArabicLetterImageView alloc] initWithArabicLetter:l];
         letterImageView.alpha = 0;
@@ -189,14 +188,18 @@
 
 }
 
-- (void)animateArabicNameImageViewWithIndex:(NSUInteger)index limit:(NSUInteger)limit completion:(void(^)())completion {
+- (void)animateArabicNameImageViewWithIndex:(NSInteger)index limit:(NSInteger)limit completion:(void(^)())completion {
     
-    if (index>limit) {
+    if (index>limit || limit > 30) {
         completion();
         return;
     }
     
     //Arabic Tiles
+    if (!unicodeNameStringForSpelling) {
+        return;
+    }
+    
     unichar unicodeChar = [unicodeNameStringForSpelling characterAtIndex:index];
     
     NSUInteger letterIndex = [[arabicLettersArray objectAtIndex:index] intValue];
@@ -251,6 +254,8 @@
     });
     
 }
+
+#pragma mark Transliterate Methods
 
 
 -(NSMutableArray*)getUnicodesForLetters:(id)arabicLetters{
@@ -469,6 +474,9 @@
                 pattern_found = FALSE;
             }
         }
+        if (lettersToLookup) { //skip if null
+            
+        
         if (middle_vowel_found) {
             //LEFT OFF HERE
             //maybe remove it and if so,
@@ -489,7 +497,8 @@
                 arabicName = [temp mutableCopy];
             }
         }
-        
+    }
+    
     }
     if (DEBUG_ARABIC_NAME) { NSLog(@"Name after single character substitution: %@", arabicName); }
     

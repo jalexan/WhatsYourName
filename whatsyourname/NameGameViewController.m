@@ -13,7 +13,7 @@
 #import "NameSpellViewController.h"
 
 #define NON_PRIMARY_SPEAKER_IMAGE_SCALE .90
-#define MAX_NAME_LENGTH 9
+#define MAX_NAME_LENGTH 10
 #define DIALOG_LABEL_ZOOM_FACTOR 2.6
 
 @interface NameGameViewController () {
