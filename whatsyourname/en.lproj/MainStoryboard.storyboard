@@ -128,6 +128,21 @@
                                     <action selector="bookLinkButtonTouched:" destination="Tbj-Y2-qDz" eventType="touchUpInside" id="Q08-0g-Tij"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="hyg-it-HiP" customClass="GameUIButton">
+                                <rect key="frame" x="12" y="161" width="39" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" image="Resource/icon_facebook.png">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="facebookButtonTouched:" destination="Tbj-Y2-qDz" eventType="touchUpInside" id="H6O-vw-m1q"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
@@ -141,6 +156,7 @@
                         <outlet property="bookLinkButton" destination="ufh-pn-iul" id="K3C-cT-Kly"/>
                         <outlet property="creditsBackButton" destination="SaY-8R-jSN" id="GYB-cS-pMX"/>
                         <outlet property="creditsButton" destination="YOf-2P-KJq" id="CRQ-BT-Zbd"/>
+                        <outlet property="facebookButton" destination="hyg-it-HiP" id="Rvo-if-VMf"/>
                         <outlet property="playButton" destination="6rJ-97-9Ur" id="duh-Ir-qpq"/>
                     </connections>
                 </viewController>
@@ -414,6 +430,34 @@
                                     <action selector="goodByeButtonTouched:" destination="MVX-A1-ViX" eventType="touchUpInside" id="bex-67-mjH"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="6Vt-ZY-k0I" customClass="GameUIButton">
+                                <rect key="frame" x="444" y="281" width="32" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Home" image="Resource/icon_home.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="homeButtonTouched:" destination="MVX-A1-ViX" eventType="touchUpInside" id="GKG-Gu-Ckb"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="QGR-eO-RxS" customClass="GameUIButton">
+                                <rect key="frame" x="439" y="239" width="39" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Restart" image="Resource/icon_restart_circle.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="restartButtonTouched:" destination="MVX-A1-ViX" eventType="touchUpInside" id="ks0-63-YjQ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
@@ -427,7 +471,9 @@
                         <outlet property="background" destination="u2S-xJ-ufr" id="1cT-9M-Usn"/>
                         <outlet property="dialogLabel" destination="CbC-Xj-Sxd" id="w67-GU-pCT"/>
                         <outlet property="goodByeButton" destination="iVx-Ek-W1U" id="CTa-8g-RNC"/>
+                        <outlet property="homeButton" destination="6Vt-ZY-k0I" id="HBX-R4-hUw"/>
                         <outlet property="nameTextField" destination="H7T-JC-GlF" id="Afz-vY-oCh"/>
+                        <outlet property="restartButton" destination="QGR-eO-RxS" id="XcC-uZ-Sik"/>
                         <segue destination="j5i-na-qqL" kind="push" identifier="SpellSegue" id="Hhw-8J-YMy"/>
                     </connections>
                 </viewController>
@@ -529,8 +575,11 @@
         <image name="Resource/icon_book.png" width="16" height="16"/>
         <image name="Resource/icon_choose_game.png" width="16" height="16"/>
         <image name="Resource/icon_credits.png" width="16" height="16"/>
+        <image name="Resource/icon_facebook.png" width="16" height="16"/>
+        <image name="Resource/icon_home.png" width="16" height="16"/>
         <image name="Resource/icon_play.png" width="16" height="16"/>
         <image name="Resource/icon_record.png" width="16" height="16"/>
+        <image name="Resource/icon_restart_circle.png" width="16" height="16"/>
         <image name="Resource/icon_say_goodbye.png" width="16" height="16"/>
         <image name="Resource/icon_star.png" width="16" height="16"/>
         <image name="Resource/lock.png" width="16" height="16"/>
@@ -617,7 +666,7 @@
                 <relationship kind="outlet" name="bookLinkButton" candidateClass="GameUIButton"/>
                 <relationship kind="outlet" name="creditsBackButton" candidateClass="GameUIButton"/>
                 <relationship kind="outlet" name="creditsButton" candidateClass="GameUIButton"/>
-                <relationship kind="outlet" name="moreGamesButton" candidateClass="GameUIButton"/>
+                <relationship kind="outlet" name="facebookButton" candidateClass="GameUIButton"/>
                 <relationship kind="outlet" name="playButton" candidateClass="GameUIButton"/>
             </relationships>
         </class>

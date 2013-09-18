@@ -19,7 +19,7 @@
     IBOutlet GameUIButton* bookLinkButton;
     IBOutlet GameUIButton* creditsButton;
     IBOutlet GameUIButton* creditsBackButton;
-    IBOutlet GameUIButton* moreGamesButton;
+    IBOutlet GameUIButton* facebookButton;
     IBOutlet GameUIButton* playButton;
     UIScrollView* creditsScreen;
     AudioManager* audioManager;
@@ -68,6 +68,13 @@
     
 }
 
+-(IBAction)facebookButtonTouched:(id)sender {
+
+   GameWebViewController *fbwebController = [[GameWebViewController alloc] initWithNibName:nil bundle:nil];
+   [fbwebController openURL:[NSURL URLWithString:@"http://www.facebook.com/noliafasolia"]];
+   [self.navigationController pushViewController:fbwebController animated:YES];
+}
+
 -(IBAction)creditsBackButtonTouched:(id)sender {
     creditsBackButton.hidden = YES;
     [creditsScreen setContentOffset:CGPointMake(0, 0)];
@@ -78,7 +85,7 @@
 -(IBAction)creditsButtonTouched:(id)sender {
     bookLinkButton.hidden = YES;
     creditsButton.hidden = YES;
-    moreGamesButton.hidden = YES;
+    facebookButton.hidden = YES;
     playButton.hidden = YES;
     creditsBackButton.hidden = NO;
 
@@ -143,7 +150,7 @@
     bookLinkButton.hidden = YES;
     creditsButton.hidden = YES;
     creditsBackButton.hidden = YES;
-    moreGamesButton.hidden = YES;
+    facebookButton.hidden = YES;
     playButton.hidden = YES;
     playButton.backgroundColor = [UIColor clearColor];
 }
@@ -187,7 +194,7 @@
 -(void)showButtons {
     bookLinkButton.hidden = NO;
     creditsButton.hidden = NO;
-    moreGamesButton.hidden = NO;
+    facebookButton.hidden = NO;
     playButton.hidden = NO;
 }
 
