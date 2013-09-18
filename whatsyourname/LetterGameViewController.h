@@ -12,7 +12,7 @@
 
 
 
-@interface LetterGameViewController : GameController {
+@interface LetterGameViewController : GameController<UIGestureRecognizerDelegate> {
     IBOutlet UIView* arabicNameView;
     IBOutlet UIView* slotContainerView;
     IBOutlet UIView* mixedUpLettersAreaView;

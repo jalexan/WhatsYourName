@@ -9,7 +9,7 @@
 #import "GameController.h"
 
 @interface GameController () {
-    
+    UITapGestureRecognizer *gr;
 }
 
 @end
@@ -39,6 +39,23 @@
     
     self.audioManager = [AudioManager sharedInstance];
     
+    //home, restart and sound buttons are NOT added to this view so that Button Expander can add them later
+    homeButton = [[GameUIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
+    [homeButton setImage:[UIImage imageNamed:@"Resource/icon_home.png"] forState:UIControlStateNormal];
+    homeButton.frame = CGRectMake(0,0,homeButton.imageView.size.width, homeButton.imageView.size.height);
+    gr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(homeButtonTouched)];
+    [homeButton addGestureRecognizer:gr];
+    
+    restartButton = [[GameUIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
+    [restartButton setImage:[UIImage imageNamed:@"Resource/icon_restart_circle.png"] forState:UIControlStateNormal];
+    restartButton.frame = CGRectMake(0,0,restartButton.imageView.size.width, restartButton.imageView.size.height);
+    gr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(restartButtonTouched)];
+    [restartButton addGestureRecognizer:gr];
+    
+    soundButton = [[GameUIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
+    gr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(soundButtonTouched)];
+    [soundButton addGestureRecognizer:gr];
+    
     [soundButton setImage:[UIImage imageNamed:@"Resource/icon_music.png"] forState:UIControlStateNormal];
     [soundButton setImage:[UIImage imageNamed:@"Resource/icon_music_off.png"] forState:UIControlStateSelected];
     
@@ -64,21 +81,21 @@
 }
 
 
-- (IBAction)homeButtonTouched:(id)sender {
+- (void)homeButtonTouched {
     [self.audioManager stopAudio:@"talking"];
     self.audioManager = nil;
     [NSObject cancelPreviousPerformRequestsWithTarget:self];
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
-- (IBAction)restartButtonTouched:(id)sender {
+- (void)restartButtonTouched {
     [self.audioManager stopAudio:@"talking"];
     self.audioManager = nil;
     [NSObject cancelPreviousPerformRequestsWithTarget:self];
     
 }
 
-- (IBAction)soundButtonTouched:(id)sender {
+- (void)soundButtonTouched {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     if (audioManager.backgroundPlayer.isPlaying) {
         [audioManager.backgroundPlayer pause];

@@ -11,6 +11,7 @@
 #import "SpeakerImageView.h"
 #import "SpeakerList.h"
 #import "NameSpellViewController.h"
+#import "ButtonExpander.h"
 
 #define NON_PRIMARY_SPEAKER_IMAGE_SCALE .90
 #define MAX_NAME_LENGTH 10
@@ -26,6 +27,8 @@
     NSString* playerName;
     UIFont* originalDialogLabelFont;
     UIButton* dialogZoomButton;
+    ButtonExpander *settingsButtonExpander;
+    
 }
 
 - (IBAction)dialogLabelTouchDown:(id)sender;
@@ -82,6 +85,18 @@
         
         index++;
     }
+    
+    //Set up the settings icon expanders
+    settingsButtonExpander = [[ButtonExpander alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+    [settingsButtonExpander setImage:[UIImage imageNamed:@"Resource/icon_settings.png"] forState:UIControlStateNormal];
+    [settingsButtonExpander setFrame:CGRectMake( 3,
+                                                self.screenBounds.height - settingsButtonExpander.imageView.image.size.height-3,
+                                                settingsButtonExpander.imageView.image.size.width,
+                                                settingsButtonExpander.imageView.image.size.height)];
+    [settingsButtonExpander setChildButtonsArray:[[NSArray alloc] initWithObjects: homeButton, restartButton, soundButton, nil]];
+    [self.view addSubview:settingsButtonExpander];
+    
+    [self.view bringSubviewToFront:settingsButtonExpander];
     
 }
 
@@ -151,8 +166,8 @@
     
 }
 
-- (IBAction)restartButtonTouched:(id)sender {
-    [super restartButtonTouched:sender];
+- (void)restartButtonTouched {
+    [super restartButtonTouched];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:kPopViewControllerNotification object:self];
 }

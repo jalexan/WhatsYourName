@@ -32,53 +32,10 @@
                                 <rect key="frame" x="175" y="248" width="289" height="49"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="96C-zx-Jmw" customClass="GameUIButton">
-                                <rect key="frame" x="7" y="281" width="32" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" image="sound_on.png">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="soundButtonTouched:" destination="2" eventType="touchUpInside" id="Bob-3A-t1k"/>
-                                </connections>
-                            </button>
                             <view hidden="YES" contentMode="scaleToFill" id="Pim-J2-tjb" customClass="GameProgressView">
                                 <rect key="frame" x="46" y="131" width="388" height="58"/>
                                 <autoresizingMask key="autoresizingMask"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="aUq-Au-kZq" customClass="GameUIButton">
-                                <rect key="frame" x="449" y="284" width="27" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Home" image="Resource/icon_home.png">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="homeButtonTouched:" destination="2" eventType="touchUpInside" id="blJ-d0-NvU"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="oMb-nX-KH6" customClass="GameUIButton">
-                                <rect key="frame" x="440" y="243" width="39" height="37"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Restart" image="Resource/icon_restart_circle.png">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="restartButtonTouched:" destination="2" eventType="touchUpInside" id="ZpL-JU-dnL"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
@@ -91,11 +48,8 @@
                         <outlet property="arabicNameView" destination="F03-GT-4x9" id="3QN-Zd-mUn"/>
                         <outlet property="dialogLabel" destination="4g7-YX-LaA" id="voO-g9-zhi"/>
                         <outlet property="gameProgressView" destination="Pim-J2-tjb" id="8Cs-bX-SRi"/>
-                        <outlet property="homeButton" destination="aUq-Au-kZq" id="dfK-Ui-6K6"/>
                         <outlet property="mixedUpLettersAreaView" destination="oUu-Jv-0Vm" id="u0t-46-3R8"/>
-                        <outlet property="restartButton" destination="oMb-nX-KH6" id="Asm-XD-GNe"/>
                         <outlet property="slotContainerView" destination="vAG-pL-KWb" id="ipH-o0-YNm"/>
-                        <outlet property="soundButton" destination="96C-zx-Jmw" id="LWC-gd-Xz0"/>
                         <segue destination="L4G-Pe-ZjN" kind="push" identifier="SurpriseSegue" id="WzV-xY-BYz"/>
                     </connections>
                 </viewController>
@@ -326,7 +280,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Whc-id-60w" customClass="GameUIButton">
-                                <rect key="frame" x="438" y="194" width="40" height="37"/>
+                                <rect key="frame" x="433" y="278" width="40" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Bonus" image="Resource/icon_star.png">
@@ -367,34 +321,6 @@
                                     <action selector="playButtonTouched:" destination="lef-yX-ejV" eventType="touchUpInside" id="4Fy-HT-MNZ"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="cQk-cn-3qJ" customClass="GameUIButton">
-                                <rect key="frame" x="443" y="280" width="30" height="33"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Home" image="Resource/icon_home.png">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="homeButtonTouched:" destination="lef-yX-ejV" eventType="touchUpInside" id="1ud-gG-GXE"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="yyp-cs-bf3" customClass="GameUIButton">
-                                <rect key="frame" x="437" y="239" width="40" height="37"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Restart" image="Resource/icon_restart_circle.png">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="restartButtonTouched:" destination="lef-yX-ejV" eventType="touchUpInside" id="TPi-XK-Wb8"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
@@ -406,10 +332,8 @@
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
                         <outlet property="bonusLevelButton" destination="Whc-id-60w" id="qtF-PX-vSN"/>
-                        <outlet property="homeButton" destination="cQk-cn-3qJ" id="ViP-Q9-yE9"/>
                         <outlet property="playButton" destination="tNP-LR-j3Z" id="kW1-ik-dqb"/>
                         <outlet property="recordButton" destination="geb-94-WCt" id="Git-xj-syT"/>
-                        <outlet property="restartButton" destination="yyp-cs-bf3" id="6e3-KL-fdn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="smg-WV-peC" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -490,49 +414,6 @@
                                     <action selector="goodByeButtonTouched:" destination="MVX-A1-ViX" eventType="touchUpInside" id="bex-67-mjH"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="mFS-bI-rbP" customClass="GameUIButton">
-                                <rect key="frame" x="5" y="283" width="32" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" image="sound_on.png">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="soundButtonTouched:" destination="MVX-A1-ViX" eventType="touchUpInside" id="nak-ZH-NeF"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="6Vt-ZY-k0I" customClass="GameUIButton">
-                                <rect key="frame" x="444" y="281" width="32" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Home" image="Resource/icon_home.png">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="homeButtonTouched:" destination="MVX-A1-ViX" eventType="touchUpInside" id="GKG-Gu-Ckb"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="QGR-eO-RxS" customClass="GameUIButton">
-                                <rect key="frame" x="439" y="239" width="39" height="37"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Restart" image="Resource/icon_restart_circle.png">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="restartButtonTouched:" destination="MVX-A1-ViX" eventType="touchUpInside" id="ks0-63-YjQ"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
@@ -546,10 +427,7 @@
                         <outlet property="background" destination="u2S-xJ-ufr" id="1cT-9M-Usn"/>
                         <outlet property="dialogLabel" destination="CbC-Xj-Sxd" id="w67-GU-pCT"/>
                         <outlet property="goodByeButton" destination="iVx-Ek-W1U" id="CTa-8g-RNC"/>
-                        <outlet property="homeButton" destination="6Vt-ZY-k0I" id="HBX-R4-hUw"/>
                         <outlet property="nameTextField" destination="H7T-JC-GlF" id="Afz-vY-oCh"/>
-                        <outlet property="restartButton" destination="QGR-eO-RxS" id="XcC-uZ-Sik"/>
-                        <outlet property="soundButton" destination="mFS-bI-rbP" id="bDW-zv-WVK"/>
                         <segue destination="j5i-na-qqL" kind="push" identifier="SpellSegue" id="Hhw-8J-YMy"/>
                     </connections>
                 </viewController>
@@ -651,10 +529,8 @@
         <image name="Resource/icon_book.png" width="16" height="16"/>
         <image name="Resource/icon_choose_game.png" width="16" height="16"/>
         <image name="Resource/icon_credits.png" width="16" height="16"/>
-        <image name="Resource/icon_home.png" width="16" height="16"/>
         <image name="Resource/icon_play.png" width="16" height="16"/>
         <image name="Resource/icon_record.png" width="16" height="16"/>
-        <image name="Resource/icon_restart_circle.png" width="16" height="16"/>
         <image name="Resource/icon_say_goodbye.png" width="16" height="16"/>
         <image name="Resource/icon_star.png" width="16" height="16"/>
         <image name="Resource/lock.png" width="16" height="16"/>
@@ -663,8 +539,95 @@
         <image name="Speakers/Nolia/Images/level_select_bonus_locked.png" width="16" height="16"/>
         <image name="Speakers/Samia/Images/level_select.png" width="16" height="16"/>
         <image name="question_mark.png" width="117" height="177"/>
-        <image name="sound_on.png" width="128" height="128"/>
     </resources>
+    <classes>
+        <class className="AlphabetViewController" superclassName="GameController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AlphabetViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="bonusButtonTouched:"/>
+                <relationship kind="action" name="playButtonTouched:"/>
+                <relationship kind="action" name="recordButtonTouched:"/>
+                <relationship kind="outlet" name="bonusLevelButton" candidateClass="GameUIButton"/>
+                <relationship kind="outlet" name="playButton" candidateClass="GameUIButton"/>
+                <relationship kind="outlet" name="recordButton" candidateClass="GameUIButton"/>
+            </relationships>
+        </class>
+        <class className="ChooseLevelViewController" superclassName="GameController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ChooseLevelViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="AlphabetLevelButtonTouched:"/>
+                <relationship kind="action" name="Level4ButtonTouched:"/>
+                <relationship kind="action" name="backButtonTouched:"/>
+                <relationship kind="outlet" name="AlphabetLevelButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="backButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="bonusLevelLockedImageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="level4GameUIButton" candidateClass="GameUIButton"/>
+                <relationship kind="outlet" name="lockImageView" candidateClass="UIImageView"/>
+            </relationships>
+        </class>
+        <class className="GameController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/GameController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="dialogLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="GameProgressView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/GameProgressView.h"/>
+        </class>
+        <class className="GameUIButton" superclassName="UIButton">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/GameUIButton.h"/>
+        </class>
+        <class className="GameUIView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/GameUIView.h"/>
+        </class>
+        <class className="LetterGameViewController" superclassName="GameController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LetterGameViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="arabicNameView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="gameProgressView" candidateClass="GameProgressView"/>
+                <relationship kind="outlet" name="mixedUpLettersAreaView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="slotContainerView" candidateClass="UIView"/>
+            </relationships>
+        </class>
+        <class className="NameGameViewController" superclassName="GameController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NameGameViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="dialogLabelTouchDown:"/>
+                <relationship kind="action" name="dialogLabelTouchUp:"/>
+                <relationship kind="action" name="goodByeButtonTouched:"/>
+                <relationship kind="outlet" name="background" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="goodByeButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="nameTextField" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="NameSpellViewController" superclassName="GameController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NameSpellViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="arabicSpellLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="background" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="letterContainerView" candidateClass="UIView"/>
+            </relationships>
+        </class>
+        <class className="StartScreenViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/StartScreenViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="bookLinkButtonTouched:"/>
+                <relationship kind="action" name="creditsBackButtonTouched:"/>
+                <relationship kind="action" name="creditsButtonTouched:"/>
+                <relationship kind="outlet" name="bookLinkButton" candidateClass="GameUIButton"/>
+                <relationship kind="outlet" name="creditsBackButton" candidateClass="GameUIButton"/>
+                <relationship kind="outlet" name="creditsButton" candidateClass="GameUIButton"/>
+                <relationship kind="outlet" name="moreGamesButton" candidateClass="GameUIButton"/>
+                <relationship kind="outlet" name="playButton" candidateClass="GameUIButton"/>
+            </relationships>
+        </class>
+        <class className="SurpriseViewController" superclassName="GameController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SurpriseViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="question" candidateClass="UIImageView"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

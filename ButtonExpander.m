@@ -43,6 +43,7 @@
     for (NSInteger i=0; i<[childButtonsArray count]; i++) {
         button = [childButtonsArray objectAtIndex:i];
         [button setFrame:CGRectMake(self.frame.size.width/2 - button.frame.size.width/2, self.frame.origin.y, button.frame.size.width, button.frame.size.height)];
+
         [self addSubview:button];
         [self sendSubviewToBack:button];
         button.hidden = YES;
@@ -77,7 +78,7 @@
                                     options: UIViewAnimationOptionCurveLinear
                                  animations:^{
                                      
-                                     [button setFrame:CGRectMake(button.frame.origin.x, 0,
+                                     [button setFrame:CGRectMake(button.frame.origin.x, 2,
                                                                  button.frame.size.width, button.frame.size.height)];
                                      
                                  }

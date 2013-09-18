@@ -18,6 +18,7 @@
 #import "ProgressCircleImageView.h"
 #import "ShuffleImageView.h"
 #import "StarImageView.h"
+#import "ButtonExpander.h"
 
 #define ARC4RANDOM_MAX  0x100000000
 #define NUMBER_OF_SUCCESS_STARS 150
@@ -48,7 +49,7 @@ static NSNumber* currentSpeakerIndex;
     
     BOOL playedEnglishErrorAudio;
     BOOL levelRestarted; //When level is restarted make sure currentSpeakerIndex isn't incremented
-    
+    ButtonExpander *settingsButtonExpander;
 }
 @end
 
@@ -140,7 +141,7 @@ static NSNumber* currentSpeakerIndex;
     NSString* backgroundPath = [NSString stringWithFormat:@"Speakers/%@/Images/background.png",currentSpeaker.name];
     screenBackground.image = [UIImage imageNamed:backgroundPath];
     
-    speakerImageView = [[SpeakerImageView alloc] initWithFrame:CGRectMake(16, self.screenBounds.height+94, 140, 216) speaker:currentSpeaker];
+    speakerImageView = [[SpeakerImageView alloc] initWithFrame:CGRectMake(24, self.screenBounds.height+94, 140, 216) speaker:currentSpeaker];
     speakerImageView.hidden = YES;
     [scrollView addSubview:speakerImageView];
     speakerImageView.contentMode = UIViewContentModeBottomLeft;
@@ -148,6 +149,18 @@ static NSNumber* currentSpeakerIndex;
     
     shuffleImageView = [[ShuffleImageView alloc] initWithFrame:CGRectMake(self.view.right,speakerImageView.bottom-219,183,219) speaker:currentSpeaker];
     [scrollView addSubview:shuffleImageView];
+    
+    // Add settings button
+    settingsButtonExpander = [[ButtonExpander alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+    [settingsButtonExpander setImage:[UIImage imageNamed:@"Resource/icon_settings.png"] forState:UIControlStateNormal];
+    [settingsButtonExpander setFrame:CGRectMake( 3,
+                                                self.screenBounds.height - settingsButtonExpander.imageView.image.size.height-3,
+                                                settingsButtonExpander.imageView.image.size.width,
+                                                settingsButtonExpander.imageView.image.size.height)];
+    
+    [settingsButtonExpander setChildButtonsArray:[[NSArray alloc] initWithObjects: homeButton, restartButton, soundButton, nil]];
+    [self.view addSubview:settingsButtonExpander];
+    [self.view bringSubviewToFront:settingsButtonExpander];
     
     //Clear arabic name spelling
     [[arabicNameView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
@@ -174,6 +187,8 @@ static NSNumber* currentSpeakerIndex;
         subviewOriginDictionary[@"arabicNameView"] = [NSValue valueWithCGPoint:arabicNameView.origin];
         subviewOriginDictionary[@"slotContainerView"] = [NSValue valueWithCGPoint:slotContainerView.origin];
         subviewOriginDictionary[@"mixedUpLettersAreaView"] = [NSValue valueWithCGPoint:mixedUpLettersAreaView.origin];
+        subviewOriginDictionary[@"settingsButton"] = [NSValue valueWithCGPoint:settingsButtonExpander.origin];
+
     }
     else {
         CGRect newFrame;
@@ -197,6 +212,10 @@ static NSNumber* currentSpeakerIndex;
         newFrame.origin = [subviewOriginDictionary[@"mixedUpLettersAreaView"] CGPointValue];
         //newFrame.origin = [[NSValue valueWithCGPoint:mixedUpLettersAreaView.origin] CGPointValue];
         mixedUpLettersAreaView.frame = newFrame;
+        
+        newFrame = settingsButtonExpander.frame;
+        newFrame.origin = [subviewOriginDictionary[@"settingsButton"] CGPointValue];
+        settingsButtonExpander.frame = newFrame;
     }
     
         
@@ -221,6 +240,10 @@ static NSNumber* currentSpeakerIndex;
         mixedUpLettersAreaView.frame = newFrame;
         
         shuffleImageView.right = self.view.left;
+        
+        newFrame = settingsButtonExpander.frame;
+        newFrame.origin = CGPointMake(self.view.width-newFrame.origin.x-newFrame.size.width,newFrame.origin.y);
+        settingsButtonExpander.frame = newFrame;
         
     }
 
@@ -287,15 +310,15 @@ static NSNumber* currentSpeakerIndex;
     [self.audioManager loadErrorAudioWithPrefix:currentSpeaker.name key:@"Again"];
 }
 
-- (IBAction)homeButtonTouched:(id)sender  {
-    [super homeButtonTouched:sender];
+- (void)homeButtonTouched  {
+    [super homeButtonTouched];
     
     currentSpeakerIndex = [NSNumber numberWithInt:0];
 }
 
-- (IBAction)restartButtonTouched:(id)sender {
+- (void)restartButtonTouched {
     levelRestarted = YES;
-    [super restartButtonTouched:sender];
+    [super restartButtonTouched];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:kPopViewControllerNotification object:self];
 }
