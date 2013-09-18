@@ -27,6 +27,7 @@
 -(IBAction)bookLinkButtonTouched:(id)sender;
 -(IBAction)creditsButtonTouched:(id)sender;
 -(IBAction)creditsBackButtonTouched:(id)sender;
+-(IBAction)facebookButtonTouched:(id)sender;
 @end
 
 @implementation StartScreenViewController
