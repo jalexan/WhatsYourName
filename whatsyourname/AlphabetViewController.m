@@ -184,6 +184,9 @@
 
             [self displayDialogTextWithKey:@"SingAlong" animationType:TALK completion:^() {
                 [self startRecordingPhase];
+                recordedPlayedOnce = [[NSUserDefaults standardUserDefaults] boolForKey:@"BonusAlphbetsUnlocked"]; 
+                if (recordedPlayedOnce) bonusLevelButton.hidden = NO;
+                
 
             }];
             
@@ -243,7 +246,12 @@
     
     recordButton.hidden = NO;
     playButton.hidden = YES;
-    recordedPlayedOnce = NO;
+    
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"BonusAlphbetsUnlocked"] == YES) {
+        recordedPlayedOnce = YES;
+    } else {
+        recordedPlayedOnce = NO;
+    }
     
 }
 
@@ -493,12 +501,17 @@
             recordButton.selected = YES;
             playButton.hidden = YES;
             
+            if (bonusLevelButton.hidden==NO) [bonusLevelButton setEnabled:NO];
+            
             //durationLabel.text = @"Recording...";
             [self singAndSpellArabicAlphabetForDuration: -1 withCompletion:^() {
                 [self stopRecording];
             }];
             
             [playButton setEnabled:NO];
+        } else {
+            if (bonusLevelButton.hidden==NO) [bonusLevelButton setEnabled:YES];
+            
         }
         
     } else {  // Stop recording
@@ -525,6 +538,9 @@
             [playButton setTitle:@"Play" forState:UIControlStateNormal];
             playButton.selected = NO;
             [recordButton setEnabled:YES];
+            
+            if (bonusLevelButton.hidden==NO) [bonusLevelButton setEnabled:YES];
+
         }
         else { // press play
             if (chalkboardNeedsReset) [self resetChalkboard];
@@ -537,6 +553,9 @@
 
             [playButton setTitle:@"Stop" forState:UIControlStateNormal];
             playButton.selected = YES;
+            
+            if (bonusLevelButton.hidden==NO) [bonusLevelButton setEnabled:NO];
+
         }
         
     }
@@ -583,6 +602,7 @@
     [playButton setEnabled:YES];
     
     playButton.hidden = NO;
+    if (bonusLevelButton.hidden==NO) [bonusLevelButton setEnabled:YES];
     
 }
 
@@ -606,11 +626,16 @@
     NSLog(@"Stop the animation now because the recorded audio finished already.");
 
     [self cancelAnimateAndSingAlphabet];
-    
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    recordedPlayedOnce =  [userDefaults boolForKey:@"BonusAlphbetsUnlocked"];
+    if (bonusLevelButton.hidden==NO) [bonusLevelButton setEnabled:YES];
+
     if (recordedPlayedOnce == NO) {
         recordedPlayedOnce = YES;
+        [userDefaults setBool:YES forKey:@"BonusAlphbetsUnlocked"];
         
         bonusLevelButton.hidden = NO;
+
         NSLog(@"Great job recording!");
         NSLog(@"Make the new level icon appear now");
     }
