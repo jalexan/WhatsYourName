@@ -14,13 +14,14 @@
 #import "GameUIButton.h"
 #import "GameWebViewController.h"
 #import "AudioManager.h"
+#import "PlayButton.h"
 
 @interface StartScreenViewController () {
     IBOutlet GameUIButton* bookLinkButton;
     IBOutlet GameUIButton* creditsButton;
     IBOutlet GameUIButton* creditsBackButton;
     IBOutlet GameUIButton* facebookButton;
-    IBOutlet GameUIButton* playButton;
+    IBOutlet PlayButton* playButton;
     UIScrollView* creditsScreen;
     AudioManager* audioManager;
 }
@@ -59,6 +60,11 @@
     
     [self performSelector:@selector(showButtons) withObject:nil];
     
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [playButton animate];
 }
 
 -(IBAction)bookLinkButtonTouched:(id)sender {

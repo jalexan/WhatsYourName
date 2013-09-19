@@ -34,6 +34,7 @@
 		682900A71763D7D50067E1A8 /* ShuffleImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 682900A61763D7D50067E1A8 /* ShuffleImageView.m */; };
 		682900AB176467520067E1A8 /* Letters.plist in Resources */ = {isa = PBXBuildFile; fileRef = 682900AA176467510067E1A8 /* Letters.plist */; };
 		68353D691740B7810003D1EB /* ArabicLetterImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 68353D681740B7810003D1EB /* ArabicLetterImageView.m */; };
+		684C855E17EAA74B005CBEF7 /* PlayButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 684C855D17EAA74B005CBEF7 /* PlayButton.m */; };
 		684FA0EB175068760074965D /* GameUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 684FA0EA175068760074965D /* GameUIView.m */; };
 		685D89021749273300847C7D /* Speakers in Resources */ = {isa = PBXBuildFile; fileRef = 685D89011749273300847C7D /* Speakers */; };
 		685D89051749576F00847C7D /* Slot.m in Sources */ = {isa = PBXBuildFile; fileRef = 685D89041749576F00847C7D /* Slot.m */; };
@@ -104,6 +105,8 @@
 		682900AA176467510067E1A8 /* Letters.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Letters.plist; sourceTree = "<group>"; };
 		68353D671740B7810003D1EB /* ArabicLetterImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArabicLetterImageView.h; sourceTree = "<group>"; };
 		68353D681740B7810003D1EB /* ArabicLetterImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArabicLetterImageView.m; sourceTree = "<group>"; };
+		684C855C17EAA74B005CBEF7 /* PlayButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayButton.h; sourceTree = "<group>"; };
+		684C855D17EAA74B005CBEF7 /* PlayButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayButton.m; sourceTree = "<group>"; };
 		684FA0E9175068760074965D /* GameUIView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameUIView.h; sourceTree = "<group>"; };
 		684FA0EA175068760074965D /* GameUIView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameUIView.m; sourceTree = "<group>"; };
 		685D89011749273300847C7D /* Speakers */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Speakers; sourceTree = "<group>"; };
@@ -278,6 +281,8 @@
 				68B69599176C23A0002542EA /* StarImageView.m */,
 				6887338E179F9B3C000877AB /* GameUIButton.h */,
 				6887338F179F9B3C000877AB /* GameUIButton.m */,
+				684C855C17EAA74B005CBEF7 /* PlayButton.h */,
+				684C855D17EAA74B005CBEF7 /* PlayButton.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -412,6 +417,7 @@
 				68240C5917A4A4D6006C3B91 /* GameWebViewController.m in Sources */,
 				68F0825217B0B71200A633AD /* ChooseLevelViewController.m in Sources */,
 				155C369A17D9891400E28109 /* ButtonExpander.m in Sources */,
+				684C855E17EAA74B005CBEF7 /* PlayButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
