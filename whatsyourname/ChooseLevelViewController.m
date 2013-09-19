@@ -18,6 +18,7 @@
     IBOutlet UIButton* AlphabetLevelButton;
 
     IBOutlet GameUIButton* level4GameUIButton;
+    IBOutlet GameUIButton* level4ImageViewButton;
     IBOutlet UIImageView* lockImageView;
     IBOutlet UIImageView* bonusLevelLockedImageView;
 
@@ -67,6 +68,8 @@
         [bonusLevelLockedImageView setImage:[UIImage imageNamed:@"Speakers/Nolia/Images/level_select_bonus_locked.png"]];
 
     }
+    level4ImageViewButton.hidden = level4GameUIButton.hidden;
+    
     lockImageView.hidden = !level4GameUIButton.hidden;
     
 }

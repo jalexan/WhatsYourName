@@ -321,6 +321,7 @@
                     <connections>
                         <outlet property="bonusLevelLockedImageView" destination="Jgv-1O-v27" id="ti9-0B-rJg"/>
                         <outlet property="level4GameUIButton" destination="new-sa-T3D" id="xbE-Ih-DQY"/>
+                        <outlet property="level4ImageViewButton" destination="qtW-EK-QjI" id="hcx-ys-CLp"/>
                         <outlet property="lockImageView" destination="uEv-it-Vsz" id="zWt-od-DeR"/>
                     </connections>
                 </viewController>
@@ -624,6 +625,7 @@
                 <relationship kind="outlet" name="backButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="bonusLevelLockedImageView" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="level4GameUIButton" candidateClass="GameUIButton"/>
+                <relationship kind="outlet" name="level4ImageViewButton" candidateClass="GameUIButton"/>
                 <relationship kind="outlet" name="lockImageView" candidateClass="UIImageView"/>
             </relationships>
         </class>
