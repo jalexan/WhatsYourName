@@ -928,6 +928,27 @@ static NSNumber* currentSpeakerIndex;
         return YES;
     }
     
+    //HACK: fix algorithm so that it handles more than one duplicate letter
+    //loop through each letter and see if there is a duplicate.
+    //if there is a duplicate letter, make it interchangeable
+    int duplicateSlotPosition = -1;
+    for (ArabicLetterImageView *letter in letterImageViewArray) {
+        if (letterImageView.arabicLetter.slotPosition != letter.arabicLetter.slotPosition) {
+            if (letterImageView.arabicLetter.letterIndex == letter.arabicLetter.letterIndex) {
+                
+                duplicateSlotPosition  = letter.arabicLetter.slotPosition;
+                break;
+            }
+        }
+    }
+
+    if (duplicateSlotPosition>=0) {
+        if (slotImageView.slot.position == duplicateSlotPosition) {
+            return YES;
+        }
+    }
+    
+    
     return NO;
 }
 
