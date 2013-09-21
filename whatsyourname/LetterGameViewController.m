@@ -129,6 +129,17 @@ static NSNumber* currentSpeakerIndex;
         }
     }
     
+    // Add settings button
+    settingsButtonExpander = [[ButtonExpander alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+    [settingsButtonExpander setImage:[UIImage imageNamed:@"Resource/icon_settings.png"] forState:UIControlStateNormal];
+    [settingsButtonExpander setFrame:CGRectMake( 3,
+                                                self.screenBounds.height - settingsButtonExpander.imageView.image.size.height-3,
+                                                settingsButtonExpander.imageView.image.size.width,
+                                                settingsButtonExpander.imageView.image.size.height)];
+    
+    [settingsButtonExpander setChildButtonsArray:[[NSArray alloc] initWithObjects: homeButton, restartButton, soundButton, nil]];
+    [self.view addSubview:settingsButtonExpander];
+    [self.view bringSubviewToFront:settingsButtonExpander];
     
 }
 
@@ -149,18 +160,6 @@ static NSNumber* currentSpeakerIndex;
     
     shuffleImageView = [[ShuffleImageView alloc] initWithFrame:CGRectMake(self.view.right,speakerImageView.bottom-219,183,219) speaker:currentSpeaker];
     [scrollView addSubview:shuffleImageView];
-    
-    // Add settings button
-    settingsButtonExpander = [[ButtonExpander alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
-    [settingsButtonExpander setImage:[UIImage imageNamed:@"Resource/icon_settings.png"] forState:UIControlStateNormal];
-    [settingsButtonExpander setFrame:CGRectMake( 3,
-                                                self.screenBounds.height - settingsButtonExpander.imageView.image.size.height-3,
-                                                settingsButtonExpander.imageView.image.size.width,
-                                                settingsButtonExpander.imageView.image.size.height)];
-    
-    [settingsButtonExpander setChildButtonsArray:[[NSArray alloc] initWithObjects: homeButton, restartButton, soundButton, nil]];
-    [self.view addSubview:settingsButtonExpander];
-    [self.view bringSubviewToFront:settingsButtonExpander];
     
     //Clear arabic name spelling
     [[arabicNameView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];

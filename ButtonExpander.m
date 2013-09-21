@@ -20,8 +20,7 @@
 @synthesize expandableButton;
 @synthesize childButtonsArray;
 
-- (id)initWithFrame:(CGRect)frame
-{
+- (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
@@ -42,7 +41,7 @@
     UIButton *button;
     for (NSInteger i=0; i<[childButtonsArray count]; i++) {
         button = [childButtonsArray objectAtIndex:i];
-        [button setFrame:CGRectMake(self.frame.size.width/2 - button.frame.size.width/2, self.frame.origin.y, button.frame.size.width, button.frame.size.height)];
+        [button setFrame:CGRectMake(self.frame.size.width/2 - button.frame.size.width/2, 2, button.frame.size.width, button.frame.size.height)];
 
         [self addSubview:button];
         [self sendSubviewToBack:button];
@@ -67,12 +66,6 @@
                 
                 y = y + button.frame.size.height + spaceBetweenButtons;
 
-          /*      [UIView animateWithDuration:(EXPAND_DURATION) animations:^{
-                    [button setFrame:CGRectMake(button.frame.origin.x, y,
-                                                button.frame.size.width, button.frame.size.height)];
-                }];
-           */
-                
                 [UIView animateWithDuration: EXPAND_DURATION
                                       delay: 0.0
                                     options: UIViewAnimationOptionCurveLinear
@@ -100,11 +93,6 @@
                 [button setUserInteractionEnabled:YES];
                     
                 y = y - button.frame.size.height - spaceBetweenButtons,
-               /* [UIView animateWithDuration:(EXPAND_DURATION) animations:^{
-                    [button setFrame:CGRectMake(button.frame.origin.x, y,
-                                                button.frame.size.width, button.frame.size.height)];
-                }];
-                */
              
                 [UIView animateWithDuration: EXPAND_DURATION
                                       delay: 0.0
