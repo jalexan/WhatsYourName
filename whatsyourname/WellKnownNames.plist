@@ -208,5 +208,11 @@
 	<string>beh, sheen, reh, alef maksoora</string>
 	<key>bushra</key>
 	<string>beh, sheen, reh, alef maksoora</string>
+	<key>adel</key>
+	<string>&apos;ein, alef, daal, lam</string>
+	<key>rachael</key>
+	<string>reh, yeh, teh, sheen, lam</string>
+	<key>New item</key>
+	<string></string>
 </dict>
 </plist>

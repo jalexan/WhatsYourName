@@ -38,14 +38,14 @@
 			<key>English</key>
 			<string>Can you help me write it again?</string>
 			<key>Arabic</key>
-			<string>ممكن تسعدني أكتبها ثاني؟</string>
+			<string>ممكن تساعدني أكتبها تاني؟</string>
 		</dict>
 		<key>Again</key>
 		<dict>
 			<key>English</key>
 			<string>Try again</string>
 			<key>Arabic</key>
-			<string>جرب ثاني</string>
+			<string>جرب تاني</string>
 		</dict>
 		<key>Excellent</key>
 		<dict>

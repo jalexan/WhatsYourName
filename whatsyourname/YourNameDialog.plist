@@ -35,14 +35,14 @@
 		<key>English</key>
 		<string>It was nice to meet you @name</string>
 		<key>Arabic</key>
-		<string>اتشرفنا بك يا @name </string>
+		<string>اتشرفنا بيك يا @name </string>
 	</dict>
 	<key>Another</key>
 	<dict>
 		<key>English</key>
 		<string>Write another name</string>
 		<key>Arabic</key>
-		<string>اكتب اسم ثاني</string>
+		<string>اكتب اسم تاني</string>
 	</dict>
 	<key>Bye</key>
 	<dict>
