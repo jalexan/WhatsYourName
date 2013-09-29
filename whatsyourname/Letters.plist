@@ -340,7 +340,7 @@
 	</dict>
 	<dict>
 		<key>Name</key>
-		<string>alef maddah</string>
+		<string>alef madda</string>
 		<key>Isolated</key>
 		<string>0622</string>
 		<key>Initial</key>
@@ -411,6 +411,18 @@
 		<string>FE88</string>
 		<key>Final</key>
 		<string>FE88</string>
+	</dict>
+	<dict>
+		<key>Name</key>
+		<string>wow hamza</string>
+		<key>Isolated</key>
+		<string>FE80</string>
+		<key>Initial</key>
+		<string>FE80</string>
+		<key>Medial</key>
+		<string>FE80</string>
+		<key>Final</key>
+		<string>FE80</string>
 	</dict>
 </array>
 </plist>

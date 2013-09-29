@@ -310,7 +310,7 @@
 		<key>Final</key>
 		<string>FEF2</string>
 	</dict>
-	<key>alef maddah</key>
+	<key>alef madda</key>
 	<dict>
 		<key>Isolated</key>
 		<string>0622</string>
@@ -377,6 +377,17 @@
 		<string>FE88</string>
 		<key>Final</key>
 		<string>FE88</string>
+	</dict>
+	<key>wow hamza</key>
+	<dict>
+		<key>Isolated</key>
+		<string>FE80</string>
+		<key>Initial</key>
+		<string>FE80</string>
+		<key>Medial</key>
+		<string>FE80</string>
+		<key>Final</key>
+		<string>FE80</string>
 	</dict>
 </dict>
 </plist>
