@@ -187,7 +187,7 @@
         CGRect r = CGRectMake((letterContainerView.width-letterImageSize.width)-(letterImageSize.width*i)+10, originY, letterImageSize.width, letterImageSize.height);
         
         ArabicLetter* l = [[ArabicLetter alloc] initWithLetterIndex:[arabicLettersArray[i] intValue]];
-        ArabicLetterImageView* letterImageView = [[ArabicLetterImageView alloc] initWithArabicLetter:l];
+        ArabicLetterImageView* letterImageView = [[ArabicLetterImageView alloc] initWithArabicLetter:l showName:YES];
         letterImageView.alpha = 0;
         
         letterImageView.frame = r;

@@ -37,6 +37,37 @@
     return self;
 }
 
+- (id)initWithArabicLetter:(ArabicLetter*)letter showName:(BOOL)show
+{
+    self = [super init];
+    if (self) {
+        
+        self.arabicLetter = letter;
+        self.userInteractionEnabled = YES;
+        self.showName = show;
+        self.addShadows = YES;
+    }
+    return self;
+}
+
+-(void) setShowName:(BOOL)show {
+    showName = show;
+    if (showName) {
+        letterNameLabel = [[UILabel alloc] init];
+        letterNameLabel.font = [UIFont fontWithName:@"MarkerFelt-Thin" size:15];
+        letterNameLabel.backgroundColor = [UIColor clearColor];
+        letterNameLabel.textAlignment = NSTextAlignmentCenter;
+        letterNameLabel.shadowColor = [UIColor whiteColor];
+        letterNameLabel.shadowOffset = CGSizeMake(0,1);
+        letterNameLabel.lineBreakMode = NSLineBreakByWordWrapping;
+        letterNameLabel.numberOfLines = 2;
+        
+        letterNameLabel.text = arabicLetter.letterName;
+        [letterNameLabel sizeToFit];
+        [self addSubview:letterNameLabel];
+    }
+}
+
 - (void)setArabicLetter:(ArabicLetter *)theArabicLetter {
     arabicLetter = theArabicLetter;
     

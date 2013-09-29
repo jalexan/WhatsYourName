@@ -556,7 +556,7 @@ static NSNumber* currentSpeakerIndex;
     dialogLabel.text = [NSString stringWithFormat:@"%@%C",dialogLabel.text,letter.unicodeGeneral];
     
     
-    ArabicLetterImageView* letterImageView = [[ArabicLetterImageView alloc] initWithArabicLetter:letter];
+    ArabicLetterImageView* letterImageView = [[ArabicLetterImageView alloc] initWithArabicLetter:letter showName:YES];
     letterImageView.alpha = 0;
     
     //Slots

@@ -16,8 +16,7 @@
 
 - (id)initWithArabicLetter:(ArabicLetter*)letter andAudioManager:(AudioManager *)am withSound:(NSString *)sfile
 {
-    self = [super initWithArabicLetter:letter];
-    self.showName = NO;
+    self = [super initWithArabicLetter:letter showName:NO];
     self.audioManager = am;
     self.letterSoundFile = sfile;
     NSString* filename = [NSString stringWithFormat:@"Resource/slot_frame_light.png"];

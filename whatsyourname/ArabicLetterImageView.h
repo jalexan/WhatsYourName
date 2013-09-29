@@ -14,7 +14,7 @@
 @interface ArabicLetterImageView : UIImageView
 
 - (id)initWithArabicLetter:(ArabicLetter*)letter;
-
+- (id)initWithArabicLetter:(ArabicLetter*)letter showName:(BOOL)show;
 
 @property(nonatomic, strong) ArabicLetter* arabicLetter;
 @property(nonatomic, assign) CGPoint dragStartPoint;
