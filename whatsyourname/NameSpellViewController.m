@@ -290,7 +290,7 @@
         if (unicodeValue) {
             [arabicUnicodes addObject:[[self.arabicLettersByNameDictionary objectForKey:s] objectForKey:@"Isolated"]];
         } else {
-            if (DEBUG_ARABIC_NAME) { NSLog(@"Letter key %@ was not found in arabicLettersByNameDictionary",s); }
+            if (DEBUG_ARABIC_NAME) { NSLog(@"ERROR in plist: Letter key %@ was not found in arabicLettersByNameDictionary",s); }
             return nil;
         }
     }
@@ -497,16 +497,16 @@
             //lookup unicodes for replacement of string arabicName in place
             NSArray* lettersToLookupArray = [lettersToLookup componentsSeparatedByString:@", "];
             unicodeLetters = [self getUnicodesForLetters:lettersToLookupArray];
+            NSString* temp;
+            NSString* replaceWith = @"";
             for (NSString* unicodeLetter in unicodeLetters) {
                 
                 NSUInteger unicodeValue;
                 [[NSScanner scannerWithString:unicodeLetter] scanHexInt:&unicodeValue];
-                NSString* temp;
-                NSString* replaceWith = [NSString stringWithFormat:@"%C", (unichar)unicodeValue];
-                temp = [arabicName stringByReplacingCharactersInRange:NSMakeRange(i,1) withString:replaceWith];
-                
-                arabicName = [temp mutableCopy];
+                replaceWith = [replaceWith stringByAppendingString:[NSString stringWithFormat:@"%C", (unichar)unicodeValue]];
             }
+            temp = [arabicName stringByReplacingCharactersInRange:NSMakeRange(i,1) withString:replaceWith];
+            arabicName = [temp mutableCopy];
         }
     }
     
