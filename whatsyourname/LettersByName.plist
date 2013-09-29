@@ -381,13 +381,13 @@
 	<key>wow hamza</key>
 	<dict>
 		<key>Isolated</key>
-		<string>FE80</string>
+		<string>0624</string>
 		<key>Initial</key>
-		<string>FE80</string>
+		<string>0624</string>
 		<key>Medial</key>
-		<string>FE80</string>
+		<string>0624</string>
 		<key>Final</key>
-		<string>FE80</string>
+		<string>0624</string>
 	</dict>
 </dict>
 </plist>

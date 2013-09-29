@@ -72,6 +72,7 @@
                             previousLetterIndex==31 ||
                             previousLetterIndex==32 ||
                             previousLetterIndex==33 ||
+                            previousLetterIndex==34 ||
                             previousLetterIndex==7 ||
                             previousLetterIndex==8 ||
                             previousLetterIndex==9 ||
