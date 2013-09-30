@@ -76,7 +76,7 @@
 	</dict>
 	<dict>
 		<key>Name</key>
-		<string>KHa</string>
+		<string>kha</string>
 		<key>Isolated</key>
 		<string>062E</string>
 		<key>Initial</key>
@@ -423,6 +423,18 @@
 		<string>0624</string>
 		<key>Final</key>
 		<string>0624</string>
+	</dict>
+	<dict>
+		<key>Name</key>
+		<string>yeh hamza</string>
+		<key>Isolated</key>
+		<string>0626</string>
+		<key>Initial</key>
+		<string>FE8B</string>
+		<key>Medial</key>
+		<string>FE8C</string>
+		<key>Final</key>
+		<string>FE8A</string>
 	</dict>
 </array>
 </plist>
