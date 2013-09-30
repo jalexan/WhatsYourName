@@ -31,7 +31,7 @@
 			<key>English</key>
 			<string>Oops, sorry!</string>
 			<key>Arabic</key>
-			<string>أسفة</string>
+			<string>أسفة!</string>
 		</dict>
 		<key>Try</key>
 		<dict>
@@ -52,12 +52,12 @@
 			<key>English</key>
 			<string>Excellent!</string>
 			<key>Arabic</key>
-			<string>ممتاز</string>
+			<string>ممتاز!</string>
 		</dict>
 		<key>Later</key>
 		<dict>
 			<key>English</key>
-			<string>See you later!</string>
+			<string>See you later</string>
 			<key>Arabic</key>
 			<string>إلى اللقاء</string>
 		</dict>

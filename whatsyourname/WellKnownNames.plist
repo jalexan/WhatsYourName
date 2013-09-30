@@ -106,10 +106,12 @@
 	<string>&apos;ein, zein, yeh, zein</string>
 	<key>aziza</key>
 	<string>&apos;ein, zein, yeh, zein, te marboota</string>
-	<key>azzat</key>
-	<string>&apos;ein, zein, teh</string>
+	<key>aza</key>
+	<string>&apos;ein, zein, te marboota</string>
 	<key>azza</key>
 	<string>&apos;ein, zein, te marboota</string>
+	<key>azzat</key>
+	<string>&apos;ein, zein, teh</string>
 	<key>badee3</key>
 	<string>beh, daal, yeh, &apos;ein</string>
 	<key>badee</key>
@@ -474,6 +476,14 @@
 	<string>kha, lam, yeh, lam</string>
 	<key>laila</key>
 	<string>lam, yeh, lam, yeh</string>
+	<key>lamia</key>
+	<string>lam, meem, yeh, alef</string>
+	<key>lemia</key>
+	<string>lam, meem, yeh, alef</string>
+	<key>lamya</key>
+	<string>lam, meem, yeh, alef</string>
+	<key>lemya</key>
+	<string>lam, meem, yeh, alef</string>
 	<key>leila</key>
 	<string>lam, yeh, lam, yeh</string>
 	<key>lela</key>
