@@ -18,6 +18,8 @@
 	<string>&apos;ein, beh, daal, alef, lam, lam, heh</string>
 	<key>abdelmalek</key>
 	<string>&apos;ein, beh, daal, alef, lam, meem, alef, lam, kaaf</string>
+	<key>abdelmalak</key>
+	<string>&apos;ein, beh, daal, alef, lam, meem, alef, lam, kaaf</string>
 	<key>abdelmessih</key>
 	<string>&apos;ein, beh, daal, alef, lam, meem, seen, yeh, Ha</string>
 	<key>abdelrahman</key>
@@ -28,6 +30,14 @@
 	<string>alef hamza below, beh, reh, alef, heh, yeh, meem</string>
 	<key>adel</key>
 	<string>&apos;ein, alef, daal, lam</string>
+	<key>afaaf</key>
+	<string>&apos;ein, feh, alef, feh</string>
+	<key>aafaf</key>
+	<string>&apos;ein, feh, alef, feh</string>
+	<key>afif</key>
+	<string>&apos;ein, feh, yeh, feh</string>
+	<key>afifi</key>
+	<string>&apos;eif, feh, yeh, feh, yeh</string>
 	<key>a7mad</key>
 	<string>alef hamza, Ha, meem, daal</string>
 	<key>ahmad</key>
@@ -47,6 +57,8 @@
 	<key>iskandar</key>
 	<string>alef, seen, kaaf, noon, daal, reh</string>
 	<key>iskendar</key>
+	<string>alef, seen, kaaf, noon, daal, reh</string>
+	<key>eskander</key>
 	<string>alef, seen, kaaf, noon, daal, reh</string>
 	<key>eskandar</key>
 	<string>alef, seen, kaaf, noon, daal, reh</string>
@@ -84,6 +96,8 @@
 	<string>alef hamza, seen, reh</string>
 	<key>aser</key>
 	<string>alef hamza, seen, reh</string>
+	<key>assal</key>
+	<string>&apos;ein, seen, lam</string>
 	<key>ayman</key>
 	<string>alef hamza, yeh, meem, noon</string>
 	<key>aymen</key>
@@ -108,6 +122,18 @@
 	<string>beh, heh, alef, hamza</string>
 	<key>bahgat</key>
 	<string>beh, heh, geem, teh</string>
+	<key>baghdad</key>
+	<string>beh, ghein, daal, alef, daal</string>
+	<key>boghdad</key>
+	<string>beh, ghein, daal, alef, daal</string>
+	<key>baghdady</key>
+	<string>beh, ghein, daal, alef, daal, yeh</string>
+	<key>baghdadi</key>
+	<string>beh, ghein, daal, alef, daal, yeh</string>
+	<key>boghdady</key>
+	<string>beh, ghein, daal, alef, daal, yeh</string>
+	<key>boghdadi</key>
+	<string>beh, ghein, daal, alef, daal, yeh</string>
 	<key>basem</key>
 	<string>beh, alef, seen, meem</string>
 	<key>bassem</key>
@@ -128,6 +154,8 @@
 	<string>beh, lam, alef, lam</string>
 	<key>balaal</key>
 	<string>beh, lam, alef, lam</string>
+	<key>boctor</key>
+	<string>beh, qaaf, Taa, reh</string>
 	<key>boles</key>
 	<string>beh, wow, lam, seen</string>
 	<key>bolos</key>
@@ -188,6 +216,8 @@
 	<string>daal, meem, yeh, alef, noon, te marboota</string>
 	<key>donia</key>
 	<string>daal, noon, yeh, alef</string>
+	<key>elizabeth</key>
+	<string>alef hamza below, lam, yeh, zein, alef, beh, yeh, theh</string>
 	<key>emad</key>
 	<string>&apos;ein, meem, alef, daal</string>
 	<key>eman</key>
@@ -214,6 +244,20 @@
 	<string>feh, reh, Ha</string>
 	<key>fares</key>
 	<string>feh, alef, reh, seen</string>
+	<key>farag</key>
+	<string>feh, reh, geem</string>
+	<key>faragalla</key>
+	<string>feh, reh, geem, alef, lam, lam, heh</string>
+	<key>fargalla</key>
+	<string>feh, reh, geem, alef, lam, lam, heh</string>
+	<key>faragallah</key>
+	<string>feh, reh, geem, alef, lam, lam, heh</string>
+	<key>fargallah</key>
+	<string>feh, reh, geem, alef, lam, lam, heh</string>
+	<key>farid</key>
+	<string>feh, reh, yeh, daal</string>
+	<key>fareed</key>
+	<string>feh, reh, yeh, daal</string>
 	<key>farida</key>
 	<string>feh, reh, yeh, daal, te marboota</string>
 	<key>fareda</key>
@@ -230,6 +274,8 @@
 	<string>feh, wow, zein, yeh</string>
 	<key>fawzy</key>
 	<string>feh, wow, zein, yeh</string>
+	<key>fayez</key>
+	<string>feh, alef, yeh, zein</string>
 	<key>fouad</key>
 	<string>feh, wow hamza, alef, daal</string>
 	<key>foaad</key>
@@ -240,6 +286,14 @@
 	<string>feh, wow hamza, alef, daal</string>
 	<key>gamal</key>
 	<string>geem, meem, alef, lam</string>
+	<key>gerges</key>
+	<string>geem, meem, geem, seen</string>
+	<key>girgis</key>
+	<string>geem, meem, geem, seen</string>
+	<key>girges</key>
+	<string>geem, meem, geem, seen</string>
+	<key>gergis</key>
+	<string>geem, meem, geem, seen</string>
 	<key>gemiana</key>
 	<string>geem, meem, yeh, alef, noon, te marboota</string>
 	<key>gimiana</key>
@@ -252,10 +306,30 @@
 	<string>geem, yeh, wow</string>
 	<key>ghada</key>
 	<string>ghein, alef, daal, te marboota</string>
+	<key>goubran</key>
+	<string>geem, beh, reh, alef, noon</string>
 	<key>habib</key>
 	<string>Ha, beh, yeh, beh</string>
 	<key>habiba</key>
 	<string>Ha, beh, yeh, beh, te marboota</string>
+	<key>hadeel</key>
+	<string>heh, daal, yeh, lam</string>
+	<key>hadil</key>
+	<string>heh, daal, yeh, lam</string>
+	<key>hadeer</key>
+	<string>heh, daal, yeh, reh</string>
+	<key>hadir</key>
+	<string>heh, daal, yeh, reh</string>
+	<key>haidi</key>
+	<string>heh, yeh, daal, yeh</string>
+	<key>haidy</key>
+	<string>heh, yeh, daal, yeh</string>
+	<key>haydi</key>
+	<string>heh, yeh, daal, yeh</string>
+	<key>haydy</key>
+	<string>heh, yeh, daal, yeh</string>
+	<key>heidi</key>
+	<string>heh, yeh, daal, yeh</string>
 	<key>hala</key>
 	<string>heh, alef, lam, te marboota</string>
 	<key>hamada</key>
@@ -292,8 +366,14 @@
 	<string>heh, sheen, alef, meem</string>
 	<key>hesham</key>
 	<string>heh, sheen, alef, meem</string>
+	<key>heba</key>
+	<string>heh, beh, te marboota</string>
 	<key>hind</key>
 	<string>heh, noon, daal</string>
+	<key>hend</key>
+	<string>heh, noon, daal</string>
+	<key>hoda</key>
+	<string>heh, daal, alef maksoora</string>
 	<key>hosein</key>
 	<string>Ha, seen, yeh, noon</string>
 	<key>hossen</key>
@@ -368,6 +448,14 @@
 	<string>kaaf, reh, yeh, meem</string>
 	<key>kareem</key>
 	<string>kaaf, reh, yeh, meem</string>
+	<key>kazim</key>
+	<string>kaaf, alef, DHaa, meem</string>
+	<key>kazem</key>
+	<string>kaaf, alef, DHaa, meem</string>
+	<key>kadim</key>
+	<string>kaaf, alef, DHaa, meem</string>
+	<key>kadem</key>
+	<string>kaaf, alef, DHaa, meem</string>
 	<key>khadega</key>
 	<string>kha, daal, yeh, geem, te marboota</string>
 	<key>khadeega</key>
@@ -408,6 +496,10 @@
 	<string>lam, lam, yeh, alef, noon</string>
 	<key>lilyan</key>
 	<string>lam, lam, yeh, alef, noon</string>
+	<key>lotfi</key>
+	<string>lam, Taa, feh, yeh</string>
+	<key>lotfy</key>
+	<string>lam, Taa, feh, yeh</string>
 	<key>loqa</key>
 	<string>lam, wow, qaaf, alef</string>
 	<key>luke</key>
@@ -466,6 +558,10 @@
 	<string>meem, reh, theh, alef</string>
 	<key>marwa</key>
 	<string>meem, reh, wow, te marboota</string>
+	<key>mariet</key>
+	<string>meem, reh, yeh, teh</string>
+	<key>mariette</key>
+	<string>meem, reh, yeh, teh</string>
 	<key>mariam</key>
 	<string>meem, reh, yeh, meem</string>
 	<key>maryam</key>
@@ -476,6 +572,12 @@
 	<string>meem, teh, alef maksoora</string>
 	<key>medhat</key>
 	<string>meem, daal, Ha, teh</string>
+	<key>madhat</key>
+	<string>meem, daal, Ha, teh</string>
+	<key>melissa</key>
+	<string>meem, lam, yeh, seen, alef</string>
+	<key>melisa</key>
+	<string>meem, lam, yeh, seen, alef</string>
 	<key>menna</key>
 	<string>meem, noon, alef maksoora</string>
 	<key>mena</key>
@@ -486,12 +588,16 @@
 	<string>meem, seen, yeh, Ha</string>
 	<key>messiha</key>
 	<string>meem, seen, yeh, Ha, alef maksoora</string>
+	<key>miniawi</key>
+	<string>meem, noon, yeh, alef, wow, yeh</string>
 	<key>miriam</key>
 	<string>meem, reh, yeh, meem</string>
 	<key>myriam</key>
 	<string>meem, reh, yeh, meem</string>
 	<key>michael</key>
 	<string>meem, alef, yeh, kaaf, lam</string>
+	<key>mirette</key>
+	<string>meem, reh, yeh, teh</string>
 	<key>mohab</key>
 	<string>meem, heh, alef, beh</string>
 	<key>mohaab</key>
@@ -540,6 +646,8 @@
 	<string>meem, reh, alef, daal</string>
 	<key>moraad</key>
 	<string>meem, reh, alef, daal</string>
+	<key>mourad</key>
+	<string>meem, reh, alef, daal</string>
 	<key>morqos</key>
 	<string>meem, reh, qaaf, seen</string>
 	<key>mostafa</key>
@@ -564,6 +672,14 @@
 	<string>noon, geem, lam, alef, hamza</string>
 	<key>nagwa</key>
 	<string>noon, geem, wow, alef maksoora</string>
+	<key>nahal</key>
+	<string>noon, heh, alef, lam</string>
+	<key>nahaal</key>
+	<string>noon, heh, alef, lam</string>
+	<key>nehal</key>
+	<string>noon, heh, alef, lam</string>
+	<key>nehaal</key>
+	<string>noon, heh, alef, lam</string>
 	<key>nahed</key>
 	<string>noon, alef, heh, daal</string>
 	<key>naama</key>
@@ -585,6 +701,8 @@
 	<key>nesrine</key>
 	<string>noon, seen, reh, yeh, noon</string>
 	<key>nesrin</key>
+	<string>noon, seen, reh, yeh, noon</string>
+	<key>nesreen</key>
 	<string>noon, seen, reh, yeh, noon</string>
 	<key>nayer</key>
 	<string>noon, alef, yeh, reh</string>
@@ -620,6 +738,8 @@
 	<string>reh, alef hamza, feh, teh</string>
 	<key>rachael</key>
 	<string>reh, yeh, teh, sheen, lam</string>
+	<key>rachel</key>
+	<string>reh, yeh, teh, sheen, lam</string>
 	<key>raed</key>
 	<string>reh, alef, yeh hamza, daal</string>
 	<key>raid</key>
@@ -628,6 +748,8 @@
 	<string>reh, alef, yeh hamza, feh</string>
 	<key>raif</key>
 	<string>reh, alef, yeh hamza, feh</string>
+	<key>ragheb</key>
+	<string>reh, alef, ghein, beh</string>
 	<key>raqef</key>
 	<string>reh, alef, yeh hamza, feh</string>
 	<key>rakef</key>
@@ -646,6 +768,10 @@
 	<string>reh, feh, yeh, qaaf</string>
 	<key>rafiq</key>
 	<string>reh, feh, yeh, qaaf</string>
+	<key>rafla</key>
+	<string>reh, feh, lam, te marboota</string>
+	<key>refla</key>
+	<string>reh, feh, lam, te marboota</string>
 	<key>rageh</key>
 	<string>reh, alef, geem, Ha</string>
 	<key>ramadan</key>
@@ -674,6 +800,16 @@
 	<string>reh, Ha, alef, beh</string>
 	<key>renee</key>
 	<string>reh, yeh, noon, yeh, heh</string>
+	<key>riskalla</key>
+	<string>reh, zein, qaaf, alef, lam, lam, heh</string>
+	<key>riskallah</key>
+	<string>reh, zein, qaaf, alef, lam, lam, heh</string>
+	<key>risqalla</key>
+	<string>reh, zein, qaaf, alef, lam, lam, heh</string>
+	<key>risqallah</key>
+	<string>reh, zein, qaaf, alef, lam, lam, heh</string>
+	<key>saad</key>
+	<string>seen, &apos;ein, daal</string>
 	<key>sabah</key>
 	<string>saad, beh, alef, Ha</string>
 	<key>sbah</key>
@@ -682,6 +818,10 @@
 	<string>saad, beh, alef, Ha</string>
 	<key>sba7</key>
 	<string>saad, beh, alef, Ha</string>
+	<key>saher</key>
+	<string>seen, alef, heh, reh</string>
+	<key>sahar</key>
+	<string>seen, heh, reh</string>
 	<key>sara</key>
 	<string>seen, alef, reh, heh</string>
 	<key>sarah</key>
@@ -728,8 +868,12 @@
 	<string>theh, noon, alef, hamza</string>
 	<key>seif</key>
 	<string>seen, yeh, feh</string>
+	<key>saif</key>
+	<string>seen, yeh, feh</string>
 	<key>selim</key>
 	<string>seen, lam, yeh, meem</string>
+	<key>serena</key>
+	<string>seen, reh, yeh, noon, alef</string>
 	<key>shadia</key>
 	<string>sheen, alef, daal, yeh, te marboota</string>
 	<key>shadya</key>
@@ -790,6 +934,14 @@
 	<string>teh, alef, meem, reh</string>
 	<key>tawadros</key>
 	<string>teh, alef, wow, daad, reh, wow, seen</string>
+	<key>tawfik</key>
+	<string>teh, wow, feh, yeh, qaaf</string>
+	<key>tawfeek</key>
+	<string>teh, wow, feh, yeh, qaaf</string>
+	<key>tawfeq</key>
+	<string>teh, wow, feh, yeh, qaaf</string>
+	<key>tawfeeq</key>
+	<string>teh, wow, feh, yeh, qaaf</string>
 	<key>victoria</key>
 	<string>feh, kaaf, teh, wow, ren, yeh, alef</string>
 	<key>wageh</key>
@@ -873,6 +1025,8 @@
 	<key>zakeriah</key>
 	<string>zein, kaaf, reh, yeh, alef</string>
 	<key>zaky</key>
+	<string>zein, kaaf, yeh</string>
+	<key>zaki</key>
 	<string>zein, kaaf, yeh</string>
 	<key>zoghby</key>
 	<string>zein, ghein, beh, yeh</string>

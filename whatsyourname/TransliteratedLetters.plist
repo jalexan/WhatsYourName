@@ -139,6 +139,13 @@
 		<key>middle</key>
 		<string>kaaf, wow</string>
 	</dict>
+	<key>cy</key>
+	<dict>
+		<key>initial</key>
+		<string>seen, yeh</string>
+		<key>middle</key>
+		<string>seen, yeh</string>
+	</dict>
 	<key>d</key>
 	<dict>
 		<key>initial</key>
@@ -186,6 +193,13 @@
 		<string>yeh, wow</string>
 		<key>final</key>
 		<string>yeh, wow</string>
+	</dict>
+	<key>eth</key>
+	<dict>
+		<key>initial</key>
+		<string>alef, hamza below, yeh, theh</string>
+		<key>middle</key>
+		<string>yeh, theh</string>
 	</dict>
 	<key>et</key>
 	<dict>
@@ -473,6 +487,13 @@
 		<key>middle</key>
 		<string>teh</string>
 	</dict>
+	<key>th</key>
+	<dict>
+		<key>initial</key>
+		<string>theh</string>
+		<key>middle</key>
+		<string>theh</string>
+	</dict>
 	<key>tt</key>
 	<dict>
 		<key>initial</key>
@@ -486,13 +507,6 @@
 		<string>teh, wow</string>
 		<key>middle</key>
 		<string>teh, wow</string>
-	</dict>
-	<key>th</key>
-	<dict>
-		<key>initial</key>
-		<string>theh</string>
-		<key>middle</key>
-		<string>theh</string>
 	</dict>
 	<key>T</key>
 	<dict>
