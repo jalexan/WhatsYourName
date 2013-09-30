@@ -111,6 +111,13 @@
 		<key>middle</key>
 		<string>kaaf</string>
 	</dict>
+	<key>ck</key>
+	<dict>
+		<key>initial</key>
+		<string>kaaf</string>
+		<key>middle</key>
+		<string>kaaf</string>
+	</dict>
 	<key>ch</key>
 	<dict>
 		<key>initial</key>
@@ -247,12 +254,19 @@
 		<key>middle</key>
 		<string>ghein</string>
 	</dict>
+	<key>gg</key>
+	<dict>
+		<key>initial</key>
+		<string>geem</string>
+		<key>middle</key>
+		<string>geem</string>
+	</dict>
 	<key>kh</key>
 	<dict>
 		<key>initial</key>
-		<string>KHa</string>
+		<string>kha</string>
 		<key>middle</key>
-		<string>KHa</string>
+		<string>kha</string>
 	</dict>
 	<key>7</key>
 	<dict>
@@ -399,6 +413,13 @@
 	<key>q</key>
 	<dict>
 		<key>initial</key>
+		<string>qaaf</string>
+		<key>middle</key>
+		<string>qaaf</string>
+	</dict>
+	<key>que</key>
+	<dict>
+		<key>initial</key>
 		<string>kaaf</string>
 		<key>middle</key>
 		<string>kaaf</string>
@@ -434,9 +455,9 @@
 	<key>ss</key>
 	<dict>
 		<key>initial</key>
-		<string>saad</string>
+		<string>seen</string>
 		<key>middle</key>
-		<string>saad</string>
+		<string>seen</string>
 	</dict>
 	<key>sh</key>
 	<dict>
@@ -464,7 +485,7 @@
 		<key>initial</key>
 		<string>teh, wow</string>
 		<key>middle</key>
-		<string>thaal, wow</string>
+		<string>teh, wow</string>
 	</dict>
 	<key>th</key>
 	<dict>
