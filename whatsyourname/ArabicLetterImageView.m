@@ -78,13 +78,15 @@
         self.image = self.frameImage;
     }
 
-    if (!self.fontSize) fontSize = 38;
+    if (!self.fontSize) fontSize = 34; 
     if (!self.fontColor) fontColor = [UIColor blackColor];
     letterLabel = [[UILabel alloc] init];
     letterLabel.font = [UIFont fontWithName:@"GeezaPro-Bold" size:self.fontSize];
     letterLabel.textColor = self.fontColor;
     letterLabel.backgroundColor = [UIColor clearColor];
     letterLabel.textAlignment = NSTextAlignmentCenter;
+    letterLabel.adjustsFontSizeToFitWidth = YES;
+    letterLabel.numberOfLines = 1;
     if (self.addShadows) {
         letterLabel.shadowColor = [UIColor whiteColor];
         letterLabel.shadowOffset = CGSizeMake(1,1);
