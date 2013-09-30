@@ -347,6 +347,7 @@
     
     //for each pattern, check if that's in the name and reduce
     for (NSString* p in patterns) {
+        for (NSUInteger i=0; i < [arabicName length]; i++){
         if ([arabicName hasPrefix:p]) {
             position = 0;
             lettersToLookup = [[transliterationDictionary objectForKey:p] objectForKey:@"initial"];
@@ -387,6 +388,8 @@
                                                             options:NULL range:NSMakeRange(position,p.length)];
             arabicName = [temp mutableCopy];
         }
+        }
+        
     }
     if (DEBUG_ARABIC_NAME) { NSLog(@"  *Name after reduction: %@", arabicName); }
     
