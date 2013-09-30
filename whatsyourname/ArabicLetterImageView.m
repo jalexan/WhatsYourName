@@ -78,7 +78,7 @@
         self.image = self.frameImage;
     }
 
-    if (!self.fontSize) fontSize = 34; 
+    if (!self.fontSize) fontSize = 36;
     if (!self.fontColor) fontColor = [UIColor blackColor];
     letterLabel = [[UILabel alloc] init];
     letterLabel.font = [UIFont fontWithName:@"GeezaPro-Bold" size:self.fontSize];
