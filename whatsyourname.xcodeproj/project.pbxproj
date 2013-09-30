@@ -52,7 +52,6 @@
 		68E73BF8174496610064F7BC /* UIView+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 68E73BF7174496610064F7BC /* UIView+Additions.m */; };
 		68E73BFD1744A5170064F7BC /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 68E73BFC1744A5170064F7BC /* Default.png */; };
 		68E73BFF1744A51B0064F7BC /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68E73BFE1744A51B0064F7BC /* Default@2x.png */; };
-		68E73C011744A51E0064F7BC /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68E73C001744A51E0064F7BC /* Default-568h@2x.png */; };
 		68E73C031744A6490064F7BC /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 68E73C021744A6490064F7BC /* icon.png */; };
 		68E73C051744A64C0064F7BC /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68E73C041744A64C0064F7BC /* icon@2x.png */; };
 		68E73C2F1744B22C0064F7BC /* SpeakerImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 68E73C2E1744B22B0064F7BC /* SpeakerImageView.m */; };
@@ -135,7 +134,6 @@
 		68E73BF7174496610064F7BC /* UIView+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Additions.m"; sourceTree = "<group>"; };
 		68E73BFC1744A5170064F7BC /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Default.png; sourceTree = "<group>"; };
 		68E73BFE1744A51B0064F7BC /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "../Default@2x.png"; sourceTree = "<group>"; };
-		68E73C001744A51E0064F7BC /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
 		68E73C021744A6490064F7BC /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = ../icon.png; sourceTree = "<group>"; };
 		68E73C041744A64C0064F7BC /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon@2x.png"; path = "../icon@2x.png"; sourceTree = "<group>"; };
 		68E73C2D1744B22B0064F7BC /* SpeakerImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeakerImageView.h; sourceTree = "<group>"; };
@@ -257,7 +255,6 @@
 				15C8050417F94F7400285B84 /* icon-120.png */,
 				68E73C041744A64C0064F7BC /* icon@2x.png */,
 				68E73C021744A6490064F7BC /* icon.png */,
-				68E73C001744A51E0064F7BC /* Default-568h@2x.png */,
 				68E73BFE1744A51B0064F7BC /* Default@2x.png */,
 				68E73BFC1744A5170064F7BC /* Default.png */,
 			);
@@ -372,7 +369,6 @@
 				68240B2B173F07D200BDBDF8 /* MainStoryboard.storyboard in Resources */,
 				68E73BFD1744A5170064F7BC /* Default.png in Resources */,
 				68E73BFF1744A51B0064F7BC /* Default@2x.png in Resources */,
-				68E73C011744A51E0064F7BC /* Default-568h@2x.png in Resources */,
 				68E73C031744A6490064F7BC /* icon.png in Resources */,
 				68E73C051744A64C0064F7BC /* icon@2x.png in Resources */,
 				681B4FE61748248600B5AF95 /* Speakers.plist in Resources */,
