@@ -11,6 +11,8 @@
 		15359AA5178D7933002D73BB /* Credits.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15359AA4178D7933002D73BB /* Credits.plist */; };
 		155C369A17D9891400E28109 /* ButtonExpander.m in Sources */ = {isa = PBXBuildFile; fileRef = 155C369917D9891400E28109 /* ButtonExpander.m */; };
 		15955EBA17962C4E00E11F14 /* ArabicLetterAudioImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 15955EB917962C4E00E11F14 /* ArabicLetterAudioImageView.m */; };
+		15C8050517F94F7400285B84 /* icon-60.png in Resources */ = {isa = PBXBuildFile; fileRef = 15C8050317F94F7400285B84 /* icon-60.png */; };
+		15C8050617F94F7400285B84 /* icon-120.png in Resources */ = {isa = PBXBuildFile; fileRef = 15C8050417F94F7400285B84 /* icon-120.png */; };
 		15DEA758176525E00058852E /* TransliteratedLetters.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15DEA757176525E00058852E /* TransliteratedLetters.plist */; };
 		15DEA75A1765315F0058852E /* WellKnownNames.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15DEA7591765315F0058852E /* WellKnownNames.plist */; };
 		6808A9D2178012E500DBF72F /* AlphabetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6808A9D1178012E500DBF72F /* AlphabetViewController.m */; };
@@ -68,6 +70,8 @@
 		155C369917D9891400E28109 /* ButtonExpander.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ButtonExpander.m; path = ../ButtonExpander.m; sourceTree = "<group>"; };
 		15955EB817962C4E00E11F14 /* ArabicLetterAudioImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArabicLetterAudioImageView.h; sourceTree = "<group>"; };
 		15955EB917962C4E00E11F14 /* ArabicLetterAudioImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArabicLetterAudioImageView.m; sourceTree = "<group>"; };
+		15C8050317F94F7400285B84 /* icon-60.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-60.png"; sourceTree = "<group>"; };
+		15C8050417F94F7400285B84 /* icon-120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-120.png"; sourceTree = "<group>"; };
 		15DEA757176525E00058852E /* TransliteratedLetters.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = TransliteratedLetters.plist; sourceTree = "<group>"; };
 		15DEA7591765315F0058852E /* WellKnownNames.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = WellKnownNames.plist; sourceTree = "<group>"; };
 		6808A9D0178012E500DBF72F /* AlphabetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlphabetViewController.h; sourceTree = "<group>"; };
@@ -80,7 +84,7 @@
 		681DDD3017545A35007FFD64 /* GameController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameController.m; sourceTree = "<group>"; };
 		681DDD3217546E0A007FFD64 /* AudioManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioManager.h; sourceTree = "<group>"; };
 		681DDD3317546E0A007FFD64 /* AudioManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioManager.m; sourceTree = "<group>"; };
-		68240B0D173F07D200BDBDF8 /* whatsyourname.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = whatsyourname.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		68240B0D173F07D200BDBDF8 /* WhatsYName.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhatsYName.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		68240B11173F07D200BDBDF8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		68240B13173F07D200BDBDF8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		68240B15173F07D200BDBDF8 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -177,7 +181,7 @@
 		68240B0E173F07D200BDBDF8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				68240B0D173F07D200BDBDF8 /* whatsyourname.app */,
+				68240B0D173F07D200BDBDF8 /* WhatsYName.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -249,6 +253,8 @@
 				68240B1A173F07D200BDBDF8 /* InfoPlist.strings */,
 				68240B1D173F07D200BDBDF8 /* main.m */,
 				68240B1F173F07D200BDBDF8 /* whatsyourname-Prefix.pch */,
+				15C8050317F94F7400285B84 /* icon-60.png */,
+				15C8050417F94F7400285B84 /* icon-120.png */,
 				68E73C041744A64C0064F7BC /* icon@2x.png */,
 				68E73C021744A6490064F7BC /* icon.png */,
 				68E73C001744A51E0064F7BC /* Default-568h@2x.png */,
@@ -328,7 +334,7 @@
 			);
 			name = whatsyourname;
 			productName = whatsyourname;
-			productReference = 68240B0D173F07D200BDBDF8 /* whatsyourname.app */;
+			productReference = 68240B0D173F07D200BDBDF8 /* WhatsYName.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -379,6 +385,8 @@
 				1500BC03177AABAD00F0DE3D /* LettersByName.plist in Resources */,
 				15359AA5178D7933002D73BB /* Credits.plist in Resources */,
 				68240C5A17A4A4D6006C3B91 /* GameWebViewController.xib in Resources */,
+				15C8050517F94F7400285B84 /* icon-60.png in Resources */,
+				15C8050617F94F7400285B84 /* icon-120.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -499,7 +507,7 @@
 				GCC_PREFIX_HEADER = "whatsyourname/whatsyourname-Prefix.pch";
 				INFOPLIST_FILE = "whatsyourname/whatsyourname-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = WhatsYName;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -511,7 +519,7 @@
 				GCC_PREFIX_HEADER = "whatsyourname/whatsyourname-Prefix.pch";
 				INFOPLIST_FILE = "whatsyourname/whatsyourname-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = WhatsYName;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
