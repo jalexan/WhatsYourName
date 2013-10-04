@@ -69,6 +69,20 @@
 		<key>middle</key>
 		<string>&apos;ein, beh, daal</string>
 	</dict>
+	<key>abdel</key>
+	<dict>
+		<key>initial</key>
+		<string>&apos;ein, beh, daal, alef, lam</string>
+		<key>middle</key>
+		<string>&apos;ein, beh, daal, alef, lam</string>
+	</dict>
+	<key>abdul</key>
+	<dict>
+		<key>initial</key>
+		<string>&apos;ein, beh, daal, alef, lam</string>
+		<key>middle</key>
+		<string>&apos;ein, beh, daal, alef, lam</string>
+	</dict>
 	<key>assal</key>
 	<dict>
 		<key>initial</key>
@@ -82,6 +96,13 @@
 		<string>alef madda, noon</string>
 		<key>middle</key>
 		<string>alef, noon</string>
+	</dict>
+	<key>ai</key>
+	<dict>
+		<key>initial</key>
+		<string>alef hamza, yeh</string>
+		<key>middle</key>
+		<string>yeh</string>
 	</dict>
 	<key>b</key>
 	<dict>
@@ -215,9 +236,23 @@
 		<key>initial</key>
 		<string>alef, yeh</string>
 		<key>middle</key>
-		<string>alef, yeh</string>
+		<string>yeh</string>
 	</dict>
 	<key>ie</key>
+	<dict>
+		<key>initial</key>
+		<string>yeh</string>
+		<key>middle</key>
+		<string>yeh</string>
+	</dict>
+	<key>ey</key>
+	<dict>
+		<key>initial</key>
+		<string>yeh</string>
+		<key>middle</key>
+		<string>yeh</string>
+	</dict>
+	<key>iy</key>
 	<dict>
 		<key>initial</key>
 		<string>yeh</string>
@@ -319,6 +354,13 @@
 		<key>middle</key>
 		<string>yeh</string>
 	</dict>
+	<key>ike</key>
+	<dict>
+		<key>initial</key>
+		<string>alef hamza below, yeh, kaaf</string>
+		<key>middle</key>
+		<string>alef, yeh, kaaf</string>
+	</dict>
 	<key>j</key>
 	<dict>
 		<key>initial</key>
@@ -395,6 +437,13 @@
 		<string>wow</string>
 		<key>middle</key>
 		<string>wow</string>
+	</dict>
+	<key>ohn</key>
+	<dict>
+		<key>initial</key>
+		<string>alef hamza, wow, noon</string>
+		<key>middle</key>
+		<string>wow, noon</string>
 	</dict>
 	<key>ou</key>
 	<dict>
