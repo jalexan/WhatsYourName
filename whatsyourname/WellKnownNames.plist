@@ -315,11 +315,11 @@
 	<key>esaam</key>
 	<string>&apos;ein, saad, alef, meem</string>
 	<key>etidal</key>
-	<string>alef hamza below, &apos;ein, teh, daal, alef, lam </string>
+	<string>alef hamza below, &apos;ein, teh, daal, alef, lam</string>
 	<key>atedaal</key>
-	<string>alef hamza below, &apos;ein, teh, daal, alef, lam </string>
+	<string>alef hamza below, &apos;ein, teh, daal, alef, lam</string>
 	<key>aatedal</key>
-	<string>alef hamza below, &apos;ein, teh, daal, alef, lam </string>
+	<string>alef hamza below, &apos;ein, teh, daal, alef, lam</string>
 	<key>evelyn</key>
 	<string>alef hamza below, yeh, feh, lam, yeh, noon</string>
 	<key>fairuz</key>
@@ -796,6 +796,12 @@
 	<string>meem, yeh, reh, feh, teh</string>
 	<key>messih</key>
 	<string>meem, seen, yeh, Ha</string>
+	<key>messihi</key>
+	<string>meem, seen, yeh, Ha, yeh</string>
+	<key>almessihi</key>
+	<string>alef, lam, meem, seen, yeh, Ha, yeh</string>
+	<key>elmessihi</key>
+	<string>alef, lam, meem, seen, yeh, Ha, yeh</string>
 	<key>messiha</key>
 	<string>meem, seen, yeh, Ha, te marboota</string>
 	<key>miniawi</key>
