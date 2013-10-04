@@ -12,7 +12,6 @@
 #import "ArabicLetterImageView.h"
 #import "SpeakerList.h"
 
-#define DEBUG_ARABIC_NAME 1
 
 @interface NameSpellViewController () {
     NSDictionary* yourNameDialogDictionary;
