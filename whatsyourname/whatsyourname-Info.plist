@@ -14,15 +14,16 @@
 		<dict>
 			<key>CFBundleIconFiles</key>
 			<array>
-				<string>default.png</string>
-				<string>default@2x.png</string>
-				<string>default@2x.png</string>
-				<string>default@2x.png</string>
-				<string>default@2x.png</string>
-				<string>default@2x.png</string>
-				<string>default.png</string>
+				<string>Default.png</string>
+				<string>Default@2x.png</string>
 				<string>icon.png</string>
 				<string>icon@2x.png</string>
+				<string>icon-29.png</string>
+				<string>icon-29@2x.png</string>
+				<string>icon-40.png</string>
+				<string>icon-40@2x.png</string>
+				<string>icon-60.png</string>
+				<string>icon-60@2x.png</string>
 			</array>
 		</dict>
 	</dict>
