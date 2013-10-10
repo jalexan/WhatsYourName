@@ -24,9 +24,11 @@
 	<string>alef madda, dal, meem</string>
 	<key>a7med</key>
 	<string>alef hamza, Ha, meem, daal</string>
+	<key>abdalla</key>
+	<string>&apos;ein, beh, daal, alef, lam, lam, heh</string>
 	<key>abdallah</key>
 	<string>&apos;ein, beh, daal, alef, lam, lam, heh</string>
-	<key>abdalla</key>
+	<key>abdullah</key>
 	<string>&apos;ein, beh, daal, alef, lam, lam, heh</string>
 	<key>abdelaziz</key>
 	<string>&apos;ein, beh, daal, alef, lam, &apos;ein, zein, yeh, zein</string>
@@ -44,8 +46,6 @@
 	<string>&apos;ein, beh, daal, alef, lam, meem, noon, &apos;ein, meem</string>
 	<key>abdelrahman</key>
 	<string>&apos;ein, beh, daal, alef, lam, reh, Ha, meem, noon</string>
-	<key>abdullah</key>
-	<string>&apos;ein, beh, daal, alef, lam, lam, heh</string>
 	<key>abraham</key>
 	<string>alef hamza below, beh, reh, alef, heh, yeh, meem</string>
 	<key>abood</key>
@@ -802,6 +802,22 @@
 	<string>alef, lam, meem, seen, yeh, Ha, yeh</string>
 	<key>elmessihi</key>
 	<string>alef, lam, meem, seen, yeh, Ha, yeh</string>
+	<key>masr</key>
+	<string>meem, saad, reh</string>
+	<key>masry</key>
+	<string>meem, saad, reh, yeh</string>
+	<key>masri</key>
+	<string>meem, saad, reh, yeh</string>
+	<key>masreya</key>
+	<string>meem, saad, reh, yeh, te marboota</string>
+	<key>elmasry</key>
+	<string>alef, lam, meem, saad, reh, yeh</string>
+	<key>elmasri</key>
+	<string>alef, lam, meem, saad, reh, yeh</string>
+	<key>almasri</key>
+	<string>alef, lam, meem, saad, reh, yeh</string>
+	<key>almasry</key>
+	<string>alef, lam, meem, saad, reh, yeh</string>
 	<key>messiha</key>
 	<string>meem, seen, yeh, Ha, te marboota</string>
 	<key>miniawi</key>
