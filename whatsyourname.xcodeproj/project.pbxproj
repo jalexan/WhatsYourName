@@ -53,6 +53,7 @@
 		6883F4FB1740D47600487055 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6883F4FA1740D47600487055 /* AudioToolbox.framework */; };
 		68873390179F9B3C000877AB /* GameUIButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6887338F179F9B3C000877AB /* GameUIButton.m */; };
 		689815D8177A95C100737B97 /* StartScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 689815D7177A95C100737B97 /* StartScreenViewController.m */; };
+		68AF1C20180BB5D400829783 /* ParentalGate.m in Sources */ = {isa = PBXBuildFile; fileRef = 68AF1C1F180BB5D400829783 /* ParentalGate.m */; };
 		68B6959A176C23A0002542EA /* StarImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B69599176C23A0002542EA /* StarImageView.m */; };
 		68BC242C1760485E00A041C6 /* NameSpellViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68BC242B1760485E00A041C6 /* NameSpellViewController.m */; };
 		68E73BF8174496610064F7BC /* UIView+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 68E73BF7174496610064F7BC /* UIView+Additions.m */; };
@@ -138,6 +139,8 @@
 		6887338F179F9B3C000877AB /* GameUIButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameUIButton.m; sourceTree = "<group>"; };
 		689815D6177A95C100737B97 /* StartScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartScreenViewController.h; sourceTree = "<group>"; };
 		689815D7177A95C100737B97 /* StartScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartScreenViewController.m; sourceTree = "<group>"; };
+		68AF1C1E180BB5D400829783 /* ParentalGate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParentalGate.h; sourceTree = "<group>"; };
+		68AF1C1F180BB5D400829783 /* ParentalGate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParentalGate.m; sourceTree = "<group>"; };
 		68B69598176C23A0002542EA /* StarImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StarImageView.h; sourceTree = "<group>"; };
 		68B69599176C23A0002542EA /* StarImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StarImageView.m; sourceTree = "<group>"; };
 		68BC242A1760485E00A041C6 /* NameSpellViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NameSpellViewController.h; sourceTree = "<group>"; };
@@ -222,6 +225,8 @@
 				68240C5617A4A4D6006C3B91 /* GameWebViewController.h */,
 				68240C5717A4A4D6006C3B91 /* GameWebViewController.m */,
 				68240C5817A4A4D6006C3B91 /* GameWebViewController.xib */,
+				68AF1C1E180BB5D400829783 /* ParentalGate.h */,
+				68AF1C1F180BB5D400829783 /* ParentalGate.m */,
 				681DDD2F17545A35007FFD64 /* GameController.h */,
 				681DDD3017545A35007FFD64 /* GameController.m */,
 				689815D6177A95C100737B97 /* StartScreenViewController.h */,
@@ -446,6 +451,7 @@
 				68F0825217B0B71200A633AD /* ChooseLevelViewController.m in Sources */,
 				155C369A17D9891400E28109 /* ButtonExpander.m in Sources */,
 				684C855E17EAA74B005CBEF7 /* PlayButton.m in Sources */,
+				68AF1C20180BB5D400829783 /* ParentalGate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

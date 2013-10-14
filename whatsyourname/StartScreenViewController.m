@@ -15,6 +15,7 @@
 #import "GameWebViewController.h"
 #import "AudioManager.h"
 #import "PlayButton.h"
+#import "ParentalGate.h"
 
 @interface StartScreenViewController () {
     IBOutlet GameUIButton* bookLinkButton;
@@ -24,6 +25,9 @@
     IBOutlet PlayButton* playButton;
     UIScrollView* creditsScreen;
     AudioManager* audioManager;
+    NSUInteger parentalGateAnswer;
+    
+    ParentalGate *gate;
 }
 -(IBAction)bookLinkButtonTouched:(id)sender;
 -(IBAction)creditsButtonTouched:(id)sender;
@@ -68,18 +72,30 @@
 }
 
 -(IBAction)bookLinkButtonTouched:(id)sender {
-
-    GameWebViewController *webController = [[GameWebViewController alloc] initWithNibName:nil bundle:nil];
-    [webController openURL:[NSURL URLWithString:@"http://noliafasolia.com/books"]];
-    [self.navigationController pushViewController:webController animated:YES];
+    gate = [[ParentalGate alloc] initWithAnswerBlock:^(BOOL isCorrectAnswer) {
     
+        if (isCorrectAnswer) {
+            GameWebViewController *webController = [[GameWebViewController alloc] initWithNibName:nil bundle:nil];
+            [webController openURL:[NSURL URLWithString:@"http://noliafasolia.com/books"]];
+            [self.navigationController pushViewController:webController animated:YES];
+        }
+        
+    }];
+    [gate validateIfUserIsParent];
 }
 
 -(IBAction)facebookButtonTouched:(id)sender {
+    gate = [[ParentalGate alloc] initWithAnswerBlock:^(BOOL isCorrectAnswer) {
+        
+        if (isCorrectAnswer) {
+            GameWebViewController *fbwebController = [[GameWebViewController alloc] initWithNibName:nil bundle:nil];
+            [fbwebController openURL:[NSURL URLWithString:@"http://www.facebook.com/noliafasolia"]];
+            [self.navigationController pushViewController:fbwebController animated:YES];
+        }
+        
+    }];
+    [gate validateIfUserIsParent];
 
-   GameWebViewController *fbwebController = [[GameWebViewController alloc] initWithNibName:nil bundle:nil];
-   [fbwebController openURL:[NSURL URLWithString:@"http://www.facebook.com/noliafasolia"]];
-   [self.navigationController pushViewController:fbwebController animated:YES];
 }
 
 -(IBAction)creditsBackButtonTouched:(id)sender {
