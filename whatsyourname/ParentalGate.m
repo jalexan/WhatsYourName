@@ -27,10 +27,11 @@
         NSUInteger a = (arc4random() % 9)+1;
         NSUInteger b = (arc4random() % 9)+1;
         questionAnswer = a * b;
-        NSString* question = [NSString stringWithFormat:@"What is %d * %d?",a,b];
-        alertView = [[UIAlertView alloc] initWithTitle:@"Are you a parent?" message:question delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Enter",nil];
+        NSString* question = [NSString stringWithFormat:@"Parent Zone! What is %d * %d?",a,b];
+        alertView = [[UIAlertView alloc] initWithTitle:nil message:question delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Enter",nil];
         alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
         [alertView textFieldAtIndex:0].keyboardType = UIKeyboardTypeNumberPad;
+        
         
     }
     return self;
@@ -53,6 +54,7 @@
 
 - (void)validateIfUserIsParent {
     [alertView show];
+    //[[alertView textFieldAtIndex:0] resignFirstResponder];
 }
 
 
