@@ -20,6 +20,9 @@
     NSMutableArray* letterImageViewArray;
     NSString* translatedArabicName;
     NSString* unicodeNameStringForSpelling;
+    NSMutableCharacterSet *vowelsCharacterSet;
+    NSInteger additionalLetters;
+
 }
 
 @end
@@ -66,6 +69,10 @@
     arabicSpellLabel.font = [UIFont fontWithName:@"GeezaPro-Bold" size:64];
     arabicSpellLabel.adjustsFontSizeToFitWidth = YES;
     arabicSpellLabel.minimumScaleFactor = 0.5;
+    
+    vowelsCharacterSet = [[NSMutableCharacterSet alloc] init];
+    [vowelsCharacterSet addCharactersInString:@"aeiouاأإيو"];
+    additionalLetters = 0;
 
 }
 
@@ -385,6 +392,9 @@
             temp = [arabicName stringByReplacingOccurrencesOfString:p
                                                          withString:replaceWith
                                                             options:NULL range:NSMakeRange(position,p.length)];
+            additionalLetters = additionalLetters + p.length - replaceWith.length;
+            if (DEBUG_ARABIC_NAME) { NSLog(@"Additional letters: %d",additionalLetters); }
+
             arabicName = [temp mutableCopy];
         }
         }
@@ -446,12 +456,13 @@
         }
     }
     
-    //LEFT OFF HERE - just need to add the part about 'a' or 'e' in the middle of the string
+    //just need to add the part about 'a' or 'e' in the middle of the string
     NSString* c;
     BOOL middle_vowel_found = FALSE;
     
     for (NSInteger i=0; i < arabicName.length; i++) {
         c = [NSString stringWithFormat:@"%C",[arabicName characterAtIndex:i]];
+        middle_vowel_found = FALSE;
         if (i==0) { //this is the first letter
             lettersToLookup = [[transliterationDictionary objectForKey:c] objectForKey:@"initial"];
             if (lettersToLookup) {
@@ -462,6 +473,42 @@
                     pattern_found = FALSE;
                 }            }
         } else if (i > 0 && i < arabicName.length-1) { //this is a middle letter
+            if ([c isEqualToString:@"a"] || [c isEqualToString:@"e"]) {
+                // an 'a' or 'e' in between two constanants is probably a short vowel, so replace it with a space so that it gets ignored
+                NSCharacterSet *charSet = [NSCharacterSet characterSetWithCharactersInString:c];
+                NSRange range = [arabicName rangeOfCharacterFromSet:charSet];
+                NSRange originalRange = [name rangeOfCharacterFromSet:charSet];
+
+                NSInteger ix = i;
+                if (range.location == NSNotFound) {
+                    // ... do nothing
+                } else {
+                    if (range.location < originalRange.location) {
+                        if (DEBUG_ARABIC_NAME) { NSLog(@"HERE original Range is %d",originalRange.location); }
+                        ix = i + additionalLetters;
+                    } else if ( range.location > originalRange.location) {
+                        if (DEBUG_ARABIC_NAME) { NSLog(@"HERE Range is %d",range.location); }
+                        ix = i + additionalLetters;
+                    } else if (range.location == originalRange.location) {
+                        if (DEBUG_ARABIC_NAME) { NSLog(@"Perfect, original Range is = Range which is %d",originalRange.location); }
+                    } else {
+                        if (DEBUG_ARABIC_NAME) { NSLog(@"Not sure what happened to the ranges here %d",originalRange.location); }
+                    }
+                }
+
+                if (DEBUG_ARABIC_NAME) { NSLog(@"Using index %d",ix); }
+                if (![vowelsCharacterSet characterIsMember:[name characterAtIndex:ix-1]] ) {
+                    if (DEBUG_ARABIC_NAME) { NSLog(@"Checking if pre- surrounding constants %@",[NSString stringWithFormat:@"%C",[name characterAtIndex:ix-1]]); }
+                    if (ix+1 < name.length) {
+                        if (DEBUG_ARABIC_NAME) { NSLog(@"Checking if post- surrounding constants %@",[NSString stringWithFormat:@"%C",[name characterAtIndex:ix+1]]); }
+
+                        if (![vowelsCharacterSet characterIsMember:[name characterAtIndex:ix+1]]) {
+                            middle_vowel_found = TRUE;
+                        }
+                    }
+                }
+            }
+            if (!middle_vowel_found) {
             lettersToLookup = [[transliterationDictionary objectForKey:c] objectForKey:@"middle"];
             if (lettersToLookup) {
                 if (DEBUG_ARABIC_NAME) { NSLog(@"Found middle %@",lettersToLookup); }
@@ -469,9 +516,8 @@
             } else {
                 if (DEBUG_ARABIC_NAME) { NSLog(@"Found middle %@ BUT couldn't get the letter to lookup",lettersToLookup);
                     pattern_found = FALSE;
-                }            }
-            if ([c isEqualToString:@"a"] || [c isEqualToString:@"e"]) {
-                middle_vowel_found = TRUE;
+                }
+            }
             }
         } else {  //this is the last letter
             if ([[transliterationDictionary objectForKey:c] objectForKey:@"final"]) {
@@ -489,28 +535,33 @@
         }
         if (lettersToLookup) { //skip if null
             
-        
-        if (middle_vowel_found) {
-            //LEFT OFF HERE
-            //maybe remove it and if so,
-            //pattern_found = FALSE;
-        }
-        if (pattern_found) {
-            //lookup unicodes for replacement of string arabicName in place
-            NSArray* lettersToLookupArray = [lettersToLookup componentsSeparatedByString:@", "];
-            unicodeLetters = [self getUnicodesForLetters:lettersToLookupArray];
-            NSString* temp;
-            NSString* replaceWith = @"";
-            for (NSString* unicodeLetter in unicodeLetters) {
-                
-                NSUInteger unicodeValue;
-                [[NSScanner scannerWithString:unicodeLetter] scanHexInt:&unicodeValue];
-                replaceWith = [replaceWith stringByAppendingString:[NSString stringWithFormat:@"%C", (unichar)unicodeValue]];
+            if (middle_vowel_found) {
+                //remove middle vowels
+                [arabicName replaceCharactersInRange:NSMakeRange(i,1) withString:@" "];
+
+                pattern_found = FALSE;
+                middle_vowel_found = FALSE;
             }
-            temp = [arabicName stringByReplacingCharactersInRange:NSMakeRange(i,1) withString:replaceWith];
-            arabicName = [temp mutableCopy];
+            if (pattern_found) {
+                //lookup unicodes for replacement of string arabicName in place
+                NSArray* lettersToLookupArray = [lettersToLookup componentsSeparatedByString:@", "];
+                unicodeLetters = [self getUnicodesForLetters:lettersToLookupArray];
+                NSString* temp;
+                NSString* replaceWith = @"";
+                for (NSString* unicodeLetter in unicodeLetters) {
+                
+                    NSUInteger unicodeValue;
+                    [[NSScanner scannerWithString:unicodeLetter] scanHexInt:&unicodeValue];
+                    replaceWith = [replaceWith stringByAppendingString:[NSString stringWithFormat:@"%C", (unichar)unicodeValue]];
+
+                }
+                additionalLetters = additionalLetters - 1 + replaceWith.length;
+                if (DEBUG_ARABIC_NAME) { NSLog(@"Additional letters: %d",additionalLetters); }
+
+                temp = [arabicName stringByReplacingCharactersInRange:NSMakeRange(i,1) withString:replaceWith];
+                arabicName = [temp mutableCopy];
+            }
         }
-    }
     
     }
     if (DEBUG_ARABIC_NAME) { NSLog(@"Name after single character substitution: %@", arabicName); }

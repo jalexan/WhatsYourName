@@ -104,6 +104,13 @@
 		<key>middle</key>
 		<string>yeh</string>
 	</dict>
+	<key>ate</key>
+	<dict>
+		<key>initial</key>
+		<string>alef hamza, yeh, teh</string>
+		<key>middle</key>
+		<string>yeh, teh</string>
+	</dict>
 	<key>b</key>
 	<dict>
 		<key>initial</key>
@@ -124,6 +131,13 @@
 		<string>seen</string>
 		<key>middle</key>
 		<string>seen</string>
+	</dict>
+	<key>ci</key>
+	<dict>
+		<key>initial</key>
+		<string>seen, yeh</string>
+		<key>middle</key>
+		<string>seen, yeh</string>
 	</dict>
 	<key>cc</key>
 	<dict>
@@ -167,6 +181,20 @@
 		<key>middle</key>
 		<string>seen, yeh</string>
 	</dict>
+	<key>cey</key>
+	<dict>
+		<key>initial</key>
+		<string>seen, yeh</string>
+		<key>middle</key>
+		<string>seen, yeh</string>
+	</dict>
+	<key>cia</key>
+	<dict>
+		<key>initial</key>
+		<string>seen, yeh, alef</string>
+		<key>middle</key>
+		<string>seen, yeh, alef</string>
+	</dict>
 	<key>d</key>
 	<dict>
 		<key>initial</key>
@@ -205,6 +233,15 @@
 		<string>noon</string>
 		<key>final</key>
 		<string>noon</string>
+	</dict>
+	<key>ene</key>
+	<dict>
+		<key>initial</key>
+		<string>alef hamza, noon</string>
+		<key>middle</key>
+		<string>yeh, noon</string>
+		<key>final</key>
+		<string>yeh, noon</string>
 	</dict>
 	<key>eo</key>
 	<dict>
@@ -245,6 +282,20 @@
 		<key>middle</key>
 		<string>yeh</string>
 	</dict>
+	<key>iel</key>
+	<dict>
+		<key>initial</key>
+		<string>yeh, alef, lam</string>
+		<key>middle</key>
+		<string>yeh, alef, lam</string>
+	</dict>
+	<key>eve</key>
+	<dict>
+		<key>initial</key>
+		<string>alef hamza below, yeh, feh</string>
+		<key>middle</key>
+		<string>yeh, feh</string>
+	</dict>
 	<key>ey</key>
 	<dict>
 		<key>initial</key>
@@ -260,6 +311,13 @@
 		<string>yeh</string>
 	</dict>
 	<key>f</key>
+	<dict>
+		<key>initial</key>
+		<string>feh</string>
+		<key>middle</key>
+		<string>feh</string>
+	</dict>
+	<key>ff</key>
 	<dict>
 		<key>initial</key>
 		<string>feh</string>
