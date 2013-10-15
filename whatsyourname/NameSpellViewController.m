@@ -71,7 +71,7 @@
     arabicSpellLabel.minimumScaleFactor = 0.5;
     
     vowelsCharacterSet = [[NSMutableCharacterSet alloc] init];
-    [vowelsCharacterSet addCharactersInString:@"aeiouاأإيو"];
+    [vowelsCharacterSet addCharactersInString:@"aeiouyاأآإيو"];
     additionalLetters = 0;
 
 }
