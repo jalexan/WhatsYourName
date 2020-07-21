@@ -356,19 +356,35 @@
         for (NSUInteger i=0; i < [arabicName length]; i++){
         if ([arabicName hasPrefix:p]) {
             position = 0;
-            lettersToLookup = [[transliterationDictionary objectForKey:p] objectForKey:@"initial"];
-            if (DEBUG_ARABIC_NAME) { NSLog(@"Found prefix %@",lettersToLookup); }
-            pattern_found = TRUE;
+            if ([[transliterationDictionary objectForKey:p] objectForKey:@"initial"]) {
+                lettersToLookup = [[transliterationDictionary objectForKey:p] objectForKey:@"initial"];
+                if (DEBUG_ARABIC_NAME) { NSLog(@"Found prefix %@",lettersToLookup); }
+                pattern_found = TRUE;
+            } else {
+                pattern_found = FALSE;
+            }
         } else if ([arabicName hasSuffix:p]) {
             position = [arabicName rangeOfString:p].location;
-            lettersToLookup = [[transliterationDictionary objectForKey:p] objectForKey:@"middle"];
-            if (DEBUG_ARABIC_NAME) { NSLog(@"Found suffix %@",lettersToLookup); }
-            pattern_found = TRUE;
+            if ([[transliterationDictionary objectForKey:p] objectForKey:@"final"]) {
+                lettersToLookup = [[transliterationDictionary objectForKey:p] objectForKey:@"final"];
+                if (DEBUG_ARABIC_NAME) { NSLog(@"Found suffix %@",lettersToLookup); }
+                pattern_found = TRUE;
+            } else if ([[transliterationDictionary objectForKey:p] objectForKey:@"middle"]) {
+                lettersToLookup = [[transliterationDictionary objectForKey:p] objectForKey:@"middle"];
+                if (DEBUG_ARABIC_NAME) { NSLog(@"Found suffix %@",lettersToLookup); }
+                pattern_found = TRUE;
+            } else {
+                pattern_found = FALSE;
+            }
         } else if ([arabicName rangeOfString:p].location != NSNotFound) {
             position = [arabicName rangeOfString:p].location;
-            lettersToLookup = [[transliterationDictionary objectForKey:p] objectForKey:@"middle"];
-            if (DEBUG_ARABIC_NAME) { NSLog(@"Found pattern %@",lettersToLookup); }
-            pattern_found = TRUE;
+            if ([[transliterationDictionary objectForKey:p] objectForKey:@"middle"]) {
+                lettersToLookup = [[transliterationDictionary objectForKey:p] objectForKey:@"middle"];
+                if (DEBUG_ARABIC_NAME) { NSLog(@"Found pattern %@",lettersToLookup); }
+                pattern_found = TRUE;
+            } else {
+                pattern_found = FALSE;
+            }
         } else {
             pattern_found = FALSE;
         }

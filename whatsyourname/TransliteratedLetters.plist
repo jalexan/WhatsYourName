@@ -90,6 +90,16 @@
 		<key>middle</key>
 		<string>&apos;ein, beh, daal, alef, lam</string>
 	</dict>
+	<key>abu</key>
+	<dict>
+		<key>initial</key>
+		<string>alef, beh, wow</string>
+	</dict>
+	<key>abou</key>
+	<dict>
+		<key>initial</key>
+		<string>alef, beh, wow</string>
+	</dict>
 	<key>agost</key>
 	<dict>
 		<key>initial</key>
@@ -111,19 +121,22 @@
 		<key>middle</key>
 		<string>alef, ghein, seen, Taa</string>
 	</dict>
-	<key>assal</key>
-	<dict>
-		<key>initial</key>
-		<string>&apos;ein, seen, lam</string>
-		<key>middle</key>
-		<string>&apos;ein, seen, lam</string>
-	</dict>
 	<key>an</key>
 	<dict>
 		<key>initial</key>
 		<string>alef madda, noon</string>
 		<key>middle</key>
 		<string>alef, noon</string>
+	</dict>
+	<key>al</key>
+	<dict>
+		<key>initial</key>
+		<string>alef, lam</string>
+	</dict>
+	<key>all</key>
+	<dict>
+		<key>initial</key>
+		<string>alef, lam</string>
 	</dict>
 	<key>ace</key>
 	<dict>
@@ -173,6 +186,13 @@
 		<string>alef, reh, yeh</string>
 		<key>middle</key>
 		<string>alef, reh, yeh</string>
+	</dict>
+	<key>assal</key>
+	<dict>
+		<key>initial</key>
+		<string>&apos;ein, seen, lam</string>
+		<key>middle</key>
+		<string>&apos;ein, seen, lam</string>
 	</dict>
 	<key>ate</key>
 	<dict>
@@ -503,6 +523,11 @@
 		<key>middle</key>
 		<string>yeh</string>
 	</dict>
+	<key>isabel</key>
+	<dict>
+		<key>initial</key>
+		<string>alef hamza below, yeh, zein, alef, beh, yeh, lam</string>
+	</dict>
 	<key>ike</key>
 	<dict>
 		<key>initial</key>
@@ -587,6 +612,11 @@
 		<key>middle</key>
 		<string>noon</string>
 	</dict>
+	<key>ns</key>
+	<dict>
+		<key>final</key>
+		<string>noon, zein</string>
+	</dict>
 	<key>o</key>
 	<dict>
 		<key>initial</key>
@@ -602,6 +632,13 @@
 		<string>wow</string>
 	</dict>
 	<key>ohn</key>
+	<dict>
+		<key>initial</key>
+		<string>alef hamza, wow, noon</string>
+		<key>middle</key>
+		<string>wow, noon</string>
+	</dict>
+	<key>own</key>
 	<dict>
 		<key>initial</key>
 		<string>alef hamza, wow, noon</string>
@@ -761,6 +798,11 @@
 		<string>wow</string>
 		<key>middle</key>
 		<string>wow</string>
+	</dict>
+	<key>wh</key>
+	<dict>
+		<key>initial</key>
+		<string>wow, alef</string>
 	</dict>
 	<key>x</key>
 	<dict>

@@ -77,6 +77,7 @@
 		156FCEE617F954450018C0F7 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		15955EB817962C4E00E11F14 /* ArabicLetterAudioImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArabicLetterAudioImageView.h; sourceTree = "<group>"; };
 		15955EB917962C4E00E11F14 /* ArabicLetterAudioImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArabicLetterAudioImageView.m; sourceTree = "<group>"; };
+		15C2978224C6A240005546E5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		15DEA757176525E00058852E /* TransliteratedLetters.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = TransliteratedLetters.plist; sourceTree = "<group>"; };
 		15DEA7591765315F0058852E /* WellKnownNames.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = WellKnownNames.plist; sourceTree = "<group>"; };
 		15F7EE5917FE8D0A00E85EF3 /* icon-29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-29.png"; sourceTree = "<group>"; };
@@ -106,7 +107,6 @@
 		68240B1F173F07D200BDBDF8 /* whatsyourname-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "whatsyourname-Prefix.pch"; sourceTree = "<group>"; };
 		68240B20173F07D200BDBDF8 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		68240B21173F07D200BDBDF8 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		68240B2A173F07D200BDBDF8 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		68240B2C173F07D200BDBDF8 /* LetterGameViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LetterGameViewController.h; sourceTree = "<group>"; };
 		68240B2D173F07D200BDBDF8 /* LetterGameViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LetterGameViewController.m; sourceTree = "<group>"; };
 		68240B801740744F00BDBDF8 /* ArabicLetter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArabicLetter.m; sourceTree = "<group>"; };
@@ -368,10 +368,11 @@
 			};
 			buildConfigurationList = 68240B07173F07D200BDBDF8 /* Build configuration list for PBXProject "whatsyourname" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = 68240B02173F07D200BDBDF8;
 			productRefGroup = 68240B0E173F07D200BDBDF8 /* Products */;
@@ -469,7 +470,7 @@
 		68240B29173F07D200BDBDF8 /* MainStoryboard.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				68240B2A173F07D200BDBDF8 /* en */,
+				15C2978224C6A240005546E5 /* Base */,
 			);
 			name = MainStoryboard.storyboard;
 			sourceTree = "<group>";
@@ -499,7 +500,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -519,7 +520,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
