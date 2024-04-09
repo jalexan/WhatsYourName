@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <WebKit/WebKit.h>
 
-@interface GameWebViewController : UIViewController <UIWebViewDelegate,UIActionSheetDelegate > {
-IBOutlet UIWebView*        _webView;
+@interface GameWebViewController : UIViewController <WKNavigationDelegate,UIActionSheetDelegate > {
+IBOutlet WKWebView*        _webView;
 
 IBOutlet UIButton*  _backButton;
 IBOutlet UIButton*  _forwardButton;

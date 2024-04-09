@@ -30,11 +30,12 @@ static BOOL NIIsPad(void) {
 @end
 
 
-@implementation GameWebViewController
+@implementation GameWebViewController 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)releaseAllSubviews {
-    _webView.delegate = nil;
+    _webView.navigationDelegate = nil;
+   //_webView.delegate = nil;
     
 }
 
@@ -103,8 +104,9 @@ static BOOL NIIsPad(void) {
     
     [super viewDidLoad];
         
-    _webView.delegate = self;
-    _webView.scalesPageToFit = YES;
+    _webView.navigationDelegate = self;
+    //_webView.delegate = self;
+    //_webView.scalesPageToFit = YES;
     {
         UIScrollView *subScrollView;
         if ([[[UIDevice currentDevice] systemVersion] floatValue] < 5.0) {
@@ -169,6 +171,61 @@ static BOOL NIIsPad(void) {
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
+#pragma mark WKWebNavigationDelegate
+
+- (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
+    NSURLRequest *request = navigationAction.request;
+    NSURL *url = request.URL;
+
+    // Check if the URL scheme is what you're interested in
+    if ([url.scheme isEqualToString:@"http"] || [url.scheme isEqualToString:@"https"]) {
+        // Allow the navigation
+        decisionHandler(WKNavigationActionPolicyAllow);
+    } else {
+        // Block the navigation
+        decisionHandler(WKNavigationActionPolicyCancel);
+    }
+}
+
+- (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation {
+    self.title = NSLocalizedString(@"Loading...", @"");
+
+    [_spinner startAnimating];
+
+    _backButton.enabled = [_webView canGoBack];
+    _forwardButton.enabled = [_webView canGoForward];
+}
+- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
+    //self.title = [_webView stringByEvaluatingJavaScriptFromString:@"document.title"];
+    
+    [_webView evaluateJavaScript:@"document.title" completionHandler:^(id _Nullable result, NSError * _Nullable error) {
+        if (error != nil) {
+            NSLog(@"Error evaluating JavaScript: %@", error.localizedDescription);
+        } else {
+            NSLog(@"JavaScript evaluation result: %@", result);
+            self.title = result;
+        }
+    }];
+
+    
+    
+    
+    [_spinner stopAnimating];
+    
+    _backButton.enabled = [_webView canGoBack];
+    _forwardButton.enabled = [_webView canGoForward];
+}
+
+- (void)webView:(WKWebView *)webView didFailNavigation:(WKNavigation *)navigation withError:(NSError *)error {
+    //[self webViewDidFinishLoad:webView];
+    [self webView:webView didFinishNavigation:navigation];
+    
+    [_spinner stopAnimating];
+}
+
+
+/*
+#pragma mark -
 #pragma mark UIWebViewDelegate
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -210,13 +267,14 @@ static BOOL NIIsPad(void) {
     [_spinner stopAnimating];
 }
 
+*/
 
 #pragma mark -
 #pragma mark Public
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSURL *)URL {
-    return _loadingURL ? _loadingURL : _webView.request.mainDocumentURL;
+    return _loadingURL ? _loadingURL : _webView.URL; //_webView.request.mainDocumentURL;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

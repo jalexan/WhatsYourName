@@ -533,7 +533,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "whatsyourname/whatsyourname-Prefix.pch";
 				INFOPLIST_FILE = "whatsyourname/whatsyourname-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				PRODUCT_NAME = WhatsYName;
 				WRAPPER_EXTENSION = app;
 			};
@@ -547,7 +547,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "whatsyourname/whatsyourname-Prefix.pch";
 				INFOPLIST_FILE = "whatsyourname/whatsyourname-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				PRODUCT_NAME = WhatsYName;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "75E3F4C1-CB08-4DEA-95D0-9DC97CA6B8D2";
