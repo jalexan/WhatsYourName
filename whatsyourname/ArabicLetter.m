@@ -42,7 +42,7 @@
         
         
         if (index>=[lettersArray count]) {
-            NSLog(@"ERROR: [lettersArray count] < index: %d", index);
+            NSLog(@"ERROR: [lettersArray count] < index: %d", (unsigned int)index);
         }
         letterDictionary = [lettersArray objectAtIndex:index];
         
@@ -60,14 +60,44 @@
     return self;
 }
 
-- (unichar)unicodeGeneral {
-    
-    NSUInteger unicodeValue;
-    [[NSScanner scannerWithString:unicodeGeneralString] scanHexInt:&unicodeValue];
-    //NSLog(@"%@",[NSString stringWithFormat:@"%C", charValue]);
-    return (unichar)unicodeValue;
+- (unichar) scanUnicodeChar:(unichar)uniString {
+//  NSUInteger unicodeValue;
+    unsigned int unicodeValue = 0; // Initialize with a default value
+    unichar charValue = ' ';
+    NSScanner *scanner = [[NSScanner alloc] initWithString:[NSString stringWithFormat:@"%C", uniString]];
+    //[[NSScanner scannerWithString:unicodeGeneralString] scanHexInt:&unicodeValue];
+    charValue = [scanner scanHexInt:&unicodeValue];
+    if (charValue) {
+        return charValue;
+    }
+    NSLog(@"ERROR converting unicode char: %@",[NSString stringWithFormat:@"%C", charValue]);
+    return nil;
     
 }
+
+- (unichar)unicodeGeneral {
+    return [self scanUnicodeChar:unicodeGeneral];
+}
+- (unichar)unicodeInitial {
+    return [self scanUnicodeChar:unicodeInitial];
+}
+- (unichar)unicodeMedial {
+    return [self scanUnicodeChar:unicodeMedial];
+}
+- (unichar)unicodeFinal {
+    return [self scanUnicodeChar:unicodeFinal];
+}
+
+
+/*
+- (unichar)unicodeGeneral {
+    NSUInteger unicodeValue;
+    [[NSScanner scannerWithString:unicodeGeneralString] scanHexInt:&unicodeValue];
+     //NSLog(@"ERROR converting unicode char: %@",[NSString stringWithFormat:@"%C", charValue]);
+    return (unichar)unicodeValue;
+
+}
+
 
 - (unichar)unicodeInitial {
     
@@ -96,6 +126,6 @@
     
 }
 
-
+*/
 
 @end
