@@ -222,11 +222,11 @@
     NSUInteger letterIndex = [[arabicLettersArray objectAtIndex:index] intValue];
     ArabicLetter* letter = [[ArabicLetter alloc] initWithLetterIndex:letterIndex];
     ArabicLetterImageView* letterImageView = letterImageViewArray[index];
-    letter.slotPosition = index;
+    letter.slotPosition = (int)index;
     
     arabicSpellLabel.text = [NSString stringWithFormat:@"%@%C",arabicSpellLabel.text,unicodeChar];
 
-    [self.audioManager prepareAudioWithPath:[NSString stringWithFormat:@"Speakers/%@/Audio/Letters/%02d.mp3",mainSpeaker.name,letterIndex] key:@"talking"];
+    [self.audioManager prepareAudioWithPath:[NSString stringWithFormat:@"Speakers/%@/Audio/Letters/%02du.mp3",mainSpeaker.name,(unsigned int)letterIndex] key:@"talking"];
     [self.audioManager playAudio:@"talking" volume:1];
     
     [UIView animateWithDuration: 2
@@ -397,7 +397,9 @@
             
             unicodeLetters = [self getUnicodesForLetters:lettersToLookupArray];
             for (NSString* unicodeLetter in unicodeLetters) {
-                NSUInteger unicodeValue;
+               // NSUInteger unicodeValue;
+                unsigned int unicodeValue;
+
                 [[NSScanner scannerWithString:unicodeLetter] scanHexInt:&unicodeValue];
                 unicodeValue = (unichar)unicodeValue;
                 
@@ -409,7 +411,7 @@
                                                          withString:replaceWith
                                                             options:NULL range:NSMakeRange(position,p.length)];
             additionalLetters = additionalLetters + p.length - replaceWith.length;
-            if (DEBUG_ARABIC_NAME) { NSLog(@"Additional letters: %d",additionalLetters); }
+            if (DEBUG_ARABIC_NAME) { NSLog(@"Additional letters: %d",(int)additionalLetters); }
 
             arabicName = [temp mutableCopy];
         }
@@ -500,19 +502,19 @@
                     // ... do nothing
                 } else {
                     if (range.location < originalRange.location) {
-                        if (DEBUG_ARABIC_NAME) { NSLog(@"HERE original Range is %d",originalRange.location); }
+                        if (DEBUG_ARABIC_NAME) { NSLog(@"HERE original Range is %du",(unsigned int)originalRange.location); }
                         ix = i + additionalLetters;
                     } else if ( range.location > originalRange.location) {
-                        if (DEBUG_ARABIC_NAME) { NSLog(@"HERE Range is %d",range.location); }
+                        if (DEBUG_ARABIC_NAME) { NSLog(@"HERE Range is %du",(unsigned int)range.location); }
                         ix = i + additionalLetters;
                     } else if (range.location == originalRange.location) {
-                        if (DEBUG_ARABIC_NAME) { NSLog(@"Perfect, original Range is = Range which is %d",originalRange.location); }
+                        if (DEBUG_ARABIC_NAME) { NSLog(@"Perfect, original Range is = Range which is %du",(unsigned int)originalRange.location); }
                     } else {
-                        if (DEBUG_ARABIC_NAME) { NSLog(@"Not sure what happened to the ranges here %d",originalRange.location); }
+                        if (DEBUG_ARABIC_NAME) { NSLog(@"Not sure what happened to the ranges here %du",(unsigned int)originalRange.location); }
                     }
                 }
 
-                if (DEBUG_ARABIC_NAME) { NSLog(@"Using index %d",ix); }
+                if (DEBUG_ARABIC_NAME) { NSLog(@"Using index %d",(int)ix); }
                 if (![vowelsCharacterSet characterIsMember:[name characterAtIndex:ix-1]] ) {
                     if (DEBUG_ARABIC_NAME) { NSLog(@"Checking if pre- surrounding constants %@",[NSString stringWithFormat:@"%C",[name characterAtIndex:ix-1]]); }
                     if (ix+1 < name.length) {
@@ -566,13 +568,14 @@
                 NSString* replaceWith = @"";
                 for (NSString* unicodeLetter in unicodeLetters) {
                 
-                    NSUInteger unicodeValue;
+                    //NSUInteger unicodeValue;
+                    unsigned int unicodeValue;
                     [[NSScanner scannerWithString:unicodeLetter] scanHexInt:&unicodeValue];
                     replaceWith = [replaceWith stringByAppendingString:[NSString stringWithFormat:@"%C", (unichar)unicodeValue]];
 
                 }
                 additionalLetters = additionalLetters - 1 + replaceWith.length;
-                if (DEBUG_ARABIC_NAME) { NSLog(@"Additional letters: %d",additionalLetters); }
+                if (DEBUG_ARABIC_NAME) { NSLog(@"Additional letters: %d",(int)additionalLetters); }
 
                 temp = [arabicName stringByReplacingCharactersInRange:NSMakeRange(i,1) withString:replaceWith];
                 arabicName = [temp mutableCopy];

@@ -543,7 +543,7 @@ static NSNumber* currentSpeakerIndex;
     
     NSUInteger letterIndex = [[currentSpeaker.letterIndexArray objectAtIndex:index] intValue];
     ArabicLetter* letter = [[ArabicLetter alloc] initWithLetterIndex:letterIndex];
-    letter.slotPosition = index;
+    letter.slotPosition = (int)index;
     letter.isInCorrectSlot = YES;
     unichar unicodeChar = [unicodeNameStringForSpelling characterAtIndex:index];
 

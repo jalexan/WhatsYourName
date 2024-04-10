@@ -274,7 +274,7 @@
         }
         
         arabicLetter = [[ArabicLetter alloc] initWithLetterIndex:i];
-        soundFile = [NSString stringWithFormat:@"Speakers/%@/Audio/Letters/%02d.mp3",currentSpeaker.name,i];
+        soundFile = [NSString stringWithFormat:@"Speakers/%@/Audio/Letters/%02u.mp3",currentSpeaker.name,(unsigned int)i];
         arabicLetterView = [[ArabicLetterAudioImageView alloc] initWithArabicLetter:arabicLetter andAudioManager:self.audioManager withSound:soundFile];
         [arabicLetterView setArabicLetter:arabicLetter];
         mx = mx + tileSize + space;
@@ -381,7 +381,7 @@
 
 
 -(void)animateAndSingAlphabetsByIndex:(NSUInteger)index forSection:(NSUInteger)section forDuration:(NSTimeInterval)d withCompletion:(void((^)()) )completion {
-    NSString *suffix = [NSString stringWithFormat:@"Arabic%d",section];
+    NSString *suffix = [NSString stringWithFormat:@"Arabic%du",(unsigned int)section];
     NSTimeInterval duration;
     
     duration = [self getDurationAndPlaySpeakerDialogAudioWithKey:@"AlphabetSong" prefix:currentSpeaker.name suffix:suffix];
@@ -395,7 +395,7 @@
     for (NSUInteger i=0; i<7; i++) {
         part = ((double)duration - 0.5)/7;
         
-        [self performSelector:@selector(displayChalkboardLetterWithLetterIndex:) withObject:[NSNumber numberWithInt:index] afterDelay:part*i];
+        [self performSelector:@selector(displayChalkboardLetterWithLetterIndex:) withObject:[NSNumber numberWithInt:(int)index] afterDelay:part*i];
 
         /*
         dispatch_after(DISPATCH_SECONDS_FROM_NOW(  ), dispatch_get_main_queue(), ^{

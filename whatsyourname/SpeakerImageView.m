@@ -220,7 +220,7 @@
 }
 
 - (void)repeatAnimationNumber:(NSNumber*)type {
-    [self repeatAnimation:[type integerValue]];
+    [self repeatAnimation:(AnimationType)[type integerValue]];
 }
 
 - (void)repeatAnimation:(AnimationType)type {
