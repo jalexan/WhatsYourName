@@ -27,7 +27,7 @@
         NSUInteger a = (arc4random() % 8)+2;
         NSUInteger b = (arc4random() % 8)+2;
         questionAnswer = a * b;
-        NSString* question = [NSString stringWithFormat:@"Grownups only! What is %lu * (unsigned long)",a,b];
+        NSString* question = [NSString stringWithFormat:@"Grownups only! What is %lu * %lu",a,b];
         alertView = [[UIAlertView alloc] initWithTitle:nil message:question delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Enter",nil];
         alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
         [alertView textFieldAtIndex:0].keyboardType = UIKeyboardTypeNumberPad;
