@@ -60,38 +60,10 @@
     return self;
 }
 
-- (unichar) scanUnicodeChar:(unichar)uniString {
-//  NSUInteger unicodeValue;
-    unsigned int unicodeValue = 0; // Initialize with a default value
-    unichar charValue = ' ';
-    NSScanner *scanner = [[NSScanner alloc] initWithString:[NSString stringWithFormat:@"%C", uniString]];
-    //[[NSScanner scannerWithString:unicodeGeneralString] scanHexInt:&unicodeValue];
-    charValue = [scanner scanHexInt:&unicodeValue];
-    if (charValue) {
-        return charValue;
-    }
-    NSLog(@"ERROR converting unicode char: %@",[NSString stringWithFormat:@"%C", charValue]);
-    return nil;
-    
-}
-
 - (unichar)unicodeGeneral {
-    return [self scanUnicodeChar:unicodeGeneral];
-}
-- (unichar)unicodeInitial {
-    return [self scanUnicodeChar:unicodeInitial];
-}
-- (unichar)unicodeMedial {
-    return [self scanUnicodeChar:unicodeMedial];
-}
-- (unichar)unicodeFinal {
-    return [self scanUnicodeChar:unicodeFinal];
-}
+//    NSUInteger unicodeValue;
+    unsigned int unicodeValue;
 
-
-/*
-- (unichar)unicodeGeneral {
-    NSUInteger unicodeValue;
     [[NSScanner scannerWithString:unicodeGeneralString] scanHexInt:&unicodeValue];
      //NSLog(@"ERROR converting unicode char: %@",[NSString stringWithFormat:@"%C", charValue]);
     return (unichar)unicodeValue;
@@ -100,8 +72,9 @@
 
 
 - (unichar)unicodeInitial {
+    //    NSUInteger unicodeValue;
+        unsigned int unicodeValue;
     
-    NSUInteger unicodeValue;
     [[NSScanner scannerWithString:unicodeInitialString] scanHexInt:&unicodeValue];
     //NSLog(@"%@",[NSString stringWithFormat:@"%C", charValue]);
     return (unichar)unicodeValue;
@@ -109,8 +82,8 @@
 }
 
 - (unichar)unicodeMedial {
-    
-    NSUInteger unicodeValue;
+    //    NSUInteger unicodeValue;
+        unsigned int unicodeValue;
     [[NSScanner scannerWithString:unicodeMedialString] scanHexInt:&unicodeValue];
     //NSLog(@"%@",[NSString stringWithFormat:@"%C", charValue]);
     return (unichar)unicodeValue;
@@ -118,14 +91,15 @@
 }
 
 - (unichar)unicodeFinal {
+    //    NSUInteger unicodeValue;
+        unsigned int unicodeValue;
     
-    NSUInteger unicodeValue;
     [[NSScanner scannerWithString:unicodeFinalString] scanHexInt:&unicodeValue];
     //NSLog(@"%@",[NSString stringWithFormat:@"%C", charValue]);
     return (unichar)unicodeValue;
     
 }
 
-*/
+
 
 @end
