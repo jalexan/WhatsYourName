@@ -11,8 +11,10 @@
 #import <Foundation/Foundation.h>
 #import <AVFoundation/AVFoundation.h>
 
-@interface AudioManager : NSObject <AVAudioSessionDelegate> {
-    
+//@interface AudioManager : NSObject <AVAudioSessionDelegate> {
+
+@interface AudioManager : NSObject {
+
 }
 + (AudioManager*)sharedInstance;
 

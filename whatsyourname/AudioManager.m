@@ -28,7 +28,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(AudioManager)
 @synthesize backgroundPlayer;
 
 - (id)init {
-	if ((self = [super init])) {
+	if (self) {
+ //    if ((self = [super init])) {
+
         
         [[NSNotificationCenter defaultCenter] addObserver: self
                                                  selector: @selector(handleAudioSessionInterruption:)
@@ -55,7 +57,11 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(AudioManager)
     AVAudioSession* session = [AVAudioSession sharedInstance];
     
     //Set the general audio session category
-    [session setCategory:theCategory error: &setCategoryErr];
+    //AVAudioSessionCategoryOptionDefaultToSpeaker
+    
+    //    [session setCategory:theCategory error: &setCategoryErr];
+
+    [session setCategory:theCategory withOptions:AVAudioSessionCategoryOptionDefaultToSpeaker error:&setCategoryErr];
     
     if (setCategoryErr) {
         NSLog(@"Eror: AudioManager setCategory  %@", setCategoryErr);
@@ -63,8 +69,10 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(AudioManager)
 
     
     //Make the default sound route for the session be to use the speaker
+    /*
     UInt32 doChangeDefaultRoute = 1;
     AudioSessionSetProperty (kAudioSessionProperty_OverrideCategoryDefaultToSpeaker, sizeof (doChangeDefaultRoute), &doChangeDefaultRoute);
+  */
     
     //if (theCategory == AVAudioSessionCategoryRecord) {
     [session setActive:YES error:&activationErr];
@@ -86,14 +94,17 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(AudioManager)
     
     [self setAudioSessionCategory:AVAudioSessionCategoryPlayAndRecord];
     
-    UInt32 otherAudioIsPlayingVal;
-    UInt32 propertySize = sizeof (otherAudioIsPlayingVal);
+    //UInt32 otherAudioIsPlayingVal;
+   // UInt32 propertySize = sizeof (otherAudioIsPlayingVal);
     
-    AudioSessionGetProperty (kAudioSessionProperty_OtherAudioIsPlaying,
+ /*   AudioSessionGetProperty (kAudioSessionProperty_OtherAudioIsPlaying,
                              &propertySize,
                              &otherAudioIsPlayingVal
                              );
-    otherAudioIsPlaying = (BOOL)otherAudioIsPlayingVal;
+  */
+//    otherAudioIsPlaying = (BOOL)otherAudioIsPlayingVal;
+    otherAudioIsPlaying = [[AVAudioSession sharedInstance] isOtherAudioPlaying];
+
     if (otherAudioIsPlaying){
         [backgroundPlayer pause];
     } else {

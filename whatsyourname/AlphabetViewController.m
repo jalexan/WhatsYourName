@@ -152,7 +152,7 @@
     [chalkboard removeAllSubviews];
     //Add writing label on the chalkboard
     chalkboardLabel = [[UILabel alloc]initWithFrame:CGRectMake(5, 5, chalkboard.frame.size.width-10, chalkboard.frame.size.height-40)];
-    chalkboardLabel.font = [UIFont fontWithName:@"GeezaPro-Bold" size:150];
+    chalkboardLabel.font = [UIFont fontWithName:@"GeezaPro-Bold" size:130];
     chalkboardLabel.textColor = [UIColor whiteColor];
     chalkboardLabel.backgroundColor = [UIColor clearColor];
     chalkboardLabel.textAlignment = NSTextAlignmentCenter;
@@ -179,7 +179,7 @@
     speakerImageView.hidden = NO;
     
     [self displayDialogTextWithKey:@"ThisIs" animationType:TALK completion:^() {
-    
+        
         [self singAndSpellArabicAlphabetForDuration: -1 withCompletion:^() {
 
             [self displayDialogTextWithKey:@"SingAlong" animationType:TALK completion:^() {
@@ -381,7 +381,7 @@
 
 
 -(void)animateAndSingAlphabetsByIndex:(NSUInteger)index forSection:(NSUInteger)section forDuration:(NSTimeInterval)d withCompletion:(void((^)()) )completion {
-    NSString *suffix = [NSString stringWithFormat:@"Arabic%du",(unsigned int)section];
+    NSString *suffix = [NSString stringWithFormat:@"Arabic%d",(unsigned int)section];
     NSTimeInterval duration;
     
     duration = [self getDurationAndPlaySpeakerDialogAudioWithKey:@"AlphabetSong" prefix:currentSpeaker.name suffix:suffix];

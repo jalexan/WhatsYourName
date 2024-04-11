@@ -648,6 +648,7 @@ static NSNumber* currentSpeakerIndex;
         
         CGPoint randomPoint = CGPointMake(x, y);
         CGPoint convertedPoint = [self.view convertPoint:randomPoint fromView:mixedUpLettersAreaView];
+     //   convertedPoint.y = (int)convertedPoint.y % (int)r.size.width; // - slotContainerView.frame.size.height;
         
         [UIView animateWithDuration: shuffleDuration
                               delay: letterFallDownAnimationDelay

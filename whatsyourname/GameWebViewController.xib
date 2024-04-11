@@ -14,7 +14,7 @@
                 <outlet property="_homeButton" destination="34" id="42"/>
                 <outlet property="_refreshButton" destination="31" id="38"/>
                 <outlet property="_spinner" destination="44" id="45"/>
-                <outlet property="_webView" destination="32" id="35"/>
+                <outlet property="_webView" destination="JhZ-ta-5vW" id="ljO-KW-pN8"/>
                 <outlet property="view" destination="1" id="3"/>
             </connections>
         </placeholder>
@@ -23,11 +23,15 @@
             <rect key="frame" x="0.0" y="0.0" width="568" height="320"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="32" customClass="WKWebView">
-                    <rect key="frame" x="0.0" y="0.0" width="568" height="320"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                </webView>
+                <wkWebView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JhZ-ta-5vW">
+                    <rect key="frame" x="0.0" y="0.0" width="578" height="320"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <wkWebViewConfiguration key="configuration">
+                        <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                        <wkPreferences key="preferences"/>
+                    </wkWebViewConfiguration>
+                </wkWebView>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="30" customClass="GameUIButton">
                     <rect key="frame" x="12" y="281" width="41" height="29"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -92,13 +96,13 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <nil key="simulatedStatusBarMetrics"/>
-            <point key="canvasLocation" x="34" y="104"/>
+            <point key="canvasLocation" x="33.802816901408448" y="103.125"/>
         </view>
     </objects>
     <resources>
-        <image name="Resource/icon_back.png" width="16" height="16"/>
-        <image name="Resource/icon_forward.png" width="16" height="16"/>
-        <image name="Resource/icon_home.png" width="16" height="16"/>
-        <image name="Resource/icon_restart_circle.png" width="16" height="16"/>
+        <image name="Resource/icon_back.png" width="128" height="128"/>
+        <image name="Resource/icon_forward.png" width="128" height="128"/>
+        <image name="Resource/icon_home.png" width="128" height="128"/>
+        <image name="Resource/icon_restart_circle.png" width="128" height="128"/>
     </resources>
 </document>

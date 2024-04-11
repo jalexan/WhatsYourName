@@ -62,9 +62,9 @@
 - (void)addAnimationFilesToArray:(NSMutableArray*)array filePrefix:(NSString*)filePrefix {
     
     for (int i=0;i<FILE_CHECK_LITMIT;i++) {
-        NSString* filename = [NSString stringWithFormat:@"Speakers/%@/Images/%@%02d.png",speaker.name,filePrefix,i];
+        NSString* speaker_filename = [NSString stringWithFormat:@"Speakers/%@/Images/%@%02d.png",speaker.name,filePrefix,i];
         
-        UIImage* image = [UIImage imageNamed:filename];
+        UIImage* image = [UIImage imageNamed:speaker_filename];
         if (image) {
             [array addObject:image];
         }

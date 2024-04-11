@@ -13,7 +13,7 @@ typedef void(^AnswerBlock)(BOOL isCorrectAnswer);
 @interface ParentalGate : NSObject
 
 - (id)initWithAnswerBlock:(AnswerBlock)theAnswerBlock;
-- (void)validateIfUserIsParent;
+- (void)validateIfUserIsParentforVC:(UIViewController*)vc;
 
 @end
 

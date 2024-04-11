@@ -72,11 +72,14 @@
     arabicLetter = theArabicLetter;
     
     //NSString* filename = [NSString stringWithFormat:@"Letters/%02d.png",arabicLetter.letterIndex];
-    if (!self.frameImage) self.frameImage = [UIImage imageNamed:[NSString stringWithFormat:@"Resource/slot_frame.png"]];
-    
-    if (self.frameImage) {
-        self.image = self.frameImage;
+    if (!self.image) {
+        self.image = [UIImage imageNamed:[NSString stringWithFormat:@"Resource/slot_frame.png"]];
     }
+    
+    self.frameImage = self.image;
+   // if (self.frameImage) {
+   //     self.image = self.frameImage;
+   // }
 
     if (!self.fontSize) fontSize = 36;
     if (!self.fontColor) fontColor = [UIColor blackColor];

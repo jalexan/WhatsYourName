@@ -49,6 +49,10 @@
 	<array>
 		<string>armv7</string>
 	</array>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>This app uses the microphone to allow you to record your self and hear the pronunciation of a native arabic speaker at the same time.</string>
+	<key>LSApplicationCategoryType</key>
+	<string>public.app-category.educational-games</string>
 	<key>UIStatusBarHidden</key>
 	<true/>
 	<key>UISupportedInterfaceOrientations</key>
