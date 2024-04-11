@@ -81,7 +81,7 @@
         }
         
     }];
-    [gate validateIfUserIsParent];
+    [gate validateIfUserIsParentforVC:self];
 }
 
 -(IBAction)facebookButtonTouched:(id)sender {
@@ -89,12 +89,12 @@
         
         if (isCorrectAnswer) {
             GameWebViewController *fbwebController = [[GameWebViewController alloc] initWithNibName:nil bundle:nil];
-            [fbwebController openURL:[NSURL URLWithString:@"http://www.facebook.com/noliafasolia"]];
+            [fbwebController openURL:[NSURL URLWithString:@"http://www.facebook.com/noliafasolia"]]; //TODO: Crash here. it says Configuation cannot be nil
             [self.navigationController pushViewController:fbwebController animated:YES];
         }
         
     }];
-    [gate validateIfUserIsParent];
+    [gate validateIfUserIsParentforVC:self];
 
 }
 
