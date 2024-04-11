@@ -365,6 +365,12 @@
 			attributes = {
 				LastUpgradeCheck = 0450;
 				ORGANIZATIONNAME = "Richard Nguyen";
+				TargetAttributes = {
+					68240B0C173F07D200BDBDF8 = {
+						DevelopmentTeam = 6P4V8BPDP2;
+						ProvisioningStyle = Automatic;
+					};
+				};
 			};
 			buildConfigurationList = 68240B07173F07D200BDBDF8 /* Build configuration list for PBXProject "whatsyourname" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -532,11 +538,18 @@
 		68240B32173F07D200BDBDF8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6P4V8BPDP2;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "whatsyourname/whatsyourname-Prefix.pch";
 				INFOPLIST_FILE = "whatsyourname/whatsyourname-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				MARKETING_VERSION = 1.2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bkbb.WhatsYName;
 				PRODUCT_NAME = WhatsYName;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -544,15 +557,19 @@
 		68240B33173F07D200BDBDF8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Julie Alexan (Z7K385A32R)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Julie Alexan (Z7K385A32R)";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6P4V8BPDP2;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "whatsyourname/whatsyourname-Prefix.pch";
 				INFOPLIST_FILE = "whatsyourname/whatsyourname-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_NAME = WhatsYName;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "75E3F4C1-CB08-4DEA-95D0-9DC97CA6B8D2";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
